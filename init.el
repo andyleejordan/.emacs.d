@@ -20,6 +20,7 @@
 (defvar my-packages '(ace-jump-mode
                       auto-complete
                       better-defaults
+                      color-theme-solarized
                       ido-ubiquitous
                       jedi
                       expand-region
@@ -34,8 +35,7 @@
                       smex
                       smooth-scrolling
                       undo-tree
-                      virtualenvwrapper
-                      zenburn-theme))
+                      virtualenvwrapper))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
