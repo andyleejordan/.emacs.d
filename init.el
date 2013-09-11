@@ -22,7 +22,6 @@
                       better-defaults
                       color-theme-solarized
                       ido-ubiquitous
-                      jedi
                       expand-region
                       flycheck
                       linum
@@ -55,9 +54,6 @@
 (require 'ido)
 (require 'ido-ubiquitous)
 
-;;; activate emacs-jedi for Python
-;;; (add-hook 'python-mode-hook 'jedi:setup)
-
 ;;; activate expand-region
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -65,12 +61,20 @@
 ;;; activate flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
+;;; eval-buffer
+(global-set-key (kbd "C-c x") 'eval-buffer)
+
 ;;; line numbers
 (require 'linum)
 (global-linum-mode t)
 
 ;;; magit
 (define-key global-map (kbd "C-c g") 'magit-status)
+
+;;; org-mode
+(setq org-agenda-files '("~/org/personal"
+                         "~/org/school"))
+(define-key global-map (kbd "C-c a") 'org-agenda)
 
 ;;; activate projectile
 (require 'projectile)
@@ -127,8 +131,11 @@
 
 ;;; emacs configurations
 
-;; disable bell function
+;;; disable bell function
 (setq ring-bell-function 'ignore)
+
+;;; exec-path
+(add-to-list 'exec-path "/usr/local/bin")
 
 ;;; set auto revert of buffers if file is changed externally
 (global-auto-revert-mode t)
@@ -154,19 +161,9 @@
 (setq ispell-program-name "aspell" ; use aspell instead of ispell
       ispell-extra-args '("--sug-mode=ultra"))
 
-;;; mouse whell
-(unless window-system
-  (require 'mouse)
-  (xterm-mouse-mode t)
-  (global-set-key [mouse-4] '(lambda ()
-                              (interactive)
-                              (scroll-down 1)))
-  (global-set-key [mouse-5] '(lambda ()
-                              (interactive)
-                              (scroll-up 1)))
-  (defun track-mouse (e))
-  (setq mouse-sel-mode t)
-)
+;;; visual-line-mode
+(global-visual-line-mode t)
+(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
 ;;; whitespace
 (require 'whitespace)
