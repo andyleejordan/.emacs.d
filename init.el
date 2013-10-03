@@ -27,6 +27,7 @@
                       linum
                       magit
                       markdown-mode
+                      o-blog
                       paredit
                       projectile
                       puppet-mode
@@ -72,8 +73,8 @@
 (define-key global-map (kbd "C-c g") 'magit-status)
 
 ;;; org-mode
-(setq org-agenda-files '("~/org/personal"
-                         "~/org/school"))
+(setq org-agenda-files '("~/Documents/org/personal"
+                         "~/Documents/org/school"))
 (define-key global-map (kbd "C-c a") 'org-agenda)
 
 ;;; activate projectile
