@@ -21,9 +21,10 @@
                       auto-complete
                       better-defaults
                       color-theme-solarized
-                      ido-ubiquitous
+                      elfeed
                       expand-region
                       flycheck
+                      ido-ubiquitous
                       linum
                       magit
                       markdown-mode
@@ -51,19 +52,45 @@
 ;;; require better-defaults
 (require 'better-defaults)
 
-;;; require ido-ubiquitous
-(require 'ido)
-(require 'ido-ubiquitous)
-
 ;;; activate expand-region
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
+;;; set-up elfeed
+(global-set-key (kbd "C-x w") 'elfeed)
+(setq elfeed-feeds
+      '("http://nullprogram.com/feeds/"
+        "http://www.terminally-incoherent.com/blog/feed/"
+        "http://emacs-fu.blogspot.com/feeds/posts/default/-/new"
+        "http://linuxmantra.com/feed"
+        "http://pauls-techno-blog.tumblr.com/rss"
+        "http://feeds.feedburner.com/technovelty"
+        "http://blog.recursion.es/feed/"
+        "http://www.windytan.com/feeds/posts/default"
+        "http://blog.theincredibleholk.org/atom.xml"
+        "http://feeds.feedburner.com/stevelosh"
+        "http://www.rdegges.com/feeds/atom.xml"
+        "http://feeds.feedburner.com/ThreeProgrammersWalkedIntoABar"
+        "http://www.pythondiary.com/blog.xml"
+        "http://feeds.feedburner.com/blogspot/MKuf"
+        "http://feeds.feedburner.com/redditblog"
+        "http://feeds.feedburner.com/ItsNotWorkWhenYouLoveIt"
+        "http://www.hackthings.com/feed/"
+        "https://github.com/blog/subscribe"
+        "https://www.simple.com/blog/"
+        "http://feeds.feedburner.com/oatmealfeed"
+        "http://xkcd.com/atom.xml"
+        "http://feeds.feedburner.com/damninteresting/all"
+        "http://feeds.feedburner.com/Explosm"
+        "http://what-if.xkcd.com/feed.atom"
+        "https://www.schneier.com/blog/atom.xml"))
+
 ;;; activate flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-;;; eval-buffer
-(global-set-key (kbd "C-c x") 'eval-buffer)
+;;; require ido-ubiquitous
+(require 'ido)
+(require 'ido-ubiquitous)
 
 ;;; line numbers
 (require 'linum)
@@ -134,6 +161,9 @@
 
 ;;; disable bell function
 (setq ring-bell-function 'ignore)
+
+;;; eval-buffer
+(global-set-key (kbd "C-c x") 'eval-buffer)
 
 ;;; exec-path
 (add-to-list 'exec-path "/usr/local/bin")
