@@ -19,7 +19,6 @@
 
 (defvar my-packages '(ace-jump-mode
                       auto-complete
-                      better-defaults
                       color-theme-solarized
                       elfeed
                       expand-region
@@ -48,9 +47,6 @@
 ;;; auto-complete
 (require 'auto-complete)
 (global-auto-complete-mode t)
-
-;;; require better-defaults
-(require 'better-defaults)
 
 ;;; activate expand-region
 (require 'expand-region)
@@ -103,6 +99,7 @@
 (setq org-agenda-files '("~/Documents/org/personal"
                          "~/Documents/org/school"))
 (define-key global-map (kbd "C-c a") 'org-agenda)
+(setq org-entities-user '(("join" "\join" nil "&#9285;" "⋈" "" "⋈")))
 
 ;;; activate projectile
 (require 'projectile)
@@ -159,6 +156,39 @@
 
 ;;; emacs configurations
 
+;;; some of below stolen from better-defaults
+
+;;; disable toolbar and scrollbar
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
+
+;;; ido-mode
+(ido-mode t)
+(setq ido-enable-flex-matching t)
+
+;;; uniquify
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+
+;;; saveplace
+(require 'saveplace)
+(setq-default save-place t)
+
+;;; better keys
+(global-set-key (kbd "M-/") 'hippie-expand)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
+;;; isearch
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-M-s") 'isearch-forward)
+(global-set-key (kbd "C-M-r") 'isearch-backward)
+
+;;; matching parentheses
+(show-paren-mode 1)
+
 ;;; disable bell function
 (setq ring-bell-function 'ignore)
 
@@ -179,10 +209,7 @@
   kept-old-versions 2
   version-control t)
 
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
+(setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
 
 ;;; blink cursor
 (blink-cursor-mode t)
