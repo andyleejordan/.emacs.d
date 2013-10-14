@@ -79,7 +79,8 @@
         "http://feeds.feedburner.com/damninteresting/all"
         "http://feeds.feedburner.com/Explosm"
         "http://what-if.xkcd.com/feed.atom"
-        "https://www.schneier.com/blog/atom.xml"))
+        "https://www.schneier.com/blog/atom.xml"
+	"http://feeds.feedburner.com/privacyonline"))
 
 ;;; activate flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
