@@ -69,6 +69,10 @@
 (define-key global-map (kbd "C-c a") 'org-agenda)
 (setq org-entities-user '(("join" "\join" nil "&#9285;" "⋈" "" "⋈")))
 
+;;; o-blog
+(add-to-list 'load-path "~/.emacs.d/o-blog")
+(require 'o-blog)
+
 ;;; activate projectile
 (require 'projectile)
 (projectile-global-mode)
