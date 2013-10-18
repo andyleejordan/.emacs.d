@@ -27,7 +27,6 @@
                       linum
                       magit
                       markdown-mode
-                      o-blog
                       paredit
                       projectile
                       puppet-mode
