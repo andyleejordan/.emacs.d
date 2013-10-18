@@ -111,6 +111,9 @@
 ;;; activate smartparens
 (smartparens-global-mode t)
 (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
+(sp-local-pair 'org-mode "'" nil :actions nil)
+(sp-local-pair 'text-mode "'" nil :actions nil)
+(sp-local-pair 'git-commit-mode "'" nil :actions nil)
 
 ;;; setup smex bindings
 (require 'smex)
