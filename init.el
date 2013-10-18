@@ -96,8 +96,7 @@
 (define-key global-map (kbd "C-c g") 'magit-status)
 
 ;;; org-mode
-(setq org-agenda-files '("~/Documents/org/personal"
-                         "~/Documents/org/school"))
+(setq org-agenda-files '("~/.org"))
 (define-key global-map (kbd "C-c a") 'org-agenda)
 (setq org-entities-user '(("join" "\join" nil "&#9285;" "⋈" "" "⋈")))
 
