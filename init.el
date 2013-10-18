@@ -239,4 +239,7 @@
 ;;; matching parentheses
 (show-paren-mode 1)
 
+;;; symlink version-control follwo
+(setq vc-follow-symlinks t)
+
 ;;; init.el ends here
