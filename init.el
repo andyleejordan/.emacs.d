@@ -62,12 +62,20 @@
 (global-linum-mode t)
 
 ;;; magit
-(define-key global-map (kbd "C-c g") 'magit-status)
+(define-key global-map (kbd "C-c C-g") 'magit-status)
 
 ;;; org-mode
 (setq org-agenda-files '("~/.org"))
 (define-key global-map (kbd "C-c a") 'org-agenda)
 (setq org-entities-user '(("join" "\join" nil "&#9285;" "⋈" "" "⋈")))
+(add-to-list 'org-export-latex-classes
+             '("article"
+               "\\documentclass{article}"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
 ;;; o-blog
 (add-to-list 'load-path "~/.emacs.d/o-blog")
