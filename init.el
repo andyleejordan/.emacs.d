@@ -174,12 +174,6 @@
 (setq whitespace-line-column 80) ;; limit line length
 (setq whitespace-style '(face tabs empty trailing lines-tail))
 
-;;; start server
-(server-start)
-
-;;; provide init package
-(provide 'init)
-
 ;;; below stolen from better-defaults
 
 ;;; disable toolbar and scrollbar
@@ -216,5 +210,11 @@
 
 ;;; symlink version-control follwo
 (setq vc-follow-symlinks t)
+
+;;; start server
+(server-start)
+
+;;; provide init package
+(provide 'init)
 
 ;;; init.el ends here
