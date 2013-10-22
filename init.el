@@ -110,7 +110,7 @@
 (load-theme 'solarized-dark t)
 
 ;;; undo-tree
-(global-undo-tree-mode)
+(global-undo-tree-mode t)
 
 ;;; setup virtualenvwrapper
 (require 'virtualenvwrapper)
@@ -142,6 +142,7 @@
 ;;; remap command to meta (while in emacs)
 (setq mac-command-modifier 'meta)
 (global-set-key (kbd "M-`") 'other-frame)
+(global-set-key (kbd "M-n") 'new-frame)
 
 ;;; disable bell function
 (setq ring-bell-function 'ignore)
@@ -150,7 +151,7 @@
 (global-set-key (kbd "C-c x") 'eval-buffer)
 
 ;;; exec-path
-(add-to-list 'exec-path "/usr/local/bin")
+(add-to-list 'exec-path "/usr/local/bin/")
 
 ;;; set auto revert of buffers if file is changed externally
 (global-auto-revert-mode t)
@@ -181,6 +182,7 @@
 (require 'whitespace)
 (setq whitespace-line-column 80) ;; limit line length
 (setq whitespace-style '(face tabs empty trailing lines-tail))
+(global-whitespace-mode t)
 
 ;;; below stolen from better-defaults
 
@@ -216,7 +218,7 @@
 ;;; matching parentheses
 (show-paren-mode 1)
 
-;;; symlink version-control follwo
+;;; symlink version-control follow
 (setq vc-follow-symlinks t)
 
 ;;; start server
