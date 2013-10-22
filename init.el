@@ -68,14 +68,6 @@
 (setq org-agenda-files '("~/.org"))
 (define-key global-map (kbd "C-c a") 'org-agenda)
 (setq org-entities-user '(("join" "\join" nil "&#9285;" "⋈" "" "⋈")))
-(add-to-list 'org-export-latex-classes
-             '("article"
-               "\\documentclass{article}"
-               ("\\section{%s}" . "\\section*{%s}")
-               ("\\subsection{%s}" . "\\subsection*{%s}")
-               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-               ("\\paragraph{%s}" . "\\paragraph*{%s}")
-               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
 ;;; o-blog
 (add-to-list 'load-path "~/.emacs.d/o-blog")
@@ -213,7 +205,7 @@
 (global-set-key (kbd "M-/") 'hippie-expand)
 
 ;;; isearch
-(global-set-key (kbd "C-s") 'isearch-forward-sregexp)
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
