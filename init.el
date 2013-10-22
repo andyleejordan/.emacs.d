@@ -18,6 +18,7 @@
   (package-refresh-contents))
 
 (defvar my-packages '(ace-jump-mode
+		      adaptive-wrap
                       auto-complete
                       color-theme-solarized
                       expand-region
@@ -41,6 +42,13 @@
 
 ;;; ace-jump-mode
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+
+;;; adaptive-wrap "Toggle `visual-line-mode' and
+;;; `adaptive-wrap-prefix-mode' simultaneously."
+(when (fboundp 'adaptive-wrap-prefix-mode)
+  (lambda () (adaptive-wrap-prefix-mode (if visual-line-mode 1 -1)))
+  (add-hook 'visual-line-mode-hook
+  'my-activate-adaptive-wrap-prefix-mode))
 
 ;;; auto-complete
 (require 'auto-complete)
