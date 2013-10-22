@@ -70,7 +70,7 @@
 (setq org-entities-user '(("join" "\join" nil "&#9285;" "⋈" "" "⋈")))
 
 ;;; o-blog
-(add-to-list 'load-path "~/.emacs.d/o-blog")
+(add-to-list 'load-path "~/.emacs.d/o-blog/")
 (require 'o-blog)
 
 ;;; activate projectile
@@ -167,14 +167,13 @@
       ispell-extra-args '("--sug-mode=ultra"))
 
 ;;; visual-line-mode
-(global-visual-line-mode t)
+(global-visual-line-mode 0)
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
 ;;; whitespace
 (require 'whitespace)
 (setq whitespace-line-column 80) ;; limit line length
 (setq whitespace-style '(face tabs empty trailing lines-tail))
-(global-whitespace-mode t)
 
 ;;; below stolen from better-defaults
 
@@ -211,7 +210,7 @@
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 
 ;;; matching parentheses
-(show-paren-mode 1)
+(show-paren-mode t)
 
 ;;; symlink version-control follow
 (setq vc-follow-symlinks t)
