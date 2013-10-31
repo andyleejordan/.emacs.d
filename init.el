@@ -159,7 +159,7 @@
 (setq ring-bell-function 'ignore)
 
 ;;; eval-buffer
-(global-set-key (kbd "C-c x") 'eval-buffer)
+(global-set-key (kbd "C-c C-x") 'eval-buffer)
 
 ;;; exec-path
 (add-to-list 'exec-path "/usr/local/bin/")
