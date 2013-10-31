@@ -22,6 +22,7 @@
                       auto-complete
                       color-theme-solarized
                       expand-region
+		      dash-at-point
                       flycheck
                       ido-ubiquitous
                       linum
@@ -59,6 +60,9 @@
 
 ;;; activate flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+;;; dash-at-point
+(define-key global-map (kbd "C-c d") 'dash-at-point)
 
 ;;; require ido-ubiquitous
 (require 'ido)
