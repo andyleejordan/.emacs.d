@@ -179,7 +179,7 @@
       ispell-extra-args '("--sug-mode=ultra"))
 
 ;;; visual-line-mode
-(global-visual-line-mode 0)
+(global-visual-line-mode t)
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
 ;;; whitespace
