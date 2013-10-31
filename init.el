@@ -19,6 +19,7 @@
 
 (defvar my-packages '(ace-jump-mode
 		      adaptive-wrap
+		      ag
                       auto-complete
                       color-theme-solarized
 		      dash-at-point
