@@ -170,9 +170,6 @@
 ;;; eval-buffer
 (global-set-key (kbd "C-c C-x") 'eval-buffer)
 
-;;; exec-path
-(add-to-list 'exec-path "/usr/local/bin/")
-
 ;;; set auto revert of buffers if file is changed externally
 (global-auto-revert-mode t)
 
