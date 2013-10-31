@@ -106,6 +106,7 @@
 (require 'smooth-scrolling)
 
 ;;; activate solarized-dark theme
+(setq solarized-broken-srgb 'nil)
 (load-theme 'solarized-dark t)
 
 ;;; undo-tree
