@@ -83,10 +83,6 @@
 ;; disable ido faces to see flx highlights.
 (setq ido-use-faces nil)
 
-;;; line numbers
-(require 'linum)
-(global-linum-mode t)
-
 ;;; magit
 (define-key global-map (kbd "C-c C-g") 'magit-status)
 
