@@ -37,7 +37,7 @@
                       puppet-mode
                       smartparens
                       smex
-                      smooth-scrolling
+                      smooth-scroll
                       undo-tree
                       virtualenvwrapper))
 
@@ -114,7 +114,9 @@
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ;;; scrolling
-(require 'smooth-scrolling)
+(require 'smooth-scroll)
+(smooth-scroll-mode t)
+(setq smooth-scroll/vscroll-step-size 8)
 
 ;;; activate solarized-dark theme
 (setq solarized-broken-srgb 'nil)
