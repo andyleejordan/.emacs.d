@@ -25,6 +25,7 @@
 		      dash-at-point
 		      exec-path-from-shell
 		      expand-region
+		      flx-ido
                       flycheck
                       ido-ubiquitous
                       linum
@@ -74,6 +75,13 @@
 ;;; require ido-ubiquitous
 (require 'ido)
 (require 'ido-ubiquitous)
+
+;;; flx-ido
+(require 'flx-ido)
+(ido-mode 1)
+(flx-ido-mode 1)
+;; disable ido faces to see flx highlights.
+(setq ido-use-faces nil)
 
 ;;; line numbers
 (require 'linum)
