@@ -76,10 +76,12 @@
 (require 'ido)
 (require 'ido-ubiquitous)
 
+;;; ido-mode
+(ido-mode t)
+
 ;;; flx-ido
 (require 'flx-ido)
-(ido-mode 1)
-(flx-ido-mode 1)
+(flx-ido-mode t)
 ;; disable ido faces to see flx highlights.
 (setq ido-use-faces nil)
 
@@ -212,10 +214,6 @@
 ;;; ibuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (add-hook 'ibuffer-mode-hook (lambda () (setq truncate-lines t)))
-
-;;; ido-mode
-(ido-mode t)
-(setq ido-enable-flex-matching t)
 
 ;;; uniquify
 (require 'uniquify)
