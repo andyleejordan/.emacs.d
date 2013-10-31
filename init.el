@@ -197,7 +197,7 @@
 
 ;;; ibuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(add-hook 'ibuffer-mode-hook (lambda () (toggle-truncate-lines t)))
+(add-hook 'ibuffer-mode-hook (lambda () (setq truncate-lines t)))
 
 ;;; ido-mode
 (ido-mode t)
