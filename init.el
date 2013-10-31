@@ -21,15 +21,16 @@
 		      adaptive-wrap
                       auto-complete
                       color-theme-solarized
-                      expand-region
 		      dash-at-point
 		      exec-path-from-shell
+		      expand-region
                       flycheck
                       ido-ubiquitous
                       linum
                       magit
                       markdown-mode
                       paredit
+		      php-mode
                       projectile
                       puppet-mode
                       smartparens
