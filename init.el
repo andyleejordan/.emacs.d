@@ -23,6 +23,7 @@
                       color-theme-solarized
                       expand-region
 		      dash-at-point
+		      exec-path-from-shell
                       flycheck
                       ido-ubiquitous
                       linum
@@ -63,6 +64,10 @@
 
 ;;; dash-at-point
 (define-key global-map (kbd "C-c d") 'dash-at-point)
+
+;;; pull in shell path
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 ;;; require ido-ubiquitous
 (require 'ido)
