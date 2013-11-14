@@ -80,14 +80,14 @@
 ;;; org-mode
 (setq org-agenda-files '("~/.org"))
 (define-key global-map (kbd "C-c a") 'org-agenda)
-(setq org-entities-user '(("join" "\join" nil "&#9285;" "⋈" "" "⋈")))
+(setq org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
+			  ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
+			  ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
+			  ("models" "\\models" nil "&#8872;" "" "" "⊧")))
 
 ;;; activate projectile
 (require 'projectile)
 (projectile-global-mode)
-
-;;; use puppet-mode for *.pp files
-(add-to-list 'auto-mode-alist '("\\.pp\\'" . puppet-mode))
 
 ;;; activate smartparens
 (smartparens-global-mode t)
