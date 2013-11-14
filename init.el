@@ -122,6 +122,10 @@
 
 ;;; personal functions
 
+;;; setting auto-mode-alist
+;; set arduino *.ino files to c-mode
+(add-to-list 'auto-mode-alist '("\\.ino\\'" . c-mode))
+
 ;;; select whole line
 (defun select-whole-line ()
   "Select whole line which has the cursor."
