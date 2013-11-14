@@ -113,11 +113,6 @@
 (setq solarized-use-variable-pitch nil)
 (load-theme 'solarized-dark t)
 
-;;; default window size
-(if (window-system)
-  (set-frame-width (selected-frame) 80)
-  (set-frame-height (selected-frame) 52))
-
 ;;; undo-tree
 (global-undo-tree-mode t)
 
