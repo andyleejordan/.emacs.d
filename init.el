@@ -159,11 +159,6 @@
 
 ;;; emacs configurations
 
-;;; remap command to meta (while in emacs)
-(setq mac-command-modifier 'meta)
-(global-set-key (kbd "M-`") 'other-frame)
-(global-set-key (kbd "M-n") 'new-frame)
-
 ;;; disable bell function
 (setq ring-bell-function 'ignore)
 
