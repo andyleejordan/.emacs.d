@@ -21,7 +21,6 @@
 		      adaptive-wrap
 		      ag
                       auto-complete
-                      color-theme-solarized
 		      dash-at-point
 		      exec-path-from-shell
 		      expand-region
@@ -38,6 +37,7 @@
                       smartparens
                       smex
                       smooth-scroll
+		      solarized-theme
                       undo-tree
                       virtualenvwrapper))
 
@@ -121,7 +121,7 @@
 (setq smooth-scroll/vscroll-step-size 8)
 
 ;;; activate solarized-dark theme
-(setq solarized-broken-srgb 'nil)
+(setq solarized-use-variable-pitch nil)
 (load-theme 'solarized-dark t)
 
 ;;; default window size
