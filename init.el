@@ -20,6 +20,7 @@
                       auto-complete
 		      browse-kill-ring
 		      dash-at-point
+		      ein
 		      exec-path-from-shell
 		      expand-region
 		      flx-ido
@@ -72,6 +73,10 @@
 
 ;;; dash-at-point
 (define-key global-map (kbd "C-c d") 'dash-at-point)
+
+;;; ein
+(require 'ein)
+(setq ein:use-auto-complete t)
 
 ;;; pull in shell path
 (when (memq window-system '(mac ns))
