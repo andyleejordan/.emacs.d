@@ -18,6 +18,7 @@
 (defvar my-packages '(ace-jump-mode
 		      ag
                       auto-complete
+		      browse-kill-ring
 		      dash-at-point
 		      exec-path-from-shell
 		      expand-region
@@ -61,6 +62,10 @@
 ;;; activate expand-region
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
+
+;;; browse-kill-ring
+(require 'browse-kill-ring)
+(browse-kill-ring-default-keybindings)
 
 ;;; activate flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
