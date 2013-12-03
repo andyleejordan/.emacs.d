@@ -26,6 +26,7 @@
 		      flx-ido
                       flycheck
                       ido-ubiquitous
+		      linum-relative
                       magit
                       markdown-mode
 		      php-mode
@@ -94,6 +95,9 @@
 (flx-ido-mode t)
 ;; disable ido faces to see flx highlights.
 (setq ido-use-faces nil)
+
+;;; linum-relative
+(require 'linum-relative)
 
 ;;; magit
 (define-key global-map (kbd "C-c C-g") 'magit-status)
