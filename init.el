@@ -31,7 +31,6 @@
                       markdown-mode
 		      org-journal
 		      org-pomodoro
-		      php-mode
                       projectile
                       puppet-mode
                       smartparens
@@ -48,20 +47,14 @@
 ;;; ace-jump-mode
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-(autoload
-  'ace-jump-mode
-  "ace-jump-mode"
-  "Emacs quick move minor mode"
-  t)
-(autoload
-  'ace-jump-mode
-  "ace-jump-mode"
-  "Emacs quick move minor mode"
-  t)
+(autoload 'ace-jump-mode "ace-jump-mode" "Emacs quick move minor mode" t)
 
 ;;; auto-complete
 (require 'auto-complete)
 (global-auto-complete-mode t)
+
+;; column-number-mode
+(setq column-number-mode t)
 
 ;;; activate expand-region
 (require 'expand-region)
