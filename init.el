@@ -149,18 +149,16 @@
 (setq multi-term-program "/bin/zsh")
 
 ;;; sage
-(add-to-list 'load-path "/Applications/Sage.app/Contents/Resources/sage/data/emacs")
-(require 'sage "sage")
-(setq sage-command "~/bin/sage")
+(if (eq system-type 'darwin)
+    (add-to-list 'load-path "/Applications/Sage.app/Contents/Resources/sage/data/emacs"))
+(ignore-errors
+  (require 'sage "sage")
+  (setq sage-command "~/bin/sage"))
 
 ;;; activate smartparens
 (smartparens-global-mode t)
-(sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
-(sp-local-pair 'org-mode "'" nil :actions nil)
-(sp-local-pair 'text-mode "'" nil :actions nil)
-(sp-local-pair 'git-commit-mode "'" nil :actions nil)
-(sp-local-pair 'erc-mode "'" nil :actions nil)
-
+(sp-local-pair '(emacs-lisp-mode erc-mode git-commit-mode
+		 org-mode text-mode) "'" nil :actions nil)
 ;;; setup smex bindings
 (require 'smex)
 (setq smex-save-file (expand-file-name ".smex-items" "~/.emacs.d/"))
@@ -277,7 +275,8 @@
   kept-old-versions 2
   version-control t)
 
-(setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
+(setq backup-directory-alist `(("." . ,(concat
+					user-emacs-directory "backups"))))
 
 ;;; blink cursor
 (blink-cursor-mode t)
