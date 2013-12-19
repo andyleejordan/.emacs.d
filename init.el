@@ -29,6 +29,7 @@
 		      linum-relative
                       magit
                       markdown-mode
+		      multi-term
 		      org-journal
 		      org-pomodoro
                       projectile
@@ -38,7 +39,8 @@
                       smooth-scroll
 		      solarized-theme
                       undo-tree
-                      virtualenvwrapper))
+                      virtualenvwrapper
+		      yasnippet))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -53,8 +55,27 @@
 (require 'auto-complete)
 (global-auto-complete-mode t)
 
-;; column-number-mode
+;;; auto-save
+(setq auto-save-timeout 60)
+
+;;; quit prompt
+(setq confirm-kill-emacs 'yes-or-no-p)
+
+;;; final-newline
+(setq require-final-newline 't)
+
+;;; column-number-mode
 (setq column-number-mode t)
+
+;;; no stinking disabled commands
+(setq disabled-command-function nil)
+
+;;; initial text mode
+(setq initial-major-mode 'text-mode)
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+;;; y/n for yes/no
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 ;;; activate expand-region
 (require 'expand-region)
@@ -80,7 +101,7 @@
 
 ;;; require ido-ubiquitous
 (require 'ido)
-(require 'ido-ubiquitous)
+(require 'ido-ubiquitous) ; replaces ido-everywhere
 
 ;;; ido-mode
 (ido-mode t)
@@ -90,6 +111,11 @@
 (flx-ido-mode t)
 ;; disable ido faces to see flx highlights.
 (setq ido-use-faces nil)
+;; increase garbage collection threshold
+(setq gc-cons-threshold 20000000)
+
+;;; inhibit startup message
+(setq inhibit-startup-message t)
 
 ;;; linum-relative
 (require 'linum-relative)
@@ -97,9 +123,13 @@
 ;;; magit
 (define-key global-map (kbd "C-c C-g") 'magit-status)
 
+;;; calendar
+(setq calendar-week-start-day 1)
+
 ;;; org-mode
 (setq org-agenda-files '("~/.org"))
 (define-key global-map (kbd "C-c a") 'org-agenda)
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
 (setq org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
 			  ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
 			  ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
@@ -109,6 +139,14 @@
 ;;; activate projectile
 (require 'projectile)
 (projectile-global-mode)
+(define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
+(define-key projectile-mode-map [?\s-p] 'projectile-switch-project)
+(define-key projectile-mode-map [?\s-f] 'projectile-find-file)
+(define-key projectile-mode-map [?\s-a] 'projectile-ag)
+
+;;; multi-term
+(require 'multi-term)
+(setq multi-term-program "/bin/zsh")
 
 ;;; sage
 (add-to-list 'load-path "/Applications/Sage.app/Contents/Resources/sage/data/emacs")
@@ -121,6 +159,7 @@
 (sp-local-pair 'org-mode "'" nil :actions nil)
 (sp-local-pair 'text-mode "'" nil :actions nil)
 (sp-local-pair 'git-commit-mode "'" nil :actions nil)
+(sp-local-pair 'erc-mode "'" nil :actions nil)
 
 ;;; setup smex bindings
 (require 'smex)
@@ -137,6 +176,7 @@
 
 ;;; activate solarized-dark theme
 (setq solarized-use-variable-pitch nil)
+(setq solarized-high-contrast-mode-line t)
 (load-theme 'solarized-dark t)
 
 ;;; undo-tree
@@ -170,6 +210,10 @@
             (setq beg (line-beginning-position) end (line-end-position)))
         (comment-or-uncomment-region beg end)))
 (global-set-key (kbd "C-c c") 'comment-or-uncomment-region-or-line)
+
+;;; yasnippet
+(require 'yasnippet)
+(yas-global-mode t)
 
 ;;; emacs configurations
 
