@@ -25,11 +25,16 @@
 		      expand-region
 		      flx-ido
                       flycheck
+		      gnuplot
+		      haskell-mode
                       ido-ubiquitous
+		      jabber
 		      linum-relative
                       magit
                       markdown-mode
 		      multi-term
+		      mustache-mode
+		      org
 		      org-journal
 		      org-pomodoro
                       projectile
@@ -40,6 +45,7 @@
 		      solarized-theme
                       undo-tree
                       virtualenvwrapper
+		      yaml-mode
 		      yasnippet))
 
 (dolist (p my-packages)
