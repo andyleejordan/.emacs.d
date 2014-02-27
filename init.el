@@ -91,7 +91,13 @@
 (require 'browse-kill-ring)
 (browse-kill-ring-default-keybindings)
 
-;;; activate flycheck
+;;; pull in shell path
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
+;;; flycheck
+(setq-default flycheck-clang-standard-library "libc++")
+(setq-default flycheck-clang-language-standard "c++11")
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;;; dash-at-point
@@ -100,10 +106,6 @@
 ;;; ein
 (require 'ein)
 (setq ein:use-auto-complete t)
-
-;;; pull in shell path
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
 
 ;;; require ido-ubiquitous
 (require 'ido)
