@@ -132,9 +132,6 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
-;;; multi-term
-(require 'multi-term)
-(setq multi-term-program "/bin/zsh")
 ;;; popwin
 (require 'popwin)
 (popwin-mode 1)

@@ -23,7 +23,6 @@
 (depends-on "markdown-mode")
 (depends-on "move-text")
 (depends-on "multiple-cursors")
-(depends-on "multi-term")
 (depends-on "mustache-mode")
 (depends-on "org")
 (depends-on "org-journal")
