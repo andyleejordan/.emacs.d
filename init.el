@@ -287,6 +287,9 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 
+;;; Remove selected region if typing
+(pending-delete-mode 1)
+
 ;;; Prefer utf8
 (setq locale-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
