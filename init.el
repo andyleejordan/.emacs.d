@@ -124,6 +124,10 @@
 ;;; multi-term
 (require 'multi-term)
 (setq multi-term-program "/bin/zsh")
+;;; popwin
+(require 'popwin)
+(popwin-mode 1)
+(global-set-key (kbd "C-z") popwin:keymap)
 
 ;;; sage
 (if (eq system-type 'darwin)
