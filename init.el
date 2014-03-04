@@ -161,6 +161,10 @@
 (require 'virtualenvwrapper)
 (setq venv-location "~/.virtualenvs/")
 
+;;; wrap-region
+(require 'wrap-region)
+(wrap-region-global-mode t)
+
 ;;; personal functions
 
 ;;; setting auto-mode-alist
