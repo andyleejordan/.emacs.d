@@ -104,6 +104,9 @@
 (setq calendar-week-start-day 1)
 
 ;;; org-mode
+(require 'org-journal)
+(setq org-journal-dir "~/Documents/personal/journal/")
+
 (setq org-agenda-files '("~/.org"))
 (define-key global-map (kbd "C-c a") 'org-agenda)
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
@@ -111,7 +114,6 @@
 			  ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
 			  ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
 			  ("models" "\\models" nil "&#8872;" "" "" "⊧")))
-(require 'org-journal)
 
 ;;; activate projectile
 (require 'projectile)
