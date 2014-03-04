@@ -121,6 +121,10 @@
 (define-key projectile-mode-map [?\s-f] 'projectile-find-file)
 (define-key projectile-mode-map [?\s-a] 'projectile-ag)
 
+;;; move-text
+(require 'move-text)
+(move-text-default-bindings)
+
 ;;; multiple-cursors
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
