@@ -117,6 +117,15 @@
 			  ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
 			  ("models" "\\models" nil "&#8872;" "" "" "⊧")))
 (setq org-export-backends '(html beamer ascii latex md))
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (gnuplot . t)
+   (C . t)
+   (latex . t)
+   (python . t)
+   (ruby . t)
+   (sh . t)))
 
 ;;; activate projectile
 (require 'projectile)
