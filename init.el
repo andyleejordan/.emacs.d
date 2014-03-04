@@ -19,6 +19,7 @@
 		      ag
                       auto-complete
 		      browse-kill-ring
+		      crontab-mode
 		      dash-at-point
 		      ein
 		      exec-path-from-shell
@@ -32,6 +33,7 @@
 		      linum-relative
                       magit
                       markdown-mode
+		      move-text
 		      multi-term
 		      mustache-mode
 		      org
@@ -39,6 +41,8 @@
 		      org-pomodoro
                       projectile
                       puppet-mode
+		      regex-tool
+		      ido-vertical-mode
 		      scratch
                       smartparens
                       smex
