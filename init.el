@@ -18,6 +18,7 @@
 (defvar my-packages '(ace-jump-mode
 		      ag
                       auto-complete
+		      auto-complete-clang-async
 		      browse-kill-ring
 		      crontab-mode
 		      dash-at-point
@@ -65,6 +66,13 @@
 ;;; auto-complete
 (require 'auto-complete)
 (global-auto-complete-mode t)
+(define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
+
+
+;;; clang-async
+(require 'auto-complete-clang-async)
+(ac-clang-config-default)
+(setq ac-clang-complete-executable "~/.emacs.d/clang-complete")
 
 ;;; auto-save
 (setq auto-save-timeout 60)
