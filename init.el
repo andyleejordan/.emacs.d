@@ -5,58 +5,8 @@
 
 ;;; Code:
 
-(add-to-list 'load-path "~/.emacs.d/")
-
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(package-initialize)
-
-(when (not package-archive-contents)
-  (package-refresh-contents))
-
-(defvar my-packages '(ace-jump-mode
-		      ag
-                      auto-complete
-		      auto-complete-clang-async
-		      browse-kill-ring
-		      crontab-mode
-		      dash-at-point
-		      ein
-		      exec-path-from-shell
-		      expand-region
-		      flx-ido
-                      flycheck
-		      gnuplot
-		      haskell-mode
-                      ido-ubiquitous
-		      jabber
-		      linum-relative
-                      magit
-                      markdown-mode
-		      move-text
-		      multi-term
-		      mustache-mode
-		      org
-		      org-journal
-		      org-pomodoro
-                      projectile
-                      puppet-mode
-		      regex-tool
-		      ido-vertical-mode
-		      scratch
-                      smartparens
-                      smex
-                      smooth-scroll
-		      solarized-theme
-                      undo-tree
-                      virtualenvwrapper
-		      yaml-mode
-		      yasnippet))
-
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (package-install p)))
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
 
 ;;; ace-jump-mode
 (require 'ace-jump-mode)
