@@ -297,6 +297,10 @@
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
+
+;;; Do not ask for confirmation
+(setq confirm-nonexistent-file-or-buffer nil)
+
 ;;; ibuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (add-hook 'ibuffer-mode-hook (lambda () (setq truncate-lines t)))
