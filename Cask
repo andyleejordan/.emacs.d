@@ -1,4 +1,5 @@
 (source melpa)
+(source org)
 
 (depends-on "ace-jump-mode")
 (depends-on "ag")
@@ -24,7 +25,7 @@
 (depends-on "move-text")
 (depends-on "multiple-cursors")
 (depends-on "mustache-mode")
-(depends-on "org")
+(depends-on "org-plus-contrib")
 (depends-on "org-journal")
 (depends-on "org-pomodoro")
 (depends-on "popwin")
