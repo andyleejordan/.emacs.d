@@ -300,6 +300,9 @@
 (require 'saveplace)
 (setq-default save-place t)
 
+;;; tramp
+(eval-after-load 'tramp '(setenv "SHELL" "/bin/sh"))
+
 ;;; better keys
 (global-set-key (kbd "M-/") 'hippie-expand)
 
