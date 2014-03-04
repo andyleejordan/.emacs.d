@@ -279,6 +279,9 @@
 ;;; set auto revert of buffers if file is changed externally
 (global-auto-revert-mode t)
 
+;;; compile shortcut
+(global-set-key (kbd "C-x c") 'compile)
+
 ;;; backups
 (setq backup-by-copying t)
 
