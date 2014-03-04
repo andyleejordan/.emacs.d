@@ -242,6 +242,8 @@
 (global-set-key (kbd "C-c C-x") 'eval-buffer)
 
 ;;; set auto revert of buffers if file is changed externally
+(setq global-auto-revert-non-file-buffers t)
+(setq auto-revert-verbose nil)
 (global-auto-revert-mode t)
 
 ;;; compile shortcut
