@@ -301,6 +301,9 @@
 (setq ispell-program-name "aspell" ; use aspell instead of ispell
       ispell-extra-args '("--sug-mode=ultra"))
 
+;;; subword mode
+(global-subword-mode t)
+
 ;;; visual-line-mode
 (global-visual-line-mode t)
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
