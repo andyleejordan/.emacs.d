@@ -116,6 +116,7 @@
 			  ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
 			  ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
 			  ("models" "\\models" nil "&#8872;" "" "" "⊧")))
+(setq org-export-backends '(html beamer ascii latex md))
 
 ;;; activate projectile
 (require 'projectile)
