@@ -253,7 +253,7 @@
 ;; nicks
 (setq erc-prompt-for-nickserv-password nil)
 (setq erc-nickserv-passwords
-          `((freenode (("andschwa" . ,freenode-andschwa-pass)))))
+          `((freenode (("andschwa" . ,irc-freenode-andschwa-pass)))))
 
 ;; channel autojoin
 (erc-autojoin-mode nil)
