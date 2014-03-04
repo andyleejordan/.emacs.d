@@ -1,10 +1,12 @@
 ac-comphist.dat
 auto-save-list
 backups
-elpa
 eshell
 places
 projectile-bookmarks.eld
 .smex-items
 url
 tramp
+.cask/
+clang-complete
+request/
