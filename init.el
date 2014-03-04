@@ -122,6 +122,9 @@
 ;;; ido-mode
 (ido-mode t)
 
+;;; ido-vertical
+(ido-vertical-mode t)
+
 ;;; flx-ido
 (require 'flx-ido)
 (flx-ido-mode t)
