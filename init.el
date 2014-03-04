@@ -39,6 +39,7 @@
 		      org-pomodoro
                       projectile
                       puppet-mode
+		      scratch
                       smartparens
                       smex
                       smooth-scroll
@@ -82,6 +83,9 @@
 
 ;;; y/n for yes/no
 (defalias 'yes-or-no-p 'y-or-n-p)
+
+;;; scratch
+(autoload 'scratch "scratch" nil t)
 
 ;;; activate expand-region
 (require 'expand-region)
