@@ -98,7 +98,7 @@
 (require 'linum-relative)
 
 ;;; magit
-(define-key global-map (kbd "C-c C-g") 'magit-status)
+(define-key global-map (kbd "C-x g") 'magit-status)
 
 ;;; calendar
 (setq calendar-week-start-day 1)
