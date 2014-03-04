@@ -296,6 +296,9 @@
 ;;; blink cursor
 (blink-cursor-mode t)
 
+;;; default-directory
+(setq default-directory "~/Documents")
+
 ;;; flyspell
 (require 'flyspell)
 (setq ispell-program-name "aspell" ; use aspell instead of ispell
