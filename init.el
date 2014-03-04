@@ -319,10 +319,8 @@
 ;;; below stolen from better-defaults
 
 ;;; disable toolbar and scrollbar
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
-(when (fboundp 'scroll-bar-mode)
-  (scroll-bar-mode -1))
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
 
 ;;; ibuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
