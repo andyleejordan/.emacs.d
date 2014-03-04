@@ -110,9 +110,11 @@
 (setq org-agenda-files '("~/.org"))
 (define-key global-map (kbd "C-c a") 'org-agenda)
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
+(setq org-pretty-entities t)
 (setq org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
 			  ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
 			  ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
+			  ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
 			  ("models" "\\models" nil "&#8872;" "" "" "⊧")))
 
 ;;; activate projectile
