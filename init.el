@@ -8,6 +8,7 @@
 ;;; Cask setup
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
+(require 'use-package)
 
 ;;; appearance
 ;; font size

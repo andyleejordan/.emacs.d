@@ -38,6 +38,7 @@
 (depends-on "smex")
 (depends-on "smooth-scroll")
 (depends-on "solarized-theme")
+(depends-on "use-package")
 (depends-on "undo-tree")
 (depends-on "virtualenvwrapper")
 (depends-on "wrap-region")
