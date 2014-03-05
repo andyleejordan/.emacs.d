@@ -5,10 +5,23 @@
 
 ;;; Code:
 
-;;; Cask setup
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
+
 (require 'use-package)
+
+;;; shortcuts
+;; miscellaneous
+(define-key global-map (kbd "C-x c") 'compile)
+(define-key global-map (kbd "C-x g") 'magit-status)
+(define-key global-map (kbd "C-c a") 'org-agenda)
+(define-key global-map (kbd "C-c d") 'dash-at-point)
+(define-key global-map (kbd "C-c x") 'eval-buffer)
+;; isearch
+(define-key global-map (kbd "C-s") 'isearch-forward-regexp)
+(define-key global-map (kbd "C-r") 'isearch-backward-regexp)
+(define-key global-map (kbd "C-M-s") 'isearch-forward)
+(define-key global-map (kbd "C-M-r") 'isearch-backward)
 
 ;;; appearance
 ;; font size
@@ -48,6 +61,10 @@
 (setq ring-bell-function 'ignore)
 ;; subword navigation
 (global-subword-mode t)
+;; increase garbage collection threshold
+(setq gc-cons-threshold 20000000)
+;; inhibit startup message
+(setq inhibit-startup-message t)
 ;; remove selected region if typing
 (pending-delete-mode 1)
 ;; prefer UTF8
@@ -67,9 +84,9 @@
 ;; backups
 (setq backup-by-copying t)
 (setq delete-old-versions t
-  kept-new-versions 6
-  kept-old-versions 2
-  version-control t)
+      kept-new-versions 6
+      kept-old-versions 2
+      version-control t)
 (setq backup-directory-alist `(("." . ,(concat
 					user-emacs-directory "backups"))))
 ;; final-newline
@@ -94,55 +111,62 @@
   (interactive)
   (end-of-line)
   (set-mark (line-beginning-position)))
+(define-key global-map (kbd "C-c l") 'select-whole-line)
 ;; comment/uncomment line/region
 (defun comment-or-uncomment-region-or-line ()
-    "Comments or uncomments the region or the current line if there's no active region."
-    (interactive)
-    (let (beg end)
-        (if (region-active-p)
-            (setq beg (region-beginning) end (region-end))
-            (setq beg (line-beginning-position) end (line-end-position)))
-        (comment-or-uncomment-region beg end)))
+  "Comments or uncomments the region or the current line if there's no active region."
+  (interactive)
+  (let (beg end)
+    (if (region-active-p)
+	(setq beg (region-beginning) end (region-end))
+      (setq beg (line-beginning-position) end (line-end-position)))
+    (comment-or-uncomment-region beg end)))
+(define-key global-map (kbd "C-c c") 'comment-or-uncomment-region-or-line)
 
 ;;; erc --- configured with help from:
 ;; http://emacs-fu.blogspot.com/2009/06/erc-emacs-irc-client.html
-(load "~/.ercpass")
-(require 'erc)
-(require 'tls)
-(require 'erc-services)
-(require 'erc-notify)
-(erc-services-mode t)
-(erc-notify-mode t)
-(erc-spelling-mode t) ;; flyspell
-;; notify list
-(setq erc-notify-list '("p_nathan1"))
-;; reduce notifications
-(erc-track-mode t)
-(setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
-				"324" "329" "332" "333" "353" "477"))
-;; don't show any of this
-(setq erc-hide-list '("JOIN" "PART" "QUIT" "NICK"))
-;; nicks
-(setq erc-prompt-for-nickserv-password nil)
-(setq erc-nickserv-passwords
-          `((freenode (("andschwa" . ,irc-freenode-andschwa-pass)))))
-;; channel autojoin
-(erc-autojoin-mode nil)
-(setq erc-autojoin-timing 'ident)
-;; start or switch to buffer function
-(defun erc-start-or-switch ()
-  "Connect to ERC, or switch to last active buffer"
-  (interactive)
-  (if (get-buffer "chat.freenode.net:7000") ;; ERC already active?
-      (erc-track-switch-buffer 1) ;; yes: switch to last active
-    (when (y-or-n-p "Start ERC? ") ;; no: maybe start ERC
-      (erc-tls :server "chat.freenode.net" :port
-	       7000 :nick "andschwa" :full-name "Andrew Schwartzmeyer"))))
+(use-package erc
+  :init
+  (progn
+    (defun erc-start-or-switch ()
+      "Connect to ERC, or switch to last active buffer"
+      (interactive)
+      (if (get-buffer "chat.freenode.net:7000") ;; ERC already active?
+	  (erc-track-switch-buffer 1) ;; yes: switch to last active
+	(when (y-or-n-p "Start ERC? ") ;; no: maybe start ERC
+	  (erc-tls :server "chat.freenode.net" :port
+		   7000 :nick "andschwa" :full-name "Andrew Schwartzmeyer"))))
+    (define-key global-map (kbd "C-c e") 'erc-start-or-switch))
+  :config
+  (progn
+    (load "~/.ercpass")
+    (use-package tls)
+    (use-package tls)
+    (use-package erc-services
+      :init
+      (erc-services-mode t))
+    (use-package erc-notify
+      :init
+      (progn
+	(erc-notify-mode t)
+	(setq erc-notify-list '("p_nathan1"))))
+    (erc-spelling-mode t) ;; flyspell
+    (erc-track-mode t)
+    (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
+				    "324" "329" "332" "333" "353" "477"))
+    ;; don't show any of this
+    (setq erc-hide-list '("JOIN" "PART" "QUIT" "NICK"))
+    ;; nicks
+    (setq erc-prompt-for-nickserv-password nil)
+    (setq erc-nickserv-passwords
+	  `((freenode (("andschwa" . ,irc-freenode-andschwa-pass)))))
+    ;; channel autojoin
+    (erc-autojoin-mode nil)
+    (setq erc-autojoin-timing 'ident)))
 
 ;;; org-mode
 ;; org-journal
-(require 'org-journal)
-(setq org-journal-dir "~/Documents/personal/journal/")
+(use-package org-journal)
 ;; org-agenda
 (setq org-agenda-files '("~/.org"))
 ;; org-auto-fill
@@ -167,21 +191,9 @@
    (ruby . t)
    (sh . t)))
 
-;;; packages
-
-;; ace-jump-mode
-(require 'ace-jump-mode)
-(autoload 'ace-jump-mode "ace-jump-mode" "Emacs quick move minor mode" t)
-;; auto-complete
-(require 'auto-complete)
-(global-auto-complete-mode t)
+;;; non use-package
 ;; scratch
 (autoload 'scratch "scratch" nil t)
-;; activate expand-region
-(require 'expand-region)
-;; browse-kill-ring
-(require 'browse-kill-ring)
-(browse-kill-ring-default-keybindings)
 ;; pull in shell path
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
@@ -189,123 +201,110 @@
 (setq-default flycheck-clang-standard-library "libc++")
 (setq-default flycheck-clang-language-standard "c++11")
 (add-hook 'after-init-hook #'global-flycheck-mode)
-;; ein
-(require 'ein)
-(setq ein:use-auto-complete t)
-;; require ido-ubiquitous
-(require 'ido)
-(require 'ido-ubiquitous) ; replaces ido-everywhere
-;; ido-mode
-(ido-mode t)
-;; ido-vertical
-(ido-vertical-mode t)
-;; flx-ido
-(require 'flx-ido)
-(flx-ido-mode t)
-;; disable ido faces to see flx highlights.
-(setq ido-use-faces nil)
-;; increase garbage collection threshold
-(setq gc-cons-threshold 20000000)
-;; inhibit startup message
-(setq inhibit-startup-message t)
-;; linum-relative
-(require 'linum-relative)
-;; activate projectile
-(require 'projectile)
-(projectile-global-mode)
-;; move-text
-(require 'move-text)
-(move-text-default-bindings)
-;; multiple-cursors
-(require 'multiple-cursors)
-;; popwin
-(require 'popwin)
-(popwin-mode 1)
-
-;; activate smartparens
-(smartparens-global-mode t)
-(sp-local-pair '(emacs-lisp-mode erc-mode git-commit-mode
-		 org-mode text-mode) "'" nil :actions nil)
-;; setup smex bindings
-(require 'smex)
-(setq smex-save-file (expand-file-name ".smex-items" "~/.emacs.d/"))
-(smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
-;; scrolling
-(require 'smooth-scroll)
-(smooth-scroll-mode t)
-(setq smooth-scroll/vscroll-step-size 8)
 ;; undo-tree
 (global-undo-tree-mode t)
-;; setup virtualenvwrapper
-(require 'virtualenvwrapper)
-(setq venv-location "~/.virtualenvs/")
-;; wrap-region
-(require 'wrap-region)
-(wrap-region-global-mode t)
-
-
-;;; yasnippet
-(require 'yasnippet)
-(yas-global-mode t)
-
-
-
-
-;;; flyspell
-(require 'flyspell)
-(setq ispell-program-name "aspell" ; use aspell instead of ispell
-      ispell-extra-args '("--sug-mode=ultra"))
-
-;;; whitespace
-(require 'whitespace)
-(setq whitespace-line-column 80) ;; limit line length
-(setq whitespace-style '(face tabs empty trailing lines-tail))
-
-;;; ibuffer
+;; ibuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (add-hook 'ibuffer-mode-hook (lambda () (setq truncate-lines t)))
 
+;;; packages
+;; ace-jump-mode
+(use-package ace-jump-mode
+  :init
+  (progn
+    (autoload 'ace-jump-mode "ace-jump-mode" "Emacs quick move minor mode" t)
+    (autoload 'ace-jump-mode-pop-mark "ace-jump-mode" "Ace jump back:-)" t)
+    (eval-after-load "ace-jump-mode"
+      '(ace-jump-mode-enable-mark-sync)))
+  :bind (("C-c SPC" . ace-jump-mode)
+	 ("C-x SPC" . ace-jump-mode-pop-mark)))
+;; auto-complete
+(use-package auto-complete
+  :init (global-auto-complete-mode t)
+  :bind ("M-/" . hippie-expand))
+;; activate expand-region
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
+;; browse-kill-ring
+(use-package browse-kill-ring
+  :init (browse-kill-ring-default-keybindings)
+  :bind ("C-c k" . browse-kill-ring))
+;; ein
+(use-package ein
+  :init (setq ein:use-auto-complete t))
+;; require ido-ubiquitous
+(use-package ido
+  :init (ido-mode t))
+(use-package ido-ubiquitous)
+;; ido-vertical
+(use-package ido-vertical-mode
+  :init (ido-vertical-mode t))
+;; flx-ido
+(use-package flx-ido
+  :init
+  (progn
+    (flx-ido-mode t)
+    (setq ido-use-faces nil)))
+;; activate projectile
+(use-package projectile
+  :init (projectile-global-mode))
+;; move-text
+(use-package move-text
+  :init (move-text-default-bindings))
+;; multiple-cursors
+(use-package multiple-cursors
+  :bind (("C-S-c C-S-c" . mc/edit-lines)
+	 ("C->" . mc/mark-next-like-this)
+	 ("C-<" . mc/mark-previous-like-this)
+	 ("C-c C-<" . mc/mark-all-like-this)))
+;; popwin
+(use-package popwin
+  :init (popwin-mode 1))
+;; activate smartparens
+(use-package smartparens-config)
+;; setup smex bindings
+(use-package smex
+  :init
+  (progn
+    (setq smex-save-file (expand-file-name ".smex-items" "~/.emacs.d/"))
+    (smex-initialize))
+  :bind (("M-x" . smex)
+	 ("M-X" . smex-major-mode-commands)
+	 ("C-c C-c M-x" . execute-extended-command)))
+;; scrolling
+(use-package smooth-scroll
+  :init
+  (progn
+    (smooth-scroll-mode t)
+    (setq smooth-scroll/vscroll-step-size 8)))
+;; setup virtualenvwrapper
+(use-package virtualenvwrapper
+  :init (setq venv-location "~/.virtualenvs/"))
+;; wrap-region
+(use-package wrap-region
+  :init (wrap-region-global-mode t))
+;;; yasnippet
+(use-package yasnippet
+  :init (yas-global-mode t))
+;;; flyspell
+(use-package flyspell
+  :init (setq ispell-program-name "aspell" ; use aspell instead of ispell
+	      ispell-extra-args '("--sug-mode=ultra")))
+;;; whitespace
+(use-package whitespace
+  :init
+  (progn
+    (setq whitespace-line-column 80) ;; limit line length
+    (setq whitespace-style '(face tabs empty trailing lines-tail))))
 ;;; uniquify
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'forward)
-
+(use-package uniquify
+  :init (setq uniquify-buffer-name-style 'forward))
 ;;; saveplace
-(require 'saveplace)
-(setq-default save-place t)
-
-;;; shortcuts
-;; miscellaneous
-(define-key global-map (kbd "M-/") 'hippie-expand)
-(define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
-(define-key global-map (kbd "C-=") 'er/expand-region)
-(define-key global-map (kbd "C-z") popwin:keymap)
-(define-key global-map (kbd "C-x c") 'compile)
-(define-key global-map (kbd "C-x g") 'magit-status)
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-(define-key global-map (kbd "C-c a") 'org-agenda)
-(define-key global-map (kbd "C-c c") 'comment-or-uncomment-region-or-line)
-(define-key global-map (kbd "C-c d") 'dash-at-point)
-(define-key global-map (kbd "C-c e") 'erc-start-or-switch)
-(define-key global-map (kbd "C-c l") 'select-whole-line)
-(define-key global-map (kbd "C-c x") 'eval-buffer)
-;; isearch
-(define-key global-map (kbd "C-s") 'isearch-forward-regexp)
-(define-key global-map (kbd "C-r") 'isearch-backward-regexp)
-(define-key global-map (kbd "C-M-s") 'isearch-forward)
-(define-key global-map (kbd "C-M-r") 'isearch-backward)
-;; projectile
-(define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
-(define-key projectile-mode-map [?\s-p] 'projectile-switch-project)
-(define-key projectile-mode-map [?\s-f] 'projectile-find-file)
-(define-key projectile-mode-map [?\s-a] 'projectile-ag)
-;; multiple cursors
-(define-key global-map (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(define-key global-map (kbd "C->") 'mc/mark-next-like-this)
-(define-key global-map (kbd "C-<") 'mc/mark-previous-like-this)
-(define-key global-map (kbd "C-c C-<") 'mc/mark-all-like-this)
+(use-package saveplace
+  :init
+  (progn
+    (setq-default save-place t)
+    (setq save-place-file (concat user-emacs-directory "saved-places"))))
 
 ;;; load OS X configurations
 (when (eq system-type 'darwin)
