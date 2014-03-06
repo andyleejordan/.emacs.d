@@ -222,6 +222,9 @@
 (use-package auto-complete
   :init (global-auto-complete-mode t)
   :bind ("M-/" . hippie-expand))
+;; drag-stuff
+(use-package drag-stuff
+  :init (drag-stuff-global-mode t))
 ;; activate expand-region
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
