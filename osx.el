@@ -7,11 +7,9 @@
 ;;; Code:
 
 ;;; sage
-(add-to-list 'load-path
-	     "/Applications/Sage.app/Contents/Resources/sage/data/emacs")
-(ignore-errors
-  (require 'sage "sage")
-  (setq sage-command "~/bin/sage"))
+(use-package sage
+  :load-path "/Applications/Sage.app/Contents/Resources/sage/data/emacs"
+  :config (setq sage-command "~/bin/sage"))
 
 ;; delete by moving to trash
 (setq delete-by-moving-to-trash t)

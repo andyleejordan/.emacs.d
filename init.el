@@ -12,6 +12,7 @@
 
 ;;; shortcuts
 ;; miscellaneous
+(define-key global-map (kbd "M-/") 'hippie-expand)
 (define-key global-map (kbd "C-x c") 'compile)
 (define-key global-map (kbd "C-x g") 'magit-status)
 (define-key global-map (kbd "C-c a") 'org-agenda)
@@ -133,20 +134,16 @@
       (interactive)
       (if (get-buffer "chat.freenode.net:7000") ;; ERC already active?
 	  (erc-track-switch-buffer 1) ;; yes: switch to last active
-	(when (y-or-n-p "Start ERC? ") ;; no: maybe start ERC
+	(when (yes-or-no-p "Start ERC? ") ;; no: maybe start ERC
 	  (erc-tls :server "chat.freenode.net" :port
-		   7000 :nick "andschwa" :full-name "Andrew Schwartzmeyer"))))
-    (define-key global-map (kbd "C-c e") 'erc-start-or-switch))
+		   7000 :nick "andschwa" :full-name "Andrew Schwartzmeyer")))))
   :config
   (progn
     (load "~/.ercpass")
-    (use-package tls)
-    (use-package tls)
     (use-package erc-services
-      :init
-      (erc-services-mode t))
+      :config (erc-services-mode t))
     (use-package erc-notify
-      :init
+      :config
       (progn
 	(erc-notify-mode t)
 	(setq erc-notify-list '("p_nathan1"))))
@@ -162,11 +159,14 @@
 	  `((freenode (("andschwa" . ,irc-freenode-andschwa-pass)))))
     ;; channel autojoin
     (erc-autojoin-mode nil)
-    (setq erc-autojoin-timing 'ident)))
+    (setq erc-autojoin-timing 'ident))
+  :bind ("C-c e" . erc-start-or-switch))
 
 ;;; org-mode
+(add-to-list 'auto-mode-alist '("\\`[^.].*\\.org'\\|[0-9]+" . org-mode))
 ;; org-journal
-(use-package org-journal)
+(use-package org-journal
+  :init (setq org-journal-dir "~/Documents/personal/journal/"))
 ;; org-agenda
 (setq org-agenda-files '("~/.org"))
 ;; org-auto-fill
@@ -203,39 +203,34 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 ;; undo-tree
 (global-undo-tree-mode t)
-;; ibuffer
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(add-hook 'ibuffer-mode-hook (lambda () (setq truncate-lines t)))
-
 ;;; packages
 ;; ace-jump-mode
 (use-package ace-jump-mode
-  :init
-  (progn
-    (autoload 'ace-jump-mode "ace-jump-mode" "Emacs quick move minor mode" t)
-    (autoload 'ace-jump-mode-pop-mark "ace-jump-mode" "Ace jump back:-)" t)
-    (eval-after-load "ace-jump-mode"
-      '(ace-jump-mode-enable-mark-sync)))
-  :bind (("C-c SPC" . ace-jump-mode)
-	 ("C-x SPC" . ace-jump-mode-pop-mark)))
+  :config (eval-after-load "ace-jump-mode" '(ace-jump-mode-enable-mark-sync))
+  :bind (("C-c ," . ace-jump-mode)
+	 ("C-x ," . ace-jump-mode-pop-mark)))
 ;; auto-complete
 (use-package auto-complete
-  :init (global-auto-complete-mode t)
-  :bind ("M-/" . hippie-expand))
+  :config (global-auto-complete-mode t)
+  :bind ("M-TAB" . auto-complete))
 ;; drag-stuff
 (use-package drag-stuff
-  :init (drag-stuff-global-mode t))
+  :config (drag-stuff-global-mode t))
 ;; activate expand-region
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 ;; browse-kill-ring
 (use-package browse-kill-ring
-  :init (browse-kill-ring-default-keybindings)
+  :config (browse-kill-ring-default-keybindings)
   :bind ("C-c k" . browse-kill-ring))
 ;; ein
 (use-package ein
-  :init (setq ein:use-auto-complete t))
-;; require ido-ubiquitous
+  :config (setq ein:use-auto-complete t))
+;; ibuffer
+(use-package ibuffer
+  :config (add-hook 'ibuffer-mode-hook (lambda () (setq truncate-lines t)))
+  :bind ("C-x C-b" . ibuffer))
+;; ido setup
 (use-package ido
   :init (ido-mode t))
 (use-package ido-ubiquitous)
@@ -250,10 +245,10 @@
     (setq ido-use-faces nil)))
 ;; activate projectile
 (use-package projectile
-  :init (projectile-global-mode))
+  :config (projectile-global-mode))
 ;; move-text
 (use-package move-text
-  :init (move-text-default-bindings))
+  :config (move-text-default-bindings))
 ;; multiple-cursors
 (use-package multiple-cursors
   :bind (("C-S-c C-S-c" . mc/edit-lines)
@@ -262,7 +257,7 @@
 	 ("C-c C-<" . mc/mark-all-like-this)))
 ;; popwin
 (use-package popwin
-  :init (popwin-mode 1))
+  :config (popwin-mode 1))
 ;; activate smartparens
 (use-package smartparens-config)
 ;; setup smex bindings
@@ -282,26 +277,26 @@
     (setq smooth-scroll/vscroll-step-size 8)))
 ;; setup virtualenvwrapper
 (use-package virtualenvwrapper
-  :init (setq venv-location "~/.virtualenvs/"))
+  :config (setq venv-location "~/.virtualenvs/"))
 ;; wrap-region
 (use-package wrap-region
-  :init (wrap-region-global-mode t))
+  :config (wrap-region-global-mode t))
 ;;; yasnippet
 (use-package yasnippet
-  :init (yas-global-mode t))
+  :config (yas-global-mode t))
 ;;; flyspell
 (use-package flyspell
-  :init (setq ispell-program-name "aspell" ; use aspell instead of ispell
+  :config (setq ispell-program-name "aspell" ; use aspell instead of ispell
 	      ispell-extra-args '("--sug-mode=ultra")))
 ;;; whitespace
 (use-package whitespace
-  :init
+  :config
   (progn
     (setq whitespace-line-column 80) ;; limit line length
     (setq whitespace-style '(face tabs empty trailing lines-tail))))
 ;;; uniquify
 (use-package uniquify
-  :init (setq uniquify-buffer-name-style 'forward))
+  :config (setq uniquify-buffer-name-style 'forward))
 ;;; saveplace
 (use-package saveplace
   :init
