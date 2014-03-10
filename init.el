@@ -198,10 +198,6 @@
 ;; pull in shell path
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
-;; flycheck
-(setq-default flycheck-clang-standard-library "libc++")
-(setq-default flycheck-clang-language-standard "c++11")
-(add-hook 'after-init-hook #'global-flycheck-mode)
 ;; undo-tree
 (global-undo-tree-mode t)
 ;;; packages
@@ -227,6 +223,15 @@
 ;; ein
 (use-package ein
   :config (setq ein:use-auto-complete t))
+;; flycheck
+(use-package flycheck
+  :init
+  (progn
+    (add-hook 'after-init-hook #'global-flycheck-mode)
+    (add-hook 'c++-mode-hook
+	      (lambda ()
+		(setq-default flycheck-clang-standard-library "libc++")
+		(setq-default flycheck-clang-language-standard "gnu++11")))))
 ;; ibuffer
 (use-package ibuffer
   :config (add-hook 'ibuffer-mode-hook (lambda () (setq truncate-lines t)))
