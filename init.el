@@ -266,7 +266,11 @@
 (use-package popwin
   :config (popwin-mode 1))
 ;; activate smartparens
-(use-package smartparens-config)
+(use-package smartparens
+  :init (progn (smartparens-global-mode t)
+	       (show-smartparens-global-mode t)
+	       (use-package smartparens-config)))
+
 ;; setup smex bindings
 (use-package smex
   :init
