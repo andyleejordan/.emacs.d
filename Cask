@@ -1,3 +1,4 @@
+;;; Cask -- Andrew Schwartzmeyer's Cask file
 (source gnu)
 (source melpa)
 (source org)

@@ -100,7 +100,8 @@
 (setq vc-follow-symlinks t)
 ;; set arduino *.ino files to c-mode
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c-mode))
-
+;; set Emacs Lisp files mode
+(add-to-list 'magic-mode-alist '(";;; " . emacs-lisp-mode))
 ;;; functions
 ;; load local file
 (defun load-local (file)
