@@ -249,7 +249,8 @@
   :config (projectile-global-mode))
 ;; move-text
 (use-package move-text
-  :config (move-text-default-bindings))
+  :bind (("M-p" . move-text-up)
+	 ("M-n" . move-text-down)))
 ;; multiple-cursors
 (use-package multiple-cursors
   :bind (("C-S-c C-S-c" . mc/edit-lines)
