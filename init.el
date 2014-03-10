@@ -264,7 +264,11 @@
 	 ("C-c C-<" . mc/mark-all-like-this)))
 ;; popwin
 (use-package popwin
-  :config (popwin-mode 1))
+  :init
+  (progn
+    (popwin-mode 1)
+    ;; cannot use :bind for keymap
+    (global-set-key (kbd "C-z") popwin:keymap)))
 ;; activate smartparens
 (use-package smartparens
   :init (progn (smartparens-global-mode t)
