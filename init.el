@@ -51,6 +51,10 @@
 (show-paren-mode t)
 
 ;;; settings
+;; pull in path from shell
+;; pull in shell path
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 ;; enable all commands
 (setq disabled-command-function nil)
 ;; kill whole line (including newline)
@@ -125,7 +129,27 @@
     (comment-or-uncomment-region beg end)))
 (define-key global-map (kbd "C-c c") 'comment-or-uncomment-region-or-line)
 
-;;; erc --- configured with help from:
+;;; packages
+;; ace-jump-mode
+(use-package ace-jump-mode
+  :config (eval-after-load "ace-jump-mode" '(ace-jump-mode-enable-mark-sync))
+  :bind (("C-c ," . ace-jump-mode)
+	 ("C-x ," . ace-jump-mode-pop-mark)))
+;; auto-complete
+(use-package auto-complete
+  :config (global-auto-complete-mode t)
+  :bind ("M-TAB" . auto-complete))
+;; browse-kill-ring
+(use-package browse-kill-ring
+  :config (browse-kill-ring-default-keybindings)
+  :bind ("C-c k" . browse-kill-ring))
+;; drag-stuff
+(use-package drag-stuff
+  :config (drag-stuff-global-mode t))
+;; ein
+(use-package ein
+  :config (setq ein:use-auto-complete t))
+;; erc --- configured with help from:
 ;; http://emacs-fu.blogspot.com/2009/06/erc-emacs-irc-client.html
 (use-package erc
   :init
@@ -162,9 +186,50 @@
     (erc-autojoin-mode nil)
     (setq erc-autojoin-timing 'ident))
   :bind ("C-c e" . erc-start-or-switch))
-
+;; activate expand-region
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
+;; flx-ido
+(use-package flx-ido
+  :init
+  (progn
+    (flx-ido-mode t)
+    (setq ido-use-faces nil)))
+;; flycheck
+(use-package flycheck
+  :init
+  (progn
+    (add-hook 'after-init-hook #'global-flycheck-mode)
+    (add-hook 'c++-mode-hook
+	      (lambda ()
+		(setq-default flycheck-clang-standard-library "libc++")
+		(setq-default flycheck-clang-language-standard "gnu++11")))))
+;;; flyspell
+(use-package flyspell
+  :config (setq ispell-program-name "aspell" ; use aspell instead of ispell
+	      ispell-extra-args '("--sug-mode=ultra")))
+;; ibuffer
+(use-package ibuffer
+  :config (add-hook 'ibuffer-mode-hook (lambda () (setq truncate-lines t)))
+  :bind ("C-x C-b" . ibuffer))
+;; ido setup
+(use-package ido
+  :init (ido-mode t))
+(use-package ido-ubiquitous)
+;; ido-vertical
+(use-package ido-vertical-mode
+  :init (ido-vertical-mode t))
+;; move-text
+(use-package move-text
+  :bind (("M-p" . move-text-up)
+	 ("M-n" . move-text-down)))
+;; multiple-cursors
+(use-package multiple-cursors
+  :bind (("C-S-c C-S-c" . mc/edit-lines)
+	 ("C->" . mc/mark-next-like-this)
+	 ("C-<" . mc/mark-previous-like-this)
+	 ("C-c C-<" . mc/mark-all-like-this)))
 ;;; org-mode
-(add-to-list 'auto-mode-alist '("\\`[^.].*\\.org'\\|[0-9]+" . org-mode))
 ;; org-journal
 (use-package org-journal
   :init (setq org-journal-dir "~/Documents/personal/journal/"))
@@ -191,77 +256,6 @@
    (python . t)
    (ruby . t)
    (sh . t)))
-
-;;; non use-package
-;; scratch
-(autoload 'scratch "scratch" nil t)
-;; pull in shell path
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
-;; undo-tree
-(global-undo-tree-mode t)
-;;; packages
-;; ace-jump-mode
-(use-package ace-jump-mode
-  :config (eval-after-load "ace-jump-mode" '(ace-jump-mode-enable-mark-sync))
-  :bind (("C-c ," . ace-jump-mode)
-	 ("C-x ," . ace-jump-mode-pop-mark)))
-;; auto-complete
-(use-package auto-complete
-  :config (global-auto-complete-mode t)
-  :bind ("M-TAB" . auto-complete))
-;; drag-stuff
-(use-package drag-stuff
-  :config (drag-stuff-global-mode t))
-;; activate expand-region
-(use-package expand-region
-  :bind ("C-=" . er/expand-region))
-;; browse-kill-ring
-(use-package browse-kill-ring
-  :config (browse-kill-ring-default-keybindings)
-  :bind ("C-c k" . browse-kill-ring))
-;; ein
-(use-package ein
-  :config (setq ein:use-auto-complete t))
-;; flycheck
-(use-package flycheck
-  :init
-  (progn
-    (add-hook 'after-init-hook #'global-flycheck-mode)
-    (add-hook 'c++-mode-hook
-	      (lambda ()
-		(setq-default flycheck-clang-standard-library "libc++")
-		(setq-default flycheck-clang-language-standard "gnu++11")))))
-;; ibuffer
-(use-package ibuffer
-  :config (add-hook 'ibuffer-mode-hook (lambda () (setq truncate-lines t)))
-  :bind ("C-x C-b" . ibuffer))
-;; ido setup
-(use-package ido
-  :init (ido-mode t))
-(use-package ido-ubiquitous)
-;; ido-vertical
-(use-package ido-vertical-mode
-  :init (ido-vertical-mode t))
-;; flx-ido
-(use-package flx-ido
-  :init
-  (progn
-    (flx-ido-mode t)
-    (setq ido-use-faces nil)))
-;; activate projectile
-(use-package projectile
-  :config (projectile-global-mode))
-;; move-text
-(use-package move-text
-  :bind (("M-p" . move-text-up)
-	 ("M-n" . move-text-down)))
-;; multiple-cursors
-(use-package multiple-cursors
-  :bind (("C-S-c C-S-c" . mc/edit-lines)
-	 ("C->" . mc/mark-next-like-this)
-	 ("C-<" . mc/mark-previous-like-this)
-	 ("C-c C-<" . mc/mark-all-like-this)))
 ;; popwin
 (use-package popwin
   :init
@@ -269,12 +263,23 @@
     (popwin-mode 1)
     ;; cannot use :bind for keymap
     (global-set-key (kbd "C-z") popwin:keymap)))
+;; activate projectile
+(use-package projectile
+  :config (projectile-global-mode))
+;;; saveplace
+(use-package saveplace
+  :init
+  (progn
+    (setq-default save-place t)
+    (setq save-place-file (concat user-emacs-directory "saved-places"))))
+;; scratch
+(use-package scratch
+  :bind ("C-c s" . scratch))
 ;; activate smartparens
 (use-package smartparens
   :init (progn (smartparens-global-mode t)
 	       (show-smartparens-global-mode t)
 	       (use-package smartparens-config)))
-
 ;; setup smex bindings
 (use-package smex
   :init
@@ -290,31 +295,24 @@
   (progn
     (smooth-scroll-mode t)
     (setq smooth-scroll/vscroll-step-size 8)))
+;; undo-tree
+(use-package undo-tree
+  :init (global-undo-tree-mode t))
+;;; uniquify
+(use-package uniquify
+  :config (setq uniquify-buffer-name-style 'forward))
 ;; setup virtualenvwrapper
 (use-package virtualenvwrapper
   :config (setq venv-location "~/.virtualenvs/"))
-;;; yasnippet
-(use-package yasnippet
-  :config (yas-global-mode t))
-;;; flyspell
-(use-package flyspell
-  :config (setq ispell-program-name "aspell" ; use aspell instead of ispell
-	      ispell-extra-args '("--sug-mode=ultra")))
 ;;; whitespace
 (use-package whitespace
   :config
   (progn
     (setq whitespace-line-column 80) ;; limit line length
     (setq whitespace-style '(face tabs empty trailing lines-tail))))
-;;; uniquify
-(use-package uniquify
-  :config (setq uniquify-buffer-name-style 'forward))
-;;; saveplace
-(use-package saveplace
-  :init
-  (progn
-    (setq-default save-place t)
-    (setq save-place-file (concat user-emacs-directory "saved-places"))))
+;;; yasnippet
+(use-package yasnippet
+  :config (yas-global-mode t))
 
 ;;; load OS X configurations
 (when (eq system-type 'darwin)
