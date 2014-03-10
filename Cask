@@ -39,6 +39,5 @@
 (depends-on "use-package")
 (depends-on "undo-tree")
 (depends-on "virtualenvwrapper")
-(depends-on "wrap-region")
 (depends-on "yaml-mode")
 (depends-on "yasnippet")

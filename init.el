@@ -278,9 +278,6 @@
 ;; setup virtualenvwrapper
 (use-package virtualenvwrapper
   :config (setq venv-location "~/.virtualenvs/"))
-;; wrap-region
-(use-package wrap-region
-  :config (wrap-region-global-mode t))
 ;;; yasnippet
 (use-package yasnippet
   :config (yas-global-mode t))
