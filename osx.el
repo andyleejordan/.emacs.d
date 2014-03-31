@@ -18,6 +18,9 @@
 (set-frame-font
  "-apple-Source_Code_Pro-medium-normal-normal-*-*-*-*-*-m-0-iso10646-1" nil t)
 
+;; use srgb
+(setq ns-use-srgb-colorspace t)
+
 ;; open file's location in Finder
 (defun finder ()
   "Opens file directory in Finder."
