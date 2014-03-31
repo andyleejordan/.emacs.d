@@ -309,6 +309,7 @@
   :config (setq venv-location "~/.virtualenvs/"))
 ;;; whitespace
 (use-package whitespace
+  :init (add-hook 'before-save-hook 'whitespace-cleanup)
   :config
   (progn
     (setq whitespace-line-column 80) ;; limit line length
