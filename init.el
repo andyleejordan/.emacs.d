@@ -73,6 +73,8 @@
 (set-keyboard-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
+;; set terminfo
+(setq system-uses-terminfo nil)
 ;; open empty files quietly
 (setq confirm-nonexistent-file-or-buffer nil)
 ;; fix tramp
@@ -224,6 +226,9 @@
 	 ("C->" . mc/mark-next-like-this)
 	 ("C-<" . mc/mark-previous-like-this)
 	 ("C-c C-<" . mc/mark-all-like-this)))
+;; multi-term
+(use-package multi-term
+  :config (setq multi-term-program "zsh"))
 ;;; org-mode
 ;; org-journal
 (use-package org-journal
