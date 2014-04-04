@@ -26,4 +26,7 @@
          (format "%s %s" (executable-find "open") (file-name-directory file)))
       (error "Buffer is not attached to any file"))))
 
+;;; provide OS X package
+(provide 'osx)
+
 ;;; osx.el ends here

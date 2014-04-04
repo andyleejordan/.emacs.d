@@ -126,6 +126,10 @@
     (comment-or-uncomment-region beg end)))
 (define-key global-map (kbd "C-c c") 'comment-or-uncomment-region-or-line)
 
+;;; load OS X configurations
+(when (eq system-type 'darwin)
+  (load-local "osx"))
+
 ;;; packages
 ;; ace-jump-mode
 (use-package ace-jump-mode
@@ -321,10 +325,6 @@
 ;;; yasnippet
 (use-package yasnippet
   :config (yas-global-mode t))
-
-;;; load OS X configurations
-(when (eq system-type 'darwin)
-  (load-local "osx"))
 
 ;;; start server
 (server-start)
