@@ -305,7 +305,6 @@
 (use-package solarized
   :init
   (progn
-    (setq solarized-distinct-fringe-background t)
     (setq solarized-use-variable-pitch nil)
     (setq solarized-high-contrast-mode-line t)
     (load-theme 'solarized-dark t)))
