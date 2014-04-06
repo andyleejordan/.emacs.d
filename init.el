@@ -37,8 +37,9 @@
 (setq confirm-kill-emacs 'yes-or-no-p)
 ;; start week on Monday
 (setq calendar-week-start-day 1)
-;; blink cursor
+;; cursor settings
 (blink-cursor-mode t)
+(setq-default cursor-type 'hbar)
 ;; visually wrap lines
 (global-visual-line-mode t)
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
