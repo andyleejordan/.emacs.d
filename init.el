@@ -29,7 +29,8 @@
 ;; disable toolbar and scrollbar
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
-;; column-number-mode
+;; line/column numbers in mode-line
+(setq line-number-mode t)
 (setq column-number-mode t)
 ;; y/n for yes/no
 (defalias 'yes-or-no-p 'y-or-n-p)
