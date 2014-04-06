@@ -128,6 +128,9 @@
     (comment-or-uncomment-region beg end)))
 (define-key global-map (kbd "C-c c") 'comment-or-uncomment-region-or-line)
 
+;;; load private settings
+(load-local "private")
+
 ;;; load OS X configurations
 (when (eq system-type 'darwin)
   (load-local "osx"))
@@ -167,7 +170,6 @@
 		   7000 :nick "andschwa" :full-name "Andrew Schwartzmeyer")))))
   :config
   (progn
-    (load "~/.ercpass")
     (use-package erc-services
       :config (erc-services-mode t))
     (use-package erc-notify
