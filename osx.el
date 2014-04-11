@@ -16,6 +16,14 @@
 ;; use srgb
 (setq ns-use-srgb-colorspace t)
 
+;; solarized-dark theme
+(use-package solarized
+  :init
+  (progn
+    (setq solarized-use-variable-pitch nil)
+    (setq solarized-high-contrast-mode-line t)
+    (load-theme 'solarized-dark t)))
+
 ;; open file's location in Finder
 (defun finder ()
   "Opens file directory in Finder."

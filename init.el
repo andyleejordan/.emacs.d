@@ -303,13 +303,6 @@
   (progn
     (smooth-scroll-mode t)
     (setq smooth-scroll/vscroll-step-size 8)))
-;; solarized-dark theme
-(use-package solarized
-  :init
-  (progn
-    (setq solarized-use-variable-pitch nil)
-    (setq solarized-high-contrast-mode-line t)
-    (load-theme 'solarized-dark t)))
 ;; undo-tree
 (use-package undo-tree
   :init (global-undo-tree-mode t))
