@@ -80,7 +80,8 @@
 ;; open empty files quietly
 (setq confirm-nonexistent-file-or-buffer nil)
 ;; fix tramp
-(eval-after-load 'tramp '(setenv "SHELL" "/bin/sh"))
+(eval-after-load 'tramp
+  '(progn (setenv "TMPDIR" "/tmp")))
 
 ;;; files
 ;; auto-save
