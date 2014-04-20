@@ -49,7 +49,6 @@
 
 ;;; settings
 ;; pull in path from shell
-;; pull in shell path
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 ;; enable all commands
@@ -275,6 +274,8 @@
 ;; activate projectile
 (use-package projectile
   :config (projectile-global-mode))
+;;; save kill ring
+(use-package savekill)
 ;;; saveplace
 (use-package saveplace
   :init
