@@ -42,7 +42,6 @@
 (blink-cursor-mode t)
 (setq-default cursor-type 'hbar)
 ;; visually wrap lines
-(global-visual-line-mode t)
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 ;; matching parentheses
 (show-paren-mode t)
