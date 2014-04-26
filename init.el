@@ -148,6 +148,9 @@
 (use-package browse-kill-ring
   :config (browse-kill-ring-default-keybindings)
   :bind ("C-c k" . browse-kill-ring))
+;; company "complete anything"
+(use-package company
+  :init (add-hook 'after-init-hook 'global-company-mode))
 ;; drag-stuff
 (use-package drag-stuff
   :config (drag-stuff-global-mode t))

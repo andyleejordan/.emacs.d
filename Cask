@@ -8,6 +8,7 @@
 (depends-on "auto-complete")
 (depends-on "browse-kill-ring")
 (depends-on "cask")
+(depends-on "company")
 (depends-on "crontab-mode")
 (depends-on "dash-at-point")
 (depends-on "drag-stuff")
