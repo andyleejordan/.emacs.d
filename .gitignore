@@ -15,3 +15,4 @@ private.el
 projectile.cache
 .mc-lists.el
 *.elc
+/kill-ring-saved.el
