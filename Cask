@@ -18,6 +18,7 @@
 (depends-on "flx-ido")
 (depends-on "flycheck")
 (depends-on "gnuplot")
+(depends-on "handlebars-mode")
 (depends-on "haskell-mode")
 (depends-on "ido-ubiquitous")
 (depends-on "ido-vertical-mode")
