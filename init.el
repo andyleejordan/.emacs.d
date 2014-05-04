@@ -244,6 +244,10 @@
 ;; multi-term
 (use-package multi-term
   :config (setq multi-term-program "zsh"))
+;; notmuch
+(use-package notmuch
+  :config (setq notmuch-command "~/bin/notmuch")
+  :bind ("C-x n" . notmuch))
 ;;; org-mode
 ;; org-journal
 (use-package org-journal
