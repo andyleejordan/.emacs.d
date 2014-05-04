@@ -159,6 +159,9 @@
 ;; ein
 (use-package ein
   :config (setq ein:use-auto-complete t))
+;; elfeed
+(use-package elfeed
+  :bind ("C-x w" . elfeed))
 ;; erc --- configured with help from:
 ;; http://emacs-fu.blogspot.com/2009/06/erc-emacs-irc-client.html
 (use-package erc

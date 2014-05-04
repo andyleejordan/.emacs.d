@@ -13,6 +13,7 @@
 (depends-on "dash-at-point")
 (depends-on "drag-stuff")
 (depends-on "ein")
+(depends-on "elfeed")
 (depends-on "exec-path-from-shell")
 (depends-on "expand-region")
 (depends-on "flx-ido")
