@@ -1,5 +1,6 @@
 (setq elfeed-feeds
-      '("http://batsov.com/atom.xml"
+      '("http://bartoszmilewski.com/feed/"
+	"http://batsov.com/atom.xml"
 	"http://blog.bobbyallen.me/feed/"
 	"http://blog.freenode.net/feed/"
 	"http://blog.ghost.org/rss/"
