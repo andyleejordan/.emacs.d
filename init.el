@@ -129,7 +129,8 @@
     (comment-or-uncomment-region beg end)))
 (define-key global-map (kbd "C-c c") 'comment-or-uncomment-region-or-line)
 
-;;; load private settings
+;;; load local settings
+(load-local "feeds")
 (load-local "private")
 
 ;;; load OS X configurations
