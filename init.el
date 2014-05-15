@@ -140,10 +140,6 @@
   :config (eval-after-load "ace-jump-mode" '(ace-jump-mode-enable-mark-sync))
   :bind (("C-c ," . ace-jump-mode)
 	 ("C-x ," . ace-jump-mode-pop-mark)))
-;; auto-complete
-(use-package auto-complete
-  :config (global-auto-complete-mode t)
-  :bind ("M-TAB" . auto-complete))
 ;; browse-kill-ring
 (use-package browse-kill-ring
   :config (browse-kill-ring-default-keybindings)
@@ -151,9 +147,6 @@
 ;; company "complete anything"
 (use-package company
   :init (add-hook 'after-init-hook 'global-company-mode))
-;; drag-stuff
-(use-package drag-stuff
-  :config (drag-stuff-global-mode t))
 ;; ein
 (use-package ein
   :config (setq ein:use-auto-complete t))
@@ -229,10 +222,6 @@
 ;; ido-vertical
 (use-package ido-vertical-mode
   :init (ido-vertical-mode t))
-;; move-text
-(use-package move-text
-  :bind (("M-p" . move-text-up)
-	 ("M-n" . move-text-down)))
 ;; multiple-cursors
 (use-package multiple-cursors
   :bind (("C-S-c C-S-c" . mc/edit-lines)
