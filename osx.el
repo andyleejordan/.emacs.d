@@ -6,6 +6,10 @@
 
 ;;; Code:
 
+;; disable toolbar and scrollbar
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+
 ;; delete by moving to trash
 (setq delete-by-moving-to-trash t)
 

@@ -26,9 +26,6 @@
 ;;; appearance
 ;; font size
 (set-face-attribute 'default nil :height 120)
-;; disable toolbar and scrollbar
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
 ;; line/column numbers in mode-line
 (setq line-number-mode t)
 (setq column-number-mode t)
