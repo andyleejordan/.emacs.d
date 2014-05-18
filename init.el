@@ -37,7 +37,6 @@
 (setq calendar-week-start-day 1)
 ;; cursor settings
 (blink-cursor-mode t)
-(setq-default cursor-type 'hbar)
 ;; visually wrap lines
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 ;; default truncate lines
