@@ -44,6 +44,8 @@
 (setq-default truncate-lines t)
 ;; matching parentheses
 (show-paren-mode t)
+;; window undo/redo
+(winner-mode t)
 
 ;;; settings
 ;; pull in path from shell
