@@ -13,7 +13,6 @@
 ;;; shortcuts
 ;; miscellaneous
 (define-key global-map (kbd "M-/") 'hippie-expand)
-(define-key global-map (kbd "C-x g") 'magit-status)
 (define-key global-map (kbd "C-c a") 'org-agenda)
 (define-key global-map (kbd "C-c d") 'dash-at-point)
 (define-key global-map (kbd "C-c x") 'eval-buffer)
