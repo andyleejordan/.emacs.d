@@ -23,6 +23,15 @@
 (define-key global-map (kbd "C-M-r") 'isearch-backward)
 
 ;;; appearance
+;; theme (wombat in terminal, solarized otherwise)
+(if (display-graphic-p)
+    (use-package solarized
+      :init
+      (progn
+	(setq solarized-use-variable-pitch nil)
+	(setq solarized-high-contrast-mode-line t)
+	(load-theme 'solarized-dark t)))
+  (load-theme 'wombat t))
 ;; font size
 (set-face-attribute 'default nil :height 120)
 ;; line/column numbers in mode-line
