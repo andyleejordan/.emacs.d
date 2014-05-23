@@ -64,7 +64,11 @@
 (setq kill-whole-line t)
 ;; initial text mode
 (setq initial-major-mode 'text-mode)
+;; enable auto-fill mode for text
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
+;; disable auto-fill because of stupid GitHub flavored markdown
+(remove-hook 'git-commit-mode-hook 'turn-on-auto-fill)
+(add-hook 'git-commit-mode-hook 'turn-on-visual-line-mode)
 ;; disable bell
 (setq ring-bell-function 'ignore)
 ;; subword navigation
