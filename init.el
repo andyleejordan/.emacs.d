@@ -12,15 +12,15 @@
 
 ;;; shortcuts
 ;; miscellaneous
-(define-key global-map (kbd "M-/") 'hippie-expand)
-(define-key global-map (kbd "C-c a") 'org-agenda)
-(define-key global-map (kbd "C-c d") 'dash-at-point)
-(define-key global-map (kbd "C-c x") 'eval-buffer)
+(bind-key "M-/" 'hippie-expand)
+(bind-key "C-c a" 'org-agenda)
+(bind-key "C-c d" 'dash-at-point)
+(bind-key "C-c x" 'eval-buffer)
 ;; isearch
-(define-key global-map (kbd "C-s") 'isearch-forward-regexp)
-(define-key global-map (kbd "C-r") 'isearch-backward-regexp)
-(define-key global-map (kbd "C-M-s") 'isearch-forward)
-(define-key global-map (kbd "C-M-r") 'isearch-backward)
+(bind-key "C-s" 'isearch-forward-regexp)
+(bind-key "C-r" 'isearch-backward-regexp)
+(bind-key "C-M-s" 'isearch-forward)
+(bind-key "C-M-r" 'isearch-backward)
 
 ;;; appearance
 ;; theme (wombat in terminal, solarized otherwise)
@@ -127,7 +127,7 @@
   (interactive)
   (end-of-line)
   (set-mark (line-beginning-position)))
-(define-key global-map (kbd "C-c l") 'select-whole-line)
+(bind-key "C-c l" 'select-whole-line)
 ;; comment/uncomment line/region
 (defun comment-or-uncomment-region-or-line ()
   "Comments or uncomments the region or the current line if there's no active region."
@@ -137,7 +137,7 @@
 	(setq beg (region-beginning) end (region-end))
       (setq beg (line-beginning-position) end (line-end-position)))
     (comment-or-uncomment-region beg end)))
-(define-key global-map (kbd "C-c c") 'comment-or-uncomment-region-or-line)
+(bind-key "C-c c" 'comment-or-uncomment-region-or-line)
 
 ;;; load local settings
 (load-local "feeds")
