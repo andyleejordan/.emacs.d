@@ -6,6 +6,7 @@
 (depends-on "ace-jump-mode")
 (depends-on "ag")
 (depends-on "browse-kill-ring")
+(depends-on "bind-key")
 (depends-on "cask")
 (depends-on "company")
 (depends-on "crontab-mode")
