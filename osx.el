@@ -6,6 +6,9 @@
 
 ;;; Code:
 
+;; key bindings
+(bind-key "C-c d" 'dash-at-point)
+
 ;; disable toolbar and scrollbar
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
@@ -19,6 +22,10 @@
 
 ;; use srgb
 (setq ns-use-srgb-colorspace t)
+
+;; org-journal
+(use-package org-journal
+  :init (setq org-journal-dir "~/Documents/personal/journal/"))
 
 ;; open file's location in Finder
 (defun finder ()

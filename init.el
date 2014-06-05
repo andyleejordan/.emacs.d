@@ -14,7 +14,6 @@
 ;; miscellaneous
 (bind-key "M-/" 'hippie-expand)
 (bind-key "C-c a" 'org-agenda)
-(bind-key "C-c d" 'dash-at-point)
 (bind-key "C-c x" 'eval-buffer)
 ;; isearch
 (bind-key "C-s" 'isearch-forward-regexp)
@@ -249,9 +248,6 @@
   :config (setq notmuch-command "~/bin/notmuch")
   :bind ("C-x n" . notmuch))
 ;;; org-mode
-;; org-journal
-(use-package org-journal
-  :init (setq org-journal-dir "~/Documents/personal/journal/"))
 ;; org-agenda
 (setq org-agenda-files '("~/.org"))
 ;; org-auto-fill
