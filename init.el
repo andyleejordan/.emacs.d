@@ -67,7 +67,12 @@
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 ;; disable auto-fill because of stupid GitHub flavored markdown
 (remove-hook 'git-commit-mode-hook 'turn-on-auto-fill)
-(add-hook 'git-commit-mode-hook 'turn-on-visual-line-mode)
+(add-hook 'git-commit-mode-hook
+	  'turn-off-auto-fill
+	  'turn-on-visual-line-mode
+	  'truncate-lines)
+;; longer commit summaries
+(setq git-commit-summary-max-length 72)
 ;; disable bell
 (setq ring-bell-function 'ignore)
 ;; subword navigation
@@ -277,7 +282,8 @@
   (progn
     (popwin-mode 1)
     ;; cannot use :bind for keymap
-    (global-set-key (kbd "C-z") popwin:keymap)))
+    (global-set-key (kbd "C-z") popwin:keymap)
+    (add-hook 'magit-mode-hook 'popwin:one-window)))
 ;; activate projectile
 (use-package projectile
   :config (projectile-global-mode))
