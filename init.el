@@ -221,11 +221,7 @@
 (use-package flycheck
   :init
   (progn
-    (add-hook 'after-init-hook #'global-flycheck-mode)
-    (add-hook 'c++-mode-hook
-	      (lambda ()
-		(setq-default flycheck-clang-standard-library "libc++")
-		(setq-default flycheck-clang-language-standard "gnu++11")))))
+    (add-hook 'after-init-hook #'global-flycheck-mode)))
 ;;; flyspell
 (use-package flyspell
   :config (setq ispell-program-name "aspell" ; use aspell instead of ispell
