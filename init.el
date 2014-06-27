@@ -52,6 +52,8 @@
 (show-paren-mode t)
 ;; window undo/redo
 (winner-mode t)
+;; show function in modeline
+(which-function-mode t)
 
 ;;; settings
 ;; pull in path from shell
