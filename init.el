@@ -221,7 +221,8 @@
 (use-package flycheck
   :init
   (progn
-    (add-hook 'after-init-hook #'global-flycheck-mode)))
+    (add-hook 'after-init-hook #'global-flycheck-mode)
+    (setq flycheck-completion-system 'ido)))
 ;;; flyspell
 (use-package flyspell
   :config (setq ispell-program-name "aspell" ; use aspell instead of ispell
