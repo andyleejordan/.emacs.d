@@ -16,3 +16,4 @@ projectile.cache
 .mc-lists.el
 *.elc
 /kill-ring-saved.el
+/jabber-avatar-cache/
