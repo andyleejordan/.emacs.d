@@ -116,9 +116,9 @@
 (global-auto-revert-mode t)
 ;; symlink version-control follow
 (setq vc-follow-symlinks t)
-;; set arduino *.ino files to c-mode
+;; add more modes
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c-mode))
-;; set Emacs Lisp files mode
+(add-to-list 'auto-mode-alist '("\\.vcsh\\'" . conf-mode))
 (add-to-list 'magic-mode-alist '(";;; " . emacs-lisp-mode))
 ;;; functions
 ;; load local file
