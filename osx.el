@@ -16,9 +16,12 @@
 ;; delete by moving to trash
 (setq delete-by-moving-to-trash t)
 
-;; Set font
+;; set font
 (set-frame-font
  "-apple-Source_Code_Pro-medium-normal-normal-*-*-*-*-*-m-0-iso10646-1" nil t)
+
+;; font size
+(set-face-attribute 'default nil :height 120)
 
 ;; use srgb
 (setq ns-use-srgb-colorspace t)

@@ -31,8 +31,6 @@
 	(setq solarized-high-contrast-mode-line t)
 	(load-theme 'solarized-dark t)))
   (load-theme 'wombat t))
-;; font size
-(set-face-attribute 'default nil :height 120)
 ;; line/column numbers in mode-line
 (setq line-number-mode t)
 (setq column-number-mode t)
