@@ -279,8 +279,7 @@
   (progn
     (popwin-mode 1)
     ;; cannot use :bind for keymap
-    (global-set-key (kbd "C-z") popwin:keymap)
-    (add-hook 'magit-mode-hook 'popwin:one-window)))
+    (global-set-key (kbd "C-z") popwin:keymap)))
 ;; activate projectile
 (use-package projectile
   :config (projectile-global-mode))
