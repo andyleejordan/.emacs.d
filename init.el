@@ -54,9 +54,6 @@
 (which-function-mode t)
 
 ;;; settings
-;; pull in path from shell
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
 ;; enable all commands
 (setq disabled-command-function nil)
 ;; kill whole line (including newline)

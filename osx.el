@@ -6,6 +6,10 @@
 
 ;;; Code:
 
+;; pull in environment
+(exec-path-from-shell-copy-envs '("GPG_AGENT_INFO"))
+(exec-path-from-shell-initialize)
+
 ;; key bindings
 (bind-key "C-c d" 'dash-at-point)
 
