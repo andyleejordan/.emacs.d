@@ -95,15 +95,14 @@
   '(progn (setenv "TMPDIR" "/tmp")))
 
 ;;; files
-;; auto-save
-(setq auto-save-timeout 60)
 ;; backups
-(setq backup-by-copying t)
-(setq delete-old-versions t
-      kept-new-versions 6
+(setq backup-by-copying t
+      delete-old-versions t
+      kept-new-versions 4
       kept-old-versions 2
-      version-control t)
-(setq backup-directory-alist `(("." . ,(concat
+      version-control t
+      vc-make-backup-files t
+      backup-directory-alist `(("." . ,(concat
 					user-emacs-directory "backups"))))
 ;; final-newline
 (setq require-final-newline 't)
