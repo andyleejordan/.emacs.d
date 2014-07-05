@@ -31,6 +31,7 @@
 (depends-on "org-journal")
 (depends-on "org-plus-contrib")
 (depends-on "org-pomodoro")
+(depends-on "paradox")
 (depends-on "popwin")
 (depends-on "projectile")
 (depends-on "puppet-mode")
