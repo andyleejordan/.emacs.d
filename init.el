@@ -27,13 +27,13 @@
     (use-package solarized
       :init
       (progn
-	(setq solarized-use-variable-pitch nil)
-	(setq solarized-high-contrast-mode-line t)
+	(setq solarized-use-variable-pitch nil
+	      solarized-high-contrast-mode-line t)
 	(load-theme 'solarized-dark t)))
   (load-theme 'wombat t))
 ;; line/column numbers in mode-line
-(setq line-number-mode t)
-(setq column-number-mode t)
+(setq line-number-mode t
+      column-number-mode t)
 ;; y/n for yes/no
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;; quit prompt
@@ -107,8 +107,8 @@
 ;; final-newline
 (setq require-final-newline 't)
 ;; set auto revert of buffers if file is changed externally
-(setq global-auto-revert-non-file-buffers t)
-(setq auto-revert-verbose nil)
+(setq global-auto-revert-non-file-buffers t
+      auto-revert-verbose nil)
 (global-auto-revert-mode t)
 ;; symlink version-control follow
 (setq vc-follow-symlinks t)
@@ -194,12 +194,12 @@
     (erc-spelling-mode t) ;; flyspell
     (erc-track-mode t)
     (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
-				    "324" "329" "332" "333" "353" "477"))
-    ;; don't show any of this
-    (setq erc-hide-list '("JOIN" "PART" "QUIT" "NICK"))
-    ;; nicks
-    (setq erc-prompt-for-nickserv-password nil)
-    (setq erc-nickserv-passwords
+				    "324" "329" "332" "333" "353" "477")
+	  ;; don't show any of this
+	  erc-hide-list '("JOIN" "PART" "QUIT" "NICK")
+	  ;; nicks
+	  erc-prompt-for-nickserv-password nil
+	  erc-nickserv-passwords
 	  `((freenode (("andschwa" . ,irc-freenode-andschwa-pass)))))
     ;; channel autojoin
     (erc-autojoin-mode nil)
@@ -245,19 +245,20 @@
 (use-package multi-term
   :config (setq multi-term-program "bash"))
 ;;; org-mode
-;; org-agenda
-(setq org-agenda-files '("~/.org"))
+
 ;; org-auto-fill
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
-;; org-entities
-(setq org-pretty-entities t)
-(setq org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
+;; org-agenda
+(setq org-agenda-files '("~/.org")
+      ;; org-entities
+      org-pretty-entities t
+      org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
 			  ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
 			  ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
 			  ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
-			  ("models" "\\models" nil "&#8872;" "" "" "⊧")))
-;; org-export
-(setq org-export-backends '(html beamer ascii latex md))
+			  ("models" "\\models" nil "&#8872;" "" "" "⊧"))
+      ;; org-export
+      org-export-backends '(html beamer ascii latex md))
 ;; org-babel
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -284,8 +285,8 @@
 (use-package saveplace
   :init
   (progn
-    (setq-default save-place t)
-    (setq save-place-file (concat user-emacs-directory "saved-places"))))
+    (setq-default save-place t
+		  save-place-file (concat user-emacs-directory "saved-places"))))
 ;; scratch
 (use-package scratch
   :bind ("C-c s" . scratch))
@@ -323,8 +324,8 @@
   :init (add-hook 'before-save-hook 'whitespace-cleanup)
   :config
   (progn
-    (setq whitespace-line-column 80) ;; limit line length
-    (setq whitespace-style '(face tabs empty trailing lines-tail))))
+    (setq whitespace-line-column 80 ;; limit line length
+	  whitespace-style '(face tabs empty trailing lines-tail))))
 ;;; yasnippet
 (use-package yasnippet
   :init (yas-global-mode t))
