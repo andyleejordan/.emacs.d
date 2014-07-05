@@ -248,10 +248,6 @@
 ;; multi-term
 (use-package multi-term
   :config (setq multi-term-program "bash"))
-;; notmuch
-(use-package notmuch
-  :config (setq notmuch-command "~/bin/notmuch")
-  :bind ("C-x n" . notmuch))
 ;;; org-mode
 ;; org-agenda
 (setq org-agenda-files '("~/.org"))

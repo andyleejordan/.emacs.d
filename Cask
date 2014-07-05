@@ -27,7 +27,6 @@
 (depends-on "markdown-mode")
 (depends-on "multi-term")
 (depends-on "multiple-cursors")
-(depends-on "notmuch")
 (depends-on "org-journal")
 (depends-on "org-plus-contrib")
 (depends-on "org-pomodoro")
