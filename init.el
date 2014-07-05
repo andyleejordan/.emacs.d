@@ -331,7 +331,8 @@
     (setq whitespace-line-column 80) ;; limit line length
     (setq whitespace-style '(face tabs empty trailing lines-tail))))
 ;;; yasnippet
-(use-package yasnippet)
+(use-package yasnippet
+  :init (yas-global-mode t))
 
 ;;; start server
 (server-start)
