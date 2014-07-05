@@ -169,6 +169,9 @@
   :config (setq ein:use-auto-complete t))
 ;; elfeed
 (use-package elfeed
+  :config (progn (add-hook 'elfeed-new-entry-hook
+			   (elfeed-make-tagger :before "2 weeks ago"
+					       :remove 'unread)))
   :bind ("C-x w" . elfeed))
 ;; erc --- configured with help from:
 ;; http://emacs-fu.blogspot.com/2009/06/erc-emacs-irc-client.html
@@ -224,7 +227,7 @@
 ;;; flyspell
 (use-package flyspell
   :config (setq ispell-program-name "aspell" ; use aspell instead of ispell
-	      ispell-extra-args '("--sug-mode=ultra")))
+		ispell-extra-args '("--sug-mode=ultra")))
 ;; ibuffer
 (use-package ibuffer
   :config (add-hook 'ibuffer-mode-hook (lambda () (setq truncate-lines t)))
