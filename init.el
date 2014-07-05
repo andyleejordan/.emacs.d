@@ -155,8 +155,8 @@
 ;; ace-jump-mode
 (use-package ace-jump-mode
   :config (eval-after-load "ace-jump-mode" '(ace-jump-mode-enable-mark-sync))
-  :bind (("C-c ," . ace-jump-mode)
-	 ("C-x ," . ace-jump-mode-pop-mark)))
+  :bind (("C-." . ace-jump-mode)
+   	 ("C-," . ace-jump-mode-pop-mark)))
 ;; browse-kill-ring
 (use-package browse-kill-ring
   :config (browse-kill-ring-default-keybindings)
