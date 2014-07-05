@@ -123,8 +123,8 @@
 ;;; functions
 ;; load local file
 (defun load-local (file)
-  "Load FILE from ~/.emacs.d."
-  (load (f-expand file user-emacs-directory)))
+  "Load FILE from ~/.emacs.d, okay if missing."
+  (load (f-expand file user-emacs-directory) t))
 ;; select whole line
 (defun select-whole-line ()
   "Select whole line which has the cursor."
