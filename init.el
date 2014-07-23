@@ -122,6 +122,14 @@
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c-mode))
 (add-to-list 'auto-mode-alist '("\\.vcsh\\'" . conf-mode))
 (add-to-list 'magic-mode-alist '(";;; " . emacs-lisp-mode))
+;; dired
+(setq
+ ;; enable side-by-side dired buffer targets
+ dired-dwim-target t
+ ;; better recursion in dired
+ dired-recursive-copies 'always
+ dired-recursive-deletes 'top)
+
 ;;; functions
 ;; load local file
 (defun load-local (file)
