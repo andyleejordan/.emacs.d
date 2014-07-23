@@ -154,8 +154,7 @@
 (bind-key "C-c c" 'comment-or-uncomment-region-or-line)
 
 ;;; load local settings
-(load-local "feeds")
-(load-local "private")
+(mapc 'load-local '("feeds" "private"))
 
 ;;; load OS X configurations
 (when (eq system-type 'darwin)
