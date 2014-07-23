@@ -26,6 +26,8 @@
 (bind-key* "M-5" 'split-window-vertically)
 (bind-key* "M-2" 'delete-window)
 (bind-key* "M-s" 'other-window)
+;; projectile command map
+(bind-key* "M-p" 'projectile-command-map)
 
 ;;; appearance
 ;; theme (wombat in terminal, solarized otherwise)
@@ -291,7 +293,9 @@
     (global-set-key (kbd "C-z") popwin:keymap)))
 ;; activate projectile
 (use-package projectile
-  :config (projectile-global-mode))
+  :config (progn
+	    (projectile-global-mode)
+	    (setq projectile-remember-window-configs t)))
 ;;; save kill ring
 (use-package savekill)
 ;;; saveplace
