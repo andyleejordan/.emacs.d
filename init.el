@@ -20,6 +20,12 @@
 (bind-key "C-r" 'isearch-backward-regexp)
 (bind-key "C-M-s" 'isearch-forward)
 (bind-key "C-M-r" 'isearch-backward)
+;; window management
+(bind-key* "M-3" 'delete-other-windows)
+(bind-key* "M-4" 'split-window-horizontally)
+(bind-key* "M-5" 'split-window-vertically)
+(bind-key* "M-2" 'delete-window)
+(bind-key* "M-s" 'other-window)
 
 ;;; appearance
 ;; theme (wombat in terminal, solarized otherwise)
