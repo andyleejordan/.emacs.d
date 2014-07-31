@@ -14,6 +14,7 @@
 ;; miscellaneous
 (bind-key "M-/" 'hippie-expand)
 (bind-key "C-c a" 'org-agenda)
+(bind-key "C-c l" 'align-regexp)
 (bind-key "C-c x" 'eval-buffer)
 ;; isearch
 (bind-key "C-s" 'isearch-forward-regexp)
@@ -143,7 +144,7 @@
   (interactive)
   (end-of-line)
   (set-mark (line-beginning-position)))
-(bind-key "C-c l" 'select-whole-line)
+(bind-key "C-c w" 'select-whole-line)
 ;; comment/uncomment line/region
 (defun comment-or-uncomment-region-or-line ()
   "Comments or uncomments the region or the current line if there's no active region."
