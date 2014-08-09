@@ -116,8 +116,6 @@
 ;; final-newline
 (setq require-final-newline 't)
 ;; set auto revert of buffers if file is changed externally
-(setq global-auto-revert-non-file-buffers t
-      auto-revert-verbose nil)
 (global-auto-revert-mode t)
 ;; symlink version-control follow
 (setq vc-follow-symlinks t)
