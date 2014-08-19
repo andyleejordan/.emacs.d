@@ -167,6 +167,8 @@
   :config (eval-after-load "ace-jump-mode" '(ace-jump-mode-enable-mark-sync))
   :bind (("C-." . ace-jump-mode)
    	 ("C-," . ace-jump-mode-pop-mark)))
+(use-package anzu
+  :init (anzu-mode))
 ;; browse-kill-ring
 (use-package browse-kill-ring
   :config (browse-kill-ring-default-keybindings)
