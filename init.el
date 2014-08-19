@@ -41,8 +41,8 @@
 	(load-theme 'solarized-dark t)))
   (load-theme 'wombat t))
 ;; line/column numbers in mode-line
-(setq line-number-mode t
-      column-number-mode t)
+(line-number-mode t)
+(column-number-mode t)
 ;; y/n for yes/no
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;; quit prompt
@@ -82,13 +82,13 @@
 ;; disable bell
 (setq ring-bell-function 'ignore)
 ;; subword navigation
-(global-subword-mode t)
+(subword-mode t)
 ;; increase garbage collection threshold
 (setq gc-cons-threshold 20000000)
 ;; inhibit startup message
 (setq inhibit-startup-message t)
 ;; remove selected region if typing
-(pending-delete-mode 1)
+(pending-delete-mode t)
 ;; prefer UTF8
 (setq locale-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -287,7 +287,7 @@
 (use-package popwin
   :init
   (progn
-    (popwin-mode 1)
+    (popwin-mode t)
     ;; cannot use :bind for keymap
     (global-set-key (kbd "C-z") popwin:keymap)))
 ;; activate projectile
