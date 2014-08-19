@@ -186,39 +186,22 @@
 ;; erc --- configured with help from:
 ;; http://emacs-fu.blogspot.com/2009/06/erc-emacs-irc-client.html
 (use-package erc
-  :init
-  (progn
-    (defun erc-start-or-switch ()
-      "Connect to ERC, or switch to last active buffer"
-      (interactive)
-      (if (get-buffer "chat.freenode.net:7000") ;; ERC already active?
-	  (erc-track-switch-buffer 1) ;; yes: switch to last active
-	(when (yes-or-no-p "Start ERC? ") ;; no: maybe start ERC
-	  (erc-tls :server "chat.freenode.net" :port
-		   7000 :nick "andschwa" :full-name "Andrew Schwartzmeyer")))))
+  :init (add-hook 'erc-mode-hook (lambda () (subword-mode -1)))
   :config
   (progn
     (use-package erc-services
-      :config (erc-services-mode t))
+      :init (erc-services-mode t))
     (use-package erc-notify
-      :config
-      (progn
-	(erc-notify-mode t)
-	(setq erc-notify-list '("p_nathan1"))))
+      :init (erc-notify-mode t)
     (erc-spelling-mode t) ;; flyspell
     (erc-track-mode t)
     (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
 				    "324" "329" "332" "333" "353" "477")
 	  ;; don't show any of this
-	  erc-hide-list '("JOIN" "PART" "QUIT" "NICK")
-	  ;; nicks
-	  erc-prompt-for-nickserv-password nil
-	  erc-nickserv-passwords
-	  `((freenode (("andschwa" . ,irc-freenode-andschwa-pass)))))
+	  erc-hide-list '("JOIN" "PART" "QUIT" "NICK"))
     ;; channel autojoin
-    (erc-autojoin-mode nil)
-    (setq erc-autojoin-timing 'ident))
-  :bind ("C-c e" . erc-start-or-switch))
+    (erc-autojoin-mode t)
+    (setq erc-autojoin-timing 'ident))))
 ;; activate expand-region
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
