@@ -41,8 +41,8 @@
 	(load-theme 'solarized-dark t)))
   (load-theme 'wombat t))
 ;; line/column numbers in mode-line
-(line-number-mode t)
-(column-number-mode t)
+(line-number-mode)
+(column-number-mode)
 ;; y/n for yes/no
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;; quit prompt
@@ -50,17 +50,17 @@
 ;; start week on Monday
 (setq calendar-week-start-day 1)
 ;; cursor settings
-(blink-cursor-mode t)
+(blink-cursor-mode)
 ;; visually wrap lines
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 ;; default truncate lines
 (setq-default truncate-lines t)
 ;; matching parentheses
-(show-paren-mode t)
+(show-paren-mode)
 ;; window undo/redo
-(winner-mode t)
+(winner-mode)
 ;; show function in modeline
-(which-function-mode t)
+(which-function-mode)
 
 ;;; settings
 ;; enable all commands
@@ -82,7 +82,7 @@
 ;; disable bell
 (setq ring-bell-function 'ignore)
 ;; subword navigation
-(subword-mode t)
+(subword-mode)
 ;; increase garbage collection threshold
 (setq gc-cons-threshold 20000000)
 ;; inhibit startup message
@@ -116,7 +116,7 @@
 ;; final-newline
 (setq require-final-newline 't)
 ;; set auto revert of buffers if file is changed externally
-(global-auto-revert-mode t)
+(global-auto-revert-mode)
 ;; symlink version-control follow
 (setq vc-follow-symlinks t)
 ;; add more modes
@@ -186,21 +186,21 @@
 ;; erc --- configured with help from:
 ;; http://emacs-fu.blogspot.com/2009/06/erc-emacs-irc-client.html
 (use-package erc
-  :init (add-hook 'erc-mode-hook (lambda () (subword-mode -1)))
+  :init (add-hook 'erc-mode-hook (lambda () (subword-mode 0)))
   :config
   (progn
     (use-package erc-services
-      :init (erc-services-mode t))
+      :init (erc-services-mode))
     (use-package erc-notify
-      :init (erc-notify-mode t)
-    (erc-spelling-mode t) ;; flyspell
-    (erc-track-mode t)
+      :init (erc-notify-mode)
+    (erc-spelling-mode) ;; flyspell
+    (erc-track-mode)
     (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
 				    "324" "329" "332" "333" "353" "477")
 	  ;; don't show any of this
 	  erc-hide-list '("JOIN" "PART" "QUIT" "NICK"))
     ;; channel autojoin
-    (erc-autojoin-mode t)
+    (erc-autojoin-mode)
     (setq erc-autojoin-timing 'ident))))
 ;; activate expand-region
 (use-package expand-region
@@ -209,7 +209,7 @@
 (use-package flx-ido
   :init
   (progn
-    (flx-ido-mode t)
+    (flx-ido-mode)
     (setq ido-use-faces nil)))
 ;; flycheck
 (use-package flycheck
@@ -227,11 +227,11 @@
   :bind ("C-x C-b" . ibuffer))
 ;; ido setup
 (use-package ido
-  :init (ido-mode t))
+  :init (ido-mode))
 (use-package ido-ubiquitous)
 ;; ido-vertical
 (use-package ido-vertical-mode
-  :init (ido-vertical-mode t))
+  :init (ido-vertical-mode))
 ;; multiple-cursors
 (use-package multiple-cursors
   :bind (("C-S-c C-S-c" . mc/edit-lines)
@@ -273,7 +273,7 @@
 (use-package popwin
   :init
   (progn
-    (popwin-mode t)
+    (popwin-mode)
     ;; cannot use :bind for keymap
     (global-set-key (kbd "C-z") popwin:keymap)))
 ;; activate projectile
@@ -299,8 +299,8 @@
 	   slime-contribs '(slime-fancy)))
 ;; activate smartparens
 (use-package smartparens
-  :init (progn (smartparens-global-mode t)
-	       (show-smartparens-global-mode t)
+  :init (progn (smartparens-global-mode)
+	       (show-smartparens-global-mode)
 	       (use-package smartparens-config)))
 ;; setup smex bindings
 (use-package smex
@@ -315,11 +315,11 @@
 (use-package smooth-scroll
   :init
   (progn
-    (smooth-scroll-mode t)
+    (smooth-scroll-mode)
     (setq smooth-scroll/vscroll-step-size 8)))
 ;; undo-tree
 (use-package undo-tree
-  :init (global-undo-tree-mode t))
+  :init (global-undo-tree-mode))
 ;;; uniquify
 (use-package uniquify
   :config (setq uniquify-buffer-name-style 'forward))
@@ -335,7 +335,7 @@
 	  whitespace-style '(face tabs empty trailing lines-tail))))
 ;;; yasnippet
 (use-package yasnippet
-  :init (yas-global-mode t))
+  :init (yas-global-mode))
 
 ;;; start server
 (server-start)
