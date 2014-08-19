@@ -28,7 +28,7 @@
 (bind-key* "M-2" 'delete-window)
 (bind-key* "M-s" 'other-window)
 ;; projectile command map
-(bind-key* "M-p" 'projectile-command-map)
+(bind-key* "M-[" 'projectile-command-map)
 
 ;;; appearance
 ;; theme (wombat in terminal, solarized otherwise)
