@@ -18,6 +18,8 @@
 (depends-on "expand-region")
 (depends-on "flx-ido")
 (depends-on "flycheck")
+(depends-on "flycheck-cask")
+(depends-on "flycheck-haskell")
 (depends-on "flycheck-ledger")
 (depends-on "gnuplot")
 (depends-on "handlebars-mode")
