@@ -234,6 +234,9 @@
 ;; ido-vertical
 (use-package ido-vertical-mode
   :init (ido-vertical-mode))
+;; ledger
+(use-package ledger-mode
+  :init (add-to-list 'auto-mode-alist '("\\.ledger$" . ledger-mode)))
 ;; multiple-cursors
 (use-package multiple-cursors
   :bind (("C-S-c C-S-c" . mc/edit-lines)
