@@ -30,10 +30,6 @@
 ;; use srgb
 (setq ns-use-srgb-colorspace t)
 
-;; org-journal
-(use-package org-journal
-  :init (setq org-journal-dir "~/Documents/personal/journal/"))
-
 ;; open file's location in Finder
 (defun finder ()
   "Opens file directory in Finder."
