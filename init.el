@@ -122,6 +122,7 @@
 ;; add more modes
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c-mode))
 (add-to-list 'auto-mode-alist '("\\.vcsh\\'" . conf-mode))
+(add-to-list 'auto-mode-alist '("\\.zsh\\'" . shell-script-mode))
 (add-to-list 'magic-mode-alist '(";;; " . emacs-lisp-mode))
 ;; dired
 (setq
