@@ -284,9 +284,7 @@
     (global-set-key (kbd "C-z") popwin:keymap)))
 ;; activate projectile
 (use-package projectile
-  :config (progn
-	    (projectile-global-mode)
-	    (setq projectile-remember-window-configs t)))
+  :config (projectile-global-mode))
 ;;; save kill ring
 (use-package savekill)
 ;;; saveplace
