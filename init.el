@@ -131,7 +131,9 @@
 
 ;; fix tramp
 (eval-after-load 'tramp
-  '(progn (setenv "TMPDIR" "/tmp")))
+  '(progn (setenv "TMPDIR" "/tmp")
+	  (setenv "SHELL" "/bin/sh")))
+(setq tramp-auto-save-directory "/tmp")
 
 ;;; files
 
