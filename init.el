@@ -309,16 +309,13 @@
 ;; org-auto-fill
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 
-;; org-agenda
-(setq org-agenda-files '("~/.org")
-      ; org-entities
-      org-pretty-entities t
+;; org settings
+(setq org-pretty-entities t
       org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
 			  ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
 			  ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
 			  ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
 			  ("models" "\\models" nil "&#8872;" "" "" "⊧"))
-      ; org-export
       org-export-backends '(html beamer ascii latex md))
 
 ;; org-babel
