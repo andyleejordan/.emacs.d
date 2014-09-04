@@ -44,6 +44,7 @@
 (depends-on "scratch")
 (depends-on "slime")
 (depends-on "smartparens")
+(depends-on "smart-tabs-mode")
 (depends-on "smex")
 (depends-on "smooth-scroll")
 (depends-on "solarized-theme")

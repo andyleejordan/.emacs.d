@@ -372,6 +372,10 @@
 	       (show-smartparens-global-mode)
 	       (use-package smartparens-config)))
 
+;; smart tabs
+(use-package smart-tabs-mode
+  :init (smart-tabs-insinuate 'c 'c++ 'python 'ruby))
+
 ;; setup smex bindings
 (use-package smex
   :init
