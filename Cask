@@ -50,6 +50,7 @@
 (depends-on "solarized-theme")
 (depends-on "undo-tree")
 (depends-on "use-package")
+(depends-on "w3m")
 (depends-on "virtualenvwrapper")
 (depends-on "yaml-mode")
 (depends-on "yasnippet")
