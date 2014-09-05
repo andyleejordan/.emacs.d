@@ -7,6 +7,7 @@
 ;;; Code:
 
 ;; pull in environment
+(setenv "SHELL" "/usr/local/bin/bash")
 (exec-path-from-shell-copy-envs '("GPG_AGENT_INFO"))
 (exec-path-from-shell-initialize)
 
