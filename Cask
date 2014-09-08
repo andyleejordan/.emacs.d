@@ -54,3 +54,4 @@
 (depends-on "virtualenvwrapper")
 (depends-on "yaml-mode")
 (depends-on "yasnippet")
+(depends-on "znc")

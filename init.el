@@ -237,25 +237,6 @@
 					       :remove 'unread)))
   :bind ("C-x w" . elfeed))
 
-;; erc
-(use-package erc
-  :init (add-hook 'erc-mode-hook (lambda () (subword-mode 0)))
-  :config
-  (progn
-    (use-package erc-services
-      :init (erc-services-mode))
-    (use-package erc-notify
-      :init (erc-notify-mode)
-    (erc-spelling-mode) ; flyspell
-    (erc-track-mode)
-    (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
-				    "324" "329" "332" "333" "353" "477")
-	  ; don't show any of this
-	  erc-hide-list '("JOIN" "PART" "QUIT" "NICK"))
-    ; channel autojoin
-    (erc-autojoin-mode)
-    (setq erc-autojoin-timing 'ident))))
-
 ;; activate expand-region
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
