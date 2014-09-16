@@ -342,10 +342,9 @@
   :bind ("C-c s" . scratch))
 
 ;; slime
-(use-package slime-autoloads
+(use-package sly-autoloads
   :config (setq
-	   inferior-lisp-program (executable-find "sbcl")
-	   slime-contribs '(slime-fancy)))
+	   inferior-lisp-program (executable-find "sbcl")))
 
 ;; activate smartparens
 (use-package smartparens
