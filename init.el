@@ -88,15 +88,8 @@
 ;; initial text mode
 (setq initial-major-mode 'text-mode)
 
-;; enable auto-fill mode for text
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
-
-;; disable auto-fill because of stupid GitHub flavored markdown
-(remove-hook 'git-commit-mode-hook 'turn-on-auto-fill)
-(add-hook 'git-commit-mode-hook
-	  'turn-off-auto-fill
-	  'turn-on-visual-line-mode
-	  'truncate-lines)
+;; visual line mode for text
+(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 
 ;; longer commit summaries
 (setq git-commit-summary-max-length 72)
