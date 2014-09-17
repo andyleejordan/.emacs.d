@@ -13,7 +13,6 @@
 ;;; shortcuts
 
 ;; miscellaneous
-(bind-key "M-/" 'hippie-expand)
 (bind-key "C-c a" 'org-agenda)
 (bind-key "C-c l" 'align-regexp)
 (bind-key "C-c x" 'eval-buffer)
