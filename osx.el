@@ -11,6 +11,9 @@
 (exec-path-from-shell-copy-envs '("GPG_AGENT_INFO"))
 (exec-path-from-shell-initialize)
 
+;; add home info manuals
+(add-to-list 'Info-additional-directory-list (expand-file-name "~/info"))
+
 ;; key bindings
 (bind-key "C-c d" 'dash-at-point)
 
