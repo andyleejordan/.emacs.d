@@ -1,0 +1,68 @@
+* Andrew Schwartzmeyer's Emacs Configurations
+Uses [[https://github.com/cask/cask][cask]] for package installation management. Primarily uses
+[[https://github.com/jwiegley/use-package][jwiegley's use-package]] macro to cleanly and quickly require and setup
+various packages. Enables lots of lovely minor modes, and
+conditionally loads operating and local system specific code.
+* Notable packages
+- [[https://github.com/jwiegley/use-package][jwiegley's use-package]]
+- [[https://company-mode.github.io/][dgutov's company-mode]]
+- [[https://github.com/magnars/expand-region.el][magnar's expand-region]]
+- [[https://github.com/lewang/flx][lewang's flx-ido]]
+- [[https://github.com/flycheck/flycheck][lunaryon's flycheck]]
+- [[https://github.com/gempesaw/ido-vertical-mode.el][gempesaw's ido-vertical-mode]]
+- [[http://www.ledger-cli.org/3.0/doc/ledger-mode.html][ledger-cli's ledger-mode]]
+- [[https://github.com/bbatsov/projectile][bbatsov's projectile]]
+- [[http://www.dr-qubit.org/emacs.php#undo-tree][dr-qubit's undo-tree-mode]]
+- [[https://github.com/capitaomorte/yasnippet][capitaomorte's yasnippet]]
+* Tricks and tips
+** Using quote marks within verbatim/code markup in org-mode
+- Unicode: <U200B> /xe2/x80/x8b ZERO WIDTH SPACE
+- Insert using: (C-x 8 RET 200b RET)
+** Sudo mode using Tramp
+- http://www.emacswiki.org/emacs/TrampMode
+- C-x C-f /ssh:you@remotehost|sudo:remotehost:/path/to/file RET
+** Replace in files
+From [[https://stackoverflow.com/a/271136][StackOverflow]]:
+
+1. M-x find-name-dired: you will be prompted for a root directory and
+   a filename pattern.
+
+2. Press t to "toggle mark" for all files found.
+
+3. Press Q for "Query-Replace in Files...": you will be prompted for
+   query/substitution regexps.
+
+4. Proceed as with query-replace-regexp: SPACE to replace and move to
+   next match, n to skip a match, etc.
+
+** Replace with capture
+- use regex groups like "ab\(c\)" where the parentheses are escaped
+  because Emacs
+- refer to prior capture groups by \N where N is 1-indexed on the
+  captured groups (e.g. back reference)
+** Renumber with regexp
+- see [[http://www.emacswiki.org/emacs/RenumberList][Wiki]]; the comma indicates elisp code to evaluate
+- e.g. [0-9]+ -> \,(+ 257 \#)
+** Projectile commands
+- switch :: p
+- make :: c
+- test :: P
+- replace :: r
+- dired :: D
+- vcs :: v
+- ag :: ss
+** ansi-term
+- Needs [[https://stackoverflow.com/a/8920373][terminfo]]
+- Remove TERM from shell's rc file
+#+begin_src sh
+tic -o ~/.terminfo
+/usr/local/Cellar/emacs/HEAD/share/emacs/24.4.50/etc/e/eterm-color.ti
+#+end_src
+
+** Quoting characters (C-q)
+- newline :: C-j
+** Find package code =find-library=
+** Partially evaluate list elements
+- (add-to-list 'somelist `(symbol . ,(expression to be evaluated)))
+- The backquote is like a normal quote except it evaluates elements
+  marked with commas. [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html][RTFM]]
