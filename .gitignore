@@ -18,3 +18,5 @@ projectile.cache
 /kill-ring-saved.el
 /jabber-avatar-cache/
 /bookmarks
+/smex-items
+/undo-tree/
