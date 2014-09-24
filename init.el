@@ -326,10 +326,8 @@
 ;; saveplace
 (use-package saveplace
   :init
-  (progn
-    (setq-default save-place t
-		  save-place-file (concat user-emacs-directory "saved-places"))))
-
+  (setq-default save-place t
+		save-place-file (f-expand "saved-places" user-emacs-directory )))
 ;; scratch
 (use-package scratch
   :bind ("C-c s" . scratch))
@@ -353,7 +351,7 @@
 (use-package smex
   :init
   (progn
-    (setq smex-save-file (expand-file-name ".smex-items" "~/.emacs.d/"))
+    (setq smex-save-file (f-expand "smex-items" user-emacs-directory))
     (smex-initialize))
   :bind (("M-x" . smex)
 	 ("M-X" . smex-major-mode-commands)
