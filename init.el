@@ -239,7 +239,8 @@
   :init
   (progn
     (flx-ido-mode)
-    (setq ido-use-faces nil)))
+    (setq ido-enable-flex-matching t
+	  ido-use-faces nil)))
 
 ;; flycheck
 (use-package flycheck
