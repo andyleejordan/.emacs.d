@@ -17,3 +17,4 @@ projectile.cache
 *.elc
 /kill-ring-saved.el
 /jabber-avatar-cache/
+/bookmarks
