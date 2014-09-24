@@ -366,7 +366,12 @@
 
 ;; undo-tree
 (use-package undo-tree
-  :init (global-undo-tree-mode))
+  :init
+  (progn
+    (global-undo-tree-mode)
+    (add-to-list 'undo-tree-history-directory-alist
+		 `("." . ,(f-expand "undo-tree" user-emacs-directory)))
+    (setq undo-tree-auto-save-history t)))
 
 ;; uniquify
 (use-package uniquify
