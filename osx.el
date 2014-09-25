@@ -21,6 +21,10 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 
+;; frame size
+(add-to-list 'default-frame-alist '(height . 44))
+(add-to-list 'default-frame-alist '(width . 88))
+
 ;; delete by moving to trash
 (setq delete-by-moving-to-trash t)
 
