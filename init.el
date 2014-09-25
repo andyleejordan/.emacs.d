@@ -17,6 +17,7 @@
 (bind-key "C-c l" 'align-regexp)
 (bind-key "C-c x" 'eval-buffer)
 (bind-key "C-c q" 'auto-fill-mode)
+(bind-key "C-c <tab>" 'company-complete)
 
 ;; isearch
 (bind-key "C-s" 'isearch-forward-regexp)
