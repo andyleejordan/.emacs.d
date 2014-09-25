@@ -44,6 +44,19 @@
          (format "%s %s" (executable-find "open") (file-name-directory file)))
       (error "Buffer is not attached to any file"))))
 
+;; mu4e
+(add-to-list 'load-path "/usr/local/Cellar/mu/0.9.9.6/share/emacs/site-lisp/mu4e")
+(use-package mu4e
+  :config
+  (progn
+    (setq mu4e-get-mail-command "offlineimap"
+	  mu4e-update-interval 300
+	  mu4e-maildir (expand-file-name "~/mail/personal")
+	  mu4e-sent-folder "/Sent"
+	  mu4e-drafts-folder "/Drafts"
+	  mu4e-trash-folder "/Trash"
+	  mu4e-refile-folder "/Archive")))
+
 ;;; provide OS X package
 (provide 'osx)
 
