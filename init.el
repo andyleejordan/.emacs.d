@@ -392,7 +392,12 @@
 
 ;; yasnippet
 (use-package yasnippet
-  :init (yas-global-mode))
+  :init
+  (progn
+    (yas-global-mode)
+    (unbind-key "<tab>" yas-minor-mode-map)
+    (unbind-key "TAB" yas-minor-mode-map))
+  :bind ("C-c y" . yas-minor-mode-map))
 
 ;;; start server
 (server-start)
