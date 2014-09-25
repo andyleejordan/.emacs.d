@@ -193,7 +193,7 @@
 ;;; load files
 
 ;; load local settings
-(mapc 'load-local '("feeds" "private"))
+(mapc 'load-local '("local" "feeds"))
 
 ;; load OS X configurations
 (when (eq system-type 'darwin)

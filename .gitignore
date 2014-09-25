@@ -11,7 +11,6 @@ tramp
 clang-complete
 request/
 saved-places
-private.el
 projectile.cache
 .mc-lists.el
 *.elc
@@ -20,3 +19,4 @@ projectile.cache
 /bookmarks
 /smex-items
 /undo-tree/
+/local.el
