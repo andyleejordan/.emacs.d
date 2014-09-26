@@ -42,8 +42,7 @@
     (use-package solarized
       :init
       (progn
-	(setq solarized-use-variable-pitch nil
-	      solarized-high-contrast-mode-line t)
+	(setq solarized-use-variable-pitch nil)
 	(load-theme 'solarized-dark t)))
   (load-theme 'wombat t))
 
