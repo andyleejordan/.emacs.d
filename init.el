@@ -217,7 +217,11 @@
 
 ;; company "complete anything"
 (use-package company
-  :init (add-hook 'after-init-hook 'global-company-mode))
+  :config
+  (progn
+    (setq company-minimum-prefix-length 2
+	  company-idle-delay 0.1)
+    (global-company-mode)))
 
 ;; ein
 (use-package ein
