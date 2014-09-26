@@ -63,7 +63,7 @@
 
 ;; org-journal
 (use-package org-journal
-  :init (setq org-journal-dir "~/Documents/personal/journal/"))
+  :config (setq org-journal-dir "~/Documents/personal/journal/"))
 
 ;; org agenda
 (setq org-agenda-files '("~/.org"))

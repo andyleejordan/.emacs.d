@@ -40,7 +40,7 @@
 ;; theme (wombat in terminal, solarized otherwise)
 (if (display-graphic-p)
     (use-package solarized
-      :init
+      :config
       (progn
 	(setq solarized-use-variable-pitch nil)
 	(load-theme 'solarized-dark t)))
@@ -240,7 +240,7 @@
 
 ;; flx-ido
 (use-package flx-ido
-  :init
+  :config
   (progn
     (flx-ido-mode)
     (setq ido-enable-flex-matching t
@@ -248,7 +248,7 @@
 
 ;; flycheck
 (use-package flycheck
-  :init
+  :config
   (progn
     (add-hook 'after-init-hook #'global-flycheck-mode)
     (setq flycheck-completion-system 'ido)))
@@ -265,16 +265,16 @@
 
 ;; ido setup
 (use-package ido
-  :init (ido-mode))
+  :config (ido-mode))
 (use-package ido-ubiquitous)
 
 ;; ido-vertical
 (use-package ido-vertical-mode
-  :init (ido-vertical-mode))
+  :config (ido-vertical-mode))
 
 ;; ledger
 (use-package ledger-mode
-  :init (add-to-list 'auto-mode-alist '("\\.ledger$" . ledger-mode)))
+  :config (add-to-list 'auto-mode-alist '("\\.ledger$" . ledger-mode)))
 
 ;; multiple-cursors
 (use-package multiple-cursors
@@ -315,7 +315,7 @@
 
 ;; popwin
 (use-package popwin
-  :init
+  :config
   (progn
     (popwin-mode)
     ;; cannot use :bind for keymap
@@ -330,7 +330,7 @@
 
 ;; saveplace
 (use-package saveplace
-  :init
+  :config
   (setq-default save-place t
 		save-place-file (f-expand "saved-places" user-emacs-directory )))
 ;; scratch
@@ -344,17 +344,18 @@
 
 ;; activate smartparens
 (use-package smartparens
-  :init (progn (smartparens-global-mode)
-	       (show-smartparens-global-mode)
-	       (use-package smartparens-config)))
+  :config
+  (progn (use-package smartparens-config)
+	 (smartparens-global-mode)
+	 (show-smartparens-global-mode)))
 
 ;; smart tabs
 (use-package smart-tabs-mode
-  :init (smart-tabs-insinuate 'c 'c++ 'python 'ruby))
+  :config (smart-tabs-insinuate 'c 'c++ 'python 'ruby))
 
 ;; setup smex bindings
 (use-package smex
-  :init
+  :config
   (progn
     (setq smex-save-file (f-expand "smex-items" user-emacs-directory))
     (smex-initialize))
@@ -364,14 +365,14 @@
 
 ;; scrolling
 (use-package smooth-scroll
-  :init
+  :config
   (progn
     (smooth-scroll-mode)
     (setq smooth-scroll/vscroll-step-size 8)))
 
 ;; undo-tree
 (use-package undo-tree
-  :init
+  :config
   (progn
     (global-undo-tree-mode)
     (add-to-list 'undo-tree-history-directory-alist
@@ -388,15 +389,15 @@
 
 ;; whitespace
 (use-package whitespace
-  :init (add-hook 'before-save-hook 'whitespace-cleanup)
   :config
   (progn
+    (add-hook 'before-save-hook 'whitespace-cleanup)
     (setq whitespace-line-column 80 ;; limit line length
 	  whitespace-style '(face tabs empty trailing lines-tail))))
 
 ;; yasnippet
 (use-package yasnippet
-  :init
+  :config
   (progn
     (yas-global-mode)
     (unbind-key "<tab>" yas-minor-mode-map)
