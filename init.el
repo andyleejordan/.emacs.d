@@ -208,7 +208,7 @@
 
 ;; anzu
 (use-package anzu
-  :init (anzu-mode))
+  :config (global-anzu-mode))
 
 ;; browse-kill-ring
 (use-package browse-kill-ring
