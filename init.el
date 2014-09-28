@@ -260,14 +260,6 @@
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 
-;; flx-ido
-(use-package flx-ido
-  :config
-  (progn
-    (flx-ido-mode)
-    (setq ido-enable-flex-matching t
-	  ido-use-faces nil)))
-
 ;; flycheck
 (use-package flycheck
   :bind ("C-c ! c" . flycheck-buffer)
@@ -305,12 +297,19 @@
 
 ;; ido setup
 (use-package ido
-  :config (ido-mode))
-(use-package ido-ubiquitous)
-
-;; ido-vertical
-(use-package ido-vertical-mode
-  :config (ido-vertical-mode))
+  :config
+  (progn
+    (ido-mode)
+    (use-package ido-ubiquitous
+      :config (ido-ubiquitous-mode))
+    (use-package flx-ido
+      :config
+      (progn
+	(flx-ido-mode)
+	(setq ido-enable-flex-matching t
+	      ido-use-faces nil)))
+    (use-package ido-vertical-mode
+      :config (ido-vertical-mode))))
 
 ;; ledger
 (use-package ledger-mode
