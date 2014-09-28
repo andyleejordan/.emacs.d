@@ -6,16 +6,22 @@
 
 ;;; Code:
 
-;; pull in environment
+;; set shell
 (setenv "SHELL" "/usr/local/bin/bash")
-(exec-path-from-shell-copy-envs '("GPG_AGENT_INFO"))
-(exec-path-from-shell-initialize)
+
+;; pull in path
+(use-package "exec-path-from-shell"
+  :config
+  (progn
+    (exec-path-from-shell-copy-envs '("GPG_AGENT_INFO"))
+    (exec-path-from-shell-initialize)))
 
 ;; add home info manuals
 (add-to-list 'Info-additional-directory-list (expand-file-name "~/info"))
 
 ;; key bindings
-(bind-key "C-c d" 'dash-at-point)
+(use-package dash-at-point
+  :bind ("C-c d" . dash-at-point))
 
 ;; disable toolbar and scrollbar
 (tool-bar-mode 0)
@@ -51,6 +57,8 @@
 ;; mu4e
 (add-to-list 'load-path "/usr/local/Cellar/mu/0.9.9.6/share/emacs/site-lisp/mu4e")
 (use-package mu4e
+  :commands mu4e
+  :bind ("C-c m" . mu4e)
   :config
   (progn
     (setq mu4e-get-mail-command "offlineimap"
@@ -63,10 +71,13 @@
 
 ;; org-journal
 (use-package org-journal
+  :bind ("C-c j" . org-journal-new-entry)
   :config (setq org-journal-dir "~/Documents/personal/journal/"))
 
 ;; org agenda
-(setq org-agenda-files '("~/.org"))
+(use-package org-agenda
+  :bind ("C-c a" . org-agenda)
+  :config (setq org-agenda-files '("~/.org")))
 
 ;;; provide OS X package
 (provide 'osx)
