@@ -337,37 +337,33 @@
 
 ;; org mode extensions
 (use-package org-plus-contribs-autoloads
-  :mode ("\\.org\\'" . org-mode))
-
-;; pomodoro
-(use-package org-pomodoro
-  :commands (org-pomodoro))
-
-;; org-auto-fill
-(add-hook 'org-mode-hook 'turn-on-auto-fill)
-
-;; org settings
-(setq org-pretty-entities t
-      org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
-			  ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
-			  ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
-			  ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
-			  ("models" "\\models" nil "&#8872;" "" "" "⊧"))
-      org-export-backends '(html beamer ascii latex md))
-
-;; org-babel
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((emacs-lisp . t)
-   (gnuplot . t)
-   (C . t)
-   (emacs-lisp . t)
-   (haskell . t)
-   (latex . t)
-   (ledger . t)
-   (python . t)
-   (ruby . t)
-   (sh . t)))
+  :mode ("\\.org\\'" . org-mode)
+  :config
+  (progn
+    ;; pomodoro
+    (use-package org-pomodoro
+      :commands (org-pomodoro))
+    (add-hook 'org-mode-hook 'turn-on-auto-fill)
+    (setq org-pretty-entities t
+	  org-completion-use-ido t
+	  org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
+			      ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
+			      ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
+			      ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
+			      ("models" "\\models" nil "&#8872;" "" "" "⊧"))
+	  org-export-backends '(html beamer ascii latex md))
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((emacs-lisp . t)
+       (gnuplot . t)
+       (C . t)
+       (emacs-lisp . t)
+       (haskell . t)
+       (latex . t)
+       (ledger . t)
+       (python . t)
+       (ruby . t)
+       (sh . t)))))
 
 ;; popwin
 (use-package popwin
