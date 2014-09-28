@@ -47,10 +47,8 @@
 ;; scrolling
 (use-package smooth-scroll
   :if (display-graphic-p)
-  :config
-  (progn
-    (smooth-scroll-mode)
-    (setq smooth-scroll/vscroll-step-size 8)))
+  :idle (smooth-scroll-mode)
+  :config (setq smooth-scroll/vscroll-step-size 8))
 
 ;; line/column numbers in mode-line
 (line-number-mode)
