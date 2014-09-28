@@ -13,11 +13,9 @@
 ;;; shortcuts
 
 ;; miscellaneous
-(bind-key "C-c a" 'org-agenda)
 (bind-key "C-c l" 'align-regexp)
 (bind-key "C-c x" 'eval-buffer)
 (bind-key "C-c q" 'auto-fill-mode)
-(bind-key "C-c <tab>" 'company-complete)
 
 ;; isearch
 (bind-key "C-s" 'isearch-forward-regexp)
@@ -32,19 +30,27 @@
 (bind-key* "M-2" 'delete-window)
 (bind-key* "M-s" 'other-window)
 
-;; projectile command map
-(bind-key* "M-[" 'projectile-command-map)
-
 ;;; appearance
 
 ;; theme (wombat in terminal, solarized otherwise)
-(if (display-graphic-p)
-    (use-package solarized
-      :config
-      (progn
-	(setq solarized-use-variable-pitch nil)
-	(load-theme 'solarized-dark t)))
-  (load-theme 'wombat t))
+(use-package solarized
+  :if (display-graphic-p)
+  :config
+  (progn
+    (setq solarized-use-variable-pitch nil)
+    (load-theme 'solarized-dark t)))
+
+(use-package wombat
+  :if (not (display-graphic-p))
+  :init (load-theme 'tango))
+
+;; scrolling
+(use-package smooth-scroll
+  :if (display-graphic-p)
+  :config
+  (progn
+    (smooth-scroll-mode)
+    (setq smooth-scroll/vscroll-step-size 8)))
 
 ;; line/column numbers in mode-line
 (line-number-mode)
@@ -202,37 +208,53 @@
 
 ;; ace-jump-mode
 (use-package ace-jump-mode
-  :config (eval-after-load "ace-jump-mode" '(ace-jump-mode-enable-mark-sync))
   :bind (("C-." . ace-jump-mode)
-   	 ("C-," . ace-jump-mode-pop-mark)))
+   	 ("C-," . ace-jump-mode-pop-mark))
+  :config (eval-after-load "ace-jump-mode" '(ace-jump-mode-enable-mark-sync)))
 
-;; anzu
+;; ag - the silver searcher
+(use-package ag
+  :commands (ag)
+  :bind ("C-c s" . ag))
+
+;; anzu - number of search matches in modeline
 (use-package anzu
-  :config (global-anzu-mode))
+  :idle (global-anzu-mode))
+
+;; bison
+(use-package bison-mode
+  :mode (("\\.y\\'" . bison-mode)
+	 ("\\.l\\'" . bison-mode)))
 
 ;; browse-kill-ring
 (use-package browse-kill-ring
-  :config (browse-kill-ring-default-keybindings)
-  :bind ("C-c k" . browse-kill-ring))
+  :bind ("C-c k" . browse-kill-ring)
+  :config (browse-kill-ring-default-keybindings))
 
 ;; company "complete anything"
 (use-package company
+  :bind ("C-c <tab>" . company-complete)
   :config
   (progn
+    (global-company-mode)
     (setq company-minimum-prefix-length 2
-	  company-idle-delay 0.1)
-    (global-company-mode)))
+	  company-idle-delay 0.1)))
+
+;; crontab
+(use-package crontab-mode
+  :mode ("\\.cron\\(tab\\)?\\'" . crontab-mode))
 
 ;; ein
 (use-package ein
+  :commands (ein:notebooklist-open)
   :config (setq ein:use-auto-complete t))
 
 ;; elfeed
 (use-package elfeed
-  :config (progn (add-hook 'elfeed-new-entry-hook
-			   (elfeed-make-tagger :before "2 weeks ago"
-					       :remove 'unread)))
-  :bind ("C-x w" . elfeed))
+  :bind ("C-x w" . elfeed)
+  :config (add-hook 'elfeed-new-entry-hook
+		    (elfeed-make-tagger :before "2 weeks ago"
+					:remove 'unread)))
 
 ;; activate expand-region
 (use-package expand-region
@@ -248,15 +270,33 @@
 
 ;; flycheck
 (use-package flycheck
+  :bind ("C-c ! c" . flycheck-buffer)
   :config
   (progn
-    (add-hook 'after-init-hook #'global-flycheck-mode)
-    (setq flycheck-completion-system 'ido)))
+    (global-flycheck-mode)
+    (setq flycheck-completion-system 'ido)
+    (use-package "flycheck-ledger")))
 
 ;; flyspell
 (use-package flyspell
-  :config (setq ispell-program-name "aspell" ; use aspell instead of ispell
+  :commands (flyspell-mode flyspell-prog-mode)
+  :config (setq ispell-program-name (executable-find "aspell") ; use aspell instead of ispell
 		ispell-extra-args '("--sug-mode=ultra")))
+
+;; gnuplot
+(use-package gnuplot
+  :commands (gnuplot-mode gnuplot-make-buffer))
+
+;; handlebars
+(use-package handlebars-mode
+  :mode (("\\.handlebars\'" . handlebars-mode)
+	 ("\\.hbs\'" . handlebars-mode)))
+
+;; haskell
+(use-package haskell-mode
+  :mode ("\\.\\(?:[gh]s\\|hi\\)\\'" . haskell-mode)
+  :interpreter (("runghc" . haskell-mode)
+		("runhaskell" . haskell-mode)))
 
 ;; ibuffer
 (use-package ibuffer
@@ -274,7 +314,21 @@
 
 ;; ledger
 (use-package ledger-mode
-  :config (add-to-list 'auto-mode-alist '("\\.ledger$" . ledger-mode)))
+  :mode ("\\.ledger\\'" . ledger-mode))
+
+;; magit
+(use-package magit
+  :commands (magit-status))
+
+;; markdown
+(use-package markdown-mode
+  :mode (("\\.markdown\\'" . markdown-mode)
+	 ("\\.mk?d\\'" . markdown-mode)))
+
+;; multi-term
+(use-package multi-term
+  :commands (multi-term)
+  :config (setq multi-term-program "bash"))
 
 ;; multiple-cursors
 (use-package multiple-cursors
@@ -283,9 +337,13 @@
 	 ("C-<" . mc/mark-previous-like-this)
 	 ("C-c C-<" . mc/mark-all-like-this)))
 
-;; multi-term
-(use-package multi-term
-  :config (setq multi-term-program "bash"))
+;; org mode extensions
+(use-package org-plus-contribs-autoloads
+  :mode ("\\.org\\'" . org-mode))
+
+;; pomodoro
+(use-package org-pomodoro
+  :commands (org-pomodoro))
 
 ;; org-auto-fill
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
@@ -323,7 +381,17 @@
 
 ;; projectile
 (use-package projectile
-  :config (projectile-global-mode))
+  ;; projectile command map
+  :bind* ("M-[" . projectile-command-map)
+  :init (projectile-global-mode))
+
+;; puppet
+(use-package puppet-mode
+  :mode ("\\.pp\\'" . puppet-mode))
+
+;; regex tool
+(use-package regex-tool
+  :commands (regex-tool))
 
 ;; save kill ring
 (use-package savekill)
@@ -335,12 +403,16 @@
 		save-place-file (f-expand "saved-places" user-emacs-directory )))
 ;; scratch
 (use-package scratch
-  :bind ("C-c s" . scratch))
+  :commands (scratch))
 
 ;; slime
-(use-package sly-autoloads
-  :config (setq
-	   inferior-lisp-program (executable-find "sbcl")))
+(use-package sly
+  :commands (sly)
+  :config (setq inferior-lisp-program (executable-find "sbcl")))
+
+;; smart tabs
+(use-package smart-tabs-mode
+  :config (smart-tabs-insinuate 'c 'c++ 'python 'ruby))
 
 ;; activate smartparens
 (use-package smartparens
@@ -349,26 +421,15 @@
 	 (smartparens-global-mode)
 	 (show-smartparens-global-mode)))
 
-;; smart tabs
-(use-package smart-tabs-mode
-  :config (smart-tabs-insinuate 'c 'c++ 'python 'ruby))
-
 ;; setup smex bindings
 (use-package smex
+  :bind (("M-x" . smex)
+	 ("M-X" . smex-major-mode-commands)
+	 ("C-c C-c M-x" . execute-extended-command))
   :config
   (progn
     (setq smex-save-file (f-expand "smex-items" user-emacs-directory))
-    (smex-initialize))
-  :bind (("M-x" . smex)
-	 ("M-X" . smex-major-mode-commands)
-	 ("C-c C-c M-x" . execute-extended-command)))
-
-;; scrolling
-(use-package smooth-scroll
-  :config
-  (progn
-    (smooth-scroll-mode)
-    (setq smooth-scroll/vscroll-step-size 8)))
+    (smex-initialize)))
 
 ;; undo-tree
 (use-package undo-tree
@@ -385,21 +446,30 @@
 
 ;; setup virtualenvwrapper
 (use-package virtualenvwrapper
-  :config (setq venv-location "~/.virtualenvs/"))
+  :commands (venv-workon))
+
+(use-package w3m
+  :commands (w3m w3m-browse-url)
+  :init (setq w3m-command (executable-find "w3m")))
 
 ;; whitespace
 (use-package whitespace
+  :init (global-whitespace-mode)
+  :commands (whitespace-mode)
   :config
-  (progn
-    (add-hook 'before-save-hook 'whitespace-cleanup)
-    (setq whitespace-line-column 80 ;; limit line length
-	  whitespace-style '(face tabs empty trailing lines-tail))))
+  (setq whitespace-line-column 80 ;; limit line length
+	whitespace-style '(face tabs empty trailing lines-tail)
+	whitespace-action '(auto-cleanup)))
+
+;; yaml
+(use-package yaml-mode
+  :mode (("\\.ya?ml\'" . yaml-mode)))
 
 ;; yasnippet
 (use-package yasnippet
+  :idle (yas-global-mode)
   :config
   (progn
-    (yas-global-mode)
     (unbind-key "<tab>" yas-minor-mode-map)
     (unbind-key "TAB" yas-minor-mode-map)
     (bind-key "C-c y" 'yas-expand yas-minor-mode-map)))
