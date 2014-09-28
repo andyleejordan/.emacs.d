@@ -336,7 +336,7 @@
 	 ("C-c C-<" . mc/mark-all-like-this)))
 
 ;; org mode extensions
-(use-package org-plus-contribs-autoloads
+(use-package org
   :mode ("\\.org\\'" . org-mode)
   :config
   (progn
