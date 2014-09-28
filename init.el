@@ -170,11 +170,6 @@
 
 ;;; functions
 
-;; load local file
-(defun load-local (file)
-  "Load FILE from ~/.emacs.d, okay if missing."
-  (load (f-expand file user-emacs-directory) t))
-
 ;; select whole line
 (defun select-whole-line ()
   "Select whole line which has the cursor."
@@ -194,14 +189,14 @@
     (comment-or-uncomment-region beg end)))
 (bind-key "C-c c" 'comment-or-uncomment-region-or-line)
 
-;;; load files
-
-;; load local settings
-(mapc 'load-local '("local" "feeds"))
+;;; load local settings
+(use-package local
+  :load-path "site-lisp/")
 
 ;; load OS X configurations
-(when (eq system-type 'darwin)
-  (load-local "osx"))
+(use-package osx
+  :if (eq system-type 'darwin)
+  :load-path "lisp/")
 
 ;;; packages
 
