@@ -18,6 +18,7 @@
 (depends-on "flx-ido")
 (depends-on "flycheck")
 (depends-on "flycheck-ledger")
+(depends-on "fullframe")
 (depends-on "gnuplot")
 (depends-on "handlebars-mode")
 (depends-on "haskell-mode")
