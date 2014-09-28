@@ -11,7 +11,7 @@
 
 ;; pull in path
 (use-package "exec-path-from-shell"
-  :config
+  :init
   (progn
     (exec-path-from-shell-copy-envs '("GPG_AGENT_INFO"))
     (exec-path-from-shell-initialize)))
@@ -61,7 +61,8 @@
   :bind ("C-c m" . mu4e)
   :config
   (progn
-    (setq mu4e-get-mail-command "offlineimap"
+    (setq mu4e-mu-binary (executable-find "mu")
+	  mu4e-get-mail-command "offlineimap"
 	  mu4e-update-interval 300
 	  mu4e-maildir (expand-file-name "~/mail/personal")
 	  mu4e-sent-folder "/Sent"
