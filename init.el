@@ -451,7 +451,8 @@
   :init (global-whitespace-mode)
   :commands (whitespace-mode)
   :config
-  (setq whitespace-line-column 80 ;; limit line length
+  (setq whitespace-global-modes '(not org-mode)
+	whitespace-line-column 80 ;; limit line length
 	whitespace-style '(face tabs empty trailing lines-tail)
 	whitespace-action '(auto-cleanup)))
 
