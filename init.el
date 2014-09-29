@@ -404,6 +404,13 @@
   :commands (sly)
   :config (setq inferior-lisp-program (executable-find "sbcl")))
 
+;; smart-mode-line
+(use-package smart-mode-line
+  :config
+  (progn
+    (sml/setup)
+    (sml/apply-theme 'automatic)))
+
 ;; smart tabs
 (use-package smart-tabs-mode
   :config (smart-tabs-insinuate 'c 'c++ 'python 'ruby))

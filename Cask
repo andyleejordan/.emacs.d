@@ -39,6 +39,7 @@
 (depends-on "savekill")
 (depends-on "scratch")
 (depends-on "sly")
+(depends-on "smart-mode-line")
 (depends-on "smart-tabs-mode")
 (depends-on "smartparens")
 (depends-on "smex")
