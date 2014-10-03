@@ -52,6 +52,8 @@ From [[https://stackoverflow.com/a/271136][StackOverflow]]:
     (while (re-search-forward "^\\([a-z_]+\\):" nil t)
       (princ (format "%s " (match-string 1)) (get-buffer-create "matches"))))
 #+end_src
+** Setting fill prefix
+- [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Fill-Prefix.html][Fill-Prefix]] (C-x .) with point after prefix
 ** Projectile commands
 - switch :: p
 - make :: c
