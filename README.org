@@ -15,6 +15,8 @@ conditionally loads operating and local system specific code.
 - [[http://www.dr-qubit.org/emacs.php#undo-tree][dr-qubit's undo-tree-mode]]
 - [[https://github.com/capitaomorte/yasnippet][capitaomorte's yasnippet]]
 * Tricks and tips
+** Evaluate lisp code on buffer
+- use =eval-expression=, bound to M-:
 ** Using quote marks within verbatim/code markup in org-mode
 - Unicode: <U200B> /xe2/x80/x8b ZERO WIDTH SPACE
 - Insert using: (C-x 8 RET 200b RET)
@@ -43,6 +45,13 @@ From [[https://stackoverflow.com/a/271136][StackOverflow]]:
 ** Renumber with regexp
 - see [[http://www.emacswiki.org/emacs/RenumberList][Wiki]]; the comma indicates elisp code to evaluate
 - e.g. [0-9]+ -> \,(+ 257 \#)
+** Capture all regexp matches
+#+begin_src elisp
+  ;; captures all non-terminals in Bison grammar
+  (save-excursion
+    (while (re-search-forward "^\\([a-z_]+\\):" nil t)
+      (princ (format "%s " (match-string 1)) (get-buffer-create "matches"))))
+#+end_src
 ** Projectile commands
 - switch :: p
 - make :: c
