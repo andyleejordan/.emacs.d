@@ -55,10 +55,10 @@
       (error "Buffer is not attached to any file"))))
 
 ;; mu4e
-(add-to-list 'load-path "/usr/local/Cellar/mu/0.9.9.6/share/emacs/site-lisp/mu4e")
 (use-package mu4e
   :commands mu4e
   :bind ("C-c m" . mu4e)
+  :load-path "/usr/local/Cellar/mu/0.9.9.6/share/emacs/site-lisp/"
   :config
   (progn
     (setq mu4e-mu-binary (executable-find "mu")
