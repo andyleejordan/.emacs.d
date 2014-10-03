@@ -68,7 +68,8 @@
 	  mu4e-sent-folder "/Sent"
 	  mu4e-drafts-folder "/Drafts"
 	  mu4e-trash-folder "/Trash"
-	  mu4e-refile-folder "/Archive")))
+	  mu4e-refile-folder "/Archive")
+    (add-hook 'mu4e-view-mode-hook 'visual-line-mode)))
 
 ;; org-journal
 (use-package org-journal
