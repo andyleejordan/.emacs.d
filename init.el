@@ -451,7 +451,7 @@
 
 (use-package w3m
   :commands (w3m w3m-browse-url)
-  :init (setq w3m-command (executable-find "w3m")))
+  :config (setq w3m-command (executable-find "w3m")))
 
 ;; whitespace
 (use-package whitespace
