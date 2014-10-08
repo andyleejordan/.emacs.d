@@ -70,9 +70,6 @@
 ;; visually wrap lines
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
-;; default truncate lines
-(setq-default truncate-lines t)
-
 ;; matching parentheses
 (show-paren-mode)
 
