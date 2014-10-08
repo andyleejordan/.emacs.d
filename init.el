@@ -142,8 +142,7 @@
       kept-old-versions 2
       version-control t
       vc-make-backup-files t
-      backup-directory-alist `(("." . ,(concat
-					user-emacs-directory "backups"))))
+      backup-directory-alist `(("." . ,(f-expand "backups" user-emacs-directory))))
 
 ;; final-newline
 (setq require-final-newline 't)
