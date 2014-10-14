@@ -451,7 +451,6 @@
 
 ;; whitespace
 (use-package whitespace
-  :init (global-whitespace-mode)
   :commands (whitespace-mode)
   :config
   (setq whitespace-global-modes '(not org-mode)
