@@ -451,10 +451,9 @@
 ;; whitespace
 (use-package whitespace
   :commands (whitespace-mode)
+  :init (global-whitespace-mode)
   :config
-  (setq whitespace-global-modes '(not org-mode)
-	whitespace-line-column 80 ;; limit line length
-	whitespace-style '(face tabs empty trailing lines-tail)
+  (setq whitespace-style nil
 	whitespace-action '(auto-cleanup)))
 
 ;; yaml
