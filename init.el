@@ -139,7 +139,8 @@
       kept-old-versions 2
       version-control t
       vc-make-backup-files t
-      backup-directory-alist `(("." . ,(f-expand "backups" user-emacs-directory))))
+      backup-directory-alist `(("." . ,(f-expand
+					"backups" user-emacs-directory))))
 
 ;; final-newline
 (setq require-final-newline 't)
@@ -176,7 +177,7 @@
 
 ;; comment/uncomment line/region
 (defun comment-or-uncomment-region-or-line ()
-  "Comments or uncomments the region or the current line if there's no active region."
+  "Comments or uncomments the region or the current line."
   (interactive)
   (let (beg end)
     (if (region-active-p)
@@ -199,7 +200,7 @@
 ;; ace-jump-mode
 (use-package ace-jump-mode
   :bind (("C-." . ace-jump-mode)
-   	 ("C-," . ace-jump-mode-pop-mark))
+	 ("C-," . ace-jump-mode-pop-mark))
   :config (eval-after-load "ace-jump-mode" '(ace-jump-mode-enable-mark-sync)))
 
 ;; ag - the silver searcher
@@ -259,10 +260,10 @@
     (setq flycheck-completion-system 'ido)
     (use-package "flycheck-ledger")))
 
-;; flyspell
+;; flyspell - use aspell instead of ispell
 (use-package flyspell
   :commands (flyspell-mode flyspell-prog-mode)
-  :config (setq ispell-program-name (executable-find "aspell") ; use aspell instead of ispell
+  :config (setq ispell-program-name (executable-find "aspell")
 		ispell-extra-args '("--sug-mode=ultra")))
 
 ;; fullframe
@@ -389,7 +390,7 @@
 (use-package saveplace
   :config
   (setq-default save-place t
-		save-place-file (f-expand "saved-places" user-emacs-directory )))
+		save-place-file (f-expand "saved-places" user-emacs-directory)))
 ;; scratch
 (use-package scratch
   :commands (scratch))
