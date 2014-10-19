@@ -36,7 +36,7 @@
 
 ;; set font
 (set-frame-font
- "-apple-Source_Code_Pro-medium-normal-normal-*-*-*-*-*-m-0-iso10646-1" nil t)
+ "-*-Source Code Pro-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1" nil t)
 
 ;; font size
 (set-face-attribute 'default nil :height 120)
