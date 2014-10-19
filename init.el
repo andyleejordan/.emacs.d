@@ -90,8 +90,8 @@
 ;; initial text mode
 (setq initial-major-mode 'text-mode)
 
-;; visual line mode for text
-(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+;; default truncate lines
+(set-default 'truncate-lines t)
 
 ;; longer commit summaries
 (setq git-commit-summary-max-length 72)
@@ -286,7 +286,6 @@
 
 ;; ibuffer
 (use-package ibuffer
-  :config (add-hook 'ibuffer-mode-hook (lambda () (setq truncate-lines t)))
   :bind ("C-x C-b" . ibuffer))
 
 ;; ido setup
