@@ -290,19 +290,19 @@
 
 ;; ido setup
 (use-package ido
-  :init
+  :init (ido-mode)
+  :config
   (progn
-    (ido-mode)
     (use-package ido-ubiquitous
-      :init (ido-ubiquitous-mode))
+      :config (ido-ubiquitous-mode))
     (use-package flx-ido
-      :init
+      :config
       (progn
 	(flx-ido-mode)
 	(setq ido-enable-flex-matching t
 	      ido-use-faces nil)))
     (use-package ido-vertical-mode
-      :init (ido-vertical-mode))))
+      :config (ido-vertical-mode))))
 
 ;; ledger
 (use-package ledger-mode
