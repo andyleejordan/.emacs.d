@@ -39,7 +39,12 @@
   :if (display-graphic-p)
   :config
   (progn
-    (setq solarized-use-variable-pitch nil)
+    (setq solarized-use-variable-pitch nil
+          solarized-height-minus-1 1
+          solarized-height-plus-1 1
+          solarized-height-plus-2 1
+          solarized-height-plus-3 1
+          solarized-height-plus-4 1)
     (load-theme 'solarized-dark t)))
 
 (use-package wombat
