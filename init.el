@@ -128,7 +128,7 @@
 ;; fix tramp
 (eval-after-load 'tramp
   '(progn (setenv "TMPDIR" "/tmp")
-	  (setenv "SHELL" "/bin/sh")))
+          (setenv "SHELL" "/bin/sh")))
 (setq tramp-auto-save-directory "/tmp")
 
 ;;; files
@@ -141,7 +141,7 @@
       version-control t
       vc-make-backup-files t
       backup-directory-alist `(("." . ,(f-expand
-					"backups" user-emacs-directory))))
+                                        "backups" user-emacs-directory))))
 
 ;; final-newline
 (setq require-final-newline 't)
@@ -159,12 +159,9 @@
 (add-to-list 'magic-mode-alist '(";;; " . emacs-lisp-mode))
 
 ;; dired
-(setq
- ; enable side-by-side dired buffer targets
- dired-dwim-target t
- ; better recursion in dired
- dired-recursive-copies 'always
- dired-recursive-deletes 'top)
+(setq dired-dwim-target t ; enable side-by-side dired buffer targets
+      dired-recursive-copies 'always ; better recursion in dired
+      dired-recursive-deletes 'top)
 
 ;;; functions
 
@@ -182,7 +179,7 @@
   (interactive)
   (let (beg end)
     (if (region-active-p)
-	(setq beg (region-beginning) end (region-end))
+        (setq beg (region-beginning) end (region-end))
       (setq beg (line-beginning-position) end (line-end-position)))
     (comment-or-uncomment-region beg end)))
 (bind-key "C-c c" 'comment-or-uncomment-region-or-line)
@@ -201,7 +198,7 @@
 ;; ace-jump-mode
 (use-package ace-jump-mode
   :bind (("C-." . ace-jump-mode)
-	 ("C-," . ace-jump-mode-pop-mark))
+         ("C-," . ace-jump-mode-pop-mark))
   :config (eval-after-load "ace-jump-mode" '(ace-jump-mode-enable-mark-sync)))
 
 ;; ag - the silver searcher
@@ -216,7 +213,7 @@
 ;; bison
 (use-package bison-mode
   :mode (("\\.y\\'" . bison-mode)
-	 ("\\.l\\'" . bison-mode)))
+         ("\\.l\\'" . bison-mode)))
 
 ;; browse-kill-ring
 (use-package browse-kill-ring
@@ -230,9 +227,9 @@
   :config
   (progn
     (push '(company-clang :with company-semantic :with company-yasnippet)
-	  company-backends)
+          company-backends)
     (setq company-minimum-prefix-length 2
-	  company-idle-delay 0.1)))
+          company-idle-delay 0.1)))
 
 ;; crontab
 (use-package crontab-mode
@@ -247,8 +244,8 @@
 (use-package elfeed
   :bind ("C-x w" . elfeed)
   :config (add-hook 'elfeed-new-entry-hook
-		    (elfeed-make-tagger :before "2 weeks ago"
-					:remove 'unread)))
+                    (elfeed-make-tagger :before "2 weeks ago"
+                                        :remove 'unread)))
 
 ;; activate expand-region
 (use-package expand-region
@@ -259,11 +256,11 @@
   :config
   (progn
     (mapc (lambda (m) (add-hook m 'fci-mode))
-	  '(c-mode-hook
-	    c++-mode-hook
-	    emacs-lisp-mode-hook
-	    python-mode-hook
-	    bison-mode-hook))
+          '(c-mode-hook
+            c++-mode-hook
+            emacs-lisp-mode-hook
+            python-mode-hook
+            bison-mode-hook))
     (setq fci-rule-column 80)))
 
 ;; flycheck
@@ -279,7 +276,7 @@
 (use-package flyspell
   :commands (flyspell-mode flyspell-prog-mode)
   :config (setq ispell-program-name (executable-find "aspell")
-		ispell-extra-args '("--sug-mode=ultra")))
+                ispell-extra-args '("--sug-mode=ultra")))
 
 ;; fullframe
 (use-package fullframe
@@ -292,13 +289,13 @@
 ;; handlebars
 (use-package handlebars-mode
   :mode (("\\.handlebars\'" . handlebars-mode)
-	 ("\\.hbs\'" . handlebars-mode)))
+         ("\\.hbs\'" . handlebars-mode)))
 
 ;; haskell
 (use-package haskell-mode
   :mode ("\\.\\(?:[gh]s\\|hi\\)\\'" . haskell-mode)
   :interpreter (("runghc" . haskell-mode)
-		("runhaskell" . haskell-mode)))
+                ("runhaskell" . haskell-mode)))
 
 ;; ibuffer
 (use-package ibuffer
@@ -314,9 +311,9 @@
     (use-package flx-ido
       :config
       (progn
-	(flx-ido-mode)
-	(setq ido-enable-flex-matching t
-	      ido-use-faces nil)))
+        (flx-ido-mode)
+        (setq ido-enable-flex-matching t
+              ido-use-faces nil)))
     (use-package ido-vertical-mode
       :config (ido-vertical-mode))))
 
@@ -332,7 +329,7 @@
 ;; markdown
 (use-package markdown-mode
   :mode (("\\.markdown\\'" . markdown-mode)
-	 ("\\.mk?d\\'" . markdown-mode)))
+         ("\\.mk?d\\'" . markdown-mode)))
 
 ;; multi-term
 (use-package multi-term
@@ -342,9 +339,9 @@
 ;; multiple-cursors
 (use-package multiple-cursors
   :bind (("C-S-c C-S-c" . mc/edit-lines)
-	 ("C->" . mc/mark-next-like-this)
-	 ("C-<" . mc/mark-previous-like-this)
-	 ("C-c C-<" . mc/mark-all-like-this)))
+         ("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)
+         ("C-c C-<" . mc/mark-all-like-this)))
 
 ;; org mode extensions
 (use-package org
@@ -356,13 +353,13 @@
       :commands (org-pomodoro))
     (add-hook 'org-mode-hook 'turn-on-auto-fill)
     (setq org-pretty-entities t
-	  org-completion-use-ido t
-	  org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
-			      ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
-			      ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
-			      ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
-			      ("models" "\\models" nil "&#8872;" "" "" "⊧"))
-	  org-export-backends '(html beamer ascii latex md))
+          org-completion-use-ido t
+          org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
+                              ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
+                              ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
+                              ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
+                              ("models" "\\models" nil "&#8872;" "" "" "⊧"))
+          org-export-backends '(html beamer ascii latex md))
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((emacs-lisp . t)
@@ -405,7 +402,7 @@
 (use-package saveplace
   :config
   (setq-default save-place t
-		save-place-file (f-expand "saved-places" user-emacs-directory)))
+                save-place-file (f-expand "saved-places" user-emacs-directory)))
 ;; scratch
 (use-package scratch
   :commands (scratch))
@@ -430,14 +427,14 @@
 (use-package smartparens
   :config
   (progn (use-package smartparens-config)
-	 (smartparens-global-mode)
-	 (show-smartparens-global-mode)))
+         (smartparens-global-mode)
+         (show-smartparens-global-mode)))
 
 ;; setup smex bindings
 (use-package smex
   :bind (("M-x" . smex)
-	 ("M-X" . smex-major-mode-commands)
-	 ("C-c C-c M-x" . execute-extended-command))
+         ("M-X" . smex-major-mode-commands)
+         ("C-c C-c M-x" . execute-extended-command))
   :config
   (progn
     (setq smex-save-file (f-expand "smex-items" user-emacs-directory))
@@ -449,7 +446,7 @@
   (progn
     (global-undo-tree-mode)
     (add-to-list 'undo-tree-history-directory-alist
-		 `("." . ,(f-expand "undo-tree" user-emacs-directory)))
+                 `("." . ,(f-expand "undo-tree" user-emacs-directory)))
     (setq undo-tree-auto-save-history t)))
 
 ;; uniquify
@@ -467,10 +464,12 @@
 ;; whitespace
 (use-package whitespace
   :commands (whitespace-mode)
-  :init (global-whitespace-mode)
   :config
-  (setq whitespace-style nil
-	whitespace-action '(auto-cleanup)))
+  (setq whitespace-style '(face tabs spaces newline empty
+                                trailing tab-mark newline-mark)))
+
+(use-package whitespace-cleanup-mode
+  :config (global-whitespace-cleanup-mode))
 
 ;; yaml
 (use-package yaml-mode
