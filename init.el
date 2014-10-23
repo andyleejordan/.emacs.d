@@ -336,6 +336,10 @@
   :mode (("\\.markdown\\'" . markdown-mode)
          ("\\.mk?d\\'" . markdown-mode)))
 
+;; menu-bar+
+(use-package "menu-bar"
+  :config (use-package menu-bar+))
+
 ;; multi-term
 (use-package multi-term
   :commands (multi-term)
