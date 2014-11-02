@@ -58,13 +58,26 @@ From [[https://stackoverflow.com/a/271136][StackOverflow]]:
 ** Setting fill prefix
 - [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Fill-Prefix.html][Fill-Prefix]] (C-x .) with point after prefix
 ** Projectile commands
+*** Project
 - switch :: p
+- commander :: m
+- command :: !
+- async :: &
 - make :: c
-- test :: P
+- make test :: P
+- make tags :: R
 - replace :: r
 - dired :: D
 - vcs :: v
 - ag :: ss
+- tag :: j
+- buffers :: b
+- kill :: k
+- recent :: e
+*** File
+- alternate :: a
+- test files :: T
+- toggle test :: t
 ** ansi-term
 - Needs [[https://stackoverflow.com/a/8920373][terminfo]]
 - Remove TERM from shell's rc file
