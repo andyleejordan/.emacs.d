@@ -96,6 +96,9 @@ tic -o ~/.terminfo
   commas. [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html][RTFM]]
 ** Temporarily disable ido-completion =C-j=
 ** Set directory local variable =eval= to execute arbitrary code
+** Adding arguments to interactive commands
+- [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Using-Interactive.html#Using-Interactive][using]]
+- [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Interactive-Codes.html#Interactive-Codes][codes]]
 ** Useful Elisp functions
 - =some-minor-mode= enables a mode when the argument is nil or
   positive and disables when zero or negative
