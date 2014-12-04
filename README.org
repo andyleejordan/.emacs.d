@@ -37,6 +37,10 @@ From [[https://stackoverflow.com/a/271136][StackOverflow]]:
 4. Proceed as with query-replace-regexp: SPACE to replace and move to
    next match, n to skip a match, etc.
 
+5. Press Y to finish replacing in all buffers.
+
+6. C-x C-s ! to save all buffers.
+
 ** Replace with capture regexp
 - use regex groups like "ab\(c\)" where the parentheses are escaped
   because Emacs
@@ -55,6 +59,7 @@ From [[https://stackoverflow.com/a/271136][StackOverflow]]:
 ** regexp-builder for replace
 - Use =C-c C-i= and choose the "string" syntax
 - Copy the regexp without the surrounding quotes
+- Use =C-c C-q= to close regexp-builder
 ** Setting fill prefix
 - [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Fill-Prefix.html][Fill-Prefix]] (C-x .) with point after prefix
 ** Projectile commands
