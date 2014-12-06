@@ -47,9 +47,9 @@
           solarized-height-plus-4 1)
     (load-theme 'solarized-dark t)))
 
-(use-package wombat
+(use-package zenburn-theme
   :if (not (display-graphic-p))
-  :init (load-theme 'tango))
+  :init (load-theme 'zenburn))
 
 ;; scrolling
 (use-package smooth-scroll
