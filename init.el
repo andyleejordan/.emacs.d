@@ -234,7 +234,8 @@
     (push '(company-clang :with company-semantic :with company-yasnippet)
           company-backends)
     (setq company-minimum-prefix-length 2
-          company-idle-delay 0.1)))
+          company-idle-delay 0.1
+	  company-global-modes '(not ledger-mode org-mode))))
 
 ;; crontab
 (use-package crontab-mode
