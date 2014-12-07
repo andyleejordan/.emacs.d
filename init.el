@@ -309,11 +309,8 @@
 
 ;; ido setup
 (use-package ido
-  :init (ido-mode)
   :config
   (progn
-    (use-package ido-ubiquitous
-      :config (ido-ubiquitous-mode))
     (use-package flx-ido
       :config
       (progn
@@ -322,6 +319,9 @@
               ido-use-faces nil)))
     (use-package ido-vertical-mode
       :config (ido-vertical-mode))))
+
+(use-package ido-ubiquitous
+  :init (progn (ido-mode t) (ido-ubiquitous-mode)))
 
 ;; ledger
 (use-package ledger-mode
