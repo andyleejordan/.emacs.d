@@ -344,7 +344,8 @@
 ;; multi-term
 (use-package multi-term
   :commands (multi-term)
-  :config (setq multi-term-program "bash"))
+  :config (setq multi-term-program "zsh"
+		term-buffer-maximum-size 10000))
 
 ;; multiple-cursors
 (use-package multiple-cursors
