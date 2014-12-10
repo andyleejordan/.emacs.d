@@ -329,7 +329,7 @@
 
 ;; magit
 (use-package magit
-  :commands (magit-status)
+  :commands (magit-status magit-status-internal)
   :config (setq magit-completing-read-function 'magit-ido-completing-read))
 
 ;; markdown
