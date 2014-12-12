@@ -7,7 +7,7 @@
 ;;; Code:
 
 ;; set shell
-(setenv "SHELL" "/usr/local/bin/bash")
+(setenv "SHELL" "/usr/local/bin/zsh")
 
 ;; pull in path
 (use-package "exec-path-from-shell"
@@ -28,8 +28,8 @@
 (scroll-bar-mode 0)
 
 ;; frame size
-(add-to-list 'default-frame-alist '(height . 44))
-(add-to-list 'default-frame-alist '(width . 88))
+(add-to-list 'default-frame-alist '(height . 48))
+(add-to-list 'default-frame-alist '(width . 90))
 
 ;; delete by moving to trash
 (setq delete-by-moving-to-trash t)
