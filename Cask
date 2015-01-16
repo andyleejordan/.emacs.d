@@ -36,6 +36,8 @@
 (depends-on "org-plus-contrib")
 (depends-on "org-pomodoro")
 (depends-on "popwin")
+(depends-on "processing-mode")
+(depends-on "processing-snippets")
 (depends-on "projectile")
 (depends-on "puppet-mode")
 (depends-on "regex-tool")
