@@ -330,7 +330,9 @@
 ;; magit
 (use-package magit
   :commands (magit-status magit-status-internal)
-  :config (setq magit-completing-read-function 'magit-ido-completing-read))
+  :config (progn
+	    (setq magit-completing-read-function 'magit-ido-completing-read)
+	    (magit-backup-mode -1)))
 
 ;; markdown
 (use-package markdown-mode
