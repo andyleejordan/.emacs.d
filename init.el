@@ -235,7 +235,7 @@
           company-backends)
     (setq company-minimum-prefix-length 2
           company-idle-delay 0.1
-	  company-global-modes '(not ledger-mode org-mode))))
+	  company-global-modes '(not ledger-mode org-mode gud-mode))))
 
 ;; crontab
 (use-package crontab-mode
