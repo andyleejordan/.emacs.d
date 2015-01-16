@@ -346,8 +346,11 @@
 ;; multi-term
 (use-package multi-term
   :commands (multi-term)
-  :config (setq multi-term-program "zsh"
-		term-buffer-maximum-size 10000))
+  :config (progn
+	    (setq multi-term-program "zsh"
+		  term-buffer-maximum-size 10000)
+	    (add-to-list 'term-bind-key-alist '("M-DEL" . term-send-backward-kill-word))
+	    (add-to-list 'term-bind-key-alist '("M-d" . term-send-forward-kill-word))))
 
 ;; multiple-cursors
 (use-package multiple-cursors
