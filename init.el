@@ -40,11 +40,7 @@
   :config
   (progn
     (setq solarized-use-variable-pitch nil
-          solarized-height-minus-1 1
-          solarized-height-plus-1 1
-          solarized-height-plus-2 1
-          solarized-height-plus-3 1
-          solarized-height-plus-4 1)
+	  solarized-scale-org-headlines nil)
     (load-theme 'solarized-dark t)))
 
 (use-package zenburn-theme
