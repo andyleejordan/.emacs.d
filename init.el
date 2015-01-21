@@ -223,14 +223,14 @@
 
 ;; company "complete anything"
 (use-package company
-  :bind ("C-c <tab>" . company-complete)
+  :bind ("C-<tab>" . company-complete)
   :init (global-company-mode)
   :config
   (progn
     (push '(company-clang :with company-semantic :with company-yasnippet)
           company-backends)
     (setq company-minimum-prefix-length 2
-          company-idle-delay 0.1
+          company-idle-delay nil
 	  company-global-modes '(not ledger-mode org-mode gud-mode))))
 
 ;; crontab
