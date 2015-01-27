@@ -164,6 +164,9 @@
       dired-recursive-copies 'always ; better recursion in dired
       dired-recursive-deletes 'top)
 
+;; compilation
+(setq compilation-ask-about-save nil)
+
 ;;; functions
 
 ;; select whole line
