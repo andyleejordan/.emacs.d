@@ -30,7 +30,7 @@
 (bind-key* "M-2" 'split-window-vertically)
 (bind-key* "M-3" 'split-window-horizontally)
 (bind-key* "M-0" 'delete-window)
-(bind-key* "M-s" 'other-window)
+(bind-key* "M-s" 'ace-window)
 
 ;;; appearance
 
@@ -205,6 +205,10 @@
   :bind (("C-." . ace-jump-mode)
          ("C-," . ace-jump-mode-pop-mark))
   :config (eval-after-load "ace-jump-mode" '(ace-jump-mode-enable-mark-sync)))
+
+;; ace-window
+(use-package ace-window
+  :config (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
 
 ;; ag - the silver searcher
 (use-package ag

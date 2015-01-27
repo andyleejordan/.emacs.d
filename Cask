@@ -4,6 +4,7 @@
 (source org)
 
 (depends-on "ace-jump-mode")
+(depends-on "ace-window")
 (depends-on "ag")
 (depends-on "anzu")
 (depends-on "bison-mode")
