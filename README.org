@@ -115,6 +115,9 @@ tic -o ~/.terminfo
 - =concat= and =format= for strings
 - =getenv=, =setenv=, =compilation-environment= for env
 - =executable-find= for binaries
+** View Lossage
+Use =M-x view-lossage= to see the most recent 300 keystrokes, per
+[[http://emacsredux.com/blog/2014/12/23/lossage/][Emacs Redux]]
 * Deprecated configurations
 ** ERC
 #+begin_src elisp
