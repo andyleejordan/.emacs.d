@@ -21,6 +21,7 @@
 (depends-on "flycheck-ledger")
 (depends-on "flycheck-rust")
 (depends-on "fullframe")
+(depends-on "github-browse-file")
 (depends-on "gnuplot")
 (depends-on "handlebars-mode")
 (depends-on "haskell-mode")
