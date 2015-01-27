@@ -162,7 +162,8 @@
 ;; dired
 (setq dired-dwim-target t ; enable side-by-side dired buffer targets
       dired-recursive-copies 'always ; better recursion in dired
-      dired-recursive-deletes 'top)
+      dired-recursive-deletes 'top
+      dired-listing-switches "-lahp")
 
 ;; compilation
 (setq compilation-ask-about-save nil)
