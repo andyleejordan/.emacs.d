@@ -23,6 +23,8 @@
 (depends-on "flycheck-rust")
 (depends-on "fullframe")
 (depends-on "github-browse-file")
+(depends-on "gitconfig-mode")
+(depends-on "gitignore-mode")
 (depends-on "gnuplot")
 (depends-on "handlebars-mode")
 (depends-on "haskell-mode")
