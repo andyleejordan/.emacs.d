@@ -18,10 +18,16 @@
 
 ;; add home info manuals
 (add-to-list 'Info-additional-directory-list (expand-file-name "~/info"))
+(add-to-list 'Info-additional-directory-list (expand-file-name "/Applications/Macaulay2-1.7/share/info"))
 
 ;; key bindings
 (use-package dash-at-point
   :bind ("C-c d" . dash-at-point))
+
+(use-package M2
+  :load-path "/Applications/Macaulay2-1.7/share/emacs/site-lisp"
+  :commands (M2)
+  :mode ("\\.m2\\'" . M2-mode))
 
 ;; disable toolbar and scrollbar
 (tool-bar-mode 0)
