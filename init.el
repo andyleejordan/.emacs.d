@@ -224,17 +224,12 @@
   :mode (("\\.y\\'" . bison-mode)
          ("\\.l\\'" . bison-mode)))
 
-;; browse-kill-ring
-(use-package browse-kill-ring
-  :bind ("C-c k" . browse-kill-ring)
-  :config (browse-kill-ring-default-keybindings))
-
 ;; company "complete anything"
 (use-package company
-  :bind ("C-<tab>" . company-complete)
   :init (global-company-mode)
   :config
   (progn
+    (use-package helm-company)
     (push '(company-clang :with company-semantic :with company-yasnippet)
           company-backends)
     (setq company-minimum-prefix-length 2
@@ -275,12 +270,11 @@
 
 ;; flycheck
 (use-package flycheck
-  :bind ("C-c ! c" . flycheck-buffer)
+  :bind (("C-c ! c" . flycheck-buffer)
+	 ("C-c ! h" . helm-flycheck))
   :config
   (progn
-    (global-flycheck-mode)
-    (setq flycheck-completion-system 'ido)
-    (use-package "flycheck-ledger")))
+    (global-flycheck-mode)))
 
 ;; flyspell - use aspell instead of ispell
 (use-package flyspell
@@ -307,25 +301,21 @@
   :interpreter (("runghc" . haskell-mode)
                 ("runhaskell" . haskell-mode)))
 
-;; ibuffer
-(use-package ibuffer
-  :bind ("C-x C-b" . ibuffer))
+;; helm
+(use-package helm-config
+  :bind* (("M-x" . helm-M-x)
+	  ("M-]" . helm-command-prefix)
+	  ("M-y" . helm-show-kill-ring)
+	  ("C-x C-b" . helm-buffers-list)
+	  ("C-x b" . helm-mini)
+	  ("C-x C-f" . helm-find-files))
+  :init (progn
+	  (helm-mode)
+	  (helm-autoresize-mode t)
+	  (setq helm-M-x-fuzzy-match t
+		helm-buffers-fuzzy-matching t
+		helm-recentf-fuzzy-match t)))
 
-;; ido setup
-(use-package ido
-  :config
-  (progn
-    (use-package flx-ido
-      :config
-      (progn
-        (flx-ido-mode)
-        (setq ido-enable-flex-matching t
-              ido-use-faces nil)))
-    (use-package ido-vertical-mode
-      :config (ido-vertical-mode))))
-
-(use-package ido-ubiquitous
-  :init (progn (ido-mode t) (ido-ubiquitous-mode)))
 
 ;; ledger
 (use-package ledger-mode
@@ -404,7 +394,10 @@
 (use-package projectile
   ;; projectile command map
   :bind* ("M-[" . projectile-command-map)
-  :init (projectile-global-mode))
+  :init (progn (projectile-global-mode)
+	       (setq projectile-completion-system 'helm)
+	       (helm-projectile-on)
+	       (setq projectile-switch-project-action 'helm-projectile)))
 
 ;; puppet
 (use-package puppet-mode
@@ -448,16 +441,6 @@
   (progn (use-package smartparens-config)
          (smartparens-global-mode)
          (show-smartparens-global-mode)))
-
-;; setup smex bindings
-(use-package smex
-  :bind (("M-x" . smex)
-         ("M-X" . smex-major-mode-commands)
-         ("C-c C-c M-x" . execute-extended-command))
-  :config
-  (progn
-    (setq smex-save-file (f-expand "smex-items" user-emacs-directory))
-    (smex-initialize)))
 
 ;; undo-tree
 (use-package undo-tree
