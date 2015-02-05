@@ -47,9 +47,6 @@
 ;; font size
 (set-face-attribute 'default nil :height 120)
 
-;; use srgb
-(setq ns-use-srgb-colorspace t)
-
 ;; open file's location in Finder
 (defun finder ()
   "Opens file directory in Finder."
