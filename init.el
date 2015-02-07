@@ -316,16 +316,16 @@
 		helm-buffers-fuzzy-matching t
 		helm-recentf-fuzzy-match t)))
 
+	  ;; (bind-key "<tab>" 'helm-execute-persistent-action helm-map)
+	  ;; (bind-key "C-i" 'helm-execute-persistent-action helm-map)
+	  ;; (bind-key "C-z" 'helm-select-action helm-map)
 
 ;; ledger
 (use-package ledger-mode
   :mode ("\\.ledger\\'" . ledger-mode))
 
 ;; magit
-(use-package magit
-  :commands (magit-status magit-status-internal)
-  :config (progn
-	    (setq magit-completing-read-function 'magit-ido-completing-read)))
+(use-package magit)
 
 ;; markdown
 (use-package markdown-mode
