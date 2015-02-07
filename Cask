@@ -44,6 +44,7 @@
 (depends-on "org-plus-contrib")
 (depends-on "org-pomodoro")
 (depends-on "popwin")
+(depends-on "powershell")
 (depends-on "processing-mode")
 (depends-on "processing-snippets")
 (depends-on "projectile")
