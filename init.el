@@ -123,9 +123,6 @@
 ;; set terminfo
 (setq system-uses-terminfo nil)
 
-;; open empty files quietly
-(setq confirm-nonexistent-file-or-buffer nil)
-
 ;; fix tramp
 (eval-after-load 'tramp
   '(progn (setenv "TMPDIR" "/tmp")
