@@ -280,9 +280,7 @@
 (use-package flycheck
   :bind (("C-c ! c" . flycheck-buffer)
 	 ("C-c ! h" . helm-flycheck))
-  :config
-  (progn
-    (global-flycheck-mode)))
+  :config (flycheck-mode))
 
 ;; flyspell - use aspell instead of ispell
 (use-package flyspell
