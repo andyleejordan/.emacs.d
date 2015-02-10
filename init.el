@@ -399,10 +399,12 @@
 (use-package projectile
   ;; projectile command map
   :bind* ("M-[" . projectile-command-map)
-  :init (progn (projectile-global-mode)
-	       (setq projectile-completion-system 'helm)
-	       (helm-projectile-on)
-	       (setq projectile-switch-project-action 'helm-projectile)))
+  :config
+  (progn
+    (projectile-global-mode)
+    (setq projectile-completion-system 'helm
+	  projectile-switch-project-action 'helm-projectile)
+    (helm-projectile-on)))
 
 ;; puppet
 (use-package puppet-mode
