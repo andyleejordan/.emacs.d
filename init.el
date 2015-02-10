@@ -325,7 +325,10 @@
 	  (helm-autoresize-mode t)
 	  (setq helm-M-x-fuzzy-match t
 		helm-buffers-fuzzy-matching t
-		helm-recentf-fuzzy-match t)))
+		helm-recentf-fuzzy-match t
+		helm-ff-file-name-history-use-recentf t
+		helm-move-to-line-cycle-in-source t
+		helm-split-window-in-side-p t)))
 
 	  ;; (bind-key "<tab>" 'helm-execute-persistent-action helm-map)
 	  ;; (bind-key "C-i" 'helm-execute-persistent-action helm-map)
