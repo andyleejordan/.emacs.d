@@ -144,6 +144,8 @@
       backup-directory-alist `(("." . ,(f-expand
                                         "backups" user-emacs-directory))))
 
+(recentf-mode)
+
 ;; final-newline
 (setq require-final-newline 't)
 
