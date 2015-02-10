@@ -9,6 +9,7 @@
 (depends-on "anzu")
 (depends-on "bison-mode")
 (depends-on "company")
+(depends-on "company-c-headers")
 (depends-on "crontab-mode")
 (depends-on "dash-at-point")
 (depends-on "ein")
