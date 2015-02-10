@@ -20,7 +20,6 @@
 (depends-on "flycheck")
 (depends-on "flycheck-ledger")
 (depends-on "flycheck-rust")
-(depends-on "fullframe")
 (depends-on "github-browse-file")
 (depends-on "gitconfig-mode")
 (depends-on "gitignore-mode")

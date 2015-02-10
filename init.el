@@ -293,10 +293,6 @@
   :config (setq ispell-program-name (executable-find "aspell")
                 ispell-extra-args '("--sug-mode=ultra")))
 
-;; fullframe
-(use-package fullframe
-  :config (fullframe magit-status magit-mode-quit-window nil))
-
 ;; gnuplot
 (use-package gnuplot
   :commands (gnuplot-mode gnuplot-make-buffer))
