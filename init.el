@@ -26,11 +26,11 @@
 (bind-key "C-M-r" 'isearch-backward)
 
 ;; window management
+(bind-key* "M-s" 'ace-window)
 (bind-key* "M-1" 'delete-other-windows)
 (bind-key* "M-2" 'split-window-vertically)
 (bind-key* "M-3" 'split-window-horizontally)
 (bind-key* "M-0" 'delete-window)
-(bind-key* "M-s" 'ace-window)
 
 ;;; appearance
 
@@ -134,6 +134,7 @@
       backup-directory-alist `(("." . ,(f-expand
                                         "backups" user-emacs-directory))))
 
+;; recent files
 (recentf-mode)
 
 ;; final-newline
@@ -443,6 +444,7 @@
 (use-package virtualenvwrapper
   :commands (venv-workon))
 
+;; CLI browser
 (use-package w3m
   :commands (w3m w3m-browse-url)
   :config (setq w3m-command (executable-find "w3m")))
