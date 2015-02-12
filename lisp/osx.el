@@ -24,14 +24,16 @@
 (use-package dash-at-point
   :bind ("C-c d" . dash-at-point))
 
+;; Emacs IPython
+(use-package ein
+  :commands (ein:notebooklist-open)
+  :config (setq ein:use-auto-complete t))
+
+;; Macaulay
 (use-package M2
   :load-path "/Applications/Macaulay2-1.7/share/emacs/site-lisp"
   :commands (M2)
   :mode ("\\.m2\\'" . M2-mode))
-
-;; disable toolbar and scrollbar
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
 
 ;; frame size
 (add-to-list 'default-frame-alist '(height . 48))

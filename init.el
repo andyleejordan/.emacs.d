@@ -47,6 +47,10 @@
   :if (not (display-graphic-p))
   :init (load-theme 'zenburn))
 
+;; disable toolbar and scrollbar
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+
 ;; line/column numbers in mode-line
 (line-number-mode)
 (column-number-mode)
@@ -241,11 +245,6 @@
 ;; crontab
 (use-package crontab-mode
   :mode ("\\.cron\\(tab\\)?\\'" . crontab-mode))
-
-;; ein
-(use-package ein
-  :commands (ein:notebooklist-open)
-  :config (setq ein:use-auto-complete t))
 
 ;; activate expand-region
 (use-package expand-region
