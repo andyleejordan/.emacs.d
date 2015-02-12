@@ -253,13 +253,6 @@
   :commands (ein:notebooklist-open)
   :config (setq ein:use-auto-complete t))
 
-;; elfeed
-(use-package elfeed
-  :bind ("C-x w" . elfeed)
-  :config (add-hook 'elfeed-new-entry-hook
-                    (elfeed-make-tagger :before "2 weeks ago"
-                                        :remove 'unread)))
-
 ;; activate expand-region
 (use-package expand-region
   :bind ("C-=" . er/expand-region))

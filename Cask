@@ -13,7 +13,6 @@
 (depends-on "crontab-mode")
 (depends-on "dash-at-point")
 (depends-on "ein")
-(depends-on "elfeed")
 (depends-on "exec-path-from-shell")
 (depends-on "expand-region")
 (depends-on "fill-column-indicator")
