@@ -251,17 +251,6 @@
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 
-;; line at column 80
-(use-package fill-column-indicator
-  :config
-  (progn
-    (mapc (lambda (m) (add-hook m 'fci-mode))
-          '(c-mode-hook
-            c++-mode-hook
-            emacs-lisp-mode-hook
-            python-mode-hook
-            bison-mode-hook))
-    (setq fci-rule-column 80)))
 
 ;; flycheck
 (use-package flycheck
