@@ -47,12 +47,6 @@
   :if (not (display-graphic-p))
   :init (load-theme 'zenburn))
 
-;; scrolling
-(use-package smooth-scroll
-  :if (display-graphic-p)
-  :idle (smooth-scroll-mode)
-  :config (setq smooth-scroll/vscroll-step-size 8))
-
 ;; line/column numbers in mode-line
 (line-number-mode)
 (column-number-mode)
@@ -441,6 +435,12 @@
   (progn (use-package smartparens-config)
          (smartparens-global-mode)
          (show-smartparens-global-mode)))
+
+;; scrolling
+(use-package smooth-scroll
+  :if (display-graphic-p)
+  :idle (smooth-scroll-mode)
+  :config (setq smooth-scroll/vscroll-step-size 8))
 
 ;; undo-tree
 (use-package undo-tree
