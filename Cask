@@ -34,7 +34,6 @@
 (depends-on "magit")
 (depends-on "markdown-mode")
 (depends-on "matlab-mode")
-(depends-on "menu-bar+")
 (depends-on "multi-term")
 (depends-on "multiple-cursors")
 (depends-on "nginx-mode")
