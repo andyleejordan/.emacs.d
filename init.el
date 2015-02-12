@@ -131,7 +131,6 @@
       kept-new-versions 4
       kept-old-versions 2
       version-control t
-      vc-make-backup-files t
       backup-directory-alist `(("." . ,(f-expand
                                         "backups" user-emacs-directory))))
 
