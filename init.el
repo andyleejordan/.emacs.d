@@ -214,7 +214,7 @@
 
 ;; anzu - number of search matches in modeline
 (use-package anzu
-  :idle (global-anzu-mode))
+  :init (global-anzu-mode))
 
 ;; bison
 (use-package bison-mode
@@ -423,8 +423,10 @@
 ;; scrolling
 (use-package smooth-scroll
   :if (display-graphic-p)
-  :idle (smooth-scroll-mode)
-  :config (setq smooth-scroll/vscroll-step-size 8))
+  :init
+  (progn
+    (setq smooth-scroll/vscroll-step-size 8)
+    (smooth-scroll-mode)))
 
 ;; undo-tree
 (use-package undo-tree
