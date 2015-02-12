@@ -209,8 +209,10 @@
 
 ;; ag - the silver searcher
 (use-package ag
-  :commands (ag)
-  :bind ("C-c s" . ag))
+  :commands (ag ag-files ag-regexp ag-project ag-dired)
+  :bind ("C-c s" . ag)
+  :config (setq ag-highlight-search t
+		ag-reuse-buffers t))
 
 ;; anzu - number of search matches in modeline
 (use-package anzu
