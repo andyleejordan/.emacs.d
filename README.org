@@ -20,6 +20,9 @@ conditionally loads operating and local system specific code.
 ** Using quote marks within verbatim/code markup in org-mode
 - Unicode: <U200B> /xe2/x80/x8b ZERO WIDTH SPACE
 - Insert using: (C-x 8 RET 200b RET)
+** Quickly inserting =#+begin_src=
+- http://orgmode.org/org.html#Easy-Templates
+- Type "<s" then tab-complete
 ** Sudo mode using Tramp
 - http://www.emacswiki.org/emacs/TrampMode
 - C-x C-f /ssh:you@remotehost|sudo:remotehost:/path/to/file RET
