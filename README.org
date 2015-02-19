@@ -52,6 +52,7 @@ From [[https://stackoverflow.com/a/271136][StackOverflow]]:
 ** Renumber with regexp
 - see [[http://www.emacswiki.org/emacs/RenumberList][Wiki]]; the comma indicates elisp code to evaluate
 - e.g. [0-9]+ -> \,(+ 257 \#)
+- or by 8 starting at 10 \,(+ 10 (* 8 \#))
 ** Capture all regexp matches
 #+begin_src elisp
   ;; captures all non-terminals in Bison grammar
