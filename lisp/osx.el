@@ -24,11 +24,6 @@
 (use-package dash-at-point
   :bind ("C-c d" . dash-at-point))
 
-;; Emacs IPython
-(use-package ein
-  :commands (ein:notebooklist-open)
-  :config (setq ein:use-auto-complete t))
-
 ;; Macaulay
 (use-package M2
   :load-path "/Applications/Macaulay2-1.7/share/emacs/site-lisp"

@@ -12,7 +12,6 @@
 (depends-on "company-c-headers")
 (depends-on "crontab-mode")
 (depends-on "dash-at-point")
-(depends-on "ein")
 (depends-on "exec-path-from-shell")
 (depends-on "expand-region")
 (depends-on "flycheck")
