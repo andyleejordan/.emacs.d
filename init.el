@@ -339,7 +339,8 @@
     (use-package org-pomodoro
       :commands (org-pomodoro))
     (add-hook 'org-mode-hook 'turn-on-auto-fill)
-    (setq org-pretty-entities t
+    (setq org-latex-listings t
+	  org-pretty-entities t
           org-completion-use-ido t
           org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
                               ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
