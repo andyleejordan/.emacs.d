@@ -447,11 +447,6 @@
 (use-package virtualenvwrapper
   :commands (venv-workon))
 
-;; CLI browser
-(use-package w3m
-  :commands (w3m w3m-browse-url)
-  :config (setq w3m-command (executable-find "w3m")))
-
 ;; whitespace
 (use-package whitespace
   :commands (whitespace-mode)
