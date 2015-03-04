@@ -163,7 +163,8 @@
       dired-listing-switches "-lahp")
 
 ;; compilation
-(setq compilation-ask-about-save nil)
+(setq compilation-ask-about-save nil
+      compilation-always-kill t)
 
 ;;; functions
 
