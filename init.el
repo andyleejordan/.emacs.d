@@ -475,6 +475,18 @@
   :commands (yas-expand yas-insert-snippet)
   :config (yas-minor-mode))
 
+;; diminish minor modes
+(use-package diminish
+  :init
+  (progn (diminish 'smooth-scroll-mode)
+	 (diminish 'projectile-mode)
+	 (diminish 'anzu-mode)
+	 (diminish 'undo-tree-mode)
+	 (diminish 'helm-mode)
+	 (diminish 'smartparens-mode)
+	 (diminish 'subword-mode)
+	 (diminish 'magit-auto-revert-mode)))
+
 ;;; start server
 (server-start)
 
