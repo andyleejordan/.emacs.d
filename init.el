@@ -81,9 +81,6 @@
 ;; window undo/redo
 (winner-mode)
 
-;; show function in modeline
-(which-function-mode)
-
 ;;; settings
 
 ;; enable all commands
