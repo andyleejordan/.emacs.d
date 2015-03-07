@@ -56,6 +56,10 @@
 (line-number-mode)
 (column-number-mode)
 
+;; status
+(display-time-mode)
+(display-battery-mode)
+
 ;; y/n for yes/no
 (defalias 'yes-or-no-p 'y-or-n-p)
 
