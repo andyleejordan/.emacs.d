@@ -4,14 +4,17 @@ Uses [[https://github.com/cask/cask][cask]] for package installation management.
 various packages. Enables lots of lovely minor modes, and
 conditionally loads operating and local system specific code.
 * Notable packages
+- [[https://github.com/emacs-helm/helm/][Helm]]
+- [[https://github.com/magit/magit][Magit]]
+- [[https://github.com/bbatsov/projectile][bbatsov's Projectile]]
+- [[https://github.com/bbatsov/solarized-emacs/][bbatsov's Solarized theme]]
+- [[https://github.com/Bruce-Connor/smart-mode-line/][Bruce-Connor's smart-mode-line]]
 - [[https://github.com/jwiegley/use-package][jwiegley's use-package]]
 - [[https://company-mode.github.io/][dgutov's company-mode]]
 - [[https://github.com/magnars/expand-region.el][magnar's expand-region]]
-- [[https://github.com/lewang/flx][lewang's flx-ido]]
+- [[https://github.com/abo-abo/ace-window][abo-abo's ace-window]]
 - [[https://github.com/flycheck/flycheck][lunaryon's flycheck]]
-- [[https://github.com/gempesaw/ido-vertical-mode.el][gempesaw's ido-vertical-mode]]
 - [[http://www.ledger-cli.org/3.0/doc/ledger-mode.html][ledger-cli's ledger-mode]]
-- [[https://github.com/bbatsov/projectile][bbatsov's projectile]]
 - [[http://www.dr-qubit.org/emacs.php#undo-tree][dr-qubit's undo-tree-mode]]
 - [[https://github.com/capitaomorte/yasnippet][capitaomorte's yasnippet]]
 * Tricks and tips
