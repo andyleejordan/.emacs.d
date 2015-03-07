@@ -18,6 +18,7 @@
 (bind-key "C-c x" 'eval-buffer)
 (bind-key "C-c q" 'auto-fill-mode)
 (bind-key "C-c v" 'visual-line-mode)
+(bind-key "C-c b" 'find-library)
 
 ;; isearch
 (bind-key "C-s" 'isearch-forward-regexp)
