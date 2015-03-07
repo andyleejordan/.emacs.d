@@ -414,7 +414,7 @@
   (progn
     (setq sml/theme nil
 	  sml/shorten-directory t
-	  sml/name-width '(20 . 52)
+	  sml/name-width '(32 . 48)
 	  sml/shorten-modes t
 	  sml/use-projectile-p 'before-prefixes
 	  sml/projectile-replacement-format "[%s]")
