@@ -11,6 +11,8 @@
 (setq use-package-verbose t)
 (require 'use-package)
 
+(use-package diminish)
+
 ;;; shortcuts
 
 ;; miscellaneous
@@ -102,6 +104,7 @@
 
 ;; subword navigation
 (subword-mode)
+(diminish 'subword-mode)
 
 ;; increase garbage collection threshold
 (setq gc-cons-threshold 20000000)
@@ -218,7 +221,10 @@
 
 ;; anzu - number of search matches in modeline
 (use-package anzu
-  :init (global-anzu-mode))
+  :init
+  (progn
+    (global-anzu-mode)
+    (diminish 'anzu-mode)))
 
 ;; bison
 (use-package bison-mode
@@ -290,26 +296,32 @@
 	  ("C-x C-b" . helm-buffers-list)
 	  ("C-x b" . helm-mini)
 	  ("C-x C-f" . helm-find-files))
-  :init (progn
-	  (helm-mode)
-	  (helm-autoresize-mode t)
-	  (setq helm-M-x-fuzzy-match t
-		helm-buffers-fuzzy-matching t
-		helm-recentf-fuzzy-match t
-		helm-ff-file-name-history-use-recentf t
-		helm-move-to-line-cycle-in-source t
-		helm-split-window-in-side-p t)))
+  :init
+  (progn
+    (helm-mode)
+    (helm-autoresize-mode t)
+    (setq helm-M-x-fuzzy-match t
+	  helm-buffers-fuzzy-matching t
+	  helm-recentf-fuzzy-match t
+	  helm-ff-file-name-history-use-recentf t
+	  helm-move-to-line-cycle-in-source t
+	  helm-split-window-in-side-p t)
+    (diminish 'helm-mode)))
 
-	  ;; (bind-key "<tab>" 'helm-execute-persistent-action helm-map)
-	  ;; (bind-key "C-i" 'helm-execute-persistent-action helm-map)
-	  ;; (bind-key "C-z" 'helm-select-action helm-map)
+;; (bind-key "<tab>" 'helm-execute-persistent-action helm-map)
+;; (bind-key "C-i" 'helm-execute-persistent-action helm-map)
+;; (bind-key "C-z" 'helm-select-action helm-map)
 
 ;; ledger
 (use-package ledger-mode
   :mode ("\\.ledger\\'" . ledger-mode))
 
 ;; magit
-(use-package magit)
+(use-package magit
+  :init
+  (progn
+    (magit-auto-revert-mode)
+    (diminish 'magit-auto-revert-mode)))
 
 ;; markdown
 (use-package markdown-mode
@@ -319,11 +331,12 @@
 ;; multi-term
 (use-package multi-term
   :commands (multi-term)
-  :config (progn
-	    (setq multi-term-program "zsh"
-		  term-buffer-maximum-size 10000)
-	    (add-to-list 'term-bind-key-alist '("M-DEL" . term-send-backward-kill-word))
-	    (add-to-list 'term-bind-key-alist '("M-d" . term-send-forward-kill-word))))
+  :config
+  (progn
+    (setq multi-term-program "zsh"
+	  term-buffer-maximum-size 10000)
+    (add-to-list 'term-bind-key-alist '("M-DEL" . term-send-backward-kill-word))
+    (add-to-list 'term-bind-key-alist '("M-d" . term-send-forward-kill-word))))
 
 ;; multiple-cursors
 (use-package multiple-cursors
@@ -380,7 +393,8 @@
   (progn
     (setq projectile-completion-system 'helm
 	  projectile-switch-project-action 'helm-projectile)
-    (helm-projectile-on)))
+    (helm-projectile-on)
+    (diminish 'projectile-mode)))
 
 ;; puppet
 (use-package puppet-mode
@@ -426,9 +440,11 @@
 ;; activate smartparens
 (use-package smartparens
   :config
-  (progn (use-package smartparens-config)
-         (smartparens-global-mode)
-         (show-smartparens-global-mode)))
+  (progn
+    (use-package smartparens-config)
+    (smartparens-global-mode)
+    (show-smartparens-global-mode)
+    (diminish 'smartparens-mode)))
 
 ;; scrolling
 (use-package smooth-scroll
@@ -436,12 +452,14 @@
   :init
   (progn
     (setq smooth-scroll/vscroll-step-size 8)
-    (smooth-scroll-mode)))
+    (smooth-scroll-mode)
+    (diminish 'smooth-scroll-mode)))
 
 ;; undo-tree
 (use-package undo-tree
   :config
   (progn
+    (diminish 'undo-tree-mode)
     (global-undo-tree-mode)
     (add-to-list 'undo-tree-history-directory-alist
                  `("." . ,(f-expand "undo-tree" user-emacs-directory)))
@@ -473,18 +491,6 @@
 (use-package yasnippet
   :commands (yas-expand yas-insert-snippet)
   :config (yas-minor-mode))
-
-;; diminish minor modes
-(use-package diminish
-  :init
-  (progn (diminish 'smooth-scroll-mode)
-	 (diminish 'projectile-mode)
-	 (diminish 'anzu-mode)
-	 (diminish 'undo-tree-mode)
-	 (diminish 'helm-mode)
-	 (diminish 'smartparens-mode)
-	 (diminish 'subword-mode)
-	 (diminish 'magit-auto-revert-mode)))
 
 ;;; start server
 (server-start)
