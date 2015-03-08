@@ -103,8 +103,7 @@
 (setq ring-bell-function 'ignore)
 
 ;; subword navigation
-(subword-mode)
-(diminish 'subword-mode)
+(global-subword-mode)
 
 ;; increase garbage collection threshold
 (setq gc-cons-threshold 20000000)
