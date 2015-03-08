@@ -318,8 +318,9 @@
 
 ;; magit
 (use-package magit
-  :init
+  :config
   (progn
+    (setq magit-log-arguments '("--graph" "--decorate" "--show-signature"))
     (magit-auto-revert-mode)
     (diminish 'magit-auto-revert-mode)))
 
