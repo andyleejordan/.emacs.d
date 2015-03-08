@@ -35,11 +35,14 @@
 
 ;;; appearance
 
-;; theme (wombat in terminal, solarized otherwise)
+;; theme (zenburn in terminal, Solarized otherwise)
 (use-package solarized
   :if (display-graphic-p)
   :config
   (progn
+    ;; disable toolbar and scrollbar
+    (tool-bar-mode 0)
+    (scroll-bar-mode 0)
     (setq solarized-use-variable-pitch nil
 	  solarized-scale-org-headlines nil)
     (load-theme 'solarized-dark t)))
@@ -47,10 +50,6 @@
 (use-package zenburn-theme
   :if (not (display-graphic-p))
   :init (load-theme 'zenburn))
-
-;; disable toolbar and scrollbar
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
 
 ;; line/column numbers in mode-line
 (line-number-mode)
