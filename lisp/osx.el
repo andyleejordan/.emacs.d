@@ -20,11 +20,7 @@
 (add-to-list 'Info-additional-directory-list (expand-file-name "~/info"))
 (add-to-list 'Info-additional-directory-list (expand-file-name "/Applications/Macaulay2-1.7/share/info"))
 
-;; fortune
-(setq fortune-dir "/usr/local/Cellar/fortune/9708/share/games/fortunes"
-      fortune-file "/usr/local/Cellar/fortune/9708/share/games/fortunes"
-      fortune-program-options '("-a" "-l"))
-(fortune)
+(setq initial-scratch-message (shell-command-to-string "fortune"))
 
 ;; key bindings
 (use-package dash-at-point
