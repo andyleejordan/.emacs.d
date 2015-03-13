@@ -144,6 +144,7 @@
                                         "backups" user-emacs-directory))))
 
 ;; recent files
+(setq recentf-max-saved-items 256)
 (recentf-mode)
 
 ;; final-newline
