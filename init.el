@@ -53,6 +53,8 @@
   :if (not (display-graphic-p))
   :init (load-theme 'zenburn))
 
+(setq enable-recursive-minibuffers t)
+
 ;; line/column numbers in mode-line
 (line-number-mode)
 (column-number-mode)
