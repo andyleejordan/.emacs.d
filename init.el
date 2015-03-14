@@ -317,6 +317,10 @@
   :config
   (progn
     (setq magit-log-arguments '("--graph" "--decorate" "--show-signature"))
+    (magit-define-popup-option 'magit-patch-popup
+      ?S "Subject Prefix" "--subject-prefix=")
+    (magit-define-popup-option 'magit-merge-popup
+      ?X "Strategy Option" "--strategy-option=")
     (magit-auto-revert-mode)
     (diminish 'magit-auto-revert-mode)))
 
