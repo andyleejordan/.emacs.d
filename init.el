@@ -297,11 +297,15 @@
     (helm-mode)
     (helm-autoresize-mode t)
     (setq helm-M-x-fuzzy-match t
-	  helm-buffers-fuzzy-matching t
 	  helm-recentf-fuzzy-match t
-	  helm-ff-file-name-history-use-recentf t
+	  helm-buffers-fuzzy-matching t
+	  helm-semantic-fuzzy-match t
+	  helm-imenu-fuzzy-match t
+	  helm-apropos-fuzzy-match t
 	  helm-move-to-line-cycle-in-source t
-	  helm-split-window-in-side-p t)
+	  helm-split-window-in-side-p t
+	  helm-ff-file-name-history-use-recentf t
+	  helm-ff-auto-update-initial-value nil)
     (diminish 'helm-mode)))
 
 ;; (bind-key "<tab>" 'helm-execute-persistent-action helm-map)
