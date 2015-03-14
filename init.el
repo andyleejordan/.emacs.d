@@ -393,7 +393,9 @@
   :config
   (progn
     (setq projectile-completion-system 'helm
-	  projectile-switch-project-action 'helm-projectile)
+	  projectile-switch-project-action 'helm-projectile
+	  projectile-enable-caching t
+	  projectile-file-exists-remote-cache-expire (* 10 60))
     (helm-projectile-on)
     (diminish 'projectile-mode)))
 
