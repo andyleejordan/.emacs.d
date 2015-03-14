@@ -6,6 +6,7 @@
 (depends-on "ace-jump-mode")
 (depends-on "ace-window")
 (depends-on "ag")
+(depends-on "ahg")
 (depends-on "anzu")
 (depends-on "bison-mode")
 (depends-on "company")

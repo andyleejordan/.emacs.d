@@ -215,6 +215,9 @@
   :config (setq ag-highlight-search t
 		ag-reuse-buffers t))
 
+;; Mercurial
+(use-package ahg)
+
 ;; anzu - number of search matches in modeline
 (use-package anzu
   :init
