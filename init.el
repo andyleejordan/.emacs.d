@@ -126,12 +126,6 @@
 ;; set terminfo
 (setq system-uses-terminfo nil)
 
-;; fix tramp
-(eval-after-load 'tramp
-  '(progn (setenv "TMPDIR" "/tmp")
-          (setenv "SHELL" "/bin/sh")))
-(setq tramp-auto-save-directory "/tmp")
-
 ;;; files
 
 ;; backups

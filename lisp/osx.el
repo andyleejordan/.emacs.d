@@ -6,9 +6,6 @@
 
 ;;; Code:
 
-;; set shell
-(setenv "SHELL" "/usr/local/bin/zsh")
-
 ;; pull in path
 (use-package "exec-path-from-shell"
   :init
@@ -16,13 +13,26 @@
     (exec-path-from-shell-copy-envs '("GPG_AGENT_INFO"))
     (exec-path-from-shell-initialize)))
 
+;; set for shell-command-to-string on remote systems
+(setq shell-file-name "/bin/zsh")
+(setenv "SHELL" "/bin/zsh")
+(setenv "TMPDIR" "/tmp")
+
+;; setup tramp
+(use-package tramp
+  :init
+  (setq helm-tramp-verbose 3
+	tramp-verbose 3
+	tramp-debug-buffer t
+	tramp-ssh-controlmaster-options
+	"-o ControlPath=/tmp/tramp.%%r@%%h:%%p -o ControlMaster=auto -o ControlPersist=no"))
+
 ;; add home info manuals
 (add-to-list 'Info-additional-directory-list (expand-file-name "~/info"))
 (add-to-list 'Info-additional-directory-list (expand-file-name "/Applications/Macaulay2-1.7/share/info"))
 
 (setq initial-scratch-message (shell-command-to-string "fortune"))
 
-;; key bindings
 (use-package dash-at-point
   :bind ("C-c d" . dash-at-point))
 
