@@ -430,6 +430,9 @@
 (use-package scratch
   :commands (scratch))
 
+(if (executable-find "fortune")
+    (setq initial-scratch-message (shell-command-to-string "fortune")))
+
 ;; slime
 (use-package sly
   :commands (sly)

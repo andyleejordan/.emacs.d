@@ -31,8 +31,6 @@
 (add-to-list 'Info-additional-directory-list (expand-file-name "~/info"))
 (add-to-list 'Info-additional-directory-list (expand-file-name "/Applications/Macaulay2-1.7/share/info"))
 
-(setq initial-scratch-message (shell-command-to-string "fortune"))
-
 (use-package dash-at-point
   :bind ("C-c d" . dash-at-point))
 
