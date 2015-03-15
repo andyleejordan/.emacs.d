@@ -304,6 +304,7 @@
   (progn
     (helm-mode)
     (helm-autoresize-mode t)
+    (bind-key "C-c !" 'helm-toggle-suspend-update helm-map)
     (setq helm-M-x-fuzzy-match t
 	  helm-recentf-fuzzy-match t
 	  helm-buffers-fuzzy-matching t
@@ -398,7 +399,6 @@
 
 ;; projectile
 (use-package projectile
-  ;; projectile command map
   :diminish projectile-mode
   :bind* ("M-[" . projectile-command-map)
   :init (projectile-global-mode)
