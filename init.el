@@ -233,16 +233,10 @@
 
 ;; company "complete anything"
 (use-package company
-  :commands (helm-company)
-  :bind ("<backtab>" . helm-company)
+  :commands (company-mode)
   :config
   (progn
     (company-mode)
-    (use-package helm-company
-      :config
-      (progn
-	(define-key company-mode-map (kbd "C-:") 'helm-company)
-	(define-key company-active-map (kbd "C-:") 'helm-company)))
     (push '(company-clang
 	    :with company-semantic
 	    :with company-yasnippet
@@ -251,6 +245,15 @@
     (setq company-minimum-prefix-length 2
           company-idle-delay nil
 	  company-global-modes '(not gud-mode))))
+
+(use-package helm-company
+  :bind ("<backtab>" . helm-company)
+  :commands (helm-company)
+  :config
+  (progn
+    (company-mode)
+    (define-key company-mode-map (kbd "C-:") 'helm-company)
+    (define-key company-active-map (kbd "C-:") 'helm-company)))
 
 ;; crontab
 (use-package crontab-mode
