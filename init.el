@@ -11,8 +11,6 @@
 (setq use-package-verbose t)
 (require 'use-package)
 
-(use-package diminish)
-
 ;;; shortcuts
 
 ;; miscellaneous
@@ -220,10 +218,8 @@
 
 ;; anzu - number of search matches in modeline
 (use-package anzu
-  :init
-  (progn
-    (global-anzu-mode)
-    (diminish 'anzu-mode)))
+  :diminish anzu-mode
+  :init (global-anzu-mode))
 
 ;; bison
 (use-package bison-mode
@@ -289,6 +285,7 @@
 
 ;; helm
 (use-package helm-config
+  :diminish helm-mode
   :bind* (("M-x" . helm-M-x)
 	  ("M-]" . helm-command-prefix)
 	  ("M-y" . helm-show-kill-ring)
@@ -308,8 +305,7 @@
 	  helm-move-to-line-cycle-in-source t
 	  helm-split-window-in-side-p t
 	  helm-ff-file-name-history-use-recentf t
-	  helm-ff-auto-update-initial-value nil)
-    (diminish 'helm-mode)))
+	  helm-ff-auto-update-initial-value nil)))
 
 ;; (bind-key "<tab>" 'helm-execute-persistent-action helm-map)
 ;; (bind-key "C-i" 'helm-execute-persistent-action helm-map)
@@ -321,6 +317,7 @@
 
 ;; magit
 (use-package magit
+  :diminish magit-auto-revert-mode
   :config
   (progn
     (setq magit-log-arguments '("--graph" "--decorate" "--show-signature"))
@@ -328,8 +325,7 @@
       ?S "Subject Prefix" "--subject-prefix=")
     (magit-define-popup-option 'magit-merge-popup
       ?X "Strategy Option" "--strategy-option=")
-    (magit-auto-revert-mode)
-    (diminish 'magit-auto-revert-mode)))
+    (magit-auto-revert-mode)))
 
 ;; markdown
 (use-package markdown-mode
@@ -395,6 +391,7 @@
 ;; projectile
 (use-package projectile
   ;; projectile command map
+  :diminish projectile-mode
   :bind* ("M-[" . projectile-command-map)
   :init (projectile-global-mode)
   :config
@@ -403,8 +400,7 @@
 	  projectile-switch-project-action 'helm-projectile
 	  projectile-enable-caching t
 	  projectile-file-exists-remote-cache-expire (* 10 60))
-    (helm-projectile-on)
-    (diminish 'projectile-mode)))
+    (helm-projectile-on)))
 
 ;; puppet
 (use-package puppet-mode
@@ -449,12 +445,12 @@
 
 ;; activate smartparens
 (use-package smartparens
+  :diminish smartparens-mode
   :config
   (progn
     (use-package smartparens-config)
     (smartparens-global-mode)
-    (show-smartparens-global-mode)
-    (diminish 'smartparens-mode)))
+    (show-smartparens-global-mode)))
 
 ;; scrolling
 (use-package smooth-scroll
@@ -467,9 +463,9 @@
 
 ;; undo-tree
 (use-package undo-tree
+  :diminish undo-tree-mode
   :config
   (progn
-    (diminish 'undo-tree-mode)
     (global-undo-tree-mode)
     (add-to-list 'undo-tree-history-directory-alist
                  `("." . ,(f-expand "undo-tree" user-emacs-directory)))
