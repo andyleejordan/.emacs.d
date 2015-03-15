@@ -43,6 +43,11 @@
     ;; disable toolbar and scrollbar
     (tool-bar-mode 0)
     (scroll-bar-mode 0)
+    ;; use smooth scrolling
+    (require 'smooth-scroll)
+    (setq smooth-scroll/vscroll-step-size 8)
+    (smooth-scroll-mode)
+    ;; adjust Solarized
     (setq solarized-use-variable-pitch nil
 	  solarized-scale-org-headlines nil)
     (load-theme 'solarized-dark t)))
@@ -451,15 +456,6 @@
     (use-package smartparens-config)
     (smartparens-global-mode)
     (show-smartparens-global-mode)))
-
-;; scrolling
-(use-package smooth-scroll
-  :if (display-graphic-p)
-  :init
-  (progn
-    (setq smooth-scroll/vscroll-step-size 8)
-    (smooth-scroll-mode)
-    (diminish 'smooth-scroll-mode)))
 
 ;; undo-tree
 (use-package undo-tree
