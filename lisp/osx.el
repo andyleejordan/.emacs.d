@@ -21,11 +21,12 @@
 ;; setup tramp
 (use-package tramp
   :init
-  (setq helm-tramp-verbose 3
-	tramp-verbose 3
-	tramp-debug-buffer t
-	tramp-ssh-controlmaster-options
-	"-o ControlPath=/tmp/tramp.%%r@%%h:%%p -o ControlMaster=auto -o ControlPersist=no"))
+  (progn
+    (setq helm-tramp-verbose 9
+	  tramp-verbose 9
+	  tramp-ssh-controlmaster-options
+	  "-o ControlPath=/tmp/tramp.%%r@%%h:%%p -o ControlMaster=auto -o ControlPersist=no")
+    (add-to-list 'tramp-default-proxies-alist '("\\`.*\\(schwartzmeyer.com\\|cloudapp.net\\)\\'" "\\`root\\'" "/ssh:%h:"))))
 
 ;; add home info manuals
 (add-to-list 'Info-additional-directory-list (expand-file-name "~/info"))
