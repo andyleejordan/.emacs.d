@@ -30,6 +30,7 @@
 (depends-on "helm-flycheck")
 (depends-on "helm-projectile")
 (depends-on "java-snippets")
+(depends-on "keychain-environment")
 (depends-on "ledger-mode")
 (depends-on "less-css-mode")
 (depends-on "magit")

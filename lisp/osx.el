@@ -10,11 +10,14 @@
 (use-package "exec-path-from-shell"
   :init
   (progn
-    (exec-path-from-shell-copy-envs '("GPG_AGENT_INFO"))
+    (setenv "SHELL" "/usr/local/bin/bash")
     (exec-path-from-shell-initialize)))
+
+(keychain-refresh-environment)
 
 ;; set for shell-command-to-string on remote systems
 (setq shell-file-name "/bin/zsh")
+(setenv "TTY" "/dev/ttys001")
 (setenv "SHELL" "/bin/zsh")
 (setenv "TMPDIR" "/tmp")
 
