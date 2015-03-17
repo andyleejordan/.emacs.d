@@ -493,6 +493,10 @@
 (use-package virtualenvwrapper
   :commands (venv-workon))
 
+;; way better regexp
+(use-package visual-regexp
+  :bind ("M-%" . vr/query-replace))
+
 ;; whitespace
 (use-package whitespace
   :commands (whitespace-mode)

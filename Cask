@@ -63,6 +63,7 @@
 (depends-on "undo-tree")
 (depends-on "use-package")
 (depends-on "virtualenvwrapper")
+(depends-on "visual-regexp")
 (depends-on "whitespace-cleanup-mode")
 (depends-on "yaml-mode")
 (depends-on "yasnippet")
