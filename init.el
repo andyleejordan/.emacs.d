@@ -285,6 +285,13 @@
 (use-package gnuplot
   :commands (gnuplot-mode gnuplot-make-buffer))
 
+;; guide key
+(use-package guide-key
+  :config
+  (progn
+    (setq guide-key/guide-key-sequence t)
+    (guide-key-mode)))
+
 ;; handlebars
 (use-package handlebars-mode
   :mode (("\\.handlebars\'" . handlebars-mode)

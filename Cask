@@ -23,6 +23,7 @@
 (depends-on "gitconfig-mode")
 (depends-on "gitignore-mode")
 (depends-on "gnuplot")
+(depends-on "guide-key")
 (depends-on "handlebars-mode")
 (depends-on "haskell-mode")
 (depends-on "helm")
