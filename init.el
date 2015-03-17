@@ -201,8 +201,8 @@
 
 ;; load OS X configurations
 (use-package osx
-  :if (eq system-type 'darwin)
-  :load-path "lisp/")
+  :load-path "lisp/"
+  :if (eq system-type 'darwin))
 
 ;;; packages
 
