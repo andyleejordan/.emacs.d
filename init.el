@@ -113,6 +113,9 @@
 (setq ring-bell-function 'ignore
       visible-bell t)
 
+;; Don't defer screen updates when performing operations
+(setq redisplay-dont-pause t)
+
 ;; subword navigation
 (global-subword-mode)
 
