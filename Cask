@@ -61,6 +61,7 @@
 (depends-on "smooth-scroll")
 (depends-on "solarized-theme")
 (depends-on "undo-tree")
+(depends-on "unfill")
 (depends-on "use-package")
 (depends-on "virtualenvwrapper")
 (depends-on "visual-regexp")

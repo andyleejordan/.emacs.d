@@ -485,6 +485,10 @@
                  `("." . ,(f-expand "undo-tree" user-emacs-directory)))
     (setq undo-tree-auto-save-history t)))
 
+;; unfill autofill
+(use-package unfill
+  :commands (unfill-region unfill-paragraph toggle-fill-unfill))
+
 ;; uniquify
 (use-package uniquify
   :config (setq uniquify-buffer-name-style 'forward))
