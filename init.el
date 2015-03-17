@@ -110,7 +110,8 @@
 (setq git-commit-summary-max-length 72)
 
 ;; disable bell
-(setq ring-bell-function 'ignore)
+(setq ring-bell-function 'ignore
+      visible-bell t)
 
 ;; subword navigation
 (global-subword-mode)
