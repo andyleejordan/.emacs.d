@@ -8,6 +8,7 @@
 (depends-on "ag")
 (depends-on "ahg")
 (depends-on "anzu")
+(depends-on "auto-compile")
 (depends-on "bison-mode")
 (depends-on "company")
 (depends-on "company-c-headers")
