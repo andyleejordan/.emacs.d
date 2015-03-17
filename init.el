@@ -307,6 +307,7 @@
 (use-package helm-config
   :diminish helm-mode
   :bind* (("M-x" . helm-M-x)
+	  ("C-x C-m" . helm-M-x)
 	  ("M-]" . helm-command-prefix)
 	  ("M-y" . helm-show-kill-ring)
 	  ("C-x C-b" . helm-buffers-list)
