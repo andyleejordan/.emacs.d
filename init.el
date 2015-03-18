@@ -52,6 +52,7 @@
     (require 'smooth-scroll)
     (setq smooth-scroll/vscroll-step-size 8)
     (smooth-scroll-mode)
+    (diminish 'smooth-scroll-mode)
     ;; adjust Solarized
     (setq solarized-use-variable-pitch nil
 	  solarized-scale-org-headlines nil)
@@ -118,6 +119,7 @@
 
 ;; subword navigation
 (global-subword-mode)
+(diminish 'subword-mode)
 
 ;; increase garbage collection threshold
 (setq gc-cons-threshold 20000000)
@@ -291,6 +293,7 @@
 
 ;; guide key
 (use-package guide-key
+  :diminish guide-key-mode
   :config
   (progn
     (setq guide-key/guide-key-sequence t)
@@ -514,6 +517,7 @@
                                 trailing tab-mark newline-mark)))
 
 (use-package whitespace-cleanup-mode
+  :diminish whitespace-cleanup-mode
   :config (global-whitespace-cleanup-mode))
 
 ;; yaml
