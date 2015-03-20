@@ -101,9 +101,6 @@
 ;; kill whole line (including newline)
 (setq kill-whole-line t)
 
-;; initial text mode
-(setq initial-major-mode 'text-mode)
-
 ;; default truncate lines
 (set-default 'truncate-lines t)
 
@@ -450,8 +447,14 @@
 (use-package scratch
   :commands (scratch))
 
-(if (executable-find "fortune")
-    (setq initial-scratch-message (shell-command-to-string "fortune")))
+;; use a Lisp commented fortune for the initial scratch message
+(when (executable-find "fortune")
+  (setq initial-scratch-message
+	(concat
+	 (mapconcat
+	  (lambda (x) (concat ";; " x))
+	  (split-string (shell-command-to-string "fortune") "\n" t) "\n")
+	 "\n\n")))
 
 ;; slime
 (use-package sly
