@@ -114,10 +114,6 @@
 ;; Don't defer screen updates when performing operations
 (setq redisplay-dont-pause t)
 
-;; subword navigation
-(global-subword-mode)
-(diminish 'subword-mode)
-
 ;; increase garbage collection threshold
 (setq gc-cons-threshold 20000000)
 
