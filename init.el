@@ -98,9 +98,6 @@
 ;; enable all commands
 (setq disabled-command-function nil)
 
-;; kill whole line (including newline)
-(setq kill-whole-line t)
-
 ;; default truncate lines
 (set-default 'truncate-lines t)
 
@@ -120,8 +117,14 @@
 ;; inhibit startup message
 (setq inhibit-startup-message t)
 
+;; kill settings
+(setq save-interprogram-paste-before-kill t
+      kill-append-merge-undo t
+      kill-do-not-save-duplicates t
+      kill-whole-line t)
+
 ;; remove selected region if typing
-(pending-delete-mode t)
+(delete-selection-mode)
 
 ;; prefer UTF8
 (setq locale-coding-system 'utf-8)
