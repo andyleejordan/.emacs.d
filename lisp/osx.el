@@ -29,7 +29,7 @@
 	  tramp-verbose 9
 	  tramp-ssh-controlmaster-options
 	  "-o ControlPath=/tmp/tramp.%%r@%%h:%%p -o ControlMaster=auto -o ControlPersist=no")
-    (add-to-list 'tramp-default-proxies-alist '("\\`.*\\(schwartzmeyer.com\\|cloudapp.net\\)\\'" "\\`root\\'" "/ssh:%h:"))))
+    (add-to-list 'tramp-default-proxies-alist '("\\`.*\\(schwartzmeyer.com\\|cloudapp.net\\|suchcodemuchlove.com\\)\\'" "\\`root\\'" "/ssh:%h:"))))
 
 ;; add home info manuals
 (add-to-list 'Info-additional-directory-list (expand-file-name "~/info"))
