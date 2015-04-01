@@ -464,14 +464,13 @@
   :bind* ("M-[" . projectile-command-map)
   :config
   (progn
-    (projectile-global-mode)
     (setq projectile-completion-system 'helm
 	  projectile-switch-project-action 'helm-projectile
 	  projectile-enable-caching t
 	  projectile-file-exists-remote-cache-expire (* 10 60))
-    (helm-projectile-on)))
-
-(use-package helm-projectile)
+    (use-package helm-projectile
+      :config (helm-projectile-on))
+    (projectile-global-mode)))
 
 ;; puppet
 (use-package puppet-mode)
