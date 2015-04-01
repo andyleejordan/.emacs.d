@@ -412,12 +412,13 @@
 (use-package nginx-mode)
 
 ;; org mode extensions
-(use-package org-plus-contrib)
-
 (use-package org
-  :mode ("\\.org\\'" . org-mode)
+  :mode "\\.org\\'"
   :config
   (progn
+    (use-package org-plus-contrib)
+    (use-package org-pomodoro
+      :commands (org-pomodoro))
     (add-hook 'org-mode-hook 'turn-on-auto-fill)
     (setq org-latex-listings t
 	  org-pretty-entities t
@@ -440,9 +441,6 @@
        (python . t)
        (ruby . t)
        (sh . t)))))
-
-(use-package org-pomodoro
-  :commands (org-pomodoro))
 
 ;; popwin
 (use-package popwin
