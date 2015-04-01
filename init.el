@@ -346,8 +346,6 @@
   :config
   (progn
     (require 'helm-config)
-    (helm-mode)
-    (helm-autoresize-mode t)
     (bind-key "C-c !" 'helm-toggle-suspend-update helm-map)
     (setq helm-M-x-fuzzy-match t
 	  helm-recentf-fuzzy-match t
@@ -358,7 +356,9 @@
 	  helm-move-to-line-cycle-in-source t
 	  helm-split-window-in-side-p t
 	  helm-ff-file-name-history-use-recentf t
-	  helm-ff-auto-update-initial-value nil)))
+	  helm-ff-auto-update-initial-value nil)
+    (helm-mode)
+    (helm-autoresize-mode t)))
 
 ;; (bind-key "<tab>" 'helm-execute-persistent-action helm-map)
 ;; (bind-key "C-i" 'helm-execute-persistent-action helm-map)
