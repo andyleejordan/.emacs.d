@@ -54,7 +54,6 @@
 (bind-key "C-M-r" 'isearch-backward)
 
 ;; window management
-(bind-key* "M-s" 'ace-window)
 (bind-key* "M-1" 'delete-other-windows)
 (bind-key* "M-2" 'split-window-vertically)
 (bind-key* "M-3" 'split-window-horizontally)
@@ -130,9 +129,6 @@
 ;; disable bell
 (setq ring-bell-function 'ignore
       visible-bell t)
-
-;; Don't defer screen updates when performing operations
-(setq redisplay-dont-pause t)
 
 ;; increase garbage collection threshold
 (setq gc-cons-threshold 20000000)
@@ -232,12 +228,14 @@
 ;;; extensions
 ;; ace-jump-mode
 (use-package ace-jump-mode
+  :functions ace-jump-mode-enable-mark-sync
   :bind (("C-." . ace-jump-mode)
          ("C-," . ace-jump-mode-pop-mark))
-  :config (eval-after-load "ace-jump-mode" '(ace-jump-mode-enable-mark-sync)))
+  :config (ace-jump-mode-enable-mark-sync))
 
 ;; ace-window
 (use-package ace-window
+  :bind* ("M-s" . ace-window)
   :config (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
 
 ;; ag - the silver searcher
@@ -247,28 +245,28 @@
 		ag-reuse-buffers t))
 
 (use-package helm-ag
-    :bind ("C-c s" . helm-ag))
+  :bind ("C-c s" . helm-ag))
 
 ;; Mercurial
 (use-package ahg
-  :disabled t)
+  :commands ahg-status)
 
 ;; anzu - number of search matches in modeline
 (use-package anzu
   :diminish anzu-mode
+  :commands (isearch-forward-regexp isearch-backward-regexp)
   :config (global-anzu-mode))
 
 ;; bison
 (use-package bison-mode
-  :mode (("\\.y\\'" . bison-mode)
-         ("\\.l\\'" . bison-mode)))
+  :mode ("\\.y\\'" "\\.l\\'"))
 
 ;; company "complete anything"
 (use-package company
   :commands (company-mode)
   :config
   (progn
-    (company-mode)
+    (use-package company-c-headers)
     (push '(company-clang
 	    :with company-semantic
 	    :with company-yasnippet
@@ -277,8 +275,6 @@
     (setq company-minimum-prefix-length 2
           company-idle-delay nil
 	  company-global-modes '(not gud-mode))))
-
-(use-package company-c-headers)
 
 (use-package helm-company
   :bind ("<backtab>" . helm-company)
@@ -291,7 +287,7 @@
 
 ;; crontab
 (use-package crontab-mode
-  :mode ("\\.cron\\(tab\\)?\\'" . crontab-mode))
+  :mode "\\.cron\\(tab\\)?\\'")
 
 ;; activate expand-region
 (use-package expand-region
@@ -299,13 +295,12 @@
 
 ;; flycheck
 (use-package flycheck
-  :bind (("C-c ! c" . flycheck-buffer)
-	 ("C-c ! h" . helm-flycheck))
+  :bind ("C-c ! c" . flycheck-buffer)
   :config (flycheck-mode))
 
-(use-package "helm-flycheck")
-(use-package "flycheck-ledger")
-(use-package "flycheck-rust")
+(use-package helm-flycheck
+  :bind ("C-c ! h" . helm-flycheck)
+  :config (flycheck-mode))
 
 ;; flyspell - use aspell instead of ispell
 (use-package flyspell
@@ -330,15 +325,12 @@
     (guide-key-mode)))
 
 ;; handlebars
-(use-package handlebars-mode
-  :mode (("\\.handlebars\'" . handlebars-mode)
-         ("\\.hbs\'" . handlebars-mode)))
+(use-package handlebars-mode)
 
 ;; haskell
 (use-package haskell-mode
-  :mode ("\\.\\(?:[gh]s\\|hi\\)\\'" . haskell-mode)
-  :interpreter (("runghc" . haskell-mode)
-                ("runhaskell" . haskell-mode)))
+  :mode "\\.\\(?:[gh]s\\|hi\\)\\'"
+  :interpreter ("runghc" "runhaskell"))
 
 ;; helm
 (use-package helm
@@ -371,11 +363,10 @@
 ;; (bind-key "C-i" 'helm-execute-persistent-action helm-map)
 ;; (bind-key "C-z" 'helm-select-action helm-map)
 
-(use-package java-snippets)
-
 ;; ledger
 (use-package ledger-mode
-  :mode ("\\.ledger\\'" . ledger-mode))
+  :mode "\\.ledger\\'"
+  :config (use-package "flycheck-ledger"))
 
 (use-package less-css-mode)
 
@@ -394,8 +385,7 @@
 
 ;; markdown
 (use-package markdown-mode
-  :mode (("\\.markdown\\'" . markdown-mode)
-         ("\\.mk?d\\'" . markdown-mode)))
+  :mode ("\\.markdown\\'" "\\.mk?d\\'" "\\.text\\'"))
 
 (use-package matlab-mode)
 
@@ -461,8 +451,9 @@
 
 (use-package powershell)
 
-(use-package processing-mode)
-(use-package processing-snippets)
+(use-package processing-mode
+  :mode "\\.pde$"
+  :config (use-package processing-snippets))
 
 ;; projectile
 (use-package projectile
@@ -480,8 +471,7 @@
 (use-package helm-projectile)
 
 ;; puppet
-(use-package puppet-mode
-  :mode ("\\.pp\\'" . puppet-mode))
+(use-package puppet-mode)
 
 ;; regex tool
 (use-package regex-tool
@@ -580,12 +570,15 @@
 
 ;; yaml
 (use-package yaml-mode
-  :mode (("\\.ya?ml\'" . yaml-mode)))
+  :mode "\\.ya?ml\'")
 
 ;; yasnippet
 (use-package yasnippet
   :commands (yas-expand yas-insert-snippet)
-  :config (yas-minor-mode))
+  :config
+  (progn
+    (use-package java-snippets)
+    (yas-minor-mode)))
 
 ;; (byte-recompile-directory user-emacs-directory)
 

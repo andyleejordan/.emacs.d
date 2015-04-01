@@ -8,13 +8,13 @@
 
 ;; pull in path
 (use-package "exec-path-from-shell"
-  :init
+  :config
   (progn
     (setenv "SHELL" "/usr/local/bin/bash")
     (exec-path-from-shell-initialize)))
 
 (use-package keychain-environment
-  :init (keychain-refresh-environment))
+  :config (keychain-refresh-environment))
 
 ;; set for shell-command-to-string on remote systems
 (setq shell-file-name "/bin/zsh")
@@ -24,7 +24,7 @@
 
 ;; setup tramp
 (use-package tramp
-  :init
+  :config
   (progn
     (setq helm-tramp-verbose 9
 	  tramp-verbose 9
@@ -34,6 +34,7 @@
 
 ;; add home info manuals
 (use-package info :ensure nil
+  :commands info
   :config
   (progn
     (add-to-list 'Info-additional-directory-list (expand-file-name "~/info"))
