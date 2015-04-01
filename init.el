@@ -321,7 +321,8 @@
   :diminish guide-key-mode
   :config
   (progn
-    (setq guide-key/guide-key-sequence t)
+    (setq guide-key/guide-key-sequence t
+	  guide-key/idle-delay 2)
     (guide-key-mode)))
 
 ;; handlebars
