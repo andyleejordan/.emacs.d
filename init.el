@@ -226,7 +226,8 @@
 		ag-reuse-buffers t))
 
 ;; Mercurial
-(use-package ahg)
+(use-package ahg
+  :disabled t)
 
 ;; anzu - number of search matches in modeline
 (use-package anzu
