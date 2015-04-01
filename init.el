@@ -1,7 +1,4 @@
 ;;; init --- Andrew Schwartzmeyer's Emacs init file
-(require 'cask "~/.cask/cask.el")
-(cask-initialize)
-
 (setq load-prefer-newer t)
 (require 'auto-compile)
 (auto-compile-on-load-mode)
