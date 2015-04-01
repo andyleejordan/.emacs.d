@@ -374,14 +374,16 @@
 ;; magit
 (use-package magit
   :load-path "lisp/magit"
+  :commands magit-status
   :diminish magit-auto-revert-mode
+  :functions (magit-define-popup-option magit-auto-revert-mode)
   :config
   (progn
     (setq magit-log-arguments '("--graph" "--decorate" "--show-signature"))
     (magit-define-popup-option 'magit-patch-popup
-      ?S "Subject Prefix" "--subject-prefix=")
+			       ?S "Subject Prefix" "--subject-prefix=")
     (magit-define-popup-option 'magit-merge-popup
-      ?X "Strategy Option" "--strategy-option=")
+			       ?X "Strategy Option" "--strategy-option=")
     (magit-auto-revert-mode)))
 
 ;; markdown
