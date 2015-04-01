@@ -1,3 +1,6 @@
 [submodule "snippets"]
 	path = snippets
 	url = git@suchcodemuchlove.com:dotfiles/emacs-snippets.git
+[submodule "lisp/solarized-emacs"]
+	path = lisp/solarized-emacs
+	url = https://github.com/andschwa/solarized-emacs.git
