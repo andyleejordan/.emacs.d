@@ -70,6 +70,7 @@
 
 ;; mu4e
 (use-package mu4e
+  :disabled t
   :commands mu4e
   :bind ("C-c m" . mu4e)
   :load-path "/usr/local/Cellar/mu/0.9.9.6/share/emacs/site-lisp/"
