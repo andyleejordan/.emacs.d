@@ -532,7 +532,7 @@
   :commands (yas-expand yas-insert-snippet)
   :config (yas-minor-mode))
 
-(byte-recompile-directory user-emacs-directory)
+;; (byte-recompile-directory user-emacs-directory)
 
 ;;; start server
 (server-start)
