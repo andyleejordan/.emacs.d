@@ -1,9 +1,24 @@
 ;;; init --- Andrew Schwartzmeyer's Emacs init file
 
-(setq use-package-verbose t)
-(require 'use-package)
+;;; package setup
+(require 'package)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("melpa" . "http://melpa.org/packages/")
+			 ("org" . "http://orgmode.org/elpa/")))
+(package-initialize)
+(package-refresh-contents)
 
-;;; shortcuts
+(package-install 'use-package)
+
+(require 'use-package)
+(setq use-package-verbose t
+      use-package-always-ensure t)
+
+;;; requirements
+(use-package f)
+(use-package dash)
+
+;;; bindings
 
 ;; miscellaneous
 (bind-key "C-c l" 'align-regexp)
@@ -28,7 +43,7 @@
 ;;; appearance
 
 ;; theme (zenburn in terminal, Solarized otherwise)
-(use-package solarized
+(use-package solarized-theme
   :if (display-graphic-p)
   :config
   (progn
@@ -36,6 +51,7 @@
     (tool-bar-mode 0)
     (scroll-bar-mode 0)
     ;; use smooth scrolling
+    (use-package smooth-scroll)
     (require 'smooth-scroll)
     (setq smooth-scroll/vscroll-step-size 8)
     (smooth-scroll-mode)
@@ -189,10 +205,12 @@
 
 ;;; load local settings
 (use-package local
+  :ensure nil
   :load-path "site-lisp/")
 
 ;; load OS X configurations
 (use-package osx
+  :ensure nil
   :load-path "lisp/"
   :if (eq system-type 'darwin))
 
@@ -211,9 +229,11 @@
 ;; ag - the silver searcher
 (use-package ag
   :commands (ag ag-files ag-regexp ag-project ag-dired helm-ag)
-  :bind ("C-c s" . helm-ag)
   :config (setq ag-highlight-search t
 		ag-reuse-buffers t))
+
+(use-package helm-ag
+    :bind ("C-c s" . helm-ag))
 
 ;; Mercurial
 (use-package ahg
@@ -244,6 +264,8 @@
           company-idle-delay nil
 	  company-global-modes '(not gud-mode))))
 
+(use-package company-c-headers)
+
 (use-package helm-company
   :bind ("<backtab>" . helm-company)
   :commands (helm-company)
@@ -261,18 +283,25 @@
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 
-
 ;; flycheck
 (use-package flycheck
   :bind (("C-c ! c" . flycheck-buffer)
 	 ("C-c ! h" . helm-flycheck))
   :config (flycheck-mode))
 
+(use-package "helm-flycheck")
+(use-package "flycheck-ledger")
+(use-package "flycheck-rust")
+
 ;; flyspell - use aspell instead of ispell
 (use-package flyspell
   :commands (flyspell-mode flyspell-prog-mode)
   :config (setq ispell-program-name (executable-find "aspell")
                 ispell-extra-args '("--sug-mode=ultra")))
+
+;; git modes
+(use-package gitconfig-mode)
+(use-package gitignore-mode)
 
 ;; gnuplot
 (use-package gnuplot
@@ -298,7 +327,7 @@
                 ("runhaskell" . haskell-mode)))
 
 ;; helm
-(use-package helm-config
+(use-package helm
   :diminish helm-mode
   :bind* (("M-x" . helm-M-x)
 	  ("C-x C-m" . helm-M-x)
@@ -309,6 +338,7 @@
 	  ("C-x C-f" . helm-find-files))
   :init
   (progn
+    (require 'helm-config)
     (helm-mode)
     (helm-autoresize-mode t)
     (bind-key "C-c !" 'helm-toggle-suspend-update helm-map)
@@ -327,9 +357,13 @@
 ;; (bind-key "C-i" 'helm-execute-persistent-action helm-map)
 ;; (bind-key "C-z" 'helm-select-action helm-map)
 
+(use-package java-snippets)
+
 ;; ledger
 (use-package ledger-mode
   :mode ("\\.ledger\\'" . ledger-mode))
+
+(use-package less-css-mode)
 
 ;; magit
 (use-package magit
@@ -348,6 +382,8 @@
   :mode (("\\.markdown\\'" . markdown-mode)
          ("\\.mk?d\\'" . markdown-mode)))
 
+(use-package matlab-mode)
+
 ;; multi-term
 (use-package multi-term
   :commands (multi-term)
@@ -365,14 +401,15 @@
          ("C-<" . mc/mark-previous-like-this)
          ("C-c C-<" . mc/mark-all-like-this)))
 
+(use-package nginx-mode)
+
 ;; org mode extensions
+(use-package org-plus-contrib)
+
 (use-package org
   :mode ("\\.org\\'" . org-mode)
   :config
   (progn
-    ;; pomodoro
-    (use-package org-pomodoro
-      :commands (org-pomodoro))
     (add-hook 'org-mode-hook 'turn-on-auto-fill)
     (setq org-latex-listings t
 	  org-pretty-entities t
@@ -396,6 +433,9 @@
        (ruby . t)
        (sh . t)))))
 
+(use-package org-pomodoro
+  :commands (org-pomodoro))
+
 ;; popwin
 (use-package popwin
   :config
@@ -403,6 +443,11 @@
     (popwin-mode)
     ;; cannot use :bind for keymap
     (global-set-key (kbd "C-z") popwin:keymap)))
+
+(use-package powershell)
+
+(use-package processing-mode)
+(use-package processing-snippets)
 
 ;; projectile
 (use-package projectile
@@ -417,6 +462,8 @@
 	  projectile-file-exists-remote-cache-expire (* 10 60))
     (helm-projectile-on)))
 
+(use-package helm-projectile)
+
 ;; puppet
 (use-package puppet-mode
   :mode ("\\.pp\\'" . puppet-mode))
@@ -424,6 +471,8 @@
 ;; regex tool
 (use-package regex-tool
   :commands (regex-tool))
+
+(use-package rust-mode)
 
 ;; save kill ring
 (use-package savekill)
@@ -472,7 +521,7 @@
   :diminish smartparens-mode
   :config
   (progn
-    (use-package smartparens-config)
+    (require 'smartparens-config)
     (smartparens-global-mode)
     (show-smartparens-global-mode)))
 
@@ -492,6 +541,7 @@
 
 ;; uniquify
 (use-package uniquify
+  :ensure nil
   :config (setq uniquify-buffer-name-style 'forward))
 
 ;; setup virtualenvwrapper

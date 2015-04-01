@@ -13,7 +13,8 @@
     (setenv "SHELL" "/usr/local/bin/bash")
     (exec-path-from-shell-initialize)))
 
-(keychain-refresh-environment)
+(use-package keychain-environment
+  :init (keychain-refresh-environment))
 
 ;; set for shell-command-to-string on remote systems
 (setq shell-file-name "/bin/zsh")
@@ -32,14 +33,18 @@
     (add-to-list 'tramp-default-proxies-alist '("\\`.*\\(schwartzmeyer.com\\|cloudapp.net\\|suchcodemuchlove.com\\)\\'" "\\`root\\'" "/ssh:%h:"))))
 
 ;; add home info manuals
-(add-to-list 'Info-additional-directory-list (expand-file-name "~/info"))
-(add-to-list 'Info-additional-directory-list (expand-file-name "/Applications/Macaulay2-1.7/share/info"))
+(use-package info :ensure nil
+  :config
+  (progn
+    (add-to-list 'Info-additional-directory-list (expand-file-name "~/info"))
+    (add-to-list 'Info-additional-directory-list (expand-file-name "/Applications/Macaulay2-1.7/share/info"))))
 
 (use-package dash-at-point
   :bind ("C-c d" . dash-at-point))
 
 ;; Macaulay
 (use-package M2
+  :ensure nil
   :load-path "/Applications/Macaulay2-1.7/share/emacs/site-lisp"
   :commands (M2)
   :mode ("\\.m2\\'" . M2-mode))
@@ -94,6 +99,7 @@
 
 ;; org agenda
 (use-package org-agenda
+  :ensure nil
   :bind ("C-c a" . org-agenda)
   :config (setq org-agenda-files '("~/.org")))
 
