@@ -1,10 +1,4 @@
 ;;; init --- Andrew Schwartzmeyer's Emacs init file
-
-;;; Commentary:
-;;; Fully customized Emacs configurations
-
-;;; Code:
-
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
