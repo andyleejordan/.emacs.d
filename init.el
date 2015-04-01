@@ -381,7 +381,7 @@
 
 ;; magit
 (use-package magit
-  :load-path "site-lisp/magit"
+  :load-path "lisp/magit"
   :diminish magit-auto-revert-mode
   :config
   (progn
