@@ -1,25 +1,45 @@
 ;;; init --- Andrew Schwartzmeyer's Emacs init file
 
+;; Emacs Lisp prefer newer
+(setq load-prefer-newer t)
+
 ;;; package setup
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("melpa" . "http://melpa.org/packages/")
 			 ("org" . "http://orgmode.org/elpa/")))
 (package-initialize)
-(package-refresh-contents)
 
-(package-install 'use-package)
+(defun install-use-package ()
+  (when (not (package-installed-p 'use-package))
+    (package-install 'use-package)))
 
-(require 'use-package)
+(condition-case nil
+    (install-use-package)
+  (error
+   (package-refresh-contents)
+   (install-use-package)))
+
 (setq use-package-verbose t
       use-package-always-ensure t)
 
-;;; requirements
-(use-package f)
+(eval-when-compile
+  (require 'use-package))
+
+(use-package diminish)
+(use-package bind-key)
 (use-package dash)
 
-;;; bindings
+(use-package auto-compile
+  :config
+  (progn
+    (auto-compile-on-load-mode)
+    (auto-compile-on-save-mode)))
 
+;; for f-expand
+(use-package f)
+
+;;; bindings
 ;; miscellaneous
 (bind-key "C-c l" 'align-regexp)
 (bind-key "C-c x" 'eval-buffer)
@@ -41,7 +61,6 @@
 (bind-key* "M-0" 'delete-window)
 
 ;;; appearance
-
 ;; theme (zenburn in terminal, Solarized otherwise)
 (use-package solarized-theme
   :if (display-graphic-p)
@@ -51,11 +70,12 @@
     (tool-bar-mode 0)
     (scroll-bar-mode 0)
     ;; use smooth scrolling
-    (use-package smooth-scroll)
-    (require 'smooth-scroll)
-    (setq smooth-scroll/vscroll-step-size 8)
-    (smooth-scroll-mode)
-    (diminish 'smooth-scroll-mode)
+    (use-package smooth-scroll
+      :diminish smooth-scroll-mode
+      :config
+      (progn
+	(setq smooth-scroll/vscroll-step-size 8)
+	(smooth-scroll-mode)))
     ;; adjust Solarized
     (setq solarized-use-variable-pitch nil
 	  solarized-scale-org-headlines nil)
@@ -63,7 +83,7 @@
 
 (use-package zenburn-theme
   :if (not (display-graphic-p))
-  :init (load-theme 'zenburn))
+  :config (load-theme 'zenburn))
 
 (setq enable-recursive-minibuffers t)
 
@@ -97,7 +117,6 @@
 (winner-mode)
 
 ;;; settings
-
 ;; enable all commands
 (setq disabled-command-function nil)
 
@@ -139,11 +158,7 @@
 ;; set terminfo
 (setq system-uses-terminfo nil)
 
-;; Emacs Lisp prefer newer
-(setq load-prefer-newer t)
-
 ;;; files
-
 ;; backups
 (setq backup-by-copying t
       delete-old-versions t
@@ -183,7 +198,6 @@
       compilation-always-kill t)
 
 ;;; functions
-
 ;; select whole line
 (defun select-whole-line ()
   "Select whole line which has the cursor."
@@ -214,8 +228,7 @@
   :load-path "lisp/"
   :if (eq system-type 'darwin))
 
-;;; packages
-
+;;; extensions
 ;; ace-jump-mode
 (use-package ace-jump-mode
   :bind (("C-." . ace-jump-mode)
@@ -242,7 +255,7 @@
 ;; anzu - number of search matches in modeline
 (use-package anzu
   :diminish anzu-mode
-  :init (global-anzu-mode))
+  :config (global-anzu-mode))
 
 ;; bison
 (use-package bison-mode
@@ -336,7 +349,7 @@
 	  ("C-x C-b" . helm-buffers-list)
 	  ("C-x b" . helm-mini)
 	  ("C-x C-f" . helm-find-files))
-  :init
+  :config
   (progn
     (require 'helm-config)
     (helm-mode)
@@ -453,9 +466,9 @@
 (use-package projectile
   :diminish projectile-mode
   :bind* ("M-[" . projectile-command-map)
-  :init (projectile-global-mode)
   :config
   (progn
+    (projectile-global-mode)
     (setq projectile-completion-system 'helm
 	  projectile-switch-project-action 'helm-projectile
 	  projectile-enable-caching t
@@ -502,7 +515,7 @@
 
 ;; smart-mode-line
 (use-package smart-mode-line
-  :init
+  :config
   (progn
     (setq sml/theme nil
 	  sml/shorten-directory t
