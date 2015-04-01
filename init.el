@@ -1,5 +1,4 @@
 ;;; init --- Andrew Schwartzmeyer's Emacs init file
-(setq load-prefer-newer t)
 (require 'auto-compile)
 (auto-compile-on-load-mode)
 (auto-compile-on-save-mode)
@@ -126,6 +125,9 @@
 
 ;; set terminfo
 (setq system-uses-terminfo nil)
+
+;; Emacs Lisp prefer newer
+(setq load-prefer-newer t)
 
 ;;; files
 
