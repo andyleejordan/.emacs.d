@@ -26,8 +26,7 @@
 (use-package tramp
   :config
   (progn
-    (setq helm-tramp-verbose 9
-	  tramp-verbose 9
+    (setq tramp-verbose 9
 	  tramp-ssh-controlmaster-options
 	  "-o ControlPath=/tmp/tramp.%%r@%%h:%%p -o ControlMaster=auto -o ControlPersist=no")
     (add-to-list 'tramp-default-proxies-alist '("\\`.*\\(schwartzmeyer.com\\|cloudapp.net\\|suchcodemuchlove.com\\)\\'" "\\`root\\'" "/ssh:%h:"))))
@@ -47,6 +46,7 @@
 (use-package M2
   :ensure nil
   :load-path "/Applications/Macaulay2-1.7/share/emacs/site-lisp"
+  :functions (M2 M2-mode)
   :commands (M2)
   :mode ("\\.m2\\'" . M2-mode))
 

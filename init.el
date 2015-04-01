@@ -356,7 +356,8 @@
 	  helm-move-to-line-cycle-in-source t
 	  helm-split-window-in-side-p t
 	  helm-ff-file-name-history-use-recentf t
-	  helm-ff-auto-update-initial-value nil)
+	  helm-ff-auto-update-initial-value nil
+	  helm-tramp-verbose 9)
     (helm-mode)
     (helm-autoresize-mode t)))
 
