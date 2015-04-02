@@ -250,6 +250,12 @@
   :commands (isearch-forward-regexp isearch-backward-regexp)
   :config (global-anzu-mode))
 
+(use-package auto-package-update
+  :config
+  (progn
+    (setq auto-package-update-interval 1)
+    (auto-package-update-maybe)))
+
 ;; bison
 (use-package bison-mode
   :mode ("\\.y\\'" "\\.l\\'"))
