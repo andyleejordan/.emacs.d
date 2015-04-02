@@ -79,13 +79,7 @@
     ;; adjust Solarized
     (setq solarized-use-variable-pitch nil
 	  solarized-scale-org-headlines nil)
-    (load-theme 'solarized-dark t)))
-
-(use-package zenburn-theme
-  :if (not (display-graphic-p))
-  :config (load-theme 'zenburn))
-
-(setq enable-recursive-minibuffers t)
+    (load-theme 'solarized-light t)))
 
 ;; line/column numbers in mode-line
 (line-number-mode)
@@ -357,7 +351,8 @@
 	  helm-split-window-in-side-p t
 	  helm-ff-file-name-history-use-recentf t
 	  helm-ff-auto-update-initial-value nil
-	  helm-tramp-verbose 9)
+	  helm-tramp-verbose 9
+	  enable-recursive-minibuffers t)
     (helm-mode)
     (helm-autoresize-mode t)))
 
