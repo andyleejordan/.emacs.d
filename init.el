@@ -413,11 +413,10 @@
 (use-package nginx-mode)
 
 ;; org mode extensions
-(use-package org
-  :mode "\\.org\\'"
+(use-package org-plus-contrib
+  :mode ("\\.org\\'" . org-mode)
   :config
   (progn
-    (use-package org-plus-contrib)
     (use-package org-pomodoro
       :commands (org-pomodoro))
     (add-hook 'org-mode-hook 'turn-on-auto-fill)
@@ -461,6 +460,7 @@
 (use-package projectile
   :diminish projectile-mode
   :bind* ("M-[" . projectile-command-map)
+  :demand
   :config
   (progn
     (setq projectile-completion-system 'helm
