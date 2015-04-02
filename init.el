@@ -61,6 +61,7 @@
 ;;; appearance
 ;; theme (zenburn in terminal, Solarized otherwise)
 (use-package solarized-theme
+  :ensure nil
   :load-path "lisp/solarized-emacs"
   :if (display-graphic-p)
   :config
@@ -377,6 +378,7 @@
 
 ;; magit
 (use-package magit
+  :ensure nil
   :load-path "lisp/magit"
   :commands magit-status
   :diminish magit-auto-revert-mode
