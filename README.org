@@ -1,10 +1,12 @@
 #+TITLE: Andrew Schwartzmeyer's Emacs configurations
 [[https://travis-ci.org/andschwa/.emacs.d][https://travis-ci.org/andschwa/.emacs.d.svg?branch=master]]
 
-Uses [[https://github.com/cask/cask][cask]] for package installation management. Primarily uses
-[[https://github.com/jwiegley/use-package][jwiegley's use-package]] macro to cleanly and quickly require and setup
-various packages. Enables lots of lovely minor modes, and
-conditionally loads operating and local system specific code.
+Utilizes [[https://github.com/jwiegley/use-package][jwiegley's use-package]] macro to cleanly and quickly require,
+install via package.el, and setup various extensions. Enables lots of
+lovely minor modes, and conditionally loads operating and local system
+specific code.
+
+Note: Magit and Solarized are tracked as submodules.
 
 * Notable packages
 - [[https://github.com/emacs-helm/helm/][Helm]]
