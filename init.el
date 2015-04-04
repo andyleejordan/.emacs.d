@@ -447,6 +447,18 @@
        (ruby . t)
        (sh . t)))))
 
+;; code folding
+(use-package origami
+  :bind* ("C-S-o" . origami-mode)
+  :config
+  (progn
+    (add-to-list 'origami-parser-alist '(processing-mode . origami-c-style-parser))
+    (bind-keys :prefix-map origami-prefix-map
+	       :prefix "C-o"
+	       ("o" . origami-recursively-toggle-node)
+	       ("a" . origami-toggle-all-nodes)
+	       ("c" . origami-show-only-node))))
+
 ;; popwin
 (use-package popwin
   :config
