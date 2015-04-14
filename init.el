@@ -390,6 +390,7 @@
 			       ?S "Subject Prefix" "--subject-prefix=")
     (magit-define-popup-option 'magit-merge-popup
 			       ?X "Strategy Option" "--strategy-option=")
+    (setq magit-popup-use-prefix-argument 'default)
     (magit-auto-revert-mode)))
 
 ;; markdown
