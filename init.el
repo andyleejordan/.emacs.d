@@ -549,6 +549,9 @@
     (smartparens-global-mode)
     (show-smartparens-global-mode)))
 
+(use-package try
+  :commands try)
+
 ;; undo-tree
 (use-package undo-tree
   :diminish undo-tree-mode
