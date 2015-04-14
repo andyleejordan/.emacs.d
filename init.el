@@ -296,11 +296,11 @@
 ;; flycheck
 (use-package flycheck
   :bind ("C-c ! c" . flycheck-buffer)
-  :config (flycheck-mode))
+  :config (global-flycheck-mode))
 
 (use-package helm-flycheck
   :bind ("C-c ! h" . helm-flycheck)
-  :config (flycheck-mode))
+  :config (global-flycheck-mode))
 
 ;; flyspell - use aspell instead of ispell
 (use-package flyspell
