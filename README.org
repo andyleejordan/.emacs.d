@@ -130,6 +130,34 @@ tic -o ~/.terminfo
 ** View Lossage
 Use =M-x view-lossage= to see the most recent 300 keystrokes, per
 [[http://emacsredux.com/blog/2014/12/23/lossage/][Emacs Redux]]
+* Compiling Emacs from source
+** Update
+#+BEGIN_SRC sh
+  git checkout emacs-24 && git pull
+#+END_SRC
+** Prepare
+See =INSTALL.REPO=
+#+BEGIN_SRC sh
+  make distclean
+#+END_SRC
+** Configure
+*** OS X
+#+BEGIN_SRC sh
+  ./configure --prefix=$HOME --without-all --with-ns --without-x --with-toolkit-scroll-bars
+#+END_SRC
+Optional =--with-sound --with-gnutls --with-zlib --without-compress-install=
+** Build
+#+BEGIN_SRC sh
+  make boostrap
+  make install
+#+END_SRC
+** Artifacts
+*** OS X
+nextstep/Emacs.app
+** Redownload packages
+#+BEGIN_SRC sh
+  rm -rf ~/.emacs.d/elpa
+#+END_SRC
 * Deprecated configurations
 ** ERC
 #+begin_src elisp
