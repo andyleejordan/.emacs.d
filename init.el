@@ -420,9 +420,11 @@
 
 ;; org mode extensions
 (use-package org-plus-contrib
-  :mode ("\\.org\\'" . org-mode)
-  :config
+  :mode (("\\.org\\'" . org-mode) ("[0-9]\\{8\\}\\'" . org-mode))
+  :init
   (progn
+    (use-package org-journal
+      :bind ("C-c j" . org-journal-new-entry))
     (use-package org-pomodoro
       :commands (org-pomodoro))
     (add-hook 'org-mode-hook 'turn-on-auto-fill)
@@ -438,16 +440,8 @@
           org-export-backends '(html beamer ascii latex md))
     (org-babel-do-load-languages
      'org-babel-load-languages
-     '((emacs-lisp . t)
-       (gnuplot . t)
-       (C . t)
-       (emacs-lisp . t)
-       (haskell . t)
-       (latex . t)
-       (ledger . t)
-       (python . t)
-       (ruby . t)
-       (sh . t)))))
+     '((emacs-lisp . t) (gnuplot . t) (C . t) (emacs-lisp . t) (haskell . t)
+       (latex . t) (ledger . t) (python . t) (ruby . t) (sh . t)))))
 
 ;; code folding
 (use-package origami

@@ -92,11 +92,7 @@
 	  mu4e-refile-folder "/Archive")
     (add-hook 'mu4e-view-mode-hook 'visual-line-mode)))
 
-;; org-journal
-(use-package org-journal
-  :mode ("[0-9]\\{8\\}\\'" . org-mode)
-  :bind ("C-c j" . org-journal-new-entry)
-  :config (setq org-journal-dir "~/Documents/personal/journal/"))
+(setq org-journal-dir "~/Documents/personal/journal/")
 
 ;; org agenda
 (use-package org-agenda
