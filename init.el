@@ -372,9 +372,6 @@
 
 (use-package less-css-mode)
 
-(use-package lispy
-  :config (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode))))
-
 ;; magit
 (use-package magit
   :ensure nil
