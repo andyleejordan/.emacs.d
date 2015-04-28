@@ -429,6 +429,7 @@
     (setq org-latex-listings t
 	  org-pretty-entities t
           org-completion-use-ido t
+	  org-latex-custom-lang-environments '((C "lstlisting"))
           org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
                               ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
                               ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
