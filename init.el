@@ -255,7 +255,9 @@
   :config
   (progn
     (setq auto-package-update-interval 1)
-    (auto-package-update-maybe)))
+    (when (and (apu--should-update-packages-p)
+	       (y-or-n-p-with-timeout "Update packages?" 5 nil))
+      (auto-package-update-now))))
 
 ;; bison
 (use-package bison-mode
