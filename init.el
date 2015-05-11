@@ -261,6 +261,7 @@
   (progn
     (setq auto-package-update-interval 1)
     (when (and (apu--should-update-packages-p)
+	       (not (string= (getenv "CI") "true"))
 	       (y-or-n-p-with-timeout "Update packages?" 5 nil))
       (auto-package-update-now))))
 
