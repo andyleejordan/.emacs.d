@@ -208,6 +208,11 @@
     (comment-or-uncomment-region beg end)))
 (bind-key "C-c c" 'comment-or-uncomment-region-or-line)
 
+(defun compile-init ()
+  "Byte recompile user emacs directory."
+  (interactive)
+  (byte-recompile-directory user-emacs-directory))
+
 ;;; load local settings
 (use-package local
   :ensure nil
@@ -594,8 +599,6 @@
   (progn
     (use-package java-snippets)
     (yas-minor-mode)))
-
-;; (byte-recompile-directory user-emacs-directory)
 
 ;;; start server
 (server-start)
