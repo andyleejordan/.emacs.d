@@ -367,8 +367,7 @@
 	  helm-move-to-line-cycle-in-source t
 	  helm-ff-file-name-history-use-recentf t
 	  helm-ff-auto-update-initial-value nil
-	  helm-tramp-verbose 9
-	  enable-recursive-minibuffers t)
+	  helm-tramp-verbose 9)
     (helm-mode)
     (helm-autoresize-mode t)))
 
