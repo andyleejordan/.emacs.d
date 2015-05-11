@@ -358,6 +358,7 @@
 	  helm-semantic-fuzzy-match t
 	  helm-imenu-fuzzy-match t
 	  helm-apropos-fuzzy-match t
+	  helm-lisp-fuzzy-completion t
 	  helm-move-to-line-cycle-in-source t
 	  helm-ff-file-name-history-use-recentf t
 	  helm-ff-auto-update-initial-value nil
