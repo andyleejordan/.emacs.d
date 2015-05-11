@@ -79,7 +79,7 @@
     ;; adjust Solarized
     (setq solarized-use-variable-pitch nil
 	  solarized-scale-org-headlines nil)
-    (load-theme 'solarized-light t)))
+    (load-theme 'solarized-dark t)))
 
 ;; line/column numbers in mode-line
 (line-number-mode)
