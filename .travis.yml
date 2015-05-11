@@ -15,7 +15,7 @@ install:
       sudo apt-get install -qq emacs-snapshot-el emacs-snapshot-nox;
     fi
 before_script:
-  - rm -rf $HOME/.emacs.d $HOME/.emacs
-  - ln -s $(pwd) $HOME/.emacs.d
+  - rm -rf ~/.emacs.d ~/.emacs
+  - ln -s $(pwd) ~/.emacs.d
 script:
   - emacs --batch --load init.el --kill
