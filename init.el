@@ -339,7 +339,7 @@
 (use-package helm
   :diminish helm-mode
   :bind* (("M-x" . helm-M-x)
-	  ("C-x C-m" . helm-M-x)
+	  ("C-c M-x" . execute-extended-command)
 	  ("M-]" . helm-command-prefix)
 	  ("M-y" . helm-show-kill-ring)
 	  ("C-x C-b" . helm-buffers-list)
