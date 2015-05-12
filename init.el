@@ -384,8 +384,7 @@
   :ensure nil
   :load-path "lisp/magit"
   :commands magit-status
-  :diminish magit-auto-revert-mode
-  :functions (magit-define-popup-option magit-auto-revert-mode)
+  :functions (magit-define-popup-option)
   :config
   (progn
     (setq magit-log-arguments '("--graph" "--decorate" "--show-signature"))
@@ -393,8 +392,8 @@
 			       ?S "Subject Prefix" "--subject-prefix=")
     (magit-define-popup-option 'magit-merge-popup
 			       ?X "Strategy Option" "--strategy-option=")
-    (setq magit-popup-use-prefix-argument 'default)
-    (magit-auto-revert-mode)))
+    (setq magit-popup-use-prefix-argument 'default
+	  magit-revert-buffers t)))
 
 ;; markdown
 (use-package markdown-mode
