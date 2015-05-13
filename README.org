@@ -127,6 +127,7 @@ tic -o ~/.terminfo
   positive and disables when zero or negative
 - =add-hook= and =eval-after-load= for conditional execution
 - =expand-file-name= and =f-expand= for filename expansion
+- =file-name-basename= and =file-name-nondirectory= etc.
 - =message= and =princ= for printing
 - =get-buffer-create= for buffers
 - =add-to-list=, =append= and =list= for lists

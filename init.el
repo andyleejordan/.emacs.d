@@ -484,7 +484,13 @@
 (use-package regex-tool
   :commands (regex-tool))
 
-(use-package rust-mode)
+(use-package rust-mode
+  :config
+  (add-hook 'rust-mode-hook
+	  (lambda ()
+	    (set (make-local-variable 'compile-command)
+		 (concat "rustc " (file-name-nondirectory (buffer-file-name))
+			 " && ./" (file-name-base))))))
 
 ;; save kill ring
 (use-package savekill)
