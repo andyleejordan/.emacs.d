@@ -197,17 +197,6 @@
   (set-mark (line-beginning-position)))
 (bind-key "C-c w" 'select-whole-line)
 
-;; comment/uncomment line/region
-(defun comment-or-uncomment-region-or-line ()
-  "Comments or uncomments the region or the current line."
-  (interactive)
-  (let (beg end)
-    (if (region-active-p)
-        (setq beg (region-beginning) end (region-end))
-      (setq beg (line-beginning-position) end (line-end-position)))
-    (comment-or-uncomment-region beg end)))
-(bind-key "C-c c" 'comment-or-uncomment-region-or-line)
-
 (defun compile-init ()
   "Byte recompile user emacs directory."
   (interactive)

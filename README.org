@@ -23,6 +23,7 @@ Note: Magit and Solarized are tracked as submodules.
 - [[http://www.dr-qubit.org/emacs.php#undo-tree][dr-qubit's undo-tree-mode]]
 - [[https://github.com/capitaomorte/yasnippet][capitaomorte's yasnippet]]
 * Tricks and tips
+** Comment/uncomment a region with =M-;=, otherwise start comment
 ** Evaluate lisp code on buffer =M-:=
 - use =eval-expression=
 ** Using quote marks within verbatim/code markup in org-mode
