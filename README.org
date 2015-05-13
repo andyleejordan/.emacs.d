@@ -24,6 +24,7 @@ Note: Magit and Solarized are tracked as submodules.
 - [[https://github.com/capitaomorte/yasnippet][capitaomorte's yasnippet]]
 * Tricks and tips
 ** Comment/uncomment a region with =M-;=, otherwise start comment
+** "Close" client buffer =C-x # (server-edit)=
 ** Evaluate lisp code on buffer =M-:=
 - use =eval-expression=
 ** Using quote marks within verbatim/code markup in org-mode
