@@ -76,6 +76,10 @@ From [[https://stackoverflow.com/a/271136][StackOverflow]]:
 - Use =C-c C-q= to close regexp-builder
 ** Setting fill prefix
 - [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Fill-Prefix.html][Fill-Prefix]] (C-x .) with point after prefix
+** Helm commands
+- =r= for regexp, =<tab>= to jump
+- =b= for resume
+- =C-o= to move to next input source
 ** Projectile commands
 *** Project
 - switch :: p
