@@ -150,12 +150,23 @@ See =INSTALL.REPO=
 #+BEGIN_SRC sh
   make distclean
 #+END_SRC
+*** CentOS 7
+#+BEGIN_SRC sh
+  yum install gtk2-devel
+#+END_SRC
 ** Configure
 *** OS X
 #+BEGIN_SRC sh
-  ./configure --prefix=$HOME --without-all --with-ns --without-x --with-toolkit-scroll-bars
+  ./configure --prefix=$HOME --without-all --with-x-toolkit=no --with-ns --with-toolkit-scroll-bars
 #+END_SRC
-Optional =--with-sound --with-gnutls --with-zlib --without-compress-install=
+*** CentOS 7
+#+BEGIN_SRC sh
+  ./configure --prefix=$HOME --without-all
+#+END_SRC
+*** Optional
+#+BEGIN_SRC sh
+  --with-sound --with-gnutls --with-zlib --without-compress-install
+#+END_SRC
 ** Build
 #+BEGIN_SRC sh
   make boostrap
