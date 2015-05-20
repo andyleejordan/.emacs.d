@@ -78,6 +78,7 @@
 	(smooth-scroll-mode)))
     ;; adjust Solarized
     (setq solarized-use-variable-pitch nil
+	  x-underline-at-descent-line t
 	  solarized-scale-org-headlines nil)
     (load-theme 'solarized-dark t)))
 
