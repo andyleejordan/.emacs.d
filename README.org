@@ -134,6 +134,9 @@ tic -o ~/.terminfo
 - =concat= and =format= for strings
 - =getenv=, =setenv=, =compilation-environment= for env
 - =executable-find= for binaries
+- =ielm= Inferior Elisp REPL
+- =cadr= for last item, as in, =(car (cdr foo))=
+- =nth= and =elt=
 ** View Lossage
 Use =M-x view-lossage= to see the most recent 300 keystrokes, per
 [[http://emacsredux.com/blog/2014/12/23/lossage/][Emacs Redux]]
