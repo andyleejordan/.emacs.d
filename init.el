@@ -215,12 +215,10 @@
   :if (eq system-type 'darwin))
 
 ;;; extensions
-;; ace-jump-mode
-(use-package ace-jump-mode
-  :functions ace-jump-mode-enable-mark-sync
-  :bind (("C-." . ace-jump-mode)
-         ("C-," . ace-jump-mode-pop-mark))
-  :config (ace-jump-mode-enable-mark-sync))
+;; jump to line
+(use-package avy
+  :bind (("M-g M-g" . avy-goto-line)
+	 ("C-." . avy-goto-char)))
 
 ;; ace-window
 (use-package ace-window
