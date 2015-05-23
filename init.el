@@ -294,6 +294,8 @@
   :bind ("C-c ! c" . flycheck-buffer)
   :config (global-flycheck-mode))
 
+(use-package flycheck-ledger)
+
 (use-package flycheck-rust
   :config
   (eval-after-load 'flycheck
@@ -369,8 +371,7 @@
 
 ;; ledger
 (use-package ledger-mode
-  :mode "\\.ledger\\'"
-  :config (use-package "flycheck-ledger"))
+  :mode "\\.ledger\\'")
 
 (use-package less-css-mode)
 
