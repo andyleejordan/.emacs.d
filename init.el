@@ -248,6 +248,13 @@
   :config
   (progn
     (setq auto-package-update-interval 1)
+    ;; update submodules
+    (add-hook 'auto-package-update-after-hook
+	      (lambda ()
+		(--each '(("magit" . "git pull upstream next"))
+		  (async-shell-command
+		   (concat "cd " (f-expand (f-join "lisp" (car it)) user-emacs-directory)
+			   " && " (cdr it))))))
     (when (and (apu--should-update-packages-p)
 	       (not (string= (getenv "CI") "true"))
 	       (y-or-n-p-with-timeout "Update packages?" 5 nil))
