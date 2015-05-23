@@ -547,6 +547,8 @@
     (smartparens-global-mode)
     (show-smartparens-global-mode)))
 
+(use-package toml-mode)
+
 (use-package try
   :commands try)
 
