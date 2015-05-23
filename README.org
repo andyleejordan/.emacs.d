@@ -101,6 +101,8 @@ From [[https://stackoverflow.com/a/271136][StackOverflow]]:
 - alternate :: a
 - test files :: T
 - toggle test :: t
+** Flycheck
+*** =(flycheck-compile)= for debugging
 ** ansi-term
 - Needs [[https://stackoverflow.com/a/8920373][terminfo]]
 - Remove TERM from shell's rc file
