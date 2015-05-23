@@ -319,7 +319,6 @@
                 ispell-extra-args '("--sug-mode=ultra")))
 
 ;; git modes
-(use-package git-commit-mode)
 (use-package gitattributes-mode)
 (use-package gitconfig-mode)
 (use-package gitignore-mode)
