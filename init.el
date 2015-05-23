@@ -294,6 +294,11 @@
   :bind ("C-c ! c" . flycheck-buffer)
   :config (global-flycheck-mode))
 
+(use-package flycheck-rust
+  :config
+  (eval-after-load 'flycheck
+    '(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
+
 (use-package helm-flycheck
   :bind ("C-c ! h" . helm-flycheck)
   :config (global-flycheck-mode))
