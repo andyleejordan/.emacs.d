@@ -137,6 +137,9 @@
 ;; remove selected region if typing
 (delete-selection-mode)
 
+;; repeat mark pop
+(setq-default set-mark-command-repeat-pop t)
+
 ;; prefer UTF8
 (setq locale-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
