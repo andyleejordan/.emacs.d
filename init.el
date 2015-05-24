@@ -116,9 +116,6 @@
 (setq disabled-command-function nil)
 
 ;; default truncate lines
-
-;; longer commit summaries
-(setq git-commit-summary-max-length 72)
 (setq-default truncate-lines t)
 
 ;; disable bell
