@@ -154,7 +154,7 @@ See =INSTALL.REPO=
 #+END_SRC
 *** CentOS 7
 #+BEGIN_SRC sh
-  yum install gtk2-devel
+  yum install gtk2-devel freetype gnutls-devel
 #+END_SRC
 ** Configure
 *** OS X
@@ -163,11 +163,13 @@ See =INSTALL.REPO=
 #+END_SRC
 *** CentOS 7
 #+BEGIN_SRC sh
-  ./configure --prefix=$HOME --without-all
+  ./configure --prefix=$HOME --without-all --with-xft
 #+END_SRC
+- [[http://www.x.org/releases/X11R7.7/doc/xorg-docs/fonts/fonts.html][XFT]] is the X11 font system, and is required.
+- [[http://jmason.org/howto/subpixel.html][Sub-pixel rendering]]
 *** Optional
 #+BEGIN_SRC sh
-  --with-sound --with-gnutls --with-zlib --without-compress-install
+  --with-sound --with-gnutls --with-zlib --without-compress-install --with-libotf
 #+END_SRC
 ** Build
 #+BEGIN_SRC sh
