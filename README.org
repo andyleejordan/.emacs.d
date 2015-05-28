@@ -143,20 +143,37 @@ tic -o ~/.terminfo
 Use =M-x view-lossage= to see the most recent 300 keystrokes, per
 [[http://emacsredux.com/blog/2014/12/23/lossage/][Emacs Redux]]
 * Compiling Emacs from source
-** Update
+See =INSTALL.REPO=
+** update
 #+BEGIN_SRC sh
   git checkout emacs-24 && git pull
 #+END_SRC
-** Prepare
-See =INSTALL.REPO=
+** prepare
 #+BEGIN_SRC sh
   make distclean
 #+END_SRC
 *** CentOS 7
+GTK+ and FreeType are needed to for the X11 build with proper font
+rendering. See other notes for X11 and Xft setup.
 #+BEGIN_SRC sh
   yum install gtk2-devel freetype gnutls-devel
 #+END_SRC
-** Configure
+*** Windows
+**** Follow nt/INSTALL
+- Install MinGW and MSYS (see [[http://mingw.org/wiki/Getting_Started][Getting Started]])
+- Run =C:\MinGW\msys\1.0\postinstall\pi.bat= to setup =fstab=
+- Add shortcut to =C:\MinGW\msys\1.0\msys.bat=
+**** Fix line endings
+Otherwise =autoreconf= will fail cryptically.
+#+BEGIN_SRC sh
+  dos2unix.exe configure.ac
+#+END_SRC
+** autoreconf
+#+BEGIN_SRC sh
+  ./autogen.sh
+#+END_SRC
+This runs the usual =autoreconf -i -I m4=
+** configure
 *** OS X
 #+BEGIN_SRC sh
   ./configure --prefix=$HOME --without-all --with-x-toolkit=no --with-ns --with-toolkit-scroll-bars
@@ -167,19 +184,28 @@ See =INSTALL.REPO=
 #+END_SRC
 - [[http://www.x.org/releases/X11R7.7/doc/xorg-docs/fonts/fonts.html][XFT]] is the X11 font system, and is required.
 - [[http://jmason.org/howto/subpixel.html][Sub-pixel rendering]]
+*** Windows
+Toolkit scroll-bars are required on Windows but excluded by
+=--without-all=, so explicitly include them.
+#+BEGIN_SRC sh
+  ./configure --without-all --with-w32 --with-toolkit-scroll-bars
+#+END_SRC
 *** Optional
 #+BEGIN_SRC sh
   --with-sound --with-gnutls --with-zlib --without-compress-install --with-libotf
 #+END_SRC
-** Build
+** make
 #+BEGIN_SRC sh
   make boostrap
+#+END_SRC
+** install
+#+BEGIN_SRC sh
   make install
 #+END_SRC
-** Artifacts
 *** OS X
-nextstep/Emacs.app
-** Redownload packages
+Copy =nextstep/Emacs.app= to desired location
+** post-install
+*** Remove old packages
 #+BEGIN_SRC sh
   rm -rf ~/.emacs.d/elpa
 #+END_SRC
