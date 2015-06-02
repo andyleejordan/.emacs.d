@@ -214,6 +214,12 @@
   :load-path "lisp/"
   :if (eq system-type 'darwin))
 
+;; load Windows configurations
+(use-package windows
+  :ensure nil
+  :load-path "lisp/"
+  :if (eq system-type 'windows-nt))
+
 ;;; extensions
 ;; jump to line
 (use-package avy
