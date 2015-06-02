@@ -203,11 +203,6 @@
   (interactive)
   (byte-recompile-directory user-emacs-directory))
 
-;;; load local settings
-(use-package local
-  :ensure nil
-  :load-path "site-lisp/")
-
 ;; load OS X configurations
 (use-package osx
   :ensure nil
@@ -219,6 +214,11 @@
   :ensure nil
   :load-path "lisp/"
   :if (eq system-type 'windows-nt))
+
+;;; load local settings
+(use-package local
+  :ensure nil
+  :load-path "site-lisp/")
 
 ;;; extensions
 ;; jump to line
