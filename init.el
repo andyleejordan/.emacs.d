@@ -298,6 +298,9 @@
 (use-package crontab-mode
   :mode "\\.cron\\(tab\\)?\\'")
 
+;; C#
+(use-package csharp-mode)
+
 ;; activate expand-region
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
