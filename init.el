@@ -203,6 +203,12 @@
   (interactive)
   (byte-recompile-directory user-emacs-directory))
 
+;; load Linux configuration
+(use-package linux
+  :ensure nil
+  :load-path "lisp/"
+  :if (eq system-type 'gnu/linux))
+
 ;; load OS X configurations
 (use-package osx
   :ensure nil
