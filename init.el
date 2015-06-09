@@ -230,7 +230,7 @@
 ;; jump to line
 (use-package avy
   :bind (("M-g M-g" . avy-goto-line)
-	 ("C-." . avy-goto-char)))
+	 ("C-." . avy-goto-char-2)))
 
 ;; ace-window
 (use-package ace-window
