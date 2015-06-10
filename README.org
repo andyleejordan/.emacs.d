@@ -149,6 +149,7 @@ See =INSTALL.REPO=
   git checkout emacs-24 && git pull
 #+END_SRC
 ** prepare
+Can use =build-dep emacs= to get dependencies.
 #+BEGIN_SRC sh
   make distclean
 #+END_SRC
@@ -157,6 +158,11 @@ GTK+ and FreeType are needed to for the X11 build with proper font
 rendering. See other notes for X11 and Xft setup.
 #+BEGIN_SRC sh
   yum install gtk2-devel freetype gnutls-devel
+#+END_SRC
+*** Ubuntu 14.04
+Still needs GTK and FreeType.
+#+BEGIN_SRC sh
+  sudo apt-get install texi2html texinfo
 #+END_SRC
 *** Windows
 **** Follow nt/INSTALL
@@ -176,14 +182,18 @@ This runs the usual =autoreconf -i -I m4=
 ** configure
 *** OS X
 #+BEGIN_SRC sh
-  ./configure --prefix=$HOME --without-all --with-x-toolkit=no --with-ns --with-toolkit-scroll-bars
+  ./configure --without-all --with-x-toolkit=no --with-ns --with-toolkit-scroll-bars
 #+END_SRC
 *** CentOS 7
 #+BEGIN_SRC sh
-  ./configure --prefix=$HOME --without-all --with-xft
+  ./configure --without-all --with-xft --with-makeinfo
 #+END_SRC
 - [[http://www.x.org/releases/X11R7.7/doc/xorg-docs/fonts/fonts.html][XFT]] is the X11 font system, and is required.
 - [[http://jmason.org/howto/subpixel.html][Sub-pixel rendering]]
+*** Ubuntu 14.04
+#+BEGIN_SRC sh
+  ./configure --without-all --with-xft --with-makeinfo
+#+END_SRC
 *** Windows
 Toolkit scroll-bars are required on Windows but excluded by
 =--without-all=, so explicitly include them.
@@ -195,12 +205,17 @@ Toolkit scroll-bars are required on Windows but excluded by
   --with-sound --with-gnutls --with-zlib --without-compress-install --with-libotf
 #+END_SRC
 ** make
+*** bootstrap
 #+BEGIN_SRC sh
   make boostrap
 #+END_SRC
+*** build docs
+#+BEGIN_SRC sh
+  make info doc
+#+END_SRC
 ** install
 #+BEGIN_SRC sh
-  make install
+  sudo make install install-info install-doc
 #+END_SRC
 *** OS X
 Copy =nextstep/Emacs.app= to desired location
