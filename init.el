@@ -400,7 +400,6 @@
 (use-package magit
   :ensure nil
   :load-path "lisp/magit"
-  :commands magit-status
   :functions (magit-define-popup-option)
   :config
   (progn
