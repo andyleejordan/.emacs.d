@@ -4,3 +4,6 @@
 [submodule "lisp/magit"]
 	path = lisp/magit
 	url = https://github.com/andschwa/magit.git
+[submodule "snippets"]
+	path = snippets
+	url = https://github.com/AndreaCrotti/yasnippet-snippets.git
