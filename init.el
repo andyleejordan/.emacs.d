@@ -203,6 +203,18 @@
   (interactive)
   (byte-recompile-directory user-emacs-directory))
 
+(defun copy-buffer-file-path ()
+  "Put current buffer's short path into the kill ring."
+  (interactive)
+  (when (buffer-file-name)
+    (kill-new (f-short (buffer-file-name)))))
+
+(defun copy-buffer-file-name ()
+  "Put current buffer's base name into the kill ring."
+  (interactive)
+  (when (buffer-file-name)
+    (kill-new (f-filename (buffer-file-name)))))
+
 ;; load Linux configuration
 (use-package linux
   :ensure nil
