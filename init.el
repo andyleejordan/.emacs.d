@@ -317,7 +317,14 @@
   :mode "\\.cron\\(tab\\)?\\'")
 
 ;; C#
-(use-package csharp-mode)
+(use-package csharp-mode
+  :config
+  (progn
+    (add-to-list 'c-default-style '(csharp-mode . "c#"))
+    (add-hook 'csharp-mode-hook
+	      (lambda ()
+		(setq indent-tabs-mode nil)
+		(whitespace-mode)))))
 
 ;; activate expand-region
 (use-package expand-region
