@@ -281,7 +281,7 @@
 			   " && " (cdr it))))))
     (when (and (apu--should-update-packages-p)
 	       (not (string= (getenv "CI") "true"))
-	       (y-or-n-p-with-timeout "Update packages?" 5 nil))
+	       (y-or-n-p-with-timeout "Update packages?" 5 t))
       (auto-package-update-now))))
 
 ;; bison
