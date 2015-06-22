@@ -326,6 +326,10 @@
 		(setq indent-tabs-mode nil)
 		(whitespace-mode)))))
 
+;; Docker
+(use-package docker)
+(use-package dockerfile-mode)
+
 ;; activate expand-region
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
