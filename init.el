@@ -275,7 +275,7 @@
     ;; update submodules
     (add-hook 'auto-package-update-after-hook
 	      (lambda ()
-		(--each '(("magit" . "git pull upstream next"))
+		(--each '(("magit" . "git pull upstream next && git push && make"))
 		  (async-shell-command
 		   (concat "cd " (f-expand (f-join "lisp" (car it)) user-emacs-directory)
 			   " && " (cdr it))))))
@@ -422,7 +422,7 @@
 ;; magit
 (use-package magit
   :ensure nil
-  :load-path "lisp/magit"
+  :load-path "lisp/magit/lisp"
   :functions (magit-define-popup-option)
   :config
   (progn
