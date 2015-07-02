@@ -265,7 +265,6 @@
 ;; anzu - number of search matches in modeline
 (use-package anzu
   :diminish anzu-mode
-  :commands (isearch-forward-regexp isearch-backward-regexp)
   :config (global-anzu-mode))
 
 (use-package auto-package-update
