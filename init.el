@@ -159,6 +159,8 @@
                                         "backups" user-emacs-directory))))
 
 ;; recent files
+(setq large-file-warning-threshold 100000000)
+
 (setq recentf-max-saved-items 256)
 (recentf-mode)
 
