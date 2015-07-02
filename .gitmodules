@@ -1,9 +1,3 @@
-[submodule "lisp/solarized-emacs"]
-	path = lisp/solarized-emacs
-	url = https://github.com/andschwa/solarized-emacs.git
-[submodule "lisp/magit"]
-	path = lisp/magit
-	url = https://github.com/andschwa/magit.git
 [submodule "snippets"]
 	path = snippets
 	url = https://github.com/AndreaCrotti/yasnippet-snippets.git

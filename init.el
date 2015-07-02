@@ -61,8 +61,6 @@
 ;;; appearance
 ;; theme (zenburn in terminal, Solarized otherwise)
 (use-package solarized-theme
-  :ensure nil
-  :load-path "lisp/solarized-emacs"
   :if (display-graphic-p)
   :config
   (progn
@@ -272,13 +270,6 @@
   :config
   (progn
     (setq auto-package-update-interval 1)
-    ;; update submodules
-    (add-hook 'auto-package-update-after-hook
-	      (lambda ()
-		(--each '(("magit" . "git pull upstream next && git push && make"))
-		  (async-shell-command
-		   (concat "cd " (f-expand (f-join "lisp" (car it)) user-emacs-directory)
-			   " && " (cdr it))))))
     (when (and (apu--should-update-packages-p)
 	       (not (string= (getenv "CI") "true"))
 	       (y-or-n-p-with-timeout "Update packages?" 5 t))
@@ -421,8 +412,6 @@
 
 ;; magit
 (use-package magit
-  :ensure nil
-  :load-path "lisp/magit/lisp"
   :functions (magit-define-popup-option)
   :config
   (progn
