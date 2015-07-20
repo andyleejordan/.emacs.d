@@ -575,6 +575,8 @@
     (smartparens-global-mode)
     (show-smartparens-global-mode)))
 
+(use-package ssh-config-mode)
+
 (use-package toml-mode)
 
 (use-package try
