@@ -13,9 +13,6 @@
     (setenv "SHELL" "/usr/local/bin/bash")
     (exec-path-from-shell-initialize)))
 
-(use-package keychain-environment
-  :config (keychain-refresh-environment))
-
 ;; set for shell-command-to-string on remote systems
 (setq shell-file-name "/bin/zsh")
 (setenv "TTY" "/dev/ttys001")
