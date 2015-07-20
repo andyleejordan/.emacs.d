@@ -579,6 +579,14 @@
 
 (use-package toml-mode)
 
+(use-package tramp
+  :config
+  (progn
+    (setq tramp-verbose 9
+	  tramp-default-method "ssh"
+	  tramp-ssh-controlmaster-options
+	  "-o ControlPath=/tmp/tramp.%%r@%%h:%%p -o ControlMaster=auto -o ControlPersist=no")))
+
 (use-package try
   :commands try)
 
