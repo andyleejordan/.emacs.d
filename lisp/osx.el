@@ -10,7 +10,7 @@
 (use-package "exec-path-from-shell"
   :config
   (progn
-    (setenv "SHELL" "/usr/local/bin/bash")
+    (add-to-list 'exec-path-from-shell-variables "SSH_AUTH_SOCK")
     (exec-path-from-shell-initialize)))
 
 ;; set for shell-command-to-string on remote systems
