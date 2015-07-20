@@ -24,6 +24,7 @@
   :config
   (progn
     (setq tramp-verbose 9
+	  tramp-default-method "ssh"
 	  tramp-ssh-controlmaster-options
 	  "-o ControlPath=/tmp/tramp.%%r@%%h:%%p -o ControlMaster=auto -o ControlPersist=no")
     (add-to-list 'tramp-default-proxies-alist '("\\`.*\\(schwartzmeyer.com\\|cloudapp.net\\|suchcodemuchlove.com\\)\\'" "\\`root\\'" "/ssh:%h:"))))
