@@ -225,20 +225,6 @@ Copy =nextstep/Emacs.app= to desired location
   rm -rf ~/.emacs.d/elpa
 #+END_SRC
 * Deprecated configurations
-** ERC
-#+begin_src elisp
-  ;; erc
-  (setq irc-freenode-pass "password"
-        erc-prompt-for-nickserv-password nil
-        erc-nickserv-passwords `((freenode (("username" . ,irc-freenode-pass))))
-        erc-notify-list '("friend")
-        erc-autojoin-channels-alist '(("freenode.net" "#emacs")))
-
-  (defun erc-freenode ()
-    (interactive)
-    (erc-tls :server "chat.freenode.net" :port 7000 :nick "user" :password irc-freenode-pass :full-name "Me"))
-
-#+end_src
 ** Jabber
 #+begin_src elisp
   ;; jabber
@@ -251,15 +237,5 @@ Copy =nextstep/Emacs.app= to desired location
                      (:connection-type . starttls))))
     :bind ("C-x j" . jabber-connect-all))
 #+end_src
-** ZNC
-#+begin_src elisp
-  ;; irc
-  (use-package znc
-    :init (customize-set-variable
-           'znc-servers
-           (quote
-            (("server.com" 7000 t
-              ((server "user" "password"))))))
-    :bind ("C-c e s" . znc-all))
 
 #+end_src

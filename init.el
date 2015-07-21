@@ -632,6 +632,11 @@
     (use-package java-snippets)
     (yas-minor-mode)))
 
+(use-package znc
+  :if (bound-and-true-p znc-password)
+  :config
+  (setq znc-servers `(("schwartzmeyer.com" . (46728 t ((freenode . ("andrew/freenode" ,znc-password))))))))
+
 ;;; start server
 (server-start)
 
