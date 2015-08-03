@@ -626,7 +626,10 @@
 
 (use-package whitespace-cleanup-mode
   :diminish whitespace-cleanup-mode
-  :config (global-whitespace-cleanup-mode))
+  :commands (global-whitespace-cleanup-mode))
+
+(use-package ws-butler
+  :init (ws-butler-global-mode))
 
 ;; yaml
 (use-package yaml-mode
