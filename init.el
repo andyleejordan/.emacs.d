@@ -318,9 +318,14 @@
 		(setq indent-tabs-mode nil)
 		(whitespace-mode)))))
 
-;; Docker
+;; docker
 (use-package docker)
 (use-package dockerfile-mode)
+
+;; better killing
+(use-package easy-kill
+  :bind* (("M-w" . easy-kill)
+	  ("C-M-@" . easy-mark)))
 
 ;; activate expand-region
 (use-package expand-region
