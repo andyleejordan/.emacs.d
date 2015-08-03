@@ -239,10 +239,6 @@
   :load-path "site-lisp/")
 
 ;;; extensions
-;; jump to line
-(use-package avy
-  :bind (("M-g M-g" . avy-goto-line)
-	 ("C-." . avy-goto-char-2)))
 
 ;; ace-window
 (use-package ace-window
@@ -275,6 +271,11 @@
 	       (not (string= (getenv "CI") "true"))
 	       (y-or-n-p-with-timeout "Update packages?" 5 t))
       (auto-package-update-now))))
+
+;; avy
+(use-package avy
+  :bind (("M-g M-g" . avy-goto-line)
+	 ("C-." . avy-goto-char-2)))
 
 ;; bison
 (use-package bison-mode
