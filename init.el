@@ -522,6 +522,9 @@
 (use-package regex-tool
   :commands (regex-tool))
 
+;; ruby
+(use-package ruby-mode)
+
 (use-package rust-mode)
 
 ;; save kill ring
