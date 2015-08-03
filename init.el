@@ -263,6 +263,7 @@
   :diminish anzu-mode
   :config (global-anzu-mode))
 
+;; auto update packages
 (use-package auto-package-update
   :config
   (progn
@@ -415,6 +416,7 @@
 (use-package ledger-mode
   :mode "\\.ledger\\'")
 
+;; less-css
 (use-package less-css-mode)
 
 ;; magit
@@ -434,6 +436,7 @@
 (use-package markdown-mode
   :mode ("\\.markdown\\'" "\\.mk?d\\'" "\\.text\\'"))
 
+;; matlab
 (use-package matlab-mode)
 
 ;; multi-term
@@ -453,6 +456,7 @@
          ("C-<" . mc/mark-previous-like-this)
          ("C-c C-<" . mc/mark-all-like-this)))
 
+;; nginx
 (use-package nginx-mode)
 
 ;; org mode extensions
@@ -500,8 +504,10 @@
     ;; cannot use :bind for keymap
     (global-set-key (kbd "C-z") popwin:keymap)))
 
+;; powershell
 (use-package powershell)
 
+;; processing
 (use-package processing-mode
   :mode "\\.pde$"
   :config (use-package processing-snippets))
@@ -531,6 +537,7 @@
 ;; ruby
 (use-package ruby-mode)
 
+;; rust
 (use-package rust-mode)
 
 ;; save kill ring
@@ -584,10 +591,13 @@
     (smartparens-global-mode)
     (show-smartparens-global-mode)))
 
+;; ssh-config
 (use-package ssh-config-mode)
 
+;; toml
 (use-package toml-mode)
 
+;; tramp
 (use-package tramp
   :config
   (progn
@@ -596,6 +606,7 @@
 	  tramp-ssh-controlmaster-options
 	  "-o ControlPath=/tmp/tramp.%%r@%%h:%%p -o ControlMaster=auto -o ControlPersist=no")))
 
+;; try
 (use-package try
   :commands try)
 
@@ -652,10 +663,12 @@
     (use-package java-snippets)
     (yas-minor-mode)))
 
+;; znc
 (use-package znc
   :if (bound-and-true-p znc-password)
-  :config
-  (setq znc-servers `(("schwartzmeyer.com" . (46728 t ((freenode . ("andrew/freenode" ,znc-password))))))))
+  :config (setq znc-servers
+		`(("schwartzmeyer.com" .
+		   (46728 t ((freenode . ("andrew/freenode" ,znc-password))))))))
 
 ;;; start server
 (server-start)
