@@ -282,6 +282,12 @@
 (use-package bison-mode
   :mode ("\\.y\\'" "\\.l\\'"))
 
+;; add C style for work
+(c-add-style "work"
+	     '("bsd"
+	       (c-basic-offset . 4)
+	       (indent-tabs-mode . nil)))
+
 ;; company "complete anything"
 (use-package company
   :commands (company-mode)
