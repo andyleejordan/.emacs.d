@@ -444,7 +444,7 @@
   :commands (multi-term)
   :config
   (progn
-    (setq multi-term-program "zsh"
+    (setq multi-term-program "bash"
 	  term-buffer-maximum-size 10000)
     (add-to-list 'term-bind-key-alist '("M-DEL" . term-send-backward-kill-word))
     (add-to-list 'term-bind-key-alist '("M-d" . term-send-forward-kill-word))))
