@@ -14,10 +14,9 @@
     (exec-path-from-shell-initialize)))
 
 ;; set for shell-command-to-string on remote systems
-(setq shell-file-name "/bin/zsh")
 (setenv "TTY" "/dev/ttys001")
-(setenv "SHELL" "/bin/zsh")
 (setenv "TMPDIR" "/tmp")
+(setenv "SHELL" "bash")
 
 ;; tramp proxies
 (add-to-list 'tramp-default-proxies-alist '("\\`.*\\(schwartzmeyer.com\\|cloudapp.net\\|suchcodemuchlove.com\\)\\'" "\\`root\\'" "/ssh:%h:"))
