@@ -590,6 +590,7 @@
 
 ;; smart tabs
 (use-package smart-tabs-mode
+  :disabled t
   :config (smart-tabs-insinuate 'c 'c++ 'python 'ruby))
 
 ;; activate smartparens
