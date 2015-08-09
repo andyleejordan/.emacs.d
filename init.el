@@ -366,15 +366,6 @@
 (use-package gnuplot
   :commands (gnuplot-mode gnuplot-make-buffer))
 
-;; guide key
-(use-package guide-key
-  :diminish guide-key-mode
-  :config
-  (progn
-    (setq guide-key/guide-key-sequence t
-	  guide-key/idle-delay 2)
-    (guide-key-mode)))
-
 ;; handlebars
 (use-package handlebars-mode
   :mode ("\\.handlebars$" "\\.hbs$"))
@@ -657,6 +648,10 @@
 ;; way better regexp
 (use-package visual-regexp
   :bind ("M-%" . vr/query-replace))
+
+;; which-key
+(use-package which-key
+  :config (which-key-mode))
 
 ;; whitespace
 (use-package whitespace
