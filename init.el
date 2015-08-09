@@ -59,20 +59,15 @@
 (bind-key* "M-0" 'delete-window)
 
 ;;; appearance
-;; theme (zenburn in terminal, Solarized otherwise)
-(use-package solarized-theme
-  :if (display-graphic-p)
+;; Zenburn
+(use-package zenburn-theme
   :config
   (progn
     ;; disable toolbar and scrollbar
     (tool-bar-mode 0)
     (scroll-bar-mode 0)
     ;; use smooth scrolling
-    ;; adjust Solarized
-    (setq solarized-use-variable-pitch nil
-	  x-underline-at-descent-line t
-	  solarized-scale-org-headlines nil)
-    (load-theme 'solarized-dark t)))
+    (load-theme 'zenburn t)))
 
 (use-package smooth-scroll
   :if (display-graphic-p)
