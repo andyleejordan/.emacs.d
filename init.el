@@ -188,14 +188,6 @@
       compilation-always-kill t)
 
 ;;; functions
-;; select whole line
-(defun select-whole-line ()
-  "Select whole line which has the cursor."
-  (interactive)
-  (end-of-line)
-  (set-mark (line-beginning-position)))
-(bind-key "C-c w" 'select-whole-line)
-
 (defun compile-init ()
   "Byte recompile user emacs directory."
   (interactive)
