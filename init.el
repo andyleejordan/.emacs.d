@@ -331,15 +331,7 @@
 
 ;; flycheck
 (use-package flycheck
-  :bind ("C-c ! c" . flycheck-buffer)
-  :config (global-flycheck-mode))
-
-(use-package flycheck-ledger)
-
-(use-package flycheck-rust
-  :config
-  (eval-after-load 'flycheck
-    '(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
+  :init (global-flycheck-mode))
 
 (use-package helm-flycheck
   :bind ("C-c ! h" . helm-flycheck)
@@ -410,7 +402,8 @@
 
 ;; ledger
 (use-package ledger-mode
-  :mode "\\.ledger\\'")
+  :mode "\\.ledger\\'"
+  :config (use-package flycheck-ledger))
 
 ;; less-css
 (use-package less-css-mode)
@@ -534,7 +527,8 @@
 (use-package ruby-mode)
 
 ;; rust
-(use-package rust-mode)
+(use-package rust-mode
+  :config (use-package flycheck-rust))
 
 ;; save kill ring
 (use-package savekill)
