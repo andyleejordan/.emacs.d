@@ -445,11 +445,12 @@
 
 ;; multi-term
 (use-package multi-term
+  :bind ("C-c t" . multi-term-dedicated-toggle)
   :commands (multi-term)
   :config
   (progn
     (setq multi-term-program "bash"
-	  term-buffer-maximum-size 10000)
+	  multi-term-dedicated-close-back-to-open-buffer-p t)
     (add-to-list 'term-bind-key-alist '("M-DEL" . term-send-backward-kill-word))
     (add-to-list 'term-bind-key-alist '("M-d" . term-send-forward-kill-word))))
 
