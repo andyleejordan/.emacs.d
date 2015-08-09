@@ -1,5 +1,8 @@
 ;;; init --- Andrew Schwartzmeyer's Emacs init file
+;;; Commentary:
+;; See readme.
 
+;;; Code:
 ;; Emacs Lisp prefer newer
 (setq load-prefer-newer t)
 
@@ -189,7 +192,7 @@
 
 ;;; functions
 (defun compile-init ()
-  "Byte recompile user emacs directory."
+  "Byte recompile user Emacs directory."
   (interactive)
   (byte-recompile-directory user-emacs-directory))
 

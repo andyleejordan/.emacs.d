@@ -6,22 +6,23 @@ install via package.el, and setup various extensions. Enables lots of
 lovely minor modes, and conditionally loads operating and local system
 specific code.
 
-Note: Magit and Solarized are tracked as submodules.
-
 * Notable packages
-- [[https://github.com/emacs-helm/helm/][Helm]]
-- [[https://github.com/magit/magit][Magit]]
-- [[https://github.com/bbatsov/projectile][bbatsov's Projectile]]
-- [[https://github.com/bbatsov/solarized-emacs/][bbatsov's Solarized theme]]
-- [[https://github.com/Bruce-Connor/smart-mode-line/][Bruce-Connor's smart-mode-line]]
-- [[https://github.com/jwiegley/use-package][jwiegley's use-package]]
-- [[https://company-mode.github.io/][dgutov's company-mode]]
-- [[https://github.com/magnars/expand-region.el][magnar's expand-region]]
-- [[https://github.com/abo-abo/ace-window][abo-abo's ace-window]]
-- [[https://github.com/flycheck/flycheck][lunaryon's flycheck]]
-- [[http://www.ledger-cli.org/3.0/doc/ledger-mode.html][ledger-cli's ledger-mode]]
-- [[http://www.dr-qubit.org/emacs.php#undo-tree][dr-qubit's undo-tree-mode]]
-- [[https://github.com/capitaomorte/yasnippet][capitaomorte's yasnippet]]
+- [[https://github.com/emacs-helm/helm/][Helm]] as complete =M-x= replacement
+- [[https://github.com/magit/magit][Magit]] is a Git Porcelain
+- [[https://github.com/bbatsov/projectile][Projectile]] to manage and interact with projects
+- [[https://github.com/bbatsov/zenburn-emacs/][Zenburn theme]] because Solarized always breaks
+- [[https://github.com/Bruce-Connor/smart-mode-line/][Smart Mode Line]] makes the mode line truly informative
+- [[https://github.com/jwiegley/use-package][use-package]] organizes =init.el= and manages packages
+- [[https://company-mode.github.io/][Company]] is the best auto-completion framework
+- [[https://github.com/leoliu/easy-kill][easy-kill]] makes killing and marking things much easier
+- [[https://github.com/magnars/expand-region.el][Expand region]] lets you expand the selected region intuitively
+- [[https://github.com/abo-abo/avy][avy]] is a better Ace Jump
+- [[https://github.com/abo-abo/ace-window][ace-window]] is avy but for windows
+- [[https://github.com/flycheck/flycheck][Flycheck]] provides on-the-fly syntax and compilation checking
+- [[http://www.ledger-cli.org/3.0/doc/ledger-mode.html][Ledger]] because double-entry bookkeeping is all the rage
+- [[http://www.dr-qubit.org/emacs.php#undo-tree][Undo Tree]] records edits as a traversable graph
+- [[https://github.com/lewang/ws-butler][Whitespace Butler]] unobtrusively cleans up whitespace
+- [[https://github.com/capitaomorte/yasnippet][YASnippet]] is a great template system
 * Tricks and tips
 ** Comment/uncomment a region with =M-;=, otherwise start comment
 ** "Close" client buffer =C-x # (server-edit)=
