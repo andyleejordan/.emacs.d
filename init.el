@@ -513,6 +513,10 @@
   :mode "\\.pde$"
   :config (use-package processing-snippets))
 
+;; fix https://github.com/bbatsov/projectile/issues/837
+(setq grep-find-ignored-files nil
+      grep-find-ignored-directories nil)
+
 ;; projectile
 (use-package projectile
   :diminish projectile-mode
