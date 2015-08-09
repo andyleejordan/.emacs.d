@@ -68,17 +68,20 @@
     (tool-bar-mode 0)
     (scroll-bar-mode 0)
     ;; use smooth scrolling
-    (use-package smooth-scroll
-      :diminish smooth-scroll-mode
-      :config
-      (progn
-	(setq smooth-scroll/vscroll-step-size 8)
-	(smooth-scroll-mode)))
     ;; adjust Solarized
     (setq solarized-use-variable-pitch nil
 	  x-underline-at-descent-line t
 	  solarized-scale-org-headlines nil)
     (load-theme 'solarized-dark t)))
+
+(use-package smooth-scroll
+  :if (display-graphic-p)
+  :diminish smooth-scroll-mode
+  :config
+  (progn
+    (setq smooth-scroll/vscroll-step-size 8)
+    (smooth-scroll-mode)))
+
 
 ;; line/column numbers in mode-line
 (line-number-mode)
