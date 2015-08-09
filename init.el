@@ -278,6 +278,10 @@
 	       (c-basic-offset . 4)
 	       (indent-tabs-mode . nil)))
 
+;; CMake
+(use-package cmake-mode
+  :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'"))
+
 ;; company "complete anything"
 (use-package company
   :commands (company-mode)
