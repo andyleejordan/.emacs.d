@@ -312,6 +312,7 @@
 
 ;; C#
 (use-package csharp-mode
+  :mode "\\.cs$"
   :config
   (progn
     (add-to-list 'c-default-style '(csharp-mode . "c#"))
@@ -321,8 +322,11 @@
 		(whitespace-mode)))))
 
 ;; docker
-(use-package docker)
-(use-package dockerfile-mode)
+(use-package docker
+  :commands docker-mode)
+
+(use-package dockerfile-mode
+  :mode "Dockerfile.*\\'")
 
 ;; better killing
 (use-package easy-kill
@@ -348,9 +352,12 @@
                 ispell-extra-args '("--sug-mode=ultra")))
 
 ;; git modes
-(use-package gitattributes-mode)
-(use-package gitconfig-mode)
-(use-package gitignore-mode)
+(use-package gitattributes-mode
+  :disabled t)
+(use-package gitconfig-mode
+  :mode ("/\\.gitconfig\\'" "/\\.git/config\\'" "/git/config\\'" "/\\.gitmodules\\'"))
+(use-package gitignore-mode
+  :mode ("/\\.gitignore\\'" "/\\.git/info/exclude\\'" "/git/ignore\\'"))
 
 ;; gnuplot
 (use-package gnuplot
@@ -366,7 +373,8 @@
     (guide-key-mode)))
 
 ;; handlebars
-(use-package handlebars-mode)
+(use-package handlebars-mode
+  :mode ("\\.handlebars$" "\\.hbs$"))
 
 ;; haskell
 (use-package haskell-mode
@@ -410,11 +418,13 @@
   :config (use-package flycheck-ledger))
 
 ;; less-css
-(use-package less-css-mode)
+(use-package less-css-mode
+  :mode "\\.less\\'")
 
 ;; magit
 (use-package magit
   :functions (magit-define-popup-option)
+  :commands (magit-status projectile-vc)
   :config
   (progn
     (setq magit-log-arguments '("--graph" "--decorate" "--show-signature"))
@@ -430,7 +440,8 @@
   :mode ("\\.markdown\\'" "\\.mk?d\\'" "\\.text\\'"))
 
 ;; matlab
-(use-package matlab-mode)
+(use-package matlab-mode
+  :mode "\\.m$")
 
 ;; multi-term
 (use-package multi-term
@@ -450,7 +461,8 @@
          ("C-c C-<" . mc/mark-all-like-this)))
 
 ;; nginx
-(use-package nginx-mode)
+(use-package nginx-mode
+  :mode ("nginx.conf$" "/etc/nginx/.*"))
 
 ;; org mode extensions
 (use-package org-plus-contrib
@@ -498,7 +510,8 @@
     (global-set-key (kbd "C-z") popwin:keymap)))
 
 ;; powershell
-(use-package powershell)
+(use-package powershell
+  :mode "\\.ps1\\'")
 
 ;; processing
 (use-package processing-mode
@@ -521,7 +534,8 @@
     (projectile-global-mode)))
 
 ;; puppet
-(use-package puppet-mode)
+(use-package puppet-mode
+  :mode "\\.pp\\'")
 
 ;; regex tool
 (use-package regex-tool
@@ -532,6 +546,7 @@
 
 ;; rust
 (use-package rust-mode
+  :mode "\\.rs\\'"
   :config (use-package flycheck-rust))
 
 ;; save kill ring
@@ -586,10 +601,15 @@
     (show-smartparens-global-mode)))
 
 ;; ssh-config
-(use-package ssh-config-mode)
+(use-package ssh-config-mode
+  :mode ((".ssh/config\\'"       . ssh-config-mode)
+	 ("sshd?_config\\'"      . ssh-config-mode)
+	 ("known_hosts\\'"       . ssh-known-hosts-mode)
+	 ("authorized_keys2?\\'" . ssh-authorized-keys-mode)))
 
 ;; toml
-(use-package toml-mode)
+(use-package toml-mode
+  :mode "\\.toml$")
 
 ;; tramp
 (use-package tramp
@@ -660,6 +680,7 @@
 ;; znc
 (use-package znc
   :if (bound-and-true-p znc-password)
+  :commands znc-erc
   :config (setq znc-servers
 		`(("schwartzmeyer.com" .
 		   (46728 t ((freenode . ("andrew/freenode" ,znc-password))))))))
