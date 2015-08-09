@@ -417,17 +417,12 @@
 
 ;; magit
 (use-package magit
-  :functions (magit-define-popup-option)
   :commands (magit-status projectile-vc)
   :config
-  (progn
-    (setq magit-log-arguments '("--graph" "--decorate" "--show-signature"))
-    (magit-define-popup-option 'magit-patch-popup
-			       ?S "Subject Prefix" "--subject-prefix=")
-    (magit-define-popup-option 'magit-merge-popup
-			       ?X "Strategy Option" "--strategy-option=")
-    (setq magit-popup-use-prefix-argument 'default
-	  magit-revert-buffers t)))
+  (setq magit-log-arguments '("--graph" "--show-signature")
+	magit-push-always-verify nil
+	magit-popup-use-prefix-argument 'default
+	magit-revert-buffers t))
 
 ;; markdown
 (use-package markdown-mode
