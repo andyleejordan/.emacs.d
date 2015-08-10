@@ -62,16 +62,14 @@
 (bind-key* "M-0" 'delete-window)
 
 ;;; appearance
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+
 ;; Zenburn
 (use-package zenburn-theme
-  :config
-  (progn
-    ;; disable toolbar and scrollbar
-    (tool-bar-mode 0)
-    (scroll-bar-mode 0)
-    ;; use smooth scrolling
-    (load-theme 'zenburn t)))
+  :config (load-theme 'zenburn t))
 
+;; smooth scrolling
 (use-package smooth-scroll
   :if (display-graphic-p)
   :diminish smooth-scroll-mode
