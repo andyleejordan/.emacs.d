@@ -422,6 +422,8 @@
 	magit-popup-use-prefix-argument 'default
 	magit-revert-buffers t))
 
+(global-git-commit-mode)
+
 ;; markdown
 (use-package markdown-mode
   :mode ("\\.markdown\\'" "\\.mk?d\\'" "\\.text\\'"))
