@@ -147,12 +147,16 @@ Use =M-x view-lossage= to see the most recent 300 keystrokes, per
 See =INSTALL.REPO=
 ** update
 #+BEGIN_SRC sh
-  git checkout emacs-24 && git pull
+  git clone -b emacs-24 git://git.sv.gnu.org/emacs.git
 #+END_SRC
 ** prepare
 Can use =build-dep emacs= to get dependencies.
 #+BEGIN_SRC sh
   make distclean
+#+END_SRC
+*** Arch
+#+BEGIN_SRC sh
+  sudo pacman -S gtk2 texinfo xorg-fonts-100dpi adobe-source-code-pro-fonts
 #+END_SRC
 *** CentOS 7
 GTK+ and FreeType are needed to for the X11 build with proper font
@@ -181,6 +185,10 @@ Otherwise =autoreconf= will fail cryptically.
 #+END_SRC
 This runs the usual =autoreconf -i -I m4=
 ** configure
+*** Arch
+#+BEGIN_SRC sh
+  ./configure --without-all --with-xft --makeinfo
+#+END_SRC
 *** OS X
 #+BEGIN_SRC sh
   ./configure --without-all --with-x-toolkit=no --with-ns --with-toolkit-scroll-bars
