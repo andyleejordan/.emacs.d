@@ -314,13 +314,12 @@
 ;; C#
 (use-package csharp-mode
   :mode "\\.cs$"
-  :config
-  (progn
-    (add-to-list 'c-default-style '(csharp-mode . "c#"))
-    (add-hook 'csharp-mode-hook
-	      (lambda ()
-		(setq indent-tabs-mode nil)
-		(whitespace-mode)))))
+  :init (add-to-list 'c-default-style '(csharp-mode . "c#"))
+  :config (add-hook 'csharp-mode-hook (lambda ()
+					(progn
+					  (setq indent-tabs-mode nil)
+					  (set-fill-column 90)
+					  (c-set-style "c#")))))
 
 ;; docker
 (use-package docker
