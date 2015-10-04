@@ -65,8 +65,17 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 
+;; Solarized
+(use-package emacs-color-theme-solarized
+  :ensure color-theme-solarized
+  :init
+  (progn
+    (customize-set-variable 'frame-background-mode 'dark)
+    (load-theme 'solarized t)))
+
 ;; Zenburn
 (use-package zenburn-theme
+  :disabled t
   :config (load-theme 'zenburn t))
 
 ;; smooth scrolling
