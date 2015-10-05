@@ -22,15 +22,16 @@
 (add-to-list 'tramp-default-proxies-alist '("\\`.*\\(schwartzmeyer.com\\|cloudapp.net\\|suchcodemuchlove.com\\)\\'" "\\`root\\'" "/ssh:%h:"))
 
 ;; add home info manuals
-(use-package info :ensure nil
-  :commands info
+(use-package info
+  :ensure nil
+  :commands (info helm-info)
   :config
   (progn
     (add-to-list 'Info-additional-directory-list (expand-file-name "~/info"))
     (add-to-list 'Info-additional-directory-list (expand-file-name "/Applications/Macaulay2-1.7/share/info"))))
 
 (use-package dash-at-point
-  :bind ("C-c d" . dash-at-point))
+  :bind ("C-c C-d" . dash-at-point))
 
 ;; Macaulay
 (use-package M2
@@ -41,18 +42,14 @@
   :mode ("\\.m2\\'" . M2-mode))
 
 ;; frame size
-(add-to-list 'default-frame-alist '(height . 48))
+(add-to-list 'default-frame-alist '(height . 44))
 (add-to-list 'default-frame-alist '(width . 90))
 
 ;; delete by moving to trash
 (setq delete-by-moving-to-trash t)
 
 ;; set font
-(set-frame-font
- "-*-Source Code Pro-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1" nil t)
-
-;; font size
-(set-face-attribute 'default nil :height 120)
+(set-face-attribute 'default nil :font "Hack")
 
 ;; open file's location in Finder
 (defun finder ()
@@ -83,12 +80,6 @@
     (add-hook 'mu4e-view-mode-hook 'visual-line-mode)))
 
 (setq org-journal-dir "~/Documents/personal/journal/")
-
-;; org agenda
-(use-package org-agenda
-  :ensure nil
-  :bind ("C-c a" . org-agenda)
-  :config (setq org-agenda-files '("~/.org")))
 
 ;;; provide OS X package
 (provide 'osx)

@@ -425,10 +425,11 @@
 (use-package magit
   :commands (magit-status projectile-vc)
   :config
-  (setq magit-log-arguments '("--graph" "--show-signature")
-	magit-push-always-verify nil
-	magit-popup-use-prefix-argument 'default
-	magit-revert-buffers t))
+  (progn
+    (add-to-list 'magit-log-arguments "--no-abbrev-commit")
+    (setq magit-push-always-verify nil
+	  magit-popup-use-prefix-argument 'default
+	  magit-revert-buffers t)))
 
 (global-git-commit-mode)
 
