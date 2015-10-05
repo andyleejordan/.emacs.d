@@ -62,8 +62,10 @@
 (bind-key* "M-0" 'delete-window)
 
 ;;; appearance
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
+(if (display-graphic-p)
+    (progn
+      (tool-bar-mode 0)
+      (scroll-bar-mode 0)))
 
 ;; Solarized
 (use-package emacs-color-theme-solarized
