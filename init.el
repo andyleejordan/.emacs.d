@@ -280,6 +280,14 @@
   :bind (("M-g M-g" . avy-goto-line)
 	 ("C-." . avy-goto-char-2)))
 
+;; beacon
+(use-package beacon
+  :config
+  (progn
+    (setq beacon-blink-when-point-moves 4)
+    (add-to-list 'beacon-dont-blink-major-modes 'term-mode)
+    (beacon-mode)))
+
 ;; bison
 (use-package bison-mode
   :mode ("\\.y\\'" "\\.l\\'"))
