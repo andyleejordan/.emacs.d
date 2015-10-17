@@ -511,8 +511,7 @@
     (global-set-key (kbd "C-z") popwin:keymap)))
 
 ;; powershell
-(use-package powershell
-  :mode "\\.ps1\\'")
+(use-package powershell)
 
 ;; processing
 (use-package processing-mode
