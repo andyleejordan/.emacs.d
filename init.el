@@ -241,7 +241,7 @@
 
 ;; ace-window
 (use-package ace-window
-  :bind* ("M-s" . ace-window)
+  :bind* ("M-o" . ace-window)
   :config (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
 
 ;; ag - the silver searcher
