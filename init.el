@@ -256,6 +256,9 @@
 (use-package helm-ag
   :bind ("C-c s" . helm-ag))
 
+(use-package aggressive-indent
+  :config (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
+
 ;; Mercurial
 (use-package ahg
   :commands ahg-status)
