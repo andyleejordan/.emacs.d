@@ -326,11 +326,14 @@
 (use-package csharp-mode
   :mode "\\.cs$"
   :init (add-to-list 'c-default-style '(csharp-mode . "c#"))
-  :config (add-hook 'csharp-mode-hook (lambda ()
-					(progn
-					  (setq indent-tabs-mode nil)
-					  (set-fill-column 90)
-					  (c-set-style "c#")))))
+  :config
+  (progn
+    (setq csharp-want-imenu nil)
+    (add-hook 'csharp-mode-hook (lambda ()
+				  (progn
+				    (setq indent-tabs-mode nil)
+				    (set-fill-column 90)
+				    (c-set-style "c#"))))))
 
 ;; docker
 (use-package docker
