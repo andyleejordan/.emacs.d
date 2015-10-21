@@ -420,7 +420,10 @@
 ;; ledger
 (use-package ledger-mode
   :mode "\\.ledger\\'"
-  :config (use-package flycheck-ledger))
+  :config
+  (progn
+    (setq ledger-post-amount-alignment-at :decimal)
+    (use-package flycheck-ledger)))
 
 ;; less-css
 (use-package less-css-mode
