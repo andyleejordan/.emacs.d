@@ -174,9 +174,6 @@
 (setq recentf-max-saved-items 256)
 (recentf-mode)
 
-;; final-newline
-(setq require-final-newline 't)
-
 ;; set auto revert of buffers if file is changed externally
 (global-auto-revert-mode)
 
