@@ -292,12 +292,6 @@
 (use-package bison-mode
   :mode ("\\.y\\'" "\\.l\\'"))
 
-;; add C style for work
-(c-add-style "work"
-	     '("bsd"
-	       (c-basic-offset . 4)
-	       (indent-tabs-mode . nil)))
-
 ;; CMake
 (use-package cmake-mode
   :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'"))
@@ -330,18 +324,26 @@
 (use-package crontab-mode
   :mode "\\.cron\\(tab\\)?\\'")
 
+;; C styles
+(c-add-style "work"
+	     '("bsd"
+	       (c-basic-offset . 4)
+	       (c-offsets-alist . ((arglist-intro . +)))
+	       (indent-tabs-mode . nil)))
+
+(add-to-list 'c-default-style '(c-mode . "work"))
+(add-to-list 'c-default-style '(c++-mode . "work"))
+(add-to-list 'c-default-style '(csharp-mode . "c#"))
+
 ;; C#
 (use-package csharp-mode
   :mode "\\.cs$"
-  :init (add-to-list 'c-default-style '(csharp-mode . "c#"))
   :config
   (progn
     (setq csharp-want-imenu nil)
     (add-hook 'csharp-mode-hook (lambda ()
-				  (progn
-				    (setq indent-tabs-mode nil)
-				    (set-fill-column 90)
-				    (c-set-style "c#"))))))
+				  (setq indent-tabs-mode nil)
+				  (set-fill-column 90)))))
 
 ;; docker
 (use-package docker
