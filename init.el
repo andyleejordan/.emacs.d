@@ -411,6 +411,10 @@
 	  ("C-x C-f" . helm-find-files))
   :config
   (progn
+    (use-package helm-fuzzier
+      :config (helm-fuzzier-mode))
+    (use-package helm-flx
+      :config (helm-flx-mode +1))
     (require 'helm-config)
     (bind-key "C-c !" 'helm-toggle-suspend-update helm-map)
     (bind-key "<tab>" 'helm-execute-persistent-action helm-map)
