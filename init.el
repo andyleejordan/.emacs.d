@@ -92,6 +92,9 @@
 ;; highlight line
 (global-hl-line-mode)
 
+;; more context when scrolling
+(setq next-screen-context-lines 4)
+
 ;; line/column numbers in mode-line
 (line-number-mode)
 (column-number-mode)
