@@ -89,6 +89,8 @@
     (setq smooth-scroll/vscroll-step-size 8)
     (smooth-scroll-mode)))
 
+;; highlight line
+(global-hl-line-mode)
 
 ;; line/column numbers in mode-line
 (line-number-mode)
@@ -282,6 +284,7 @@
 
 ;; beacon
 (use-package beacon
+  :disabled t
   :config
   (progn
     (setq beacon-blink-when-point-moves 4)
