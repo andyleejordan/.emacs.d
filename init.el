@@ -136,7 +136,7 @@
       visible-bell t)
 
 ;; increase garbage collection threshold
-(setq gc-cons-threshold 20000000)
+(setq gc-cons-threshold (* 10 1024 1024))
 
 ;; inhibit startup message
 (setq inhibit-startup-message t)
