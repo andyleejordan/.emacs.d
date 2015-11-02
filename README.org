@@ -24,19 +24,26 @@ specific code.
 - [[https://github.com/lewang/ws-butler][Whitespace Butler]] unobtrusively cleans up whitespace
 - [[https://github.com/capitaomorte/yasnippet][YASnippet]] is a great template system
 * Tricks and tips
-** Comment/uncomment a region with =M-;=, otherwise start comment
+** Zap to char =M-z=
+** Sexps: mark =C-M-SPC= kill =C-M-k=
+** The opposite of =C-l= is =M-r=
+** Comment DWIM =M-;=
+** Select nearest symbol with =M-s .=
 ** "Close" client buffer =C-x # (server-edit)=
 ** Evaluate lisp code on buffer =M-:=
 - use =eval-expression=
+** Setting fill prefix =C-x .=
+-
+  [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Fill-Prefix.html][Fill-Prefix]] with point after prefix
+** Setting fill column =C-x f=
 ** Using quote marks within verbatim/code markup in org-mode
 - Unicode: <U200B> /xe2/x80/x8b ZERO WIDTH SPACE
 - Insert using: (C-x 8 RET 200b RET)
-** Quickly inserting =#+begin_src=
+** Quickly inserting =#+begin_src= with =<s <tab>=
 - http://orgmode.org/org.html#Easy-Templates
-- Type "<s" then tab-complete
-** Sudo mode using Tramp
+** Sudo mode using Tramp =C-x C-f /ssh:you@host|sudo:host:/file=
 - http://www.emacswiki.org/emacs/TrampMode
-- C-x C-f /ssh:you@remotehost|sudo:remotehost:/path/to/file RET
+** Rename files in dired =C-x C-q=
 ** Replace in files
 From [[https://stackoverflow.com/a/271136][StackOverflow]]:
 
@@ -75,8 +82,6 @@ From [[https://stackoverflow.com/a/271136][StackOverflow]]:
 - Use =C-c C-i= and choose the "string" syntax
 - Copy the regexp without the surrounding quotes
 - Use =C-c C-q= to close regexp-builder
-** Setting fill prefix
-- [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Fill-Prefix.html][Fill-Prefix]] (C-x .) with point after prefix
 ** Helm commands
 - =r= for regexp, =<tab>= to jump
 - =b= for resume
@@ -235,8 +240,8 @@ Copy =nextstep/Emacs.app= to desired location
 #+BEGIN_SRC sh
   rm -rf ~/.emacs.d/elpa
 #+END_SRC
-* Deprecated configurations
-** Jabber
+* deprecated configurations
+** jabber
 #+begin_src elisp
   ;; jabber
   (use-package jabber
