@@ -442,6 +442,7 @@
   :mode "\\.ledger\\'"
   :config
   (progn
+    (define-key ledger-mode-map (kbd "C-c c") 'ledger-mode-clean-buffer)
     (setq ledger-post-amount-alignment-at :decimal)
     (use-package flycheck-ledger)))
 
