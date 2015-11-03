@@ -407,11 +407,11 @@
   :diminish helm-mode
   :bind* (("M-x" . helm-M-x)
 	  ("C-c M-x" . execute-extended-command)
-	  ("M-]" . helm-command-prefix)
 	  ("M-y" . helm-show-kill-ring)
 	  ("C-x C-b" . helm-buffers-list)
 	  ("C-x b" . helm-mini)
 	  ("C-x C-f" . helm-find-files))
+  :bind-keymap ("M-]" . helm-command-prefix)
   :config
   (progn
     (use-package helm-fuzzier
@@ -550,7 +550,7 @@
 ;; projectile
 (use-package projectile
   :diminish projectile-mode
-  :bind* ("M-[" . projectile-command-map)
+  :bind-keymap ("M-[" . projectile-command-map)
   :demand
   :config
   (progn
