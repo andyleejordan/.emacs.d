@@ -369,11 +369,40 @@
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 
+;; Interactively Do Things
+(ido-mode)
+
+(use-package flx-ido
+  ;; :disabled t
+  :init
+  (progn
+    (flx-ido-mode)
+    (setq ido-enable-flex-matching t
+	  ;; flx-ido-threshold 1000
+	  flx-ido-use-faces nil)))
+
+(use-package ido-ubiquitous
+  ;; :disabled t
+  :config (ido-ubiquitous-mode))
+
+(use-package ido-vertical-mode
+  :disabled t ;; disabled because it's super slow
+  :config
+  (progn
+    (ido-vertical-mode)
+    (setq ido-vertical-define-keys 'C-n-and-C-p-only)))
+
+(use-package smex
+  :bind (("M-x" . smex)
+	 ("M-X" . smex-major-mode-commands)
+	 ("C-c M-x" . execute-extended-command)))
+
 ;; flycheck
 (use-package flycheck
   :init (global-flycheck-mode))
 
 (use-package helm-flycheck
+  :disabled t
   :bind ("C-c ! h" . helm-flycheck)
   :config (global-flycheck-mode))
 
@@ -460,7 +489,8 @@
     (add-to-list 'magit-log-arguments "--no-abbrev-commit")
     (setq magit-push-always-verify nil
 	  magit-popup-use-prefix-argument 'default
-	  magit-revert-buffers t)))
+	  magit-revert-buffers t
+	  magit-completing-read-function 'magit-ido-completing-read)))
 
 (global-git-commit-mode)
 
