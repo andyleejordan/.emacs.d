@@ -421,7 +421,6 @@
     (require 'helm-config)
     (bind-key "C-c !" 'helm-toggle-suspend-update helm-map)
     (bind-key "<tab>" 'helm-execute-persistent-action helm-map)
-    (bind-key "C-i" 'helm-execute-persistent-action helm-map)
     (bind-key "C-z" 'helm-select-action helm-map)
     (setq helm-M-x-fuzzy-match t
 	  helm-recentf-fuzzy-match t
