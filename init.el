@@ -256,6 +256,7 @@
 		ag-reuse-buffers t))
 
 (use-package helm-ag
+  :disabled t
   :bind ("C-c s" . helm-ag))
 
 (use-package aggressive-indent
@@ -318,6 +319,7 @@
 	  company-global-modes '(not gud-mode))))
 
 (use-package helm-company
+  :disabled t
   :bind ("<backtab>" . helm-company)
   :commands (helm-company)
   :config
@@ -404,6 +406,7 @@
 
 ;; helm
 (use-package helm
+  :disabled t
   :diminish helm-mode
   :bind* (("M-x" . helm-M-x)
 	  ("C-c M-x" . execute-extended-command)
@@ -550,14 +553,14 @@
 (use-package projectile
   :diminish projectile-mode
   :bind-keymap ("M-[" . projectile-command-map)
-  :demand
   :config
   (progn
-    (setq projectile-completion-system 'helm
-	  projectile-switch-project-action 'helm-projectile
-	  projectile-enable-caching t
-	  projectile-file-exists-remote-cache-expire (* 10 60))
+    (setq projectile-enable-caching t)
+    ;; (setq projectile-completion-system 'ido
+    ;; projectile-switch-project-action 'helm-projectile
+    ;; projectile-file-exists-remote-cache-expire (* 10 60))
     (use-package helm-projectile
+      :disabled t
       :commands helm-projectile
       :config (helm-projectile-on))
     (projectile-global-mode)))
@@ -637,7 +640,15 @@
 	 ("known_hosts\\'"       . ssh-known-hosts-mode)
 	 ("authorized_keys2?\\'" . ssh-authorized-keys-mode)))
 
+(use-package swiper
+  :disabled t
+  :bind* (("\C-s" . swiper-helm)
+	  ("\C-r" . swiper-helm)
+	  ("C-c C-r" . ivy-resume))
+  :config (use-package swiper-helm))
+
 (use-package helm-swoop
+  :disabled t
   :bind (("M-i" . helm-swoop)
 	 ("M-I" . helm-swoop-back-to-last-point)
 	 ("C-c M-i" . helm-multi-swoop))
