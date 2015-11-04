@@ -26,6 +26,7 @@ specific code.
 * Tricks and tips
 ** Zap to char =M-z=
 ** Sexps: mark =C-M-SPC= kill =C-M-k=
+** Defuns: move =C-M-a= =C-M-e= mark =C-M-h=
 ** The opposite of =C-l= is =M-r=
 ** Comment DWIM =M-;=
 ** Select nearest symbol with =M-s .=
@@ -148,6 +149,8 @@ tic -o ~/.terminfo
 ** View Lossage
 Use =M-x view-lossage= to see the most recent 300 keystrokes, per
 [[http://emacsredux.com/blog/2014/12/23/lossage/][Emacs Redux]]
+** Smartparens
+https://ebzzry.github.io/emacs-pairs.html
 * Compiling Emacs from source
 See =INSTALL.REPO=
 ** update
