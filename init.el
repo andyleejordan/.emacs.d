@@ -681,6 +681,7 @@
 ;; activate smartparens
 (use-package smartparens
   :diminish smartparens-mode
+  :bind ("C-M-<" . sp-backward-up-sexp)
   :config
   (progn
     (require 'smartparens-config)
