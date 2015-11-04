@@ -779,9 +779,10 @@
 
 (use-package whitespace-cleanup-mode
   :diminish whitespace-cleanup-mode
-  :commands (global-whitespace-cleanup-mode))
+  :init (global-whitespace-cleanup-mode))
 
 (use-package ws-butler
+  :disabled t
   :diminish ws-butler-mode
   :init (ws-butler-global-mode))
 
