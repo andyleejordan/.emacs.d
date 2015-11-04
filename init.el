@@ -374,14 +374,14 @@
 
 ;; Interactively Do Things
 (ido-mode)
+(setq ido-separator "\n"
+      ido-enable-flex-matching t)
 
 (use-package flx-ido
   :init
   (progn
     (flx-ido-mode)
-    (setq ido-enable-flex-matching t
-	  ;; flx-ido-threshold 1000
-	  flx-ido-use-faces nil)))
+    (setq flx-ido-use-faces nil)))
 
 (use-package ido-ubiquitous
   :config (ido-ubiquitous-mode))
