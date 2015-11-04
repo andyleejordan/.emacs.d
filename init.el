@@ -462,9 +462,11 @@
 
 ;; Interactively Do Things
 (ido-mode)
-(setq ido-separator "\n"
-      ido-enable-flex-matching t
+(setq ido-enable-flex-matching t
       ido-use-virtual-buffers t)
+
+(use-package ido-grid-mode
+  :config (ido-grid-mode))
 
 (use-package flx-ido
   :init
