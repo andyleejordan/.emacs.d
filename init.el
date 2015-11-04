@@ -61,6 +61,9 @@
 (bind-key* "M-3" 'split-window-horizontally)
 (bind-key* "M-0" 'delete-window)
 
+;; ibuffer
+(bind-key* "C-x C-b" 'ibuffer)
+
 ;;; appearance
 (if (display-graphic-p)
     (progn
