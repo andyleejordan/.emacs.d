@@ -61,9 +61,6 @@
 (bind-key* "M-3" 'split-window-horizontally)
 (bind-key* "M-0" 'delete-window)
 
-;; ibuffer
-(bind-key* "C-x C-b" 'ibuffer)
-
 ;;; appearance
 (if (display-graphic-p)
     (progn
@@ -372,32 +369,6 @@
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 
-;; Interactively Do Things
-(ido-mode)
-(setq ido-separator "\n"
-      ido-enable-flex-matching t)
-
-(use-package flx-ido
-  :init
-  (progn
-    (flx-ido-mode)
-    (setq flx-ido-use-faces nil)))
-
-(use-package ido-ubiquitous
-  :config (ido-ubiquitous-mode))
-
-(use-package ido-vertical-mode
-  :disabled t ;; disabled because it's super slow
-  :config
-  (progn
-    (ido-vertical-mode)
-    (setq ido-vertical-define-keys 'C-n-and-C-p-only)))
-
-(use-package smex
-  :bind (("M-x" . smex)
-	 ("M-X" . smex-major-mode-commands)
-	 ("C-c M-x" . execute-extended-command)))
-
 ;; flycheck
 (use-package flycheck
   :init (global-flycheck-mode))
@@ -468,6 +439,35 @@
 	  helm-tramp-verbose 9)
     (helm-mode)
     (helm-autoresize-mode t)))
+
+;; ibuffer
+(bind-key* "C-x C-b" 'ibuffer)
+
+;; Interactively Do Things
+(ido-mode)
+(setq ido-separator "\n"
+      ido-enable-flex-matching t)
+
+(use-package flx-ido
+  :init
+  (progn
+    (flx-ido-mode)
+    (setq flx-ido-use-faces nil)))
+
+(use-package ido-ubiquitous
+  :config (ido-ubiquitous-mode))
+
+(use-package ido-vertical-mode
+  :disabled t ;; disabled because it's super slow
+  :config
+  (progn
+    (ido-vertical-mode)
+    (setq ido-vertical-define-keys 'C-n-and-C-p-only)))
+
+(use-package smex
+  :bind (("M-x" . smex)
+	 ("M-X" . smex-major-mode-commands)
+	 ("C-c M-x" . execute-extended-command)))
 
 ;; ledger
 (use-package ledger-mode
