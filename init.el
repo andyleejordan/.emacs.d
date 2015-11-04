@@ -373,7 +373,6 @@
 (ido-mode)
 
 (use-package flx-ido
-  ;; :disabled t
   :init
   (progn
     (flx-ido-mode)
@@ -382,7 +381,6 @@
 	  flx-ido-use-faces nil)))
 
 (use-package ido-ubiquitous
-  ;; :disabled t
   :config (ido-ubiquitous-mode))
 
 (use-package ido-vertical-mode
@@ -585,15 +583,14 @@
   :bind-keymap ("M-[" . projectile-command-map)
   :config
   (progn
-    (setq projectile-enable-caching t)
-    ;; (setq projectile-completion-system 'ido
-    ;; projectile-switch-project-action 'helm-projectile
-    ;; projectile-file-exists-remote-cache-expire (* 10 60))
-    (use-package helm-projectile
-      :disabled t
-      :commands helm-projectile
-      :config (helm-projectile-on))
+    (setq projectile-enable-caching t
+	  projectile-git-submodule-command nil)
     (projectile-global-mode)))
+
+(use-package helm-projectile
+  :disabled t
+  :commands helm-projectile
+  :config (helm-projectile-on))
 
 ;; puppet
 (use-package puppet-mode
