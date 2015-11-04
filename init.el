@@ -68,7 +68,11 @@
       (scroll-bar-mode 0)))
 
 ;; Solarized
+(use-package color-theme-sanityinc-solarized
+  :config (load-theme 'sanityinc-solarized-dark t))
+
 (use-package emacs-color-theme-solarized
+  :disabled t
   :ensure color-theme-solarized
   :init
   (progn
