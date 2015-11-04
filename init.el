@@ -441,7 +441,9 @@
     (helm-autoresize-mode t)))
 
 ;; ibuffer
-(bind-key* "C-x C-b" 'ibuffer)
+(use-package ibuffer
+  :ensure nil
+  :bind  ("C-x C-b" . ibuffer))
 
 (use-package ibuffer-vc
   :config
