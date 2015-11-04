@@ -454,7 +454,8 @@
 ;; Interactively Do Things
 (ido-mode)
 (setq ido-separator "\n"
-      ido-enable-flex-matching t)
+      ido-enable-flex-matching t
+      ido-use-virtual-buffers t)
 
 (use-package flx-ido
   :init
@@ -606,6 +607,15 @@
 ;; puppet
 (use-package puppet-mode
   :mode "\\.pp\\'")
+
+;; recent files
+(use-package recentf
+  :ensure nil
+  :config
+  (progn
+    (setq recentf-max-saved-items 256
+	  recentf-max-menu-items 16)
+    (recentf-mode)))
 
 ;; regex tool
 (use-package regex-tool
