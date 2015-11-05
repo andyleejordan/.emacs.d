@@ -682,7 +682,7 @@
 (use-package smartparens
   :diminish smartparens-mode
   :bind ("C-M-<" . sp-backward-up-sexp)
-  :config
+  :init
   (progn
     (require 'smartparens-config)
     (smartparens-global-mode)
