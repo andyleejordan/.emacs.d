@@ -575,6 +575,9 @@
 	       ("a" . origami-toggle-all-nodes)
 	       ("c" . origami-show-only-node))))
 
+;; pkgbuild
+(use-package pkgbuild-mode)
+
 ;; popwin
 (use-package popwin
   :config
