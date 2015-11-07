@@ -309,18 +309,21 @@
 
 ;; company "complete anything"
 (use-package company
-  :commands (company-mode)
+  :init (global-company-mode)
+  :commands (company-mode global-company-mode)
+  :bind ("<backtab>" . company-complete)
   :config
   (progn
     (use-package company-c-headers)
+    (use-package company-flx
+      :config (with-eval-after-load 'company
+		(company-flx-mode)))
     (push '(company-clang
 	    :with company-semantic
 	    :with company-yasnippet
 	    :with company-c-headers)
           company-backends)
-    (setq company-minimum-prefix-length 2
-          company-idle-delay nil
-	  company-global-modes '(not gud-mode))))
+    (setq company-global-modes '(not gud-mode))))
 
 (use-package helm-company
   :disabled t
