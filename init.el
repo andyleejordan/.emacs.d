@@ -588,7 +588,8 @@
 	       ("c" . origami-show-only-node))))
 
 ;; pkgbuild
-(use-package pkgbuild-mode)
+(use-package pkgbuild-mode
+  :mode "/PKGBUILD\\'")
 
 ;; popwin
 (use-package popwin
