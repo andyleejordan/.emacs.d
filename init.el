@@ -522,6 +522,7 @@
 
 ;; multi-term
 (use-package multi-term
+  :disabled t
   :bind (("C-c C-t" . multi-term-next)
 	 ("C-c t" . multi-term-dedicated-toggle))
   :commands (multi-term)
@@ -644,6 +645,11 @@
 (use-package rust-mode
   :mode "\\.rs\\'"
   :config (use-package flycheck-rust))
+
+;; sane term
+(use-package sane-term
+  :bind (("C-x t" . sane-term)
+	 ("C-x T" . sane-term-create)))
 
 ;; save kill ring
 (use-package savekill)
