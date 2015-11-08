@@ -357,6 +357,10 @@
 				  (setq indent-tabs-mode nil)
 				  (set-fill-column 90)))))
 
+;; automatic demangling
+(use-package demangle-mode
+  :commands demangle-mode)
+
 ;; docker
 (use-package docker
   :commands docker-mode)
