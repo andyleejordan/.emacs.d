@@ -549,10 +549,10 @@
 ;; org mode extensions
 (use-package org-plus-contrib
   :mode (("\\.org\\'" . org-mode) ("[0-9]\\{8\\}\\'" . org-mode))
-  :init
+  :config
   (progn
     (use-package org-journal
-      :bind ("C-c j" . org-journal-new-entry))
+      :commands (org-journal-new-entry))
     (use-package org-pomodoro
       :commands (org-pomodoro))
     (add-hook 'org-mode-hook 'turn-on-auto-fill)
