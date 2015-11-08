@@ -522,7 +522,8 @@
 
 ;; multi-term
 (use-package multi-term
-  :bind ("C-c t" . multi-term-dedicated-toggle)
+  :bind (("C-c C-t" . multi-term-next)
+	 ("C-c t" . multi-term-dedicated-toggle))
   :commands (multi-term)
   :config
   (progn
