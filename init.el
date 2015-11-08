@@ -93,9 +93,6 @@
     (setq smooth-scroll/vscroll-step-size 8)
     (smooth-scroll-mode)))
 
-;; highlight line
-(global-hl-line-mode)
-
 ;; more context when scrolling
 (setq next-screen-context-lines 4)
 
