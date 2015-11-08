@@ -533,6 +533,8 @@
 	  multi-term-dedicated-close-back-to-open-buffer-p t)
     (add-to-list 'term-bind-key-alist '("M-DEL" . term-send-backward-kill-word))
     (add-to-list 'term-bind-key-alist '("M-d" . term-send-forward-kill-word))
+    (add-to-list 'term-bind-key-alist '("C-c C-j" . term-line-mode))
+    (add-to-list 'term-bind-key-alist '("C-c C-k" . term-char-mode))
     (add-to-list 'term-bind-key-alist '("C-s" . term-send-raw) t)
     (add-to-list 'term-bind-key-alist '("C-r" . term-send-raw) t)))
 
