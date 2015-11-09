@@ -369,8 +369,10 @@
 
 ;; better killing
 (use-package easy-kill
-  :bind* (("M-w" . easy-kill)
-	  ("C-M-@" . easy-mark)))
+  :config
+  (progn
+    (global-set-key [remap kill-ring-save] 'easy-kill) ;; M-w prefix
+    (global-set-key [remap mark-sexp] 'easy-mark))) ;; C-M-SPC
 
 ;; activate expand-region
 (use-package expand-region
