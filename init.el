@@ -119,9 +119,6 @@
 ;; visually wrap lines
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
-;; matching parentheses
-(show-paren-mode)
-
 ;; window undo/redo
 (winner-mode)
 
