@@ -477,7 +477,10 @@
     (setq flx-ido-use-faces nil)))
 
 (use-package ido-ubiquitous
-  :config (ido-ubiquitous-mode))
+  :config
+  (progn
+    (setq ido-ubiquitous-allow-on-functional-collection t)
+    (ido-ubiquitous-mode)))
 
 (use-package ido-vertical-mode
   :disabled t ;; disabled because it's super slow
