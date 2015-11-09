@@ -624,10 +624,13 @@
 
 (use-package swiper
   :disabled t
-  :bind* (("\C-s" . swiper-helm)
-	  ("\C-r" . swiper-helm)
+  :bind* (("C-s" . swiper)
+	  ("C-r" . swiper)
 	  ("C-c C-r" . ivy-resume))
-  :config (use-package swiper-helm))
+  :config
+  (progn (ivy-mode 1)
+	 (setq ivy-use-virtual-buffers t)))
+
 ;; toml
 (use-package toml-mode
   :mode "\\.toml$")
