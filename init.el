@@ -304,6 +304,7 @@
 ;; company "complete anything"
 (use-package company
   :init (global-company-mode)
+  :diminish company-mode
   :commands (company-mode global-company-mode)
   :bind ("<backtab>" . company-complete)
   :config
