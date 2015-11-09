@@ -43,11 +43,13 @@
 
 ;;; bindings
 ;; miscellaneous
-(bind-key "C-c l" 'align-regexp)
-(bind-key "C-c x" 'eval-buffer)
+(bind-key "C-c a" 'align-regexp)
+(bind-key "C-c l" 'find-library)
+(bind-key "C-c x" 'eval-region)
 (bind-key "C-c q" 'auto-fill-mode)
 (bind-key "C-c v" 'visual-line-mode)
 (bind-key "C-c b" 'find-library)
+(bind-key "C-c m" 'man)
 
 ;; isearch
 (bind-key "C-s" 'isearch-forward-regexp)
@@ -549,8 +551,8 @@
 
 ;; multiple-cursors
 (use-package multiple-cursors
-  :bind (("C-c m" . mc/edit-lines)
-         ("C-c C-m" . mc/mark-all-like-this)))
+  :bind (("C-c c" . mc/edit-lines)
+         ("C-c C-c" . mc/mark-all-like-this)))
 
 ;; nginx
 (use-package nginx-mode
