@@ -486,7 +486,9 @@
 (use-package smex
   :bind* (("M-x" . smex)
 	  ("M-X" . smex-major-mode-commands)
-	  ("C-c M-x" . execute-extended-command)))
+	  ("C-c M-x" . execute-extended-command))
+  :config (setq smex-history-length 64
+		smex-prompt-string "|-/ "))
 
 ;; ledger
 (use-package ledger-mode
