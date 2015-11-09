@@ -18,6 +18,10 @@
 (setenv "TMPDIR" "/tmp")
 (setenv "SHELL" "bash")
 
+;; fix woman's manpath on OS X
+(setq woman-manpath
+      (split-string (shell-command-to-string "man --path") ":" t "\n"))
+
 ;; tramp proxies
 (add-to-list 'tramp-default-proxies-alist '("\\`.*\\(schwartzmeyer.com\\|cloudapp.net\\|suchcodemuchlove.com\\)\\'" "\\`root\\'" "/ssh:%h:"))
 
