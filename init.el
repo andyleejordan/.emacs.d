@@ -484,9 +484,9 @@
     (setq ido-vertical-define-keys 'C-n-and-C-p-only)))
 
 (use-package smex
-  :bind (("M-x" . smex)
-	 ("M-X" . smex-major-mode-commands)
-	 ("C-c M-x" . execute-extended-command)))
+  :bind* (("M-x" . smex)
+	  ("M-X" . smex-major-mode-commands)
+	  ("C-c M-x" . execute-extended-command)))
 
 ;; ledger
 (use-package ledger-mode
