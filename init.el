@@ -73,19 +73,6 @@
 (use-package color-theme-sanityinc-solarized
   :config (load-theme 'sanityinc-solarized-dark t))
 
-(use-package emacs-color-theme-solarized
-  :disabled t
-  :ensure color-theme-solarized
-  :init
-  (progn
-    (customize-set-variable 'frame-background-mode 'dark)
-    (load-theme 'solarized t)))
-
-;; Zenburn
-(use-package zenburn-theme
-  :disabled t
-  :config (load-theme 'zenburn t))
-
 ;; smooth scrolling
 (use-package smooth-scroll
   :if (display-graphic-p)
@@ -252,13 +239,9 @@
 
 ;; ag - the silver searcher
 (use-package ag
-  :commands (ag ag-files ag-regexp ag-project ag-dired helm-ag)
+  :commands (ag ag-files ag-regexp ag-project ag-dired)
   :config (setq ag-highlight-search t
 		ag-reuse-buffers t))
-
-(use-package helm-ag
-  :disabled t
-  :bind ("C-c s" . helm-ag))
 
 (use-package aggressive-indent
   :config (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
@@ -287,15 +270,6 @@
   :bind (("M-g M-g" . avy-goto-line)
 	 ("C-." . avy-goto-char-2)))
 
-;; beacon
-(use-package beacon
-  :disabled t
-  :config
-  (progn
-    (setq beacon-blink-when-point-moves 4)
-    (add-to-list 'beacon-dont-blink-major-modes 'term-mode)
-    (beacon-mode)))
-
 ;; bison
 (use-package bison-mode
   :mode ("\\.y\\'" "\\.l\\'"))
@@ -322,16 +296,6 @@
 	    :with company-c-headers)
           company-backends)
     (setq company-global-modes '(not gud-mode))))
-
-(use-package helm-company
-  :disabled t
-  :bind ("<backtab>" . helm-company)
-  :commands (helm-company)
-  :config
-  (progn
-    (company-mode)
-    (define-key company-mode-map (kbd "C-:") 'helm-company)
-    (define-key company-active-map (kbd "C-:") 'helm-company)))
 
 ;; crontab
 (use-package crontab-mode
@@ -384,11 +348,6 @@
 (use-package flycheck
   :init (global-flycheck-mode))
 
-(use-package helm-flycheck
-  :disabled t
-  :bind ("C-c ! h" . helm-flycheck)
-  :config (global-flycheck-mode))
-
 ;; flyspell - use aspell instead of ispell
 (use-package flyspell
   :commands (flyspell-mode flyspell-prog-mode)
@@ -415,41 +374,6 @@
 (use-package haskell-mode
   :mode "\\.\\(?:[gh]s\\|hi\\)\\'"
   :interpreter ("runghc" "runhaskell"))
-
-;; helm
-(use-package helm
-  :disabled t
-  :diminish helm-mode
-  :bind* (("M-x" . helm-M-x)
-	  ("C-c M-x" . execute-extended-command)
-	  ("M-y" . helm-show-kill-ring)
-	  ("C-x C-b" . helm-buffers-list)
-	  ("C-x b" . helm-mini)
-	  ("C-x C-f" . helm-find-files))
-  :bind-keymap ("M-]" . helm-command-prefix)
-  :config
-  (progn
-    (use-package helm-fuzzier
-      :config (helm-fuzzier-mode))
-    (use-package helm-flx
-      :config (helm-flx-mode +1))
-    (require 'helm-config)
-    (bind-key "C-c !" 'helm-toggle-suspend-update helm-map)
-    (bind-key "<tab>" 'helm-execute-persistent-action helm-map)
-    (bind-key "C-z" 'helm-select-action helm-map)
-    (setq helm-M-x-fuzzy-match t
-	  helm-recentf-fuzzy-match t
-	  helm-buffers-fuzzy-matching t
-	  helm-semantic-fuzzy-match t
-	  helm-imenu-fuzzy-match t
-	  helm-apropos-fuzzy-match t
-	  helm-lisp-fuzzy-completion t
-	  helm-move-to-line-cycle-in-source t
-	  helm-ff-file-name-history-use-recentf t
-	  helm-ff-auto-update-initial-value nil
-	  helm-tramp-verbose 9)
-    (helm-mode)
-    (helm-autoresize-mode t)))
 
 ;; ibuffer
 (use-package ibuffer
@@ -483,13 +407,6 @@
   (progn
     (setq ido-ubiquitous-allow-on-functional-collection t)
     (ido-ubiquitous-mode)))
-
-(use-package ido-vertical-mode
-  :disabled t ;; disabled because it's super slow
-  :config
-  (progn
-    (ido-vertical-mode)
-    (setq ido-vertical-define-keys 'C-n-and-C-p-only)))
 
 (use-package smex
   :bind* (("M-x" . smex)
@@ -531,23 +448,6 @@
 ;; matlab
 (use-package matlab-mode
   :mode "\\.m$")
-
-;; multi-term
-(use-package multi-term
-  :disabled t
-  :bind (("C-c C-t" . multi-term-next)
-	 ("C-c t" . multi-term-dedicated-toggle))
-  :commands (multi-term)
-  :config
-  (progn
-    (setq multi-term-program "bash"
-	  multi-term-dedicated-close-back-to-open-buffer-p t)
-    (add-to-list 'term-bind-key-alist '("M-DEL" . term-send-backward-kill-word))
-    (add-to-list 'term-bind-key-alist '("M-d" . term-send-forward-kill-word))
-    (add-to-list 'term-bind-key-alist '("C-c C-j" . term-line-mode))
-    (add-to-list 'term-bind-key-alist '("C-c C-k" . term-char-mode))
-    (add-to-list 'term-bind-key-alist '("C-s" . term-send-raw) t)
-    (add-to-list 'term-bind-key-alist '("C-r" . term-send-raw) t)))
 
 ;; multiple-cursors
 (use-package multiple-cursors
@@ -628,11 +528,6 @@
     (setq projectile-enable-caching t
 	  projectile-git-submodule-command nil)
     (projectile-global-mode)))
-
-(use-package helm-projectile
-  :disabled t
-  :commands helm-projectile
-  :config (helm-projectile-on))
 
 ;; puppet
 (use-package puppet-mode
@@ -733,24 +628,6 @@
 	  ("\C-r" . swiper-helm)
 	  ("C-c C-r" . ivy-resume))
   :config (use-package swiper-helm))
-
-(use-package helm-swoop
-  :disabled t
-  :bind (("M-i" . helm-swoop)
-	 ("M-I" . helm-swoop-back-to-last-point)
-	 ("C-c M-i" . helm-multi-swoop))
-  :config
-  (progn
-    ;; When doing isearch, hand the word over to helm-swoop
-    (define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
-    ;; From helm-swoop to helm-multi-swoop-all
-    (define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop)
-    ;; Move up and down like isearch
-    (define-key helm-swoop-map (kbd "C-r") 'helm-previous-line)
-    (define-key helm-swoop-map (kbd "C-s") 'helm-next-line)
-    (define-key helm-multi-swoop-map (kbd "C-r") 'helm-previous-line)
-    (define-key helm-multi-swoop-map (kbd "C-s") 'helm-next-line)))
-
 ;; toml
 (use-package toml-mode
   :mode "\\.toml$")
@@ -812,11 +689,6 @@
 (use-package whitespace-cleanup-mode
   :diminish whitespace-cleanup-mode
   :init (global-whitespace-cleanup-mode))
-
-(use-package ws-butler
-  :disabled t
-  :diminish ws-butler-mode
-  :init (ws-butler-global-mode))
 
 ;; yaml
 (use-package yaml-mode
