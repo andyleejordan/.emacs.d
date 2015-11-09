@@ -24,6 +24,10 @@ specific code.
 - [[https://github.com/lewang/ws-butler][Whitespace Butler]] unobtrusively cleans up whitespace
 - [[https://github.com/capitaomorte/yasnippet][YASnippet]] is a great template system
 * Tricks and tips
+** Global mark: push =C-SPC C-SPC= pop =C-x C-SPC=
+Recording because =C-x C-@= is horrible.
+** Narrowing =C-x n= region =n= defun =d= widen =w=
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html#Narrowing
 ** Zap to char =M-z=
 ** Sexps: mark =C-M-SPC= kill =C-M-k=
 ** Defuns: move =C-M-a= =C-M-e= mark =C-M-h=
