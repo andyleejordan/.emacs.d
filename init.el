@@ -170,10 +170,10 @@
       version-control t
       backup-directory-alist `(("." . ,(f-expand
                                         "backups" user-emacs-directory))))
+;; 100 MB
+(setq large-file-warning-threshold (* 100 1000 1000))
 
 ;; recent files
-(setq large-file-warning-threshold 100000000)
-
 (setq recentf-max-saved-items 256)
 (recentf-mode)
 
