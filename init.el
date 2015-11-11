@@ -356,8 +356,6 @@
 
 ;; fortune
 (use-package fortune-cookie
-  :ensure nil
-  :load-path "site-lisp/fortune-cookie/"
   :config
   (progn
     (setq fortune-cookie-cowsay-args  "-f tux")
