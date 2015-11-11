@@ -312,15 +312,17 @@
 (add-to-list 'c-default-style '(c++-mode . "work"))
 (add-to-list 'c-default-style '(csharp-mode . "c#"))
 
+(defun work-style ()
+  (setq indent-tabs-mode nil)
+  (set-fill-column 90))
+
 ;; C#
 (use-package csharp-mode
   :mode "\\.cs$"
   :config
   (progn
     (setq csharp-want-imenu nil)
-    (add-hook 'csharp-mode-hook (lambda ()
-				  (setq indent-tabs-mode nil)
-				  (set-fill-column 90)))))
+    (add-hook 'csharp-mode-hook 'work-style)))
 
 ;; automatic demangling
 (use-package demangle-mode
@@ -516,7 +518,8 @@
     (global-set-key (kbd "C-z") popwin:keymap)))
 
 ;; powershell
-(use-package powershell)
+(use-package powershell
+  :config (add-hook 'powershell-mode-hook 'work-style))
 
 ;; processing
 (use-package processing-mode
