@@ -461,6 +461,11 @@
 ;; org mode extensions
 (use-package org-plus-contrib
   :mode (("\\.org\\'" . org-mode) ("[0-9]\\{8\\}\\'" . org-mode))
+  :init
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t) (gnuplot . t) (C . t) (emacs-lisp . t) (haskell . t)
+     (latex . t) (ledger . t) (python . t) (ruby . t) (sh . t)))
   :config
   (progn
     (use-package org-journal
@@ -477,11 +482,7 @@
                               ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
                               ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
                               ("models" "\\models" nil "&#8872;" "" "" "⊧"))
-          org-export-backends '(html beamer ascii latex md))
-    (org-babel-do-load-languages
-     'org-babel-load-languages
-     '((emacs-lisp . t) (gnuplot . t) (C . t) (emacs-lisp . t) (haskell . t)
-       (latex . t) (ledger . t) (python . t) (ruby . t) (sh . t)))))
+          org-export-backends '(html beamer ascii latex md))))
 
 ;; code folding
 (use-package origami
