@@ -354,6 +354,15 @@
   :config (setq ispell-program-name (executable-find "aspell")
                 ispell-extra-args '("--sug-mode=ultra")))
 
+;; fortune
+(use-package fortune-cookie
+  :ensure nil
+  :load-path "site-lisp/fortune-cookie/"
+  :config
+  (progn
+    (setq fortune-cookie-cowsay-args  "-f tux")
+    (fortune-cookie-mode)))
+
 ;; git modes
 (use-package gitattributes-mode
   :disabled t)
@@ -573,15 +582,6 @@
 ;; scratch
 (use-package scratch
   :commands (scratch))
-
-;; use a Lisp commented fortune for the initial scratch message
-(when (executable-find "fortune")
-  (setq initial-scratch-message
-	(concat
-	 (mapconcat
-	  (lambda (x) (concat ";; " x))
-	  (split-string (shell-command-to-string "fortune") "\n" t) "\n")
-	 "\n\n")))
 
 ;; slime
 (use-package sly
