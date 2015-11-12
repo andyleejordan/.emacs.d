@@ -569,8 +569,7 @@
 (use-package sane-term
   :bind (("C-x C-t" . sane-term)
 	 ("C-x t" . sane-term-create))
-  :config (setq term-suppress-hard-newline t
-		term-buffer-maximum-size (* 10 2048)))
+  :config (setq term-buffer-maximum-size (* 10 2048)))
 
 ;; save kill ring
 (use-package savekill)
