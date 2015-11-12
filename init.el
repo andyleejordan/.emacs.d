@@ -274,6 +274,10 @@
 (use-package bison-mode
   :mode ("\\.y\\'" "\\.l\\'"))
 
+;; browse kill ring
+(use-package browse-kill-ring
+  :bind ("M-y" . browse-kill-ring))
+
 ;; CMake
 (use-package cmake-mode
   :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'"))
