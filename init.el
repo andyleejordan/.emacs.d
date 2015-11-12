@@ -34,9 +34,8 @@
 
 (use-package auto-compile
   :config
-  (progn
-    (auto-compile-on-load-mode)
-    (auto-compile-on-save-mode)))
+  (auto-compile-on-load-mode)
+  (auto-compile-on-save-mode))
 
 ;; for f-expand
 (use-package f)
@@ -78,9 +77,8 @@
   :if (display-graphic-p)
   :diminish smooth-scroll-mode
   :config
-  (progn
-    (setq smooth-scroll/vscroll-step-size 8)
-    (smooth-scroll-mode)))
+  (setq smooth-scroll/vscroll-step-size 8)
+  (smooth-scroll-mode))
 
 ;; more context when scrolling
 (setq next-screen-context-lines 4)
@@ -258,12 +256,11 @@
 ;; auto update packages
 (use-package auto-package-update
   :config
-  (progn
-    (setq auto-package-update-interval 1)
-    (when (and (apu--should-update-packages-p)
-	       (not (string= (getenv "CI") "true"))
-	       (y-or-n-p-with-timeout "Update packages?" 5 t))
-      (auto-package-update-now))))
+  (setq auto-package-update-interval 1)
+  (when (and (apu--should-update-packages-p)
+	     (not (string= (getenv "CI") "true"))
+	     (y-or-n-p-with-timeout "Update packages?" 5 t))
+    (auto-package-update-now)))
 
 ;; avy
 (use-package avy
@@ -289,17 +286,16 @@
   :commands (company-mode global-company-mode)
   :bind ("<backtab>" . company-complete)
   :config
-  (progn
-    (use-package company-c-headers)
-    (use-package company-flx
-      :config (with-eval-after-load 'company
-		(company-flx-mode)))
-    (push '(company-clang
-	    :with company-semantic
-	    :with company-yasnippet
-	    :with company-c-headers)
-          company-backends)
-    (setq company-global-modes '(not gud-mode))))
+  (use-package company-c-headers)
+  (use-package company-flx
+    :config (with-eval-after-load 'company
+	      (company-flx-mode)))
+  (push '(company-clang
+	  :with company-semantic
+	  :with company-yasnippet
+	  :with company-c-headers)
+	company-backends)
+  (setq company-global-modes '(not gud-mode)))
 
 ;; crontab
 (use-package crontab-mode
@@ -326,9 +322,8 @@
 (use-package csharp-mode
   :mode "\\.cs$"
   :config
-  (progn
-    (setq csharp-want-imenu nil)
-    (add-hook 'csharp-mode-hook 'work-style)))
+  (setq csharp-want-imenu nil)
+  (add-hook 'csharp-mode-hook 'work-style))
 
 ;; automatic demangling
 (use-package demangle-mode
@@ -344,9 +339,8 @@
 ;; better killing
 (use-package easy-kill
   :config
-  (progn
-    (global-set-key [remap kill-ring-save] 'easy-kill) ;; M-w prefix
-    (global-set-key [remap mark-sexp] 'easy-mark))) ;; C-M-SPC
+  (global-set-key [remap kill-ring-save] 'easy-kill) ;; M-w prefix
+  (global-set-key [remap mark-sexp] 'easy-mark)) ;; C-M-SPC
 
 ;; activate expand-region
 (use-package expand-region
@@ -365,9 +359,8 @@
 ;; fortune
 (use-package fortune-cookie
   :config
-  (progn
-    (setq fortune-cookie-cowsay-args  "-f tux -s")
-    (fortune-cookie-mode)))
+  (setq fortune-cookie-cowsay-args  "-f tux -s")
+  (fortune-cookie-mode))
 
 ;; ggtags
 (use-package ggtags
@@ -418,15 +411,13 @@
 
 (use-package flx-ido
   :init
-  (progn
-    (flx-ido-mode)
-    (setq flx-ido-use-faces nil)))
+  (flx-ido-mode)
+  (setq flx-ido-use-faces nil))
 
 (use-package ido-ubiquitous
   :config
-  (progn
-    (setq ido-ubiquitous-allow-on-functional-collection t)
-    (ido-ubiquitous-mode)))
+  (setq ido-ubiquitous-allow-on-functional-collection t)
+  (ido-ubiquitous-mode))
 
 (use-package smex
   :bind* (("M-x" . smex)
@@ -439,10 +430,9 @@
 (use-package ledger-mode
   :mode "\\.ledger\\'"
   :config
-  (progn
-    (define-key ledger-mode-map (kbd "C-c c") 'ledger-mode-clean-buffer)
-    (setq ledger-post-amount-alignment-at :decimal)
-    (use-package flycheck-ledger)))
+  (define-key ledger-mode-map (kbd "C-c c") 'ledger-mode-clean-buffer)
+  (setq ledger-post-amount-alignment-at :decimal)
+  (use-package flycheck-ledger))
 
 ;; less-css
 (use-package less-css-mode
@@ -452,12 +442,11 @@
 (use-package magit
   :commands (magit-status projectile-vc)
   :config
-  (progn
-    (add-to-list 'magit-log-arguments "--no-abbrev-commit")
-    (setq magit-push-always-verify nil
-	  magit-popup-use-prefix-argument 'default
-	  magit-revert-buffers t
-	  magit-completing-read-function 'magit-ido-completing-read)))
+  (add-to-list 'magit-log-arguments "--no-abbrev-commit")
+  (setq magit-push-always-verify nil
+	magit-popup-use-prefix-argument 'default
+	magit-revert-buffers t
+	magit-completing-read-function 'magit-ido-completing-read))
 
 (global-git-commit-mode)
 
@@ -487,34 +476,32 @@
    '((emacs-lisp . t) (gnuplot . t) (C . t) (emacs-lisp . t) (haskell . t)
      (latex . t) (ledger . t) (python . t) (ruby . t) (sh . t)))
   :config
-  (progn
-    (use-package org-journal
-      :commands (org-journal-new-entry))
-    (use-package org-pomodoro
-      :commands (org-pomodoro))
-    (add-hook 'org-mode-hook 'turn-on-auto-fill)
-    (setq org-latex-listings t
-	  org-pretty-entities t
-          org-completion-use-ido t
-	  org-latex-custom-lang-environments '((C "lstlisting"))
-          org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
-                              ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
-                              ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
-                              ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
-                              ("models" "\\models" nil "&#8872;" "" "" "⊧"))
-          org-export-backends '(html beamer ascii latex md))))
+  (use-package org-journal
+    :commands (org-journal-new-entry))
+  (use-package org-pomodoro
+    :commands (org-pomodoro))
+  (add-hook 'org-mode-hook 'turn-on-auto-fill)
+  (setq org-latex-listings t
+	org-pretty-entities t
+	org-completion-use-ido t
+	org-latex-custom-lang-environments '((C "lstlisting"))
+	org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
+			    ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
+			    ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
+			    ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
+			    ("models" "\\models" nil "&#8872;" "" "" "⊧"))
+	org-export-backends '(html beamer ascii latex md)))
 
 ;; code folding
 (use-package origami
   :bind* ("C-S-o" . origami-mode)
   :config
-  (progn
-    (add-to-list 'origami-parser-alist '(processing-mode . origami-c-style-parser))
-    (bind-keys :prefix-map origami-prefix-map
-	       :prefix "C-o"
-	       ("o" . origami-recursively-toggle-node)
-	       ("a" . origami-toggle-all-nodes)
-	       ("c" . origami-show-only-node))))
+  (add-to-list 'origami-parser-alist '(processing-mode . origami-c-style-parser))
+  (bind-keys :prefix-map origami-prefix-map
+	     :prefix "C-o"
+	     ("o" . origami-recursively-toggle-node)
+	     ("a" . origami-toggle-all-nodes)
+	     ("c" . origami-show-only-node)))
 
 ;; pkgbuild
 (use-package pkgbuild-mode
@@ -523,10 +510,9 @@
 ;; popwin
 (use-package popwin
   :config
-  (progn
-    (popwin-mode)
-    ;; cannot use :bind for keymap
-    (global-set-key (kbd "C-z") popwin:keymap)))
+  (popwin-mode)
+  ;; cannot use :bind for keymap
+  (global-set-key (kbd "C-z") popwin:keymap))
 
 ;; powershell
 (use-package powershell
@@ -546,10 +532,9 @@
   :diminish projectile-mode
   :bind-keymap ("M-[" . projectile-command-map)
   :config
-  (progn
-    (setq projectile-enable-caching t
-	  projectile-git-submodule-command nil)
-    (projectile-global-mode)))
+  (setq projectile-enable-caching t
+	projectile-git-submodule-command nil)
+  (projectile-global-mode))
 
 ;; puppet
 (use-package puppet-mode
@@ -559,10 +544,9 @@
 (use-package recentf
   :ensure nil
   :config
-  (progn
-    (setq recentf-max-saved-items 256
-	  recentf-max-menu-items 16)
-    (recentf-mode)))
+  (setq recentf-max-saved-items 256
+	recentf-max-menu-items 16)
+  (recentf-mode))
 
 ;; regex tool
 (use-package regex-tool
@@ -602,14 +586,13 @@
 ;; smart-mode-line
 (use-package smart-mode-line
   :config
-  (progn
-    (setq sml/theme nil
-	  sml/shorten-directory t
-	  sml/name-width '(32 . 48)
-	  sml/shorten-modes t
-	  sml/use-projectile-p 'before-prefixes
-	  sml/projectile-replacement-format "[%s]")
-    (sml/setup)))
+  (setq sml/theme nil
+	sml/shorten-directory t
+	sml/name-width '(32 . 48)
+	sml/shorten-modes t
+	sml/use-projectile-p 'before-prefixes
+	sml/projectile-replacement-format "[%s]")
+  (sml/setup))
 
 ;; smart tabs
 (use-package smart-tabs-mode
@@ -622,10 +605,9 @@
   :bind (("C-M-<" . sp-backward-up-sexp)
 	 ("C-M->" . sp-forward-sexp))
   :init
-  (progn
-    (require 'smartparens-config)
-    (smartparens-global-mode)
-    (show-smartparens-global-mode)))
+  (require 'smartparens-config)
+  (smartparens-global-mode)
+  (show-smartparens-global-mode))
 
 ;; ssh-config
 (use-package ssh-config-mode
@@ -640,8 +622,8 @@
 	  ("C-r" . swiper)
 	  ("C-c C-r" . ivy-resume))
   :config
-  (progn (ivy-mode 1)
-	 (setq ivy-use-virtual-buffers t)))
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t))
 
 ;; toml
 (use-package toml-mode
@@ -650,13 +632,12 @@
 ;; tramp
 (use-package tramp
   :config
-  (progn
-    (setq tramp-verbose 9
-	  tramp-default-method "ssh"
-	  tramp-ssh-controlmaster-options
-	  (concat "-o ControlPath=/tmp/tramp.%%r@%%h:%%p "
-		  "-o ControlMaster=auto "
-		  "-o ControlPersist=no"))))
+  (setq tramp-verbose 9
+	tramp-default-method "ssh"
+	tramp-ssh-controlmaster-options
+	(concat "-o ControlPath=/tmp/tramp.%%r@%%h:%%p "
+		"-o ControlMaster=auto "
+		"-o ControlPersist=no")))
 
 ;; try
 (use-package try
@@ -666,11 +647,10 @@
 (use-package undo-tree
   :diminish undo-tree-mode
   :config
-  (progn
-    (global-undo-tree-mode)
-    (add-to-list 'undo-tree-history-directory-alist
-                 `("." . ,(f-expand "undo-tree" user-emacs-directory)))
-    (setq undo-tree-auto-save-history t)))
+  (global-undo-tree-mode)
+  (add-to-list 'undo-tree-history-directory-alist
+	       `("." . ,(f-expand "undo-tree" user-emacs-directory)))
+  (setq undo-tree-auto-save-history t))
 
 ;; unfill autofill
 (use-package unfill
@@ -713,9 +693,8 @@
 (use-package yasnippet
   :commands (yas-expand yas-insert-snippet)
   :config
-  (progn
-    (use-package java-snippets)
-    (yas-minor-mode)))
+  (use-package java-snippets)
+  (yas-minor-mode))
 
 ;; znc
 (use-package znc
