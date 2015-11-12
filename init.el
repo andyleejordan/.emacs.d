@@ -313,8 +313,10 @@
 (add-to-list 'c-default-style '(csharp-mode . "c#"))
 
 (defun work-style ()
+  (interactive)
   (setq indent-tabs-mode nil)
-  (set-fill-column 90))
+  (set-fill-column 90)
+  (ggtags-mode))
 
 ;; C#
 (use-package csharp-mode
@@ -362,6 +364,11 @@
   (progn
     (setq fortune-cookie-cowsay-args  "-f tux")
     (fortune-cookie-mode)))
+
+;; ggtags
+(use-package ggtags
+  :commands ggtags-mode
+  :diminish ggtags-mode)
 
 ;; git modes
 (use-package gitattributes-mode
