@@ -48,6 +48,7 @@
 (bind-key "C-c q" 'auto-fill-mode)
 (bind-key "C-c v" 'visual-line-mode)
 (bind-key* "C-c m" 'man)
+(bind-key* "C-c w" 'woman)
 
 ;; isearch
 (bind-key "C-s" 'isearch-forward-regexp)
