@@ -3,24 +3,20 @@
 ;; See readme.
 
 ;;; Code:
-;; Emacs Lisp prefer newer
-(setq load-prefer-newer t)
 
 ;;; package setup
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+(setq load-prefer-newer t
+      package-enable-at-startup nil
+      package-archives
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+	("org" . "http://orgmode.org/elpa/")
+	("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
 
-(defun install-use-package ()
-  (when (not (package-installed-p 'use-package))
-    (package-install 'use-package)))
-
-(condition-case nil
-    (install-use-package)
-  (error
-   (package-refresh-contents)
-   (install-use-package)))
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 (setq use-package-verbose t
       use-package-always-ensure t)
@@ -28,17 +24,15 @@
 (eval-when-compile
   (require 'use-package))
 
-(use-package diminish)
+;; packages used in init
 (use-package bind-key)
 (use-package dash)
+(use-package f)
 
 (use-package auto-compile
   :config
   (auto-compile-on-load-mode)
   (auto-compile-on-save-mode))
-
-;; for f-expand
-(use-package f)
 
 ;;; bindings
 ;; miscellaneous
