@@ -229,6 +229,10 @@
   :bind* ("M-o" . ace-window)
   :config (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
 
+;; adaptive word wrapping
+(use-package adaptive-wrap
+  :config (adaptive-wrap-prefix-mode))
+
 ;; ag - the silver searcher
 (use-package ag
   :commands (ag ag-files ag-regexp ag-project ag-dired)
