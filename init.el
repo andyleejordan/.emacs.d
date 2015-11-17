@@ -44,12 +44,6 @@
 (bind-key* "C-c m" 'man)
 (bind-key* "C-c w" 'woman)
 
-;; isearch
-(bind-key "C-s" 'isearch-forward-regexp)
-(bind-key "C-r" 'isearch-backward-regexp)
-(bind-key "C-M-s" 'isearch-forward)
-(bind-key "C-M-r" 'isearch-backward)
-
 ;; window management
 (bind-key* "M-1" 'delete-other-windows)
 (bind-key* "M-2" 'split-window-vertically)
