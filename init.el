@@ -322,6 +322,14 @@
 (use-package demangle-mode
   :commands demangle-mode)
 
+;; diff highlighting
+(use-package diff-hl
+  :config
+  (global-diff-hl-mode)
+  ;; (global-diff-hl-amend-mode)
+  ;; (diff-hl-flydiff-mode)
+  (diff-hl-dired-mode))
+
 ;; docker
 (use-package docker
   :commands docker-mode)
