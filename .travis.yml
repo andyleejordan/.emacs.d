@@ -9,5 +9,6 @@ git:
 before_script:
   - rm -rf ~/.emacs.d ~/.emacs
   - ln -s $(pwd) ~/.emacs.d
+  - emacs --version
 script:
   - emacs --batch --load init.el --kill
