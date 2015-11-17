@@ -314,7 +314,8 @@
   (interactive)
   (setq indent-tabs-mode nil)
   (set-fill-column 90)
-  (ggtags-mode))
+  (ggtags-mode)
+  (electric-spacing-mode))
 
 ;; C#
 (use-package csharp-mode
@@ -339,6 +340,10 @@
   :config
   (global-set-key [remap kill-ring-save] 'easy-kill) ;; M-w prefix
   (global-set-key [remap mark-sexp] 'easy-mark)) ;; C-M-SPC
+
+;; electric spacing
+(use-package electric-spacing
+  :commands electric-spacing-mode)
 
 ;; activate expand-region
 (use-package expand-region
