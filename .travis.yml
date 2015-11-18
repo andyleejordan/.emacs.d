@@ -1,15 +1,18 @@
 sudo: required
 dist: trusty
-addons:
-  apt:
-    packages:
-      - emacs24-nox
 language: generic
 git:
   submodules: true
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get -qq install build-essential libncurses-dev wget
+  - wget https://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.xz
+  - tar xf emacs-24.5.tar.xz
+install:
+  - cd emacs-24.5 && ./configure --without-all && sudo make -j install && cd ..
+  - emacs --version
 before_script:
   - rm -rf ~/.emacs.d ~/.emacs
   - ln -s $(pwd) ~/.emacs.d
-  - emacs --version
 script:
   - emacs --batch --load init.el --kill
