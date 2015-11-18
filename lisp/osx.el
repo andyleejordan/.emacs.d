@@ -23,6 +23,7 @@
       (split-string (shell-command-to-string "man --path") ":" t "\n"))
 
 ;; tramp proxies
+(require 'tramp)
 (add-to-list 'tramp-default-proxies-alist '("\\`.*\\(schwartzmeyer.com\\|cloudapp.net\\|suchcodemuchlove.com\\)\\'" "\\`root\\'" "/ssh:%h:"))
 
 ;; add home info manuals
