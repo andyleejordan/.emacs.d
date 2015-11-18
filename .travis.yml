@@ -1,9 +1,10 @@
-sudo: false
+sudo: required
+dist: trusty
 addons:
   apt:
     packages:
       - emacs24-nox
-language: emacs-lisp
+language: generic
 git:
   submodules: true
 before_script:
