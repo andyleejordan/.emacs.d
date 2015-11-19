@@ -575,8 +575,10 @@
   :commands (term ansi-term sane-term)
   :config
   (setq term-buffer-maximum-size (* 10 2048))
+  ;; fix pasting into term buffers
   (bind-key "C-y" 'term-paste term-raw-map)
-  (bind-key "s-v" 'term-paste term-raw-map))
+  (when (eq system-type 'darwin)
+    (bind-key "s-v" 'term-paste term-raw-map)))
 
 ;; save kill ring
 (use-package savekill)
