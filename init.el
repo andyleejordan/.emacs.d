@@ -121,9 +121,6 @@
       kill-do-not-save-duplicates t
       kill-whole-line t)
 
-;; remove selected region if typing
-(delete-selection-mode)
-
 ;; repeat mark pop
 (setq-default set-mark-command-repeat-pop t)
 
