@@ -361,7 +361,8 @@
 ;; fortune
 (use-package fortune-cookie
   :config
-  (setq fortune-cookie-cowsay-args  "-f tux -s")
+  (setq fortune-cookie-fortune-args "-s"
+	fortune-cookie-cowsay-args "-f tux")
   (fortune-cookie-mode))
 
 ;; ggtags
