@@ -96,9 +96,6 @@
 ;; y/n for yes/no
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;; quit prompt
-(setq confirm-kill-emacs 'y-or-n-p)
-
 ;; start week on Monday
 (setq calendar-week-start-day 1)
 
