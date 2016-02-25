@@ -65,8 +65,10 @@
       (scroll-bar-mode 0)))
 
 ;; Solarized
-(use-package color-theme-sanityinc-solarized
-  :config (load-theme 'sanityinc-solarized-dark t))
+; https://github.com/sellout/emacs-color-theme-solarized/pull/187
+(setq color-themes '())
+(use-package color-theme-solarized
+  :config (load-theme 'solarized t))
 
 ;; smooth scrolling
 (use-package smooth-scroll
