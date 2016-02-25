@@ -70,6 +70,18 @@
 (use-package color-theme-solarized
   :config (load-theme 'solarized t))
 
+;; smart-mode-line
+(use-package smart-mode-line
+  :config
+  (setq sml/theme 'respectful
+	sml/no-confirm-load-theme t
+	sml/shorten-directory t
+	sml/name-width '(32 . 48)
+	sml/shorten-modes t
+	sml/use-projectile-p 'before-prefixes
+	sml/projectile-replacement-format "[%s]")
+  (sml/setup))
+
 ;; smooth scrolling
 (use-package smooth-scroll
   :if (display-graphic-p)
@@ -80,14 +92,6 @@
 
 ;; more context when scrolling
 (setq next-screen-context-lines 4)
-
-;; line/column numbers in mode-line
-(line-number-mode)
-(column-number-mode)
-
-;; status
-(display-time-mode)
-(display-battery-mode)
 
 ;; y/n for yes/no
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -604,17 +608,6 @@
 (use-package sly
   :commands (sly)
   :config (setq inferior-lisp-program (executable-find "sbcl")))
-
-;; smart-mode-line
-(use-package smart-mode-line
-  :config
-  (setq sml/theme nil
-	sml/shorten-directory t
-	sml/name-width '(32 . 48)
-	sml/shorten-modes t
-	sml/use-projectile-p 'before-prefixes
-	sml/projectile-replacement-format "[%s]")
-  (sml/setup))
 
 ;; smart tabs
 (use-package smart-tabs-mode
