@@ -35,6 +35,20 @@
   (auto-compile-on-save-mode))
 
 ;;; bindings
+;; evil
+(use-package evil
+  :config
+  (evil-mode t)
+  (setq evil-want-C-u-scroll t))
+
+(use-package evil-commentary
+  :config (evil-commentary-mode))
+
+(use-package evil-easymotion
+  :config (evilem-default-keybindings "<SPC>"))
+
+(use-package evil-magit)
+
 ;; miscellaneous
 (bind-key "C-c a" 'align-regexp)
 (bind-key "C-c l" 'find-library)
