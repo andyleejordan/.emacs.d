@@ -241,43 +241,9 @@
   :config (setq ag-highlight-search t
 		ag-reuse-buffers t))
 
-(use-package aggressive-indent
-  :config (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
-
-;; Mercurial
-(use-package ahg
-  :commands ahg-status)
-
-;; anzu - number of search matches in modeline
-(use-package anzu
-  :diminish anzu-mode
-  :config (global-anzu-mode))
-
-;; auto update packages
-(use-package auto-package-update
-  :config
-  (setq auto-package-update-interval 1)
-  (when (and (apu--should-update-packages-p)
-	     (not (string= (getenv "CI") "true"))
-	     (y-or-n-p-with-timeout "Update packages?" 5 t))
-    (auto-package-update-now)))
-
-;; avy
-(use-package avy
-  :bind (("M-g M-g" . avy-goto-line)
-	 ("C-." . avy-goto-char-2)))
-
-;; bison
-(use-package bison-mode
-  :mode ("\\.y\\'" "\\.l\\'"))
-
 ;; browse kill ring
 (use-package browse-kill-ring
   :bind ("M-y" . browse-kill-ring))
-
-;; CMake
-(use-package cmake-mode
-  :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'"))
 
 ;; company "complete anything"
 (use-package company
@@ -297,35 +263,6 @@
 	company-backends)
   (setq company-global-modes '(not gud-mode)))
 
-;; crontab
-(use-package crontab-mode
-  :mode "\\.cron\\(tab\\)?\\'")
-
-;; C styles
-(c-add-style "work"
-	     '("bsd"
-	       (c-basic-offset . 4)
-	       (c-offsets-alist . ((arglist-intro . +)))
-	       (indent-tabs-mode . nil)))
-
-(add-to-list 'c-default-style '(c-mode . "work"))
-(add-to-list 'c-default-style '(c++-mode . "work"))
-(add-to-list 'c-default-style '(csharp-mode . "c#"))
-
-(defun work-style ()
-  (interactive)
-  (setq indent-tabs-mode nil)
-  (set-fill-column 90)
-  (ggtags-mode)
-  (electric-spacing-mode))
-
-;; C#
-(use-package csharp-mode
-  :mode "\\.cs$"
-  :config
-  (setq csharp-want-imenu nil)
-  (add-hook 'csharp-mode-hook 'work-style))
-
 ;; automatic demangling
 (use-package demangle-mode
   :commands demangle-mode)
@@ -337,13 +274,6 @@
   ;; (global-diff-hl-amend-mode)
   ;; (diff-hl-flydiff-mode)
   (diff-hl-dired-mode))
-
-;; docker
-(use-package docker
-  :commands docker-mode)
-
-(use-package dockerfile-mode
-  :mode "Dockerfile.*\\'")
 
 ;; better killing
 (use-package easy-kill
@@ -380,27 +310,6 @@
 (use-package ggtags
   :commands ggtags-mode
   :diminish ggtags-mode)
-
-;; git modes
-(use-package gitattributes-mode
-  :disabled t)
-(use-package gitconfig-mode
-  :mode ("/\\.gitconfig\\'" "/\\.git/config\\'" "/git/config\\'" "/\\.gitmodules\\'"))
-(use-package gitignore-mode
-  :mode ("/\\.gitignore\\'" "/\\.git/info/exclude\\'" "/git/ignore\\'"))
-
-;; gnuplot
-(use-package gnuplot
-  :commands (gnuplot-mode gnuplot-make-buffer))
-
-;; handlebars
-(use-package handlebars-mode
-  :mode ("\\.handlebars$" "\\.hbs$"))
-
-;; haskell
-(use-package haskell-mode
-  :mode "\\.\\(?:[gh]s\\|hi\\)\\'"
-  :interpreter ("runghc" "runhaskell"))
 
 ;; ibuffer
 (use-package ibuffer
@@ -440,18 +349,6 @@
   :config (setq smex-history-length 64
 		smex-prompt-string "|-/ "))
 
-;; ledger
-(use-package ledger-mode
-  :mode "\\.ledger\\'"
-  :config
-  (define-key ledger-mode-map (kbd "C-c c") 'ledger-mode-clean-buffer)
-  (setq ledger-post-amount-alignment-at :decimal)
-  (use-package flycheck-ledger))
-
-;; less-css
-(use-package less-css-mode
-  :mode "\\.less\\'")
-
 ;; magit
 (use-package magit
   :commands (magit-status projectile-vc)
@@ -464,47 +361,10 @@
 
 (global-git-commit-mode)
 
-;; markdown
-(use-package markdown-mode
-  :mode ("\\.markdown\\'" "\\.mk?d\\'" "\\.text\\'"))
-
-;; matlab
-(use-package matlab-mode
-  :mode "\\.m$")
-
 ;; multiple-cursors
 (use-package multiple-cursors
   :bind (("C-c c" . mc/edit-lines)
          ("C-c C-c" . mc/mark-all-like-this)))
-
-;; nginx
-(use-package nginx-mode
-  :mode ("nginx.conf$" "/etc/nginx/.*"))
-
-;; org mode extensions
-(use-package org-plus-contrib
-  :mode (("\\.org\\'" . org-mode) ("[0-9]\\{8\\}\\'" . org-mode))
-  :init
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((emacs-lisp . t) (gnuplot . t) (C . t) (emacs-lisp . t) (haskell . t)
-     (latex . t) (ledger . t) (python . t) (ruby . t) (sh . t)))
-  :config
-  (use-package org-journal
-    :commands (org-journal-new-entry))
-  (use-package org-pomodoro
-    :commands (org-pomodoro))
-  (add-hook 'org-mode-hook 'turn-on-auto-fill)
-  (setq org-latex-listings t
-	org-pretty-entities t
-	org-completion-use-ido t
-	org-latex-custom-lang-environments '((C "lstlisting"))
-	org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
-			    ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
-			    ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
-			    ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
-			    ("models" "\\models" nil "&#8872;" "" "" "⊧"))
-	org-export-backends '(html beamer ascii latex md)))
 
 ;; code folding
 (use-package origami
@@ -517,25 +377,12 @@
 	     ("a" . origami-toggle-all-nodes)
 	     ("c" . origami-show-only-node)))
 
-;; pkgbuild
-(use-package pkgbuild-mode
-  :mode "/PKGBUILD\\'")
-
 ;; popwin
 (use-package popwin
   :config
   (popwin-mode)
   ;; cannot use :bind for keymap
   (global-set-key (kbd "C-z") popwin:keymap))
-
-;; powershell
-(use-package powershell
-  :config (add-hook 'powershell-mode-hook 'work-style))
-
-;; processing
-(use-package processing-mode
-  :mode "\\.pde$"
-  :config (use-package processing-snippets))
 
 ;; fix https://github.com/bbatsov/projectile/issues/837
 (setq grep-find-ignored-files nil
@@ -550,10 +397,6 @@
 	projectile-git-submodule-command nil)
   (projectile-global-mode))
 
-;; puppet
-(use-package puppet-mode
-  :mode "\\.pp\\'")
-
 ;; recent files
 (use-package recentf
   :ensure nil
@@ -565,14 +408,6 @@
 ;; regex tool
 (use-package regex-tool
   :commands (regex-tool))
-
-;; ruby
-(use-package ruby-mode)
-
-;; rust
-(use-package rust-mode
-  :mode "\\.rs\\'"
-  :config (use-package flycheck-rust))
 
 ;; sane term
 (use-package sane-term
@@ -621,13 +456,6 @@
   (smartparens-global-mode)
   (show-smartparens-global-mode))
 
-;; ssh-config
-(use-package ssh-config-mode
-  :mode ((".ssh/config\\'"       . ssh-config-mode)
-	 ("sshd?_config\\'"      . ssh-config-mode)
-	 ("known_hosts\\'"       . ssh-known-hosts-mode)
-	 ("authorized_keys2?\\'" . ssh-authorized-keys-mode)))
-
 (use-package swiper
   :disabled t
   :bind* (("C-s" . swiper)
@@ -636,10 +464,6 @@
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t))
-
-;; toml
-(use-package toml-mode
-  :mode "\\.toml$")
 
 ;; tramp
 (use-package tramp
@@ -697,10 +521,6 @@
   :diminish whitespace-cleanup-mode
   :init (global-whitespace-cleanup-mode))
 
-;; yaml
-(use-package yaml-mode
-  :mode "\\.ya?ml\'")
-
 ;; yasnippet
 (use-package yasnippet
   :commands (yas-expand yas-insert-snippet)
@@ -715,6 +535,161 @@
   :config (setq znc-servers
 		`(("schwartzmeyer.com" .
 		   (46728 t ((freenode . ("andrew/freenode" ,znc-password))))))))
+
+;;; syntax support
+;; bison
+(use-package bison-mode
+  :mode ("\\.y\\'" "\\.l\\'"))
+
+;; CMake
+(use-package cmake-mode
+  :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'"))
+
+;; crontab
+(use-package crontab-mode
+  :mode "\\.cron\\(tab\\)?\\'")
+
+;; C styles
+(c-add-style "work"
+	     '("bsd"
+	       (c-basic-offset . 4)
+	       (c-offsets-alist . ((arglist-intro . +)))
+	       (indent-tabs-mode . nil)))
+
+(add-to-list 'c-default-style '(c-mode . "work"))
+(add-to-list 'c-default-style '(c++-mode . "work"))
+(add-to-list 'c-default-style '(csharp-mode . "c#"))
+
+(defun work-style ()
+  (interactive)
+  (setq indent-tabs-mode nil)
+  (set-fill-column 90)
+  (ggtags-mode)
+  (electric-spacing-mode))
+
+;; C#
+(use-package csharp-mode
+  :mode "\\.cs$"
+  :config
+  (setq csharp-want-imenu nil)
+  (add-hook 'csharp-mode-hook 'work-style))
+
+;; docker
+(use-package docker
+  :commands docker-mode)
+
+(use-package dockerfile-mode
+  :mode "Dockerfile.*\\'")
+
+;; git modes
+(use-package gitattributes-mode
+  :disabled t)
+(use-package gitconfig-mode
+  :mode ("/\\.gitconfig\\'" "/\\.git/config\\'" "/git/config\\'" "/\\.gitmodules\\'"))
+(use-package gitignore-mode
+  :mode ("/\\.gitignore\\'" "/\\.git/info/exclude\\'" "/git/ignore\\'"))
+
+;; gnuplot
+(use-package gnuplot
+  :commands (gnuplot-mode gnuplot-make-buffer))
+
+;; handlebars
+(use-package handlebars-mode
+  :mode ("\\.handlebars$" "\\.hbs$"))
+
+;; haskell
+(use-package haskell-mode
+  :mode "\\.\\(?:[gh]s\\|hi\\)\\'"
+  :interpreter ("runghc" "runhaskell"))
+
+;; ledger
+(use-package ledger-mode
+  :mode "\\.ledger\\'"
+  :config
+  (define-key ledger-mode-map (kbd "C-c c") 'ledger-mode-clean-buffer)
+  (setq ledger-post-amount-alignment-at :decimal)
+  (use-package flycheck-ledger))
+
+;; less-css
+(use-package less-css-mode
+  :mode "\\.less\\'")
+
+;; markdown
+(use-package markdown-mode
+  :mode ("\\.markdown\\'" "\\.mk?d\\'" "\\.text\\'"))
+
+;; matlab
+(use-package matlab-mode
+  :mode "\\.m$")
+
+;; nginx
+(use-package nginx-mode
+  :mode ("nginx.conf$" "/etc/nginx/.*"))
+
+;; org mode extensions
+(use-package org-plus-contrib
+  :mode (("\\.org\\'" . org-mode) ("[0-9]\\{8\\}\\'" . org-mode))
+  :init
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t) (gnuplot . t) (C . t) (emacs-lisp . t) (haskell . t)
+     (latex . t) (ledger . t) (python . t) (ruby . t) (sh . t)))
+  :config
+  (use-package org-journal
+    :commands (org-journal-new-entry))
+  (use-package org-pomodoro
+    :commands (org-pomodoro))
+  (add-hook 'org-mode-hook 'turn-on-auto-fill)
+  (setq org-latex-listings t
+	org-pretty-entities t
+	org-completion-use-ido t
+	org-latex-custom-lang-environments '((C "lstlisting"))
+	org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
+			    ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
+			    ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
+			    ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
+			    ("models" "\\models" nil "&#8872;" "" "" "⊧"))
+	org-export-backends '(html beamer ascii latex md)))
+
+;; pkgbuild
+(use-package pkgbuild-mode
+  :mode "/PKGBUILD\\'")
+
+;; powershell
+(use-package powershell
+  :config (add-hook 'powershell-mode-hook 'work-style))
+
+;; processing
+(use-package processing-mode
+  :mode "\\.pde$"
+  :config (use-package processing-snippets))
+
+;; puppet
+(use-package puppet-mode
+  :mode "\\.pp\\'")
+
+;; ruby
+(use-package ruby-mode)
+
+;; rust
+(use-package rust-mode
+  :mode "\\.rs\\'"
+  :config (use-package flycheck-rust))
+
+;; ssh-config
+(use-package ssh-config-mode
+  :mode ((".ssh/config\\'"       . ssh-config-mode)
+	 ("sshd?_config\\'"      . ssh-config-mode)
+	 ("known_hosts\\'"       . ssh-known-hosts-mode)
+	 ("authorized_keys2?\\'" . ssh-authorized-keys-mode)))
+
+;; toml
+(use-package toml-mode
+  :mode "\\.toml$")
+
+;; yaml
+(use-package yaml-mode
+  :mode "\\.ya?ml\'")
 
 ;;; start server
 (server-start)
