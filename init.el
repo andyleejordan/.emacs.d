@@ -315,10 +315,6 @@
 (use-package electric-spacing
   :commands electric-spacing-mode)
 
-;; activate expand-region
-(use-package expand-region
-  :bind ("C-=" . er/expand-region))
-
 ;; flycheck
 (use-package flycheck
   :init (global-flycheck-mode))
