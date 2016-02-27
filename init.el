@@ -197,7 +197,8 @@
 (setq large-file-warning-threshold (* 100 1000 1000))
 
 ;; recent files
-(setq recentf-max-saved-items 256)
+(setq recentf-max-saved-items 256
+      recentf-max-menu-items 16)
 (recentf-mode)
 
 ;; set auto revert of buffers if file is changed externally
@@ -392,14 +393,6 @@
   (setq projectile-enable-caching t
 	projectile-git-submodule-command nil)
   (projectile-global-mode))
-
-;; recent files
-(use-package recentf
-  :ensure nil
-  :config
-  (setq recentf-max-saved-items 256
-	recentf-max-menu-items 16)
-  (recentf-mode))
 
 ;; regex tool
 (use-package regex-tool
