@@ -150,10 +150,6 @@
 ;; start week on Monday
 (setq calendar-week-start-day 1)
 
-;; cursor settings
-(setq blink-cursor-blinks 0)
-(blink-cursor-mode)
-
 ;; window undo/redo
 (winner-mode)
 
