@@ -311,12 +311,6 @@
 (use-package demangle-mode
   :commands demangle-mode)
 
-;; better killing
-(use-package easy-kill
-  :config
-  (global-set-key [remap kill-ring-save] 'easy-kill) ;; M-w prefix
-  (global-set-key [remap mark-sexp] 'easy-mark)) ;; C-M-SPC
-
 ;; electric spacing
 (use-package electric-spacing
   :commands electric-spacing-mode)
