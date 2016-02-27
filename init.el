@@ -121,6 +121,18 @@
 	sml/projectile-replacement-format "[%s]")
   (sml/setup))
 
+;; diff highlighting
+(use-package diff-hl
+  :config
+  (global-diff-hl-mode)
+  ;; (global-diff-hl-amend-mode)
+  ;; (diff-hl-flydiff-mode)
+  (diff-hl-dired-mode))
+
+;; visually wrap lines
+(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+
+;;; behavior
 ;; smooth scrolling
 (use-package smooth-scroll
   :if (display-graphic-p)
@@ -141,9 +153,6 @@
 ;; cursor settings
 (setq blink-cursor-blinks 0)
 (blink-cursor-mode)
-
-;; visually wrap lines
-(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
 ;; window undo/redo
 (winner-mode)
@@ -301,14 +310,6 @@
 ;; automatic demangling
 (use-package demangle-mode
   :commands demangle-mode)
-
-;; diff highlighting
-(use-package diff-hl
-  :config
-  (global-diff-hl-mode)
-  ;; (global-diff-hl-amend-mode)
-  ;; (diff-hl-flydiff-mode)
-  (diff-hl-dired-mode))
 
 ;; better killing
 (use-package easy-kill
