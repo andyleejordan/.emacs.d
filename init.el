@@ -405,15 +405,6 @@
   (smartparens-global-mode)
   (show-smartparens-global-mode))
 
-(use-package swiper
-  :disabled t
-  :bind* (("C-s" . swiper)
-	  ("C-r" . swiper)
-	  ("C-c C-r" . ivy-resume))
-  :config
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t))
-
 ;; tramp
 (use-package tramp
   :config
