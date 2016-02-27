@@ -359,11 +359,6 @@
 
 (global-git-commit-mode)
 
-;; multiple-cursors
-(use-package multiple-cursors
-  :bind (("C-c c" . mc/edit-lines)
-         ("C-c C-c" . mc/mark-all-like-this)))
-
 ;; code folding
 (use-package origami
   :bind* ("C-S-o" . origami-mode)
