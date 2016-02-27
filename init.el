@@ -441,10 +441,6 @@
 (use-package virtualenvwrapper
   :commands (venv-workon))
 
-;; way better regexp
-(use-package visual-regexp
-  :bind ("M-%" . vr/query-replace))
-
 ;; which-key
 (use-package which-key
   :diminish which-key-mode
