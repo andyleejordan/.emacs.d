@@ -121,16 +121,11 @@
 	sml/projectile-replacement-format "[%s]")
   (sml/setup))
 
-;; diff highlighting
-(use-package diff-hl
-  :config
-  (global-diff-hl-mode)
-  ;; (global-diff-hl-amend-mode)
-  ;; (diff-hl-flydiff-mode)
-  (diff-hl-dired-mode))
-
 ;; visually wrap lines
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+;; highlight changes
+(use-package git-gutter
+  :config (global-git-gutter-mode))
 
 ;;; behavior
 ;; smooth scrolling
