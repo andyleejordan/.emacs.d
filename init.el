@@ -300,6 +300,10 @@
 (use-package demangle-mode
   :commands demangle-mode)
 
+;; dtrt
+(use-package dtrt-indent
+  :config (dtrt-indent-mode))
+
 ;; electric spacing
 (use-package electric-spacing
   :commands electric-spacing-mode)
@@ -378,11 +382,6 @@
 (use-package sly
   :commands (sly)
   :config (setq inferior-lisp-program (executable-find "sbcl")))
-
-;; smart tabs
-(use-package smart-tabs-mode
-  :disabled t
-  :config (smart-tabs-insinuate 'c 'c++ 'python 'ruby))
 
 ;; activate smartparens
 (use-package smartparens
