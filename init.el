@@ -121,8 +121,6 @@
 	sml/projectile-replacement-format "[%s]")
   (sml/setup))
 
-;; visually wrap lines
-(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 ;; highlight changes
 (use-package git-gutter
   :config (global-git-gutter-mode))
