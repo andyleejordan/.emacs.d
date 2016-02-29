@@ -531,7 +531,9 @@
   :mode "\\.ledger\\'"
   :config
   (define-key ledger-mode-map (kbd "C-c c") 'ledger-mode-clean-buffer)
-  (setq ledger-post-amount-alignment-at :decimal)
+  (setq ledger-post-amount-alignment-at :decimal
+        ledger-post-amount-alignment-column 49
+        ledger-clear-whole-transactions t)
   (use-package flycheck-ledger))
 
 ;; less-css
