@@ -54,6 +54,9 @@
 
 (use-package evil-magit)
 
+(use-package evil-surround
+  :config (global-evil-surround-mode))
+
 ;; miscellaneous
 (bind-key "C-c a" 'align-regexp)
 (bind-key "C-c l" 'find-library)
