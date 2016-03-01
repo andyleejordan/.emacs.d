@@ -49,6 +49,9 @@
 (use-package evil-easymotion
   :config (evilem-default-keybindings "<SPC>"))
 
+(use-package evil-escape
+  :config (evil-escape-mode))
+
 (use-package evil-magit)
 
 ;; miscellaneous
