@@ -37,9 +37,11 @@
 ;;; bindings
 ;; evil
 (use-package evil
-  :config
-  (evil-mode t)
-  (setq evil-want-C-u-scroll t))
+  :init
+  (setq evil-want-C-u-scroll t
+        evil-cross-lines t
+        evil-disable-insert-state-bindings t)
+  (evil-mode t))
 
 (use-package evil-commentary
   :config (evil-commentary-mode))
