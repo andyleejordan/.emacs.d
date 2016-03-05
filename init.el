@@ -154,6 +154,9 @@
 ;; window undo/redo
 (winner-mode)
 
+;; tabs are truly evil
+(setq-default indent-tabs-mode nil)
+
 ;;; settings
 ;; enable all commands
 (setq disabled-command-function nil)
@@ -478,8 +481,7 @@
 (c-add-style "work"
 	     '("bsd"
 	       (c-basic-offset . 4)
-	       (c-offsets-alist . ((arglist-intro . +)))
-	       (indent-tabs-mode . nil)))
+	       (c-offsets-alist . ((arglist-intro . +)))))
 
 (add-to-list 'c-default-style '(c-mode . "work"))
 (add-to-list 'c-default-style '(c++-mode . "work"))
@@ -487,7 +489,6 @@
 
 (defun work-style ()
   (interactive)
-  (setq indent-tabs-mode nil)
   (set-fill-column 90)
   (ggtags-mode)
   (electric-spacing-mode))
