@@ -527,6 +527,10 @@
   :mode "\\.\\(?:[gh]s\\|hi\\)\\'"
   :interpreter ("runghc" "runhaskell"))
 
+;; json
+(use-package json-mode
+  :mode "\\.json$")
+
 ;; ledger
 (use-package ledger-mode
   :mode "\\.ledger\\'"
