@@ -588,6 +588,7 @@
 
 ;; powershell
 (use-package powershell
+  :mode ("\\.ps[dm]?1\\'" . powershell-mode)
   :config (add-hook 'powershell-mode-hook 'work-style))
 
 ;; processing
