@@ -489,9 +489,8 @@
 
 (defun work-style ()
   (interactive)
-  (set-fill-column 90)
   (ggtags-mode)
-  (electric-spacing-mode))
+  (set-fill-column 90))
 
 ;; C#
 (use-package csharp-mode
