@@ -211,12 +211,6 @@
 ;; symlink version-control follow
 (setq vc-follow-symlinks t)
 
-;; add more modes
-(add-to-list 'auto-mode-alist '("\\.ino\\'" . c-mode))
-(add-to-list 'auto-mode-alist '("\\.vcsh\\'" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
-(add-to-list 'magic-mode-alist '(";;; " . emacs-lisp-mode))
-
 ;; dired
 (setq dired-dwim-target t ; enable side-by-side dired buffer targets
       dired-recursive-copies 'always ; better recursion in dired
@@ -467,6 +461,12 @@
 		   (46728 t ((freenode . ("andrew/freenode" ,znc-password))))))))
 
 ;;; syntax support
+;; mode mappings
+(add-to-list 'auto-mode-alist '("\\.ino\\'" . c-mode))
+(add-to-list 'auto-mode-alist '("\\.vcsh\\'" . conf-mode))
+(add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
+(add-to-list 'magic-mode-alist '(";;; " . emacs-lisp-mode))
+
 ;; bison
 (use-package bison-mode
   :mode ("\\.y\\'" "\\.l\\'"))
