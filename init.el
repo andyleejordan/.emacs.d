@@ -311,9 +311,7 @@
   :config
   (use-package evil-magit)
   (add-to-list 'magit-log-arguments "--no-abbrev-commit")
-  (setq magit-push-always-verify nil
-	magit-popup-use-prefix-argument 'default
-	magit-revert-buffers t
+  (setq magit-popup-use-prefix-argument 'default
 	magit-completing-read-function 'magit-ido-completing-read))
 
 (global-git-commit-mode)
