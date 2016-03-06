@@ -46,15 +46,8 @@
   :commands (M2)
   :mode ("\\.m2\\'" . M2-mode))
 
-;; frame size
-(add-to-list 'default-frame-alist '(height . 44))
-(add-to-list 'default-frame-alist '(width . 90))
-
 ;; delete by moving to trash
 (setq delete-by-moving-to-trash t)
-
-;; set font
-(set-face-attribute 'default nil :font "Hack")
 
 ;; open file's location in Finder
 (defun finder ()
