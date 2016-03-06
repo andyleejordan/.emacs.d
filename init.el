@@ -52,7 +52,6 @@
 (use-package evil-escape
   :config (evil-escape-mode))
 
-(use-package evil-magit)
 
 (use-package evil-surround
   :config (global-evil-surround-mode))
@@ -310,6 +309,7 @@
 (use-package magit
   :commands (magit-status projectile-vc)
   :config
+  (use-package evil-magit)
   (add-to-list 'magit-log-arguments "--no-abbrev-commit")
   (setq magit-push-always-verify nil
 	magit-popup-use-prefix-argument 'default
