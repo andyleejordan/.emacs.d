@@ -16,8 +16,6 @@
 
 ;; set for shell-command-to-string on remote systems
 (setenv "TTY" "/dev/ttys001")
-(setenv "TMPDIR" "/tmp")
-(setenv "SHELL" "bash")
 
 ;; fix woman's manpath on OS X
 (setq woman-manpath
