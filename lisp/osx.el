@@ -8,6 +8,7 @@
 
 ;; pull in path
 (use-package "exec-path-from-shell"
+  :disabled t
   :config
   (progn
     (add-to-list 'exec-path-from-shell-variables "SSH_AUTH_SOCK")
