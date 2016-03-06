@@ -239,31 +239,7 @@
   (when (buffer-file-name)
     (kill-new (f-filename (buffer-file-name)))))
 
-;; load Linux configuration
-(use-package linux
-  :ensure nil
-  :load-path "lisp/"
-  :if (eq system-type 'gnu/linux))
-
-;; load OS X configurations
-(use-package osx
-  :ensure nil
-  :load-path "lisp/"
-  :if (eq system-type 'darwin))
-
-;; load Windows configurations
-(use-package windows
-  :ensure nil
-  :load-path "lisp/"
-  :if (eq system-type 'windows-nt))
-
-;;; load local settings
-(use-package local
-  :ensure nil
-  :load-path "site-lisp/")
-
 ;;; extensions
-
 ;; adaptive word wrapping
 (use-package adaptive-wrap
   :config (adaptive-wrap-prefix-mode))
@@ -627,6 +603,29 @@
 
 ;;; start server
 (server-start)
+;;; system specific packages
+;; load Linux configuration
+(use-package linux
+  :ensure nil
+  :load-path "lisp/"
+  :if (eq system-type 'gnu/linux))
+
+;; load OS X configurations
+(use-package osx
+  :ensure nil
+  :load-path "lisp/"
+  :if (eq system-type 'darwin))
+
+;; load Windows configurations
+(use-package windows
+  :ensure nil
+  :load-path "lisp/"
+  :if (eq system-type 'windows-nt))
+
+;;; load local settings
+(use-package local
+  :ensure nil
+  :load-path "site-lisp/")
 
 ;;; provide init package
 (provide 'init)
