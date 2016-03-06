@@ -601,8 +601,6 @@
 (use-package yaml-mode
   :mode "\\.ya?ml\'")
 
-;;; start server
-(server-start)
 ;;; system specific packages
 ;; load Linux configuration
 (use-package linux
