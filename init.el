@@ -365,7 +365,8 @@
     :config (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
   (require 'smartparens-config)
   (smartparens-global-mode)
-  (show-smartparens-global-mode))
+  (show-smartparens-global-mode)
+  (smartparens-global-strict-mode))
 
 ;; tramp
 (use-package tramp
