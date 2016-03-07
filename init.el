@@ -44,6 +44,7 @@
   (evil-mode t))
 
 (use-package evil-commentary
+  :diminish evil-commentary-mode
   :config (evil-commentary-mode))
 
 (use-package evil-easymotion
@@ -52,6 +53,7 @@
 (use-package evil-ediff)
 
 (use-package evil-escape
+  :diminish evil-escape-mode
   :config (evil-escape-mode))
 
 (use-package evil-matchit
@@ -138,6 +140,7 @@
 
 ;; highlight changes
 (use-package git-gutter
+  :diminish git-gutter-mode
   :config (global-git-gutter-mode))
 
 ;;; behavior
@@ -291,6 +294,7 @@
 
 ;; flycheck
 (use-package flycheck
+  :diminish flycheck-mode
   :init (global-flycheck-mode))
 
 ;; flyspell - use aspell instead of ispell
@@ -368,6 +372,7 @@
   :diminish smartparens-mode
   :init
   (use-package evil-smartparens
+    :diminish evil-smartparens-mode
     :config (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
   (require 'smartparens-config)
   (smartparens-global-mode)
