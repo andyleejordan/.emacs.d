@@ -92,8 +92,6 @@
 (use-package evil-matchit
   :config (global-evil-matchit-mode))
 
-(use-package evil-org)
-
 (use-package evil-surround
   :config (global-evil-surround-mode))
 
@@ -546,6 +544,7 @@
    '((emacs-lisp . t) (gnuplot . t) (C . t) (emacs-lisp . t) (haskell . t)
      (latex . t) (ledger . t) (python . t) (ruby . t) (sh . t)))
   :config
+  (use-package evil-org)
   (use-package org-journal
     :commands (org-journal-new-entry))
   (use-package org-pomodoro
