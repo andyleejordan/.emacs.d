@@ -57,6 +57,7 @@
 (use-package evil-matchit
   :config (global-evil-matchit-mode))
 
+(use-package evil-org)
 
 (use-package evil-surround
   :config (global-evil-surround-mode))
