@@ -54,6 +54,9 @@
 (use-package evil-escape
   :config (evil-escape-mode))
 
+(use-package evil-matchit
+  :config (global-evil-matchit-mode))
+
 
 (use-package evil-surround
   :config (global-evil-surround-mode))
