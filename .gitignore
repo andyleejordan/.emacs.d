@@ -1,6 +1,4 @@
 *.elc
-/.last-package-update-day
-/.mc-lists.el
 /.mc-lists.el
 /auto-save-list/
 /backups/
