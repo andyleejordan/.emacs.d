@@ -34,6 +34,39 @@
   (auto-compile-on-load-mode)
   (auto-compile-on-save-mode))
 
+;;; files
+;; backups
+(setq backup-by-copying t
+      delete-old-versions t
+      kept-new-versions 4
+      kept-old-versions 2
+      version-control t
+      backup-directory-alist `(("." . ,(f-expand
+                                        "backups" user-emacs-directory))))
+;; 100 MB
+(setq large-file-warning-threshold (* 100 1000 1000))
+
+;; recent files
+(setq recentf-max-saved-items 256
+      recentf-max-menu-items 16)
+(recentf-mode)
+
+;; set auto revert of buffers if file is changed externally
+(global-auto-revert-mode)
+
+;; symlink version-control follow
+(setq vc-follow-symlinks t)
+
+;; dired
+(setq dired-dwim-target t ; enable side-by-side dired buffer targets
+      dired-recursive-copies 'always ; better recursion in dired
+      dired-recursive-deletes 'top
+      dired-listing-switches "-lahp")
+
+;; compilation
+(setq compilation-ask-about-save nil
+      compilation-always-kill t)
+
 ;;; bindings
 ;; evil
 (use-package evil
@@ -187,39 +220,6 @@
 
 ;; set terminfo
 (setq system-uses-terminfo nil)
-
-;;; files
-;; backups
-(setq backup-by-copying t
-      delete-old-versions t
-      kept-new-versions 4
-      kept-old-versions 2
-      version-control t
-      backup-directory-alist `(("." . ,(f-expand
-                                        "backups" user-emacs-directory))))
-;; 100 MB
-(setq large-file-warning-threshold (* 100 1000 1000))
-
-;; recent files
-(setq recentf-max-saved-items 256
-      recentf-max-menu-items 16)
-(recentf-mode)
-
-;; set auto revert of buffers if file is changed externally
-(global-auto-revert-mode)
-
-;; symlink version-control follow
-(setq vc-follow-symlinks t)
-
-;; dired
-(setq dired-dwim-target t ; enable side-by-side dired buffer targets
-      dired-recursive-copies 'always ; better recursion in dired
-      dired-recursive-deletes 'top
-      dired-listing-switches "-lahp")
-
-;; compilation
-(setq compilation-ask-about-save nil
-      compilation-always-kill t)
 
 ;;; functions
 (defun compile-init ()
