@@ -2,22 +2,16 @@
 [[https://travis-ci.org/andschwa/.emacs.d][https://travis-ci.org/andschwa/.emacs.d.svg?branch=master]]
 
 Utilizes [[https://github.com/jwiegley/use-package][jwiegley's use-package]] macro to cleanly and quickly require,
-install via package.el, and setup various extensions. Enables lots of
+install via `package.el`, and setup various extensions. Enables lots of
 lovely minor modes, and conditionally loads operating and local system
 specific code.
 
 * Notable packages
-- [[https://github.com/emacs-helm/helm/][Helm]] as complete =M-x= replacement
 - [[https://github.com/magit/magit][Magit]] is a Git Porcelain
+- [[https://www.emacswiki.org/emacs/Evil][Evil]] for Vim emulation
 - [[https://github.com/bbatsov/projectile][Projectile]] to manage and interact with projects
-- [[https://github.com/bbatsov/zenburn-emacs/][Zenburn theme]] because Solarized always breaks
-- [[https://github.com/Bruce-Connor/smart-mode-line/][Smart Mode Line]] makes the mode line truly informative
 - [[https://github.com/jwiegley/use-package][use-package]] organizes =init.el= and manages packages
 - [[https://company-mode.github.io/][Company]] is the best auto-completion framework
-- [[https://github.com/leoliu/easy-kill][easy-kill]] makes killing and marking things much easier
-- [[https://github.com/magnars/expand-region.el][Expand region]] lets you expand the selected region intuitively
-- [[https://github.com/abo-abo/avy][avy]] is a better Ace Jump
-- [[https://github.com/abo-abo/ace-window][ace-window]] is avy but for windows
 - [[https://github.com/flycheck/flycheck][Flycheck]] provides on-the-fly syntax and compilation checking
 - [[http://www.ledger-cli.org/3.0/doc/ledger-mode.html][Ledger]] because double-entry bookkeeping is all the rage
 - [[http://www.dr-qubit.org/emacs.php#undo-tree][Undo Tree]] records edits as a traversable graph
@@ -44,7 +38,7 @@ https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html#Narrowi
 ** Using quote marks within verbatim/code markup in org-mode
 - Unicode: <U200B> /xe2/x80/x8b ZERO WIDTH SPACE
 - Insert using: (C-x 8 RET 200b RET)
-** Quickly inserting =#+begin_src= with =<s <tab>=
+** Quickly insert =#+begin_src= with =<s <tab>=
 - http://orgmode.org/org.html#Easy-Templates
 ** Sudo mode using Tramp =C-x C-f /ssh:you@host|sudo:host:/file=
 - http://www.emacswiki.org/emacs/TrampMode
@@ -87,10 +81,6 @@ From [[https://stackoverflow.com/a/271136][StackOverflow]]:
 - Use =C-c C-i= and choose the "string" syntax
 - Copy the regexp without the surrounding quotes
 - Use =C-c C-q= to close regexp-builder
-** Helm commands
-- =r= for regexp, =<tab>= to jump
-- =b= for resume
-- =C-o= to move to next input source
 ** Projectile commands
 *** Project
 - switch :: p
@@ -124,7 +114,6 @@ tic -o ~/.terminfo
 
 ** Quoting characters =C-q=
 - newline :: C-j
-** Find package code =find-library=
 ** Partially evaluate list elements
 - (add-to-list 'somelist `(symbol . ,(expression to be evaluated)))
 - The backquote is like a normal quote except it evaluates elements
@@ -150,6 +139,7 @@ tic -o ~/.terminfo
 - =ielm= Inferior Elisp REPL
 - =cadr= for last item, as in, =(car (cdr foo))=
 - =nth= and =elt=
+- =find-library= to open library's code
 ** View Lossage
 Use =M-x view-lossage= to see the most recent 300 keystrokes, per
 [[http://emacsredux.com/blog/2014/12/23/lossage/][Emacs Redux]]
@@ -247,18 +237,3 @@ Copy =nextstep/Emacs.app= to desired location
 #+BEGIN_SRC sh
   rm -rf ~/.emacs.d/elpa
 #+END_SRC
-* deprecated configurations
-** jabber
-#+begin_src elisp
-  ;; jabber
-  (use-package jabber
-    :config (setq jabber-account-list
-                  '(("user@server.com"
-                     (:password . "password")
-                     (:network-server . "server.com")
-                     (:port . 5222)
-                     (:connection-type . starttls))))
-    :bind ("C-x j" . jabber-connect-all))
-#+end_src
-
-#+end_src
