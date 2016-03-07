@@ -126,17 +126,9 @@
   (customize-set-variable 'frame-background-mode 'dark)
   (load-theme 'solarized t))
 
-;; smart-mode-line
-(use-package smart-mode-line
-  :config
-  (setq sml/theme 'respectful
-	sml/no-confirm-load-theme t
-	sml/shorten-directory t
-	sml/name-width '(32 . 48)
-	sml/shorten-modes t
-	sml/use-projectile-p 'before-prefixes
-	sml/projectile-replacement-format "[%s]")
-  (sml/setup))
+;; Powerline
+(use-package powerline
+  :config (powerline-default-theme))
 
 ;; highlight changes
 (use-package git-gutter
