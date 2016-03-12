@@ -72,6 +72,7 @@
 (use-package evil
   :init
   (setq evil-want-C-u-scroll t
+        evil-want-fine-undo 'no
         evil-cross-lines t
         evil-disable-insert-state-bindings t)
   (evil-mode t))
