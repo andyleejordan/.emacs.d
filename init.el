@@ -388,9 +388,9 @@
   :diminish undo-tree-mode
   :config
   (global-undo-tree-mode)
-  (add-to-list 'undo-tree-history-directory-alist
-	       `("." . ,(f-expand "undo-tree" user-emacs-directory)))
-  (setq undo-tree-auto-save-history t))
+  (setq undo-tree-history-directory-alist
+	`(("." . ,(f-expand "undo-tree" user-emacs-directory)))
+	undo-tree-auto-save-history t))
 
 ;; unfill autofill
 (use-package unfill
