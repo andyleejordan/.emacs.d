@@ -321,7 +321,9 @@
 ;; ggtags
 (use-package ggtags
   :commands ggtags-mode
-  :diminish ggtags-mode)
+  :diminish ggtags-mode
+  :config
+  (evil-define-key 'normal ggtags-mode-map (kbd "g d") 'ggtags-find-tag-dwim))
 
 ;; magit
 (use-package magit
