@@ -291,7 +291,10 @@
 
 ;; dtrt
 (use-package dtrt-indent
-  :config (dtrt-indent-mode))
+  :config
+  (dtrt-indent-mode)
+  (setq dtrt-indent-min-quality 60
+        dtrt-indent-verbosity 3))
 
 ;; electric spacing
 (use-package electric-spacing
