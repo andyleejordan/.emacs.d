@@ -75,6 +75,7 @@
         evil-want-fine-undo 'no
         evil-cross-lines t
         evil-disable-insert-state-bindings t)
+  (define-key Info-mode-map "g" nil)
   (evil-mode t))
 
 (use-package evil-commentary
@@ -291,6 +292,7 @@
 
 ;; dtrt
 (use-package dtrt-indent
+  :load-path "site-lisp/dtrt-indent"
   :config
   (dtrt-indent-mode)
   (setq dtrt-indent-min-quality 60
@@ -382,6 +384,7 @@
   :diminish smartparens-mode
   :init
   (use-package evil-smartparens
+    :load-path "site-lisp/evil-smartparens"
     :diminish evil-smartparens-mode
     :config (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
   (require 'smartparens-config)
@@ -547,7 +550,8 @@
 (use-package markdown-mode
   :mode ("\\.markdown\\'" "\\.mk?d\\'" "\\.text\\'")
   :config
-  (evil-define-key 'normal markdown-mode-map (kbd "g d") 'markdown-jump))
+  (evil-define-key 'normal markdown-mode-map (kbd "g d") 'markdown-jump)
+  (evil-define-key 'normal markdown-mode-map (kbd "g x") 'markdown-follow-link-at-point))
 
 ;; matlab
 (use-package matlab-mode
@@ -571,6 +575,7 @@
     :commands (org-journal-new-entry))
   (use-package org-pomodoro
     :commands (org-pomodoro))
+  (evil-define-key 'normal org-mode-map (kbd "g x") 'org-open-at-point)
   (add-hook 'org-mode-hook 'turn-on-auto-fill)
   (setq org-latex-listings t
 	org-pretty-entities t
