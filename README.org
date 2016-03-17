@@ -133,13 +133,21 @@ tic -o ~/.terminfo
 - =message= and =princ= for printing
 - =get-buffer-create= for buffers
 - =add-to-list=, =append= and =list= for lists
+- =mapcar= with list of results
+- =mapconcat= for string of results
+- =dolist= for mapc with implicit bind
 - =concat= and =format= for strings
+- =cadr= for last item of pair, as in, =(car (cdr foo))=
+- =cons= to append without copying
+- =remove= to filter items from list
 - =getenv=, =setenv=, =compilation-environment= for env
 - =executable-find= for binaries
 - =ielm= Inferior Elisp REPL
-- =cadr= for last item, as in, =(car (cdr foo))=
 - =nth= and =elt=
 - =find-library= to open library's code
+- =cond= is better than =if= / =else=
+- =let= for friendly names should be used liberally
+- =save-excursion= to restore point
 ** View Lossage
 Use =M-x view-lossage= to see the most recent 300 keystrokes, per
 [[http://emacsredux.com/blog/2014/12/23/lossage/][Emacs Redux]]
