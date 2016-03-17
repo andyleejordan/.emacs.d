@@ -17,6 +17,17 @@ specific code.
 - [[http://www.dr-qubit.org/emacs.php#undo-tree][Undo Tree]] records edits as a traversable graph
 - [[https://github.com/lewang/ws-butler][Whitespace Butler]] unobtrusively cleans up whitespace
 - [[https://github.com/capitaomorte/yasnippet][YASnippet]] is a great template system
+* Evil
+** easy-motion aka ace-jump =SPC<motion><char>=
+** find tag aka definition =gd=
+** open link in browser =gx=
+** reselect visual aka region =gv=
+** comment with =gc=
+** select paragraph =vip=
+** move up delimiter =[(= / =[{=
+** jump forward / backward aka pop / push mark =C-o= / =C-i=
+** repeat find / to (like =.=) =;=
+** substitute =s= is replace =r= and stay in insert
 * Elisp
 ** =(some-minor-mode)= enables a mode
 Enables when the argument is nil or positive and disables when zero or
