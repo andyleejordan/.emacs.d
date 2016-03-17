@@ -545,7 +545,9 @@
 
 ;; markdown
 (use-package markdown-mode
-  :mode ("\\.markdown\\'" "\\.mk?d\\'" "\\.text\\'"))
+  :mode ("\\.markdown\\'" "\\.mk?d\\'" "\\.text\\'")
+  :config
+  (evil-define-key 'normal markdown-mode-map (kbd "g d") 'markdown-jump))
 
 ;; matlab
 (use-package matlab-mode
