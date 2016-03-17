@@ -191,6 +191,9 @@
 ;; tabs are truly evil
 (setq-default indent-tabs-mode nil)
 
+;; sentences end with one space
+(setq sentence-end-double-space nil)
+
 ;;; settings
 ;; enable all commands
 (setq disabled-command-function nil)
