@@ -99,7 +99,7 @@
 ;; miscellaneous
 (bind-key "C-c a" 'align-regexp)
 (bind-key "C-c l" 'find-library)
-(bind-key "C-c x" 'eval-region)
+(bind-key "C-c x" 'eval-region-or-buffer)
 (bind-key "C-c q" 'auto-fill-mode)
 (bind-key "C-c v" 'visual-line-mode)
 (bind-key* "C-c m" 'man)
@@ -228,6 +228,17 @@
   "Byte recompile user Emacs directory."
   (interactive)
   (byte-recompile-directory user-emacs-directory))
+
+(defun eval-region-or-buffer ()
+  "Evaluate the selection, or, if empty, the whole buffer."
+  (interactive)
+  (let ((debug-on-error t))
+    (cond
+     (mark-active
+      (call-interactively 'eval-region)
+      (setq deactivate-mark t))
+     (t
+      (eval-buffer)))))
 
 (defun copy-buffer-file-path ()
   "Put current buffer's short path into the kill ring."
