@@ -17,6 +17,31 @@ specific code.
 - [[http://www.dr-qubit.org/emacs.php#undo-tree][Undo Tree]] records edits as a traversable graph
 - [[https://github.com/lewang/ws-butler][Whitespace Butler]] unobtrusively cleans up whitespace
 - [[https://github.com/capitaomorte/yasnippet][YASnippet]] is a great template system
+* Elisp
+** =(some-minor-mode)= enables a mode
+Enables when the argument is nil or positive and disables when zero or
+negative.
+** =add-hook= and =eval-after-load= for conditional execution
+** =expand-file-name= and =f-expand= for filename expansion
+** =file-name-basename= and =file-name-nondirectory= etc.
+** =message= and =princ= for printing
+** =get-buffer-create= for buffers
+** =add-to-list=, =append= and =list= for lists
+** =mapcar= with list of results
+** =mapconcat= for string of results
+** =dolist= for mapc with implicit bind
+** =concat= and =format= for strings
+** =cadr= for last item of pair, as in, =(car (cdr foo))=
+** =cons= to append without copying
+** =remove= to filter items from list
+** =getenv=, =setenv=, =compilation-environment= for env
+** =executable-find= for binaries
+** =ielm= Inferior Elisp REPL
+** =nth= and =elt=
+** =find-library= to open library's code
+** =cond= is better than =if= / =else=
+** =let= for friendly names should be used liberally
+** =save-excursion= to restore point
 * Tricks and tips
 ** Global mark: push =C-SPC C-SPC= pop =C-x C-SPC=
 Recording because =C-x C-@= is horrible.
@@ -117,37 +142,9 @@ tic -o ~/.terminfo
 ** Partially evaluate list elements
 - (add-to-list 'somelist `(symbol . ,(expression to be evaluated)))
 - The backquote is like a normal quote except it evaluates elements
-  marked with
-  commas. [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html][RTFM]]
+  marked with commas. [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html][RTFM]]
 ** Temporarily disable ido-completion =C-j=
 ** Set directory local variable =eval= to execute arbitrary code
-** Adding arguments to interactive commands
-- [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Using-Interactive.html#Using-Interactive][using]]
-- [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Interactive-Codes.html#Interactive-Codes][codes]]
-** Useful Elisp functions
-- =some-minor-mode= enables a mode when the argument is nil or
-  positive and disables when zero or negative
-- =add-hook= and =eval-after-load= for conditional execution
-- =expand-file-name= and =f-expand= for filename expansion
-- =file-name-basename= and =file-name-nondirectory= etc.
-- =message= and =princ= for printing
-- =get-buffer-create= for buffers
-- =add-to-list=, =append= and =list= for lists
-- =mapcar= with list of results
-- =mapconcat= for string of results
-- =dolist= for mapc with implicit bind
-- =concat= and =format= for strings
-- =cadr= for last item of pair, as in, =(car (cdr foo))=
-- =cons= to append without copying
-- =remove= to filter items from list
-- =getenv=, =setenv=, =compilation-environment= for env
-- =executable-find= for binaries
-- =ielm= Inferior Elisp REPL
-- =nth= and =elt=
-- =find-library= to open library's code
-- =cond= is better than =if= / =else=
-- =let= for friendly names should be used liberally
-- =save-excursion= to restore point
 ** View Lossage
 Use =M-x view-lossage= to see the most recent 300 keystrokes, per
 [[http://emacsredux.com/blog/2014/12/23/lossage/][Emacs Redux]]
