@@ -327,7 +327,7 @@
 (use-package ggtags
   :commands ggtags-mode
   :diminish ggtags-mode
-  :config
+  :init
   (evil-define-key 'normal ggtags-mode-map (kbd "g d") 'ggtags-find-tag-dwim))
 
 ;; magit
@@ -552,9 +552,10 @@
 ;; markdown
 (use-package markdown-mode
   :mode ("\\.markdown\\'" "\\.mk?d\\'" "\\.text\\'")
-  :config
-  (evil-define-key 'normal markdown-mode-map (kbd "g d") 'markdown-jump)
-  (evil-define-key 'normal markdown-mode-map (kbd "g x") 'markdown-follow-link-at-point))
+  :init
+  (evil-define-key 'normal markdown-mode-map
+    (kbd "g d") 'markdown-jump
+    (kbd "g x") 'markdown-follow-link-at-point))
 
 ;; matlab
 (use-package matlab-mode
@@ -572,13 +573,13 @@
    'org-babel-load-languages
    '((emacs-lisp . t) (gnuplot . t) (C . t) (emacs-lisp . t) (haskell . t)
      (latex . t) (ledger . t) (python . t) (ruby . t) (sh . t)))
+  (evil-define-key 'normal org-mode-map (kbd "g x") 'org-open-at-point)
   :config
   (use-package evil-org)
   (use-package org-journal
     :commands (org-journal-new-entry))
   (use-package org-pomodoro
     :commands (org-pomodoro))
-  (evil-define-key 'normal org-mode-map (kbd "g x") 'org-open-at-point)
   (add-hook 'org-mode-hook 'turn-on-auto-fill)
   (setq org-latex-listings t
 	org-pretty-entities t
