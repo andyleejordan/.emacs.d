@@ -85,7 +85,10 @@
 (use-package evil-easymotion
   :config (evilem-default-keybindings "<SPC>"))
 
-(use-package evil-ediff)
+(use-package ediff
+  :ensure nil
+  :defer t
+  :config (use-package evil-ediff))
 
 (use-package evil-escape
   :diminish evil-escape-mode
