@@ -110,6 +110,9 @@
 (use-package evil-surround
   :config (global-evil-surround-mode))
 
+(use-package evil-visualstar
+  :init (global-evil-visualstar-mode))
+
 ;; miscellaneous
 (bind-key "C-c a" 'align-regexp)
 (bind-key "C-c l" 'find-library)
