@@ -70,13 +70,17 @@
 ;;; bindings
 ;; evil
 (use-package evil
+  :defines evil-disable-insert-state-bindings
   :init
   (setq evil-want-C-u-scroll t
         evil-want-fine-undo 'no
         evil-cross-lines t
         evil-disable-insert-state-bindings t)
   (define-key Info-mode-map "g" nil)
-  (evil-mode t))
+  (evil-mode t)
+  :config
+  (add-hook 'git-commit-mode-hook 'evil-insert-state))
+
 (use-package evil-anzu)
 
 (use-package evil-commentary
