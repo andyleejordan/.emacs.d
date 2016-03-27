@@ -5,6 +5,7 @@
 /bookmarks
 /elpa/
 /eshell/
+/flycheck_*
 /helm-doc.org
 /jabber-avatar-cache/
 /kill-ring-saved.el
