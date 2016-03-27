@@ -77,6 +77,7 @@
         evil-disable-insert-state-bindings t)
   (define-key Info-mode-map "g" nil)
   (evil-mode t))
+(use-package evil-anzu)
 
 (use-package evil-commentary
   :diminish evil-commentary-mode
