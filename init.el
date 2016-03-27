@@ -166,7 +166,7 @@
 
 ;; Powerline
 (use-package powerline
-  :config (powerline-default-theme))
+  :config (powerline-center-evil-theme))
 
 ;; highlight changes
 (use-package git-gutter
