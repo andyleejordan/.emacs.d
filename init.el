@@ -92,7 +92,9 @@
 
 (use-package evil-escape
   :diminish evil-escape-mode
-  :config (evil-escape-mode))
+  :config
+  (global-set-key (kbd "C-g") 'evil-escape)
+  (evil-escape-mode))
 
 (use-package evil-matchit
   :config (global-evil-matchit-mode))
