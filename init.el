@@ -538,7 +538,8 @@
 
 ;; json
 (use-package json-mode
-  :mode "\\.json$")
+  :mode "\\.json$"
+  :config (setq js-indent-level 4))
 
 ;; ledger
 (use-package ledger-mode
