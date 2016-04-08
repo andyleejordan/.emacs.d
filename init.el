@@ -10,8 +10,8 @@
       package-enable-at-startup nil
       package-archives
       '(("gnu" . "https://elpa.gnu.org/packages/")
-	("org" . "http://orgmode.org/elpa/")
-	("melpa" . "https://melpa.org/packages/")))
+        ("org" . "http://orgmode.org/elpa/")
+        ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -149,17 +149,17 @@
 (use-package ibuffer-vc
   :config
   (add-hook 'ibuffer-hook
-	    (lambda ()
-	      (ibuffer-vc-set-filter-groups-by-vc-root)
-	      (unless (eq ibuffer-sorting-mode 'alphabetic)
-		(ibuffer-do-sort-by-alphabetic)))))
+            (lambda ()
+              (ibuffer-vc-set-filter-groups-by-vc-root)
+              (unless (eq ibuffer-sorting-mode 'alphabetic)
+                (ibuffer-do-sort-by-alphabetic)))))
 ;; smex
 (use-package smex
   :bind* (("M-x" . smex)
-	  ("M-X" . smex-major-mode-commands)
-	  ("C-c M-x" . execute-extended-command))
+          ("M-X" . smex-major-mode-commands)
+          ("C-c M-x" . execute-extended-command))
   :config (setq smex-history-length 64
-		smex-prompt-string "|-/ "))
+                smex-prompt-string "|-/ "))
 
 ;;; appearance
 (if (display-graphic-p)
@@ -278,7 +278,7 @@
 (use-package ag
   :commands (ag ag-files ag-regexp ag-project ag-dired)
   :config (setq ag-highlight-search t
-		ag-reuse-buffers t))
+                ag-reuse-buffers t))
 
 ;; browse kill ring
 (use-package browse-kill-ring
@@ -294,12 +294,12 @@
   (use-package company-c-headers)
   (use-package company-flx
     :config (with-eval-after-load 'company
-	      (company-flx-mode)))
+              (company-flx-mode)))
   (push '(company-clang
-	  :with company-semantic
-	  :with company-yasnippet
-	  :with company-c-headers)
-	company-backends)
+          :with company-semantic
+          :with company-yasnippet
+          :with company-c-headers)
+        company-backends)
   (setq company-global-modes '(not gud-mode)))
 
 ;; automatic demangling
@@ -333,7 +333,7 @@
 (use-package fortune-cookie
   :config
   (setq fortune-cookie-fortune-args "-s"
-	fortune-cookie-cowsay-args "-f tux")
+        fortune-cookie-cowsay-args "-f tux")
   (fortune-cookie-mode))
 
 ;; ggtags
@@ -350,7 +350,7 @@
   (use-package evil-magit)
   (add-to-list 'magit-log-arguments "--no-abbrev-commit")
   (setq magit-popup-use-prefix-argument 'default
-	magit-completing-read-function 'magit-ido-completing-read))
+        magit-completing-read-function 'magit-ido-completing-read))
 
 (global-git-commit-mode)
 
@@ -371,7 +371,7 @@
   :bind-keymap ("M-[" . projectile-command-map)
   :config
   (setq projectile-enable-caching t
-	projectile-git-submodule-command nil)
+        projectile-git-submodule-command nil)
   (projectile-global-mode))
 
 ;; regex tool
@@ -412,11 +412,11 @@
 (use-package tramp
   :config
   (setq tramp-verbose 9
-	tramp-default-method "ssh"
-	tramp-ssh-controlmaster-options
-	(concat "-o ControlPath=/tmp/tramp.%%r@%%h:%%p "
-		"-o ControlMaster=auto "
-		"-o ControlPersist=no")))
+        tramp-default-method "ssh"
+        tramp-ssh-controlmaster-options
+        (concat "-o ControlPath=/tmp/tramp.%%r@%%h:%%p "
+                "-o ControlMaster=auto "
+                "-o ControlPersist=no")))
 
 ;; try
 (use-package try
@@ -428,8 +428,8 @@
   :config
   (global-undo-tree-mode)
   (setq undo-tree-history-directory-alist
-	`(("." . ,(f-expand "undo-tree" user-emacs-directory)))
-	undo-tree-auto-save-history t))
+        `(("." . ,(f-expand "undo-tree" user-emacs-directory)))
+        undo-tree-auto-save-history t))
 
 ;; unfill autofill
 (use-package unfill
@@ -488,9 +488,9 @@
 
 ;; C styles
 (c-add-style "work"
-	     '("bsd"
-	       (c-basic-offset . 4)
-	       (c-offsets-alist . ((arglist-intro . +)))))
+             '("bsd"
+               (c-basic-offset . 4)
+               (c-offsets-alist . ((arglist-intro . +)))))
 
 (add-to-list 'c-default-style '(c-mode . "work"))
 (add-to-list 'c-default-style '(c++-mode . "work"))
@@ -588,15 +588,15 @@
     :commands (org-pomodoro))
   (add-hook 'org-mode-hook 'turn-on-auto-fill)
   (setq org-latex-listings t
-	org-pretty-entities t
-	org-completion-use-ido t
-	org-latex-custom-lang-environments '((C "lstlisting"))
-	org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
-			    ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
-			    ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
-			    ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
-			    ("models" "\\models" nil "&#8872;" "" "" "⊧"))
-	org-export-backends '(html beamer ascii latex md)))
+        org-pretty-entities t
+        org-completion-use-ido t
+        org-latex-custom-lang-environments '((C "lstlisting"))
+        org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
+                            ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
+                            ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
+                            ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
+                            ("models" "\\models" nil "&#8872;" "" "" "⊧"))
+        org-export-backends '(html beamer ascii latex md)))
 
 ;; pkgbuild
 (use-package pkgbuild-mode
@@ -627,9 +627,9 @@
 ;; ssh-config
 (use-package ssh-config-mode
   :mode ((".ssh/config\\'"       . ssh-config-mode)
-	 ("sshd?_config\\'"      . ssh-config-mode)
-	 ("known_hosts\\'"       . ssh-known-hosts-mode)
-	 ("authorized_keys2?\\'" . ssh-authorized-keys-mode)))
+         ("sshd?_config\\'"      . ssh-config-mode)
+         ("known_hosts\\'"       . ssh-known-hosts-mode)
+         ("authorized_keys2?\\'" . ssh-authorized-keys-mode)))
 
 ;; toml
 (use-package toml-mode
