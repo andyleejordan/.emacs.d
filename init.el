@@ -168,7 +168,7 @@
       (scroll-bar-mode 0)))
 
 ;; Solarized
-; https://github.com/sellout/emacs-color-theme-solarized/pull/187
+;; https://github.com/sellout/emacs-color-theme-solarized/pull/187
 (setq color-themes '())
 (use-package color-theme-solarized
   :config
