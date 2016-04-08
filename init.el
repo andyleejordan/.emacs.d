@@ -467,14 +467,6 @@
   (use-package java-snippets)
   (yas-minor-mode))
 
-;; znc
-(use-package znc
-  :if (bound-and-true-p znc-password)
-  :commands znc-erc
-  :config (setq znc-servers
-		`(("schwartzmeyer.com" .
-		   (46728 t ((freenode . ("andrew/freenode" ,znc-password))))))))
-
 ;;; syntax support
 ;; mode mappings
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c-mode))
@@ -669,6 +661,15 @@
 (use-package local
   :ensure nil
   :load-path "site-lisp/")
+
+;; znc - depends on local
+(use-package znc
+  :if (bound-and-true-p znc-password)
+  :commands znc-erc
+  :config
+  (setq znc-servers
+        `(("schwartzmeyer.com" .
+           (46728 t ((freenode . ("andrew/freenode" ,znc-password))))))))
 
 ;;; provide init package
 (provide 'init)
