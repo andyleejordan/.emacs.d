@@ -171,6 +171,7 @@
   :config (helm-descbinds-mode))
 
 
+(use-package helm-gitignore)
 
 ;;; appearance
 (if (display-graphic-p)
