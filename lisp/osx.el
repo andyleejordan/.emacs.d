@@ -8,11 +8,10 @@
 
 ;; pull in path
 (use-package "exec-path-from-shell"
-  :disabled t
+  :if (display-graphic-p)
   :config
-  (progn
-    (add-to-list 'exec-path-from-shell-variables "SSH_AUTH_SOCK")
-    (exec-path-from-shell-initialize)))
+  (add-to-list 'exec-path-from-shell-variables "SSH_AUTH_SOCK")
+  (exec-path-from-shell-initialize))
 
 ;; set for shell-command-to-string on remote systems
 (setenv "TTY" "/dev/ttys001")
