@@ -242,7 +242,6 @@
 
 ;; kill settings
 (setq save-interprogram-paste-before-kill t
-      kill-append-merge-undo t
       kill-do-not-save-duplicates t
       kill-whole-line t)
 
