@@ -25,7 +25,6 @@
   (require 'use-package))
 
 ;; packages used in init
-(use-package bind-key)
 (use-package dash)
 (use-package f)
 
@@ -122,7 +121,6 @@
 (use-package evil-escape
   :diminish evil-escape-mode
   :config
-  (global-set-key (kbd "C-g") 'evil-escape)
   (evil-escape-mode))
 
 (use-package evil-matchit
@@ -137,14 +135,47 @@
 (use-package evil-visualstar
   :init (global-evil-visualstar-mode))
 
-;; miscellaneous
-(bind-key "C-c a" 'align-regexp)
-(bind-key "C-c l" 'find-library)
-(bind-key "C-c x" 'eval-region-or-buffer)
-(bind-key "C-c q" 'auto-fill-mode)
-(bind-key "C-c v" 'visual-line-mode)
-(bind-key* "C-c m" 'man)
-(bind-key* "C-c w" 'woman)
+;; key bindings
+(use-package general
+  :config
+  ;; global keys
+  (general-define-key
+   "M-x" 'helm-M-x
+   "C-c M-x" 'execute-extended-command
+   "C-x b" 'helm-mini
+   "C-x C-b" 'helm-buffers-list
+   "C-x C-f" 'helm-find-files
+   "M-:" 'helm-eval-expression-with-eldoc
+   "C-g" 'evil-escape)
+  ;; insert keys
+  (general-define-key
+   :states '(insert)
+   "M-y" 'helm-show-kill-ring
+   "TAB" 'helm-company)
+  (let ((leader "SPC"))
+    ;; normal leader keys
+    (general-define-key
+     :prefix leader :states '(normal)
+     "x" 'helm-M-x
+     "p" 'helm-projectile
+     "P" 'projectile-command-map
+     "f" 'helm-find-files
+     "F" 'helm-projectile-find-file-dwim
+     "b" 'helm-mini
+     "B" 'helm-buffer-list
+     "v" 'projectile-vc
+     "l" 'find-library
+     "h" 'helm-command-prefix
+     "b" 'helm-mini
+     "o" 'helm-occur
+     "m" 'helm-all-mark-rings
+     "a" 'helm-ag
+     "w" 'visual-line-mode)
+    ;; normal and visual leader keys
+    (general-define-key
+     :prefix leader
+     :states '(normal visual)
+     "e" 'eval-region-or-buffer)))
 
 ;;; navigation
 ;; helm
