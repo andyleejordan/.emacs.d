@@ -395,8 +395,15 @@
 (use-package ggtags
   :commands ggtags-mode
   :diminish ggtags-mode
-  :init
-  (evil-define-key 'normal ggtags-mode-map (kbd "g d") 'ggtags-find-tag-dwim))
+  :config
+  (general-define-key
+   :keymaps 'ggtags-mode-map
+   :states '(normal)
+   "g d" 'helm-gtags-dwim)
+  (use-package helm-gtags
+    :commands (helm-gtags-dwim)
+    :config (helm-gtags-mode)))
+
 
 ;; magit
 (use-package magit
