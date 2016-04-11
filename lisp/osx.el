@@ -30,9 +30,8 @@
   :ensure nil
   :commands (info helm-info)
   :config
-  (progn
-    (add-to-list 'Info-additional-directory-list (expand-file-name "~/info"))
-    (add-to-list 'Info-additional-directory-list (expand-file-name "/Applications/Macaulay2-1.7/share/info"))))
+  (add-to-list 'Info-additional-directory-list (expand-file-name "~/info"))
+  (add-to-list 'Info-additional-directory-list (expand-file-name "/Applications/Macaulay2-1.7/share/info")))
 
 (use-package dash-at-point
   :bind ("C-c C-d" . dash-at-point))
