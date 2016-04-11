@@ -29,6 +29,30 @@
 (use-package dash)
 (use-package f)
 
+;;; system specific packages
+;; load Linux configuration
+(use-package linux
+  :ensure nil
+  :load-path "lisp/"
+  :if (eq system-type 'gnu/linux))
+
+;; load OS X configurations
+(use-package osx
+  :ensure nil
+  :load-path "lisp/"
+  :if (eq system-type 'darwin))
+
+;; load Windows configurations
+(use-package windows
+  :ensure nil
+  :load-path "lisp/"
+  :if (eq system-type 'windows-nt))
+
+;;; load local settings
+(use-package local
+  :ensure nil
+  :load-path "site-lisp/")
+
 (use-package auto-compile
   :config
   (auto-compile-on-load-mode)
@@ -638,30 +662,6 @@
 ;; yaml
 (use-package yaml-mode
   :mode "\\.ya?ml\'")
-
-;;; system specific packages
-;; load Linux configuration
-(use-package linux
-  :ensure nil
-  :load-path "lisp/"
-  :if (eq system-type 'gnu/linux))
-
-;; load OS X configurations
-(use-package osx
-  :ensure nil
-  :load-path "lisp/"
-  :if (eq system-type 'darwin))
-
-;; load Windows configurations
-(use-package windows
-  :ensure nil
-  :load-path "lisp/"
-  :if (eq system-type 'windows-nt))
-
-;;; load local settings
-(use-package local
-  :ensure nil
-  :load-path "site-lisp/")
 
 ;; znc - depends on local
 (use-package znc
