@@ -289,9 +289,6 @@
   :config (setq ag-highlight-search t
                 ag-reuse-buffers t))
 
-;; browse kill ring
-(use-package browse-kill-ring
-  :bind ("M-y" . browse-kill-ring))
 (use-package helm-ag
   :commands (helm-ag)
   :config
