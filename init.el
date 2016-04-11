@@ -167,6 +167,8 @@
   :commands (helm-projectile)
   :config (helm-projectile-on))
 
+(use-package helm-descbinds
+  :config (helm-descbinds-mode))
 
 
 
