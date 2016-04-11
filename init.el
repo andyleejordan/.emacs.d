@@ -285,13 +285,20 @@
 
 ;; ag - the silver searcher
 (use-package ag
-  :commands (ag ag-files ag-regexp ag-project ag-dired)
+  :commands (ag ag-files ag-regexp ag-project ag-dired helm-ag)
   :config (setq ag-highlight-search t
                 ag-reuse-buffers t))
 
 ;; browse kill ring
 (use-package browse-kill-ring
   :bind ("M-y" . browse-kill-ring))
+(use-package helm-ag
+  :commands (helm-ag)
+  :config
+  ;; fix https://github.com/bbatsov/projectile/issues/837
+  (setq grep-find-ignored-files nil
+        grep-find-ignored-directories nil))
+
 ;; anzu
 (use-package anzu
   :commands (isearch-foward isearch-backward)
@@ -373,10 +380,6 @@
   (popwin-mode)
   ;; cannot use :bind for keymap
   (global-set-key (kbd "C-z") popwin:keymap))
-
-;; fix https://github.com/bbatsov/projectile/issues/837
-(setq grep-find-ignored-files nil
-      grep-find-ignored-directories nil)
 
 
 ;; regex tool
