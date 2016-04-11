@@ -147,6 +147,12 @@
 (bind-key* "C-c w" 'woman)
 
 ;;; navigation
+;; helm
+(use-package helm
+  :diminish helm-mode
+  :config
+  (require 'helm-config)
+  (helm-mode))
 
 
 
