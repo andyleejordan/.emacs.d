@@ -147,43 +147,11 @@
 (bind-key* "C-c w" 'woman)
 
 ;;; navigation
-;; Interactively Do Things
-(ido-mode)
-(setq ido-enable-flex-matching t
-      ido-use-virtual-buffers t)
 
-(use-package ido-grid-mode
-  :config (ido-grid-mode))
 
-(use-package flx-ido
-  :init
-  (flx-ido-mode)
-  (setq flx-ido-use-faces nil))
 
-(use-package ido-ubiquitous
-  :config
-  (setq ido-ubiquitous-allow-on-functional-collection t)
-  (ido-ubiquitous-mode))
 
-;; ibuffer
-(use-package ibuffer
-  :ensure nil
-  :bind ("C-x C-b" . ibuffer))
 
-(use-package ibuffer-vc
-  :config
-  (add-hook 'ibuffer-hook
-            (lambda ()
-              (ibuffer-vc-set-filter-groups-by-vc-root)
-              (unless (eq ibuffer-sorting-mode 'alphabetic)
-                (ibuffer-do-sort-by-alphabetic)))))
-;; smex
-(use-package smex
-  :bind* (("M-x" . smex)
-          ("M-X" . smex-major-mode-commands)
-          ("C-c M-x" . execute-extended-command))
-  :config (setq smex-history-length 64
-                smex-prompt-string "|-/ "))
 
 ;;; appearance
 (if (display-graphic-p)
