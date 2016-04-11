@@ -183,6 +183,13 @@
   :diminish helm-mode
   :config
   (require 'helm-config)
+  (general-define-key
+   :keymaps 'helm-map
+   "C-c !" 'helm-toggle-suspend-update
+   "<tab>" 'helm-execute-persistent-action
+   "C-i" 'helm-execute-persistent-action
+   "C-z" 'helm-select-action)
+  (global-unset-key (kbd "C-x c"))
   (helm-mode))
 
 ;; projectile
