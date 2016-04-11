@@ -374,11 +374,7 @@
 
 ;; popwin
 (use-package popwin
-  :config
-  (popwin-mode)
-  ;; cannot use :bind for keymap
-  (global-set-key (kbd "C-z") popwin:keymap))
-
+  :config (popwin-mode))
 
 ;; regex tool
 (use-package regex-tool
