@@ -154,7 +154,18 @@
   (require 'helm-config)
   (helm-mode))
 
+;; projectile
+(use-package projectile
+  :diminish projectile-mode
+  :config
+  (setq projectile-enable-caching t
+        projectile-completion-system 'helm
+        projectile-switch-project-action 'helm-projectile)
+  (projectile-global-mode))
 
+(use-package helm-projectile
+  :commands (helm-projectile)
+  :config (helm-projectile-on))
 
 
 
@@ -367,14 +378,6 @@
 (setq grep-find-ignored-files nil
       grep-find-ignored-directories nil)
 
-;; projectile
-(use-package projectile
-  :diminish projectile-mode
-  :bind-keymap ("M-[" . projectile-command-map)
-  :config
-  (setq projectile-enable-caching t
-        projectile-git-submodule-command nil)
-  (projectile-global-mode))
 
 ;; regex tool
 (use-package regex-tool
