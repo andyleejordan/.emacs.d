@@ -307,6 +307,10 @@
 ;; browse kill ring
 (use-package browse-kill-ring
   :bind ("M-y" . browse-kill-ring))
+;; anzu
+(use-package anzu
+  :commands (isearch-foward isearch-backward)
+  :config (global-anzu-mode))
 
 ;; company "complete anything"
 (use-package company
