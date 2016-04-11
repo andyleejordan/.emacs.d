@@ -306,21 +306,19 @@
 
 ;; company "complete anything"
 (use-package company
-  :init (global-company-mode)
   :diminish company-mode
-  :commands (company-mode global-company-mode)
-  :bind ("<backtab>" . company-complete)
+  :commands (company-complete company-mode)
   :config
   (use-package company-c-headers)
-  (use-package company-flx
-    :config (with-eval-after-load 'company
-              (company-flx-mode)))
   (push '(company-clang
           :with company-semantic
           :with company-yasnippet
           :with company-c-headers)
-        company-backends)
-  (setq company-global-modes '(not gud-mode)))
+        company-backends))
+
+(use-package helm-company
+  :commands (helm-company)
+  :config (company-mode))
 
 ;; automatic demangling
 (use-package demangle-mode
