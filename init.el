@@ -554,6 +554,17 @@
   (setq csharp-want-imenu nil)
   (add-hook 'csharp-mode-hook 'work-style))
 
+(use-package omnisharp
+  :load-path "site-lisp/omnisharp"
+  :config
+  (use-package shut-up)
+  (setq omnisharp-server-executable-path "~/src/omnisharp-roslyn/artifacts/publish/OmniSharp/default/netcoreapp1.0/OmniSharp"
+        omnisharp-debug t
+        omnisharp-imenu-support t)
+  (eval-after-load 'company
+      '(add-to-list 'company-backends 'company-omnisharp))
+  (add-hook 'csharp-mode-hook 'omnisharp-mode))
+
 ;; docker
 (use-package docker
   :commands docker-mode)
