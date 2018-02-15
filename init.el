@@ -5,6 +5,8 @@
 ;;; Code:
 
 ;;; Package:
+(setq gc-cons-threshold (* 10 1024 1024))
+
 (require 'package)
 (setq load-prefer-newer t
       package-enable-at-startup nil
@@ -44,39 +46,6 @@
   :ensure nil
   :load-path "lisp/"
   :if (eq system-type 'windows-nt))
-
-;;; files
-;; backups
-(setq backup-by-copying t
-      delete-old-versions t
-      kept-new-versions 4
-      kept-old-versions 2
-      version-control t
-      backup-directory-alist `(("." . ,(f-expand
-                                        "backups" user-emacs-directory))))
-;; 100 MB
-(setq large-file-warning-threshold (* 100 1000 1000))
-
-;; recent files
-(setq recentf-max-saved-items 256
-      recentf-max-menu-items 16)
-(recentf-mode)
-
-;; set auto revert of buffers if file is changed externally
-(global-auto-revert-mode)
-
-;; symlink version-control follow
-(setq vc-follow-symlinks t)
-
-;; dired
-(setq dired-dwim-target t ; enable side-by-side dired buffer targets
-      dired-recursive-copies 'always ; better recursion in dired
-      dired-recursive-deletes 'top
-      dired-listing-switches "-lahp")
-
-;; compilation
-(setq compilation-ask-about-save nil
-      compilation-always-kill t)
 
 ;;; Vim:
 (use-package evil
@@ -150,19 +119,7 @@
 
 
 
-;;; appearance
-(if (display-graphic-p)
-    (progn
-      (tool-bar-mode 0)
-      (scroll-bar-mode 0)))
 
-;; Solarized
-;; https://github.com/sellout/emacs-color-theme-solarized/pull/187
-(setq color-themes '())
-(use-package color-theme-solarized
-  :config
-  (customize-set-variable 'frame-background-mode 'dark)
-  (load-theme 'solarized t))
 
 
 ;; highlight changes
@@ -170,60 +127,21 @@
   :diminish git-gutter-mode
   :config (global-git-gutter-mode))
 
-;;; behavior
-;; smooth scrolling
-(use-package smooth-scroll
-  :if (display-graphic-p)
-  :diminish smooth-scroll-mode
   :config
-  (setq smooth-scroll/vscroll-step-size 8)
-  (smooth-scroll-mode))
 
-;; more context when scrolling
-(setq next-screen-context-lines 4)
 
-;; y/n for yes/no
-(defalias 'yes-or-no-p 'y-or-n-p)
 
-;; start week on Monday
-(setq calendar-week-start-day 1)
 
-;; window undo/redo
-(winner-mode)
 
-;; tabs are truly evil
+;;; Formatting:
 (setq-default indent-tabs-mode nil)
-
-;; sentences end with one space
 (setq sentence-end-double-space nil)
 
-;;; settings
-;; enable all commands
-(setq disabled-command-function nil)
 
-;; default truncate lines
-(setq-default truncate-lines t)
 
-;; disable bell
-(setq ring-bell-function 'ignore
-      visible-bell t)
 
-;; increase garbage collection threshold
-(setq gc-cons-threshold (* 10 1024 1024))
 
-;; inhibit startup message
-(setq inhibit-startup-message t)
 
-;; kill settings
-(setq save-interprogram-paste-before-kill t
-      kill-do-not-save-duplicates t
-      kill-whole-line t)
-
-;; repeat mark pop
-(setq-default set-mark-command-repeat-pop t)
-
-;; set terminfo
-(setq system-uses-terminfo nil)
 
 ;;; functions
 (defun compile-init ()
@@ -489,13 +407,67 @@
          ("sshd?_config\\'"      . ssh-config-mode)
          ("known_hosts\\'"       . ssh-known-hosts-mode)
          ("authorized_keys2?\\'" . ssh-authorized-keys-mode)))
+;;; Appearance:
+(if (display-graphic-p)
+    (progn
+      (tool-bar-mode 0)
+      (scroll-bar-mode 0)))
 
+(use-package solarized-theme
+  :config
+  (setq solarized-use-variable-pitch nil)
+  (load-theme 'solarized-dark t))
 
 ;; yaml
 (use-package yaml-mode
   :mode "\\.ya?ml\'")
-
+(use-package fortune-cookie
+  :disabled t
   :config
+  (setq fortune-cookie-fortune-args "-s"
+        fortune-cookie-cowsay-args "-f tux")
+  (fortune-cookie-mode))
+
+(use-package smooth-scroll
+  :if (display-graphic-p)
+  :diminish smooth-scroll-mode
+  :config
+  (setq smooth-scroll/vscroll-step-size 8)
+  (smooth-scroll-mode))
+
+;;; Emacs configuration:
+(setq next-screen-context-lines 4)
+(defalias 'yes-or-no-p 'y-or-n-p)
+(setq calendar-week-start-day 1) ; Monday
+(winner-mode)
+(setq disabled-command-function nil)
+(setq-default truncate-lines t)
+(setq ring-bell-function 'ignore
+      visible-bell t)
+(setq inhibit-startup-message t)
+(setq save-interprogram-paste-before-kill t
+      kill-do-not-save-duplicates t
+      kill-whole-line t)
+(setq-default set-mark-command-repeat-pop t)
+(setq system-uses-terminfo nil)
+(setq backup-by-copying t
+      delete-old-versions t
+      kept-new-versions 4
+      kept-old-versions 2
+      version-control t
+      backup-directory-alist `(("." . ,(f-expand
+                                        "backups" user-emacs-directory))))
+(setq large-file-warning-threshold (* 20 1000 1000)) ; 20 MB
+(setq recentf-max-saved-items 256
+      recentf-max-menu-items 16)
+(recentf-mode)
+(global-auto-revert-mode)
+(setq dired-dwim-target t ; enable side-by-side dired buffer targets
+      dired-recursive-copies 'always ; better recursion in dired
+      dired-recursive-deletes 'top
+      dired-listing-switches "-lahp")
+(setq compilation-ask-about-save nil
+      compilation-always-kill t)
 
 ;;; provide init package
 (provide 'init)
