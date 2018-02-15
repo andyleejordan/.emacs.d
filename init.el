@@ -78,20 +78,37 @@
 (setq compilation-ask-about-save nil
       compilation-always-kill t)
 
-;;; bindings
-;; evil
+;;; Vim:
 (use-package evil
-  :defines evil-disable-insert-state-bindings
-  :init
+  :config
   (setq evil-want-C-u-scroll t
         evil-want-fine-undo 'no
         evil-cross-lines t
         evil-disable-insert-state-bindings t)
-  (define-key Info-mode-map "g" nil)
-  (evil-mode t)
-  :config
+  (evil-mode)
   (add-hook 'git-commit-mode-hook 'evil-insert-state))
 
+;; required by evil
+(use-package goto-chg
+  :commands (goto-last-change goto-last-change-reverse))
+
+(use-package evil-args
+  :bind (;; bind evil-args text objects
+         :map evil-inner-text-objects-map
+              ("a" . evil-inner-arg)
+              :map evil-outer-text-objects-map
+              ("a" . evil-outer-arg)
+
+              ;; bind evil-forward/backward-args
+              :map evil-normal-state-map
+              ("L" . evil-forward-arg)
+              ("H" . evil-backward-arg)
+              ("L" . evil-forward-arg)
+              ("H" . evil-backward-arg)
+
+              ;; bind evil-jump-out-args
+              :map evil-normal-state-map
+              ("K" . evil-jump-out-args)))
 
 (use-package evil-commentary
   :diminish evil-commentary-mode
@@ -99,18 +116,27 @@
 
 (use-package evil-escape
   :diminish evil-escape-mode
-  :config
+  :bind ("C-c C-g" . evil-escape)
+  :init
+  (setq evil-escape-key-sequence "jk")
   (evil-escape-mode))
 
 (use-package evil-matchit
   :config (global-evil-matchit-mode))
 
+(use-package evil-numbers
+  :bind (:map evil-normal-state-map
+              ("C-c +" . evil-numbers/inc-at-pt)
+              ("C-c -" . evil-numbers/dec-at-pt)
+              :map evil-visual-state-map
+              ("C-c +" . evil-numbers/inc-at-pt)
+              ("C-c -" . evil-numbers/dec-at-pt)))
 
 (use-package evil-surround
   :config (global-evil-surround-mode))
 
 (use-package evil-visualstar
-  :init (global-evil-visualstar-mode))
+  :config (global-evil-visualstar-mode))
 
 ;; projectile
 (use-package projectile
