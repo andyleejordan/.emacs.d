@@ -45,11 +45,6 @@
   :load-path "lisp/"
   :if (eq system-type 'windows-nt))
 
-(use-package auto-compile
-  :config
-  (auto-compile-on-load-mode)
-  (auto-compile-on-save-mode))
-
 ;;; files
 ;; backups
 (setq backup-by-copying t
@@ -97,19 +92,10 @@
   :config
   (add-hook 'git-commit-mode-hook 'evil-insert-state))
 
-(use-package evil-anzu)
 
 (use-package evil-commentary
   :diminish evil-commentary-mode
   :config (evil-commentary-mode))
-
-(use-package evil-easymotion
-  :config (evilem-default-keybindings "<SPC>"))
-
-(use-package ediff
-  :ensure nil
-  :defer t
-  :config (use-package evil-ediff))
 
 (use-package evil-escape
   :diminish evil-escape-mode
@@ -119,71 +105,12 @@
 (use-package evil-matchit
   :config (global-evil-matchit-mode))
 
-(use-package evil-snipe
-  :init (evil-snipe-mode))
 
 (use-package evil-surround
   :config (global-evil-surround-mode))
 
 (use-package evil-visualstar
   :init (global-evil-visualstar-mode))
-
-;; key bindings
-(use-package general
-  :config
-  ;; global keys
-  (general-define-key
-   "M-x" 'helm-M-x
-   "C-c M-x" 'execute-extended-command
-   "C-x b" 'helm-mini
-   "C-x C-b" 'helm-buffers-list
-   "C-x C-f" 'helm-find-files
-   "M-:" 'helm-eval-expression-with-eldoc
-   "C-g" 'evil-escape)
-  ;; insert keys
-  (general-define-key
-   :states '(insert)
-   "M-y" 'helm-show-kill-ring
-   "TAB" 'helm-company)
-  (let ((leader "SPC"))
-    ;; normal leader keys
-    (general-define-key
-     :prefix leader :states '(normal)
-     "x" 'helm-M-x
-     "p" 'helm-projectile
-     "P" 'projectile-command-map
-     "f" 'helm-find-files
-     "F" 'helm-projectile-find-file-dwim
-     "b" 'helm-mini
-     "B" 'helm-buffer-list
-     "v" 'projectile-vc
-     "l" 'find-library
-     "h" 'helm-command-prefix
-     "b" 'helm-mini
-     "o" 'helm-occur
-     "m" 'helm-all-mark-rings
-     "a" 'helm-ag
-     "w" 'visual-line-mode)
-    ;; normal and visual leader keys
-    (general-define-key
-     :prefix leader
-     :states '(normal visual)
-     "e" 'eval-region-or-buffer)))
-
-;;; navigation
-;; helm
-(use-package helm
-  :diminish helm-mode
-  :config
-  (require 'helm-config)
-  (general-define-key
-   :keymaps 'helm-map
-   "C-c !" 'helm-toggle-suspend-update
-   "<tab>" 'helm-execute-persistent-action
-   "C-i" 'helm-execute-persistent-action
-   "C-z" 'helm-select-action)
-  (global-unset-key (kbd "C-x c"))
-  (helm-mode))
 
 ;; projectile
 (use-package projectile
@@ -194,15 +121,8 @@
         projectile-switch-project-action 'helm-projectile)
   (projectile-global-mode))
 
-(use-package helm-projectile
-  :commands (helm-projectile)
-  :config (helm-projectile-on))
-
-(use-package helm-descbinds
-  :config (helm-descbinds-mode))
 
 
-(use-package helm-gitignore)
 
 ;;; appearance
 (if (display-graphic-p)
@@ -218,9 +138,6 @@
   (customize-set-variable 'frame-background-mode 'dark)
   (load-theme 'solarized t))
 
-;; Powerline
-(use-package powerline
-  :config (powerline-center-evil-theme))
 
 ;; highlight changes
 (use-package git-gutter
@@ -316,23 +233,9 @@
 (use-package adaptive-wrap
   :config (adaptive-wrap-prefix-mode))
 
-;; ag - the silver searcher
-(use-package ag
-  :commands (ag ag-files ag-regexp ag-project ag-dired helm-ag)
-  :config (setq ag-highlight-search t
-                ag-reuse-buffers t))
 
-(use-package helm-ag
-  :commands (helm-ag)
   :config
-  ;; fix https://github.com/bbatsov/projectile/issues/837
-  (setq grep-find-ignored-files nil
-        grep-find-ignored-directories nil))
 
-;; anzu
-(use-package anzu
-  :commands (isearch-foward isearch-backward)
-  :config (global-anzu-mode))
 
 ;; company "complete anything"
 (use-package company
@@ -346,10 +249,6 @@
           :with company-c-headers)
         company-backends))
 
-(use-package helm-company
-  :commands (helm-company)
-  :config (company-mode))
-
 ;; automatic demangling
 (use-package demangle-mode
   :commands demangle-mode)
@@ -361,10 +260,6 @@
   (dtrt-indent-mode)
   (setq dtrt-indent-min-quality 60
         dtrt-indent-verbosity 3))
-
-;; electric spacing
-(use-package electric-spacing
-  :commands electric-spacing-mode)
 
 ;; flycheck
 (use-package flycheck
@@ -409,31 +304,11 @@
 
 (global-git-commit-mode)
 
-;; popwin
-(use-package popwin
-  :config (popwin-mode))
-
-;; regex tool
-(use-package regex-tool
-  :commands (regex-tool))
-
-;; save kill ring
-(use-package savekill)
-
 ;; saveplace
 (use-package saveplace
   :config
   (setq-default save-place t
                 save-place-file (f-expand "saved-places" user-emacs-directory)))
-;; scratch
-(use-package scratch
-  :commands (scratch))
-
-;; slime
-(use-package sly
-  :commands (sly)
-  :config (setq inferior-lisp-program (executable-find "sbcl")))
-
 ;; activate smartparens
 (use-package smartparens
   :diminish smartparens-mode
@@ -457,10 +332,6 @@
                 "-o ControlMaster=auto "
                 "-o ControlPersist=no")))
 
-;; try
-(use-package try
-  :commands try)
-
 ;; undo-tree
 (use-package undo-tree
   :diminish undo-tree-mode
@@ -479,10 +350,6 @@
   :ensure nil
   :config (setq uniquify-buffer-name-style 'forward))
 
-;; setup virtualenvwrapper
-(use-package virtualenvwrapper
-  :commands (venv-workon))
-
 ;; which-key
 (use-package which-key
   :diminish which-key-mode
@@ -499,13 +366,6 @@
   :diminish whitespace-cleanup-mode
   :init (global-whitespace-cleanup-mode))
 
-;; yasnippet
-(use-package yasnippet
-  :commands (yas-expand yas-insert-snippet)
-  :config
-  (use-package java-snippets)
-  (yas-minor-mode))
-
 ;;; syntax support
 ;; mode mappings
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c-mode))
@@ -513,43 +373,14 @@
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
 (add-to-list 'magic-mode-alist '(";;; " . emacs-lisp-mode))
 
-;; bison
-(use-package bison-mode
-  :mode ("\\.y\\'" "\\.l\\'"))
-
 ;; CMake
 (use-package cmake-mode
   :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'"))
 
-;; crontab
-(use-package crontab-mode
-  :mode "\\.cron\\(tab\\)?\\'")
-
-;; C styles
-(c-add-style "work"
-             '("bsd"
-               (c-basic-offset . 4)
-               (c-offsets-alist . ((arglist-intro . +)))))
-
-(add-to-list 'c-default-style '(c-mode . "work"))
-(add-to-list 'c-default-style '(c++-mode . "work"))
-(add-to-list 'c-default-style '(csharp-mode . "c#"))
-
-(defun work-style ()
-  (interactive)
-  (ggtags-mode)
-  (set-fill-column 90))
-
 ;; C#
 (use-package csharp-mode
   :mode "\\.cs$"
-  :config
-  (setq csharp-want-imenu nil)
-  (add-hook 'csharp-mode-hook 'work-style))
-
-;; docker
-(use-package docker
-  :commands docker-mode)
+  :config (setq csharp-want-imenu nil))
 
 (use-package dockerfile-mode
   :mode "Dockerfile.*\\'")
@@ -562,37 +393,16 @@
 (use-package gitignore-mode
   :mode ("/\\.gitignore\\'" "/\\.git/info/exclude\\'" "/git/ignore\\'"))
 
-;; gnuplot
-(use-package gnuplot
-  :commands (gnuplot-mode gnuplot-make-buffer))
 
-;; handlebars
-(use-package handlebars-mode
-  :mode ("\\.handlebars$" "\\.hbs$"))
 
-;; haskell
-(use-package haskell-mode
-  :mode "\\.\\(?:[gh]s\\|hi\\)\\'"
-  :interpreter ("runghc" "runhaskell"))
 
 ;; json
 (use-package json-mode
   :mode "\\.json$"
   :config (setq js-indent-level 4))
 
-;; ledger
-(use-package ledger-mode
-  :mode "\\.ledger\\'"
   :config
-  (define-key ledger-mode-map (kbd "C-c c") 'ledger-mode-clean-buffer)
-  (setq ledger-post-amount-alignment-at :decimal
-        ledger-post-amount-alignment-column 49
-        ledger-clear-whole-transactions t)
-  (use-package flycheck-ledger))
 
-;; less-css
-(use-package less-css-mode
-  :mode "\\.less\\'")
 
 ;; markdown
 (use-package markdown-mode
@@ -602,9 +412,6 @@
     (kbd "g d") 'markdown-jump
     (kbd "g x") 'markdown-follow-link-at-point))
 
-;; matlab
-(use-package matlab-mode
-  :mode "\\.m$")
 
 ;; nginx
 (use-package nginx-mode
@@ -621,10 +428,6 @@
   (evil-define-key 'normal org-mode-map (kbd "g x") 'org-open-at-point)
   :config
   (use-package evil-org)
-  (use-package org-journal
-    :commands (org-journal-new-entry))
-  (use-package org-pomodoro
-    :commands (org-pomodoro))
   (add-hook 'org-mode-hook 'turn-on-auto-fill)
   (setq org-latex-listings t
         org-pretty-entities t
@@ -637,19 +440,10 @@
                             ("models" "\\models" nil "&#8872;" "" "" "⊧"))
         org-export-backends '(html beamer ascii latex md)))
 
-;; pkgbuild
-(use-package pkgbuild-mode
-  :mode "/PKGBUILD\\'")
-
 ;; powershell
 (use-package powershell
   :mode ("\\.ps[dm]?1\\'" . powershell-mode)
   :config (add-hook 'powershell-mode-hook 'work-style))
-
-;; processing
-(use-package processing-mode
-  :mode "\\.pde$"
-  :config (use-package processing-snippets))
 
 ;; puppet
 (use-package puppet-mode
@@ -670,22 +464,12 @@
          ("known_hosts\\'"       . ssh-known-hosts-mode)
          ("authorized_keys2?\\'" . ssh-authorized-keys-mode)))
 
-;; toml
-(use-package toml-mode
-  :mode "\\.toml$")
 
 ;; yaml
 (use-package yaml-mode
   :mode "\\.ya?ml\'")
 
-;; znc - depends on local
-(use-package znc
-  :if (bound-and-true-p znc-password)
-  :commands znc-erc
   :config
-  (setq znc-servers
-        `(("schwartzmeyer.com" .
-           (46728 t ((freenode . ("andrew/freenode" ,znc-password))))))))
 
 ;;; provide init package
 (provide 'init)
