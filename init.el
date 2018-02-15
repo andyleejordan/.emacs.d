@@ -7,6 +7,7 @@
 ;;; Package:
 (setq gc-cons-threshold (* 10 1024 1024))
 
+(setq package-check-signature nil)
 (require 'package)
 (setq load-prefer-newer t
       package-enable-at-startup nil
@@ -107,176 +108,122 @@
 (use-package evil-visualstar
   :config (global-evil-visualstar-mode))
 
-;; projectile
-(use-package projectile
-  :diminish projectile-mode
-  :config
-  (setq projectile-enable-caching t
-        projectile-completion-system 'helm
-        projectile-switch-project-action 'helm-projectile)
-  (projectile-global-mode))
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
 
-
-
-
-
-
-
-;; highlight changes
-(use-package git-gutter
-  :diminish git-gutter-mode
-  :config (global-git-gutter-mode))
-
-  :config
-
-
-
-
-
-;;; Formatting:
-(setq-default indent-tabs-mode nil)
-(setq sentence-end-double-space nil)
-
-
-
-
-
-
-
-;;; functions
-(defun compile-init ()
-  "Byte recompile user Emacs directory."
-  (interactive)
-  (byte-recompile-directory user-emacs-directory))
-
-(defun eval-region-or-buffer ()
-  "Evaluate the selection, or, if empty, the whole buffer."
-  (interactive)
-  (let ((debug-on-error t))
-    (cond
-     (mark-active
-      (call-interactively 'eval-region)
-      (setq deactivate-mark t))
-     (t
-      (eval-buffer)))))
-
-(defun copy-buffer-file-path ()
-  "Put current buffer's short path into the kill ring."
-  (interactive)
-  (when (buffer-file-name)
-    (kill-new (f-short (buffer-file-name)))))
-
-(defun copy-buffer-file-name ()
-  "Put current buffer's base name into the kill ring."
-  (interactive)
-  (when (buffer-file-name)
-    (kill-new (f-filename (buffer-file-name)))))
-
-;;; extensions
-;; adaptive word wrapping
-(use-package adaptive-wrap
-  :config (adaptive-wrap-prefix-mode))
-
-
-  :config
-
-
-;; company "complete anything"
-(use-package company
-  :diminish company-mode
-  :commands (company-complete company-mode)
-  :config
-  (use-package company-c-headers)
-  (push '(company-clang
-          :with company-semantic
-          :with company-yasnippet
-          :with company-c-headers)
-        company-backends))
-
-;; automatic demangling
-(use-package demangle-mode
-  :commands demangle-mode)
-
-;; dtrt
-(use-package dtrt-indent
-  :load-path "site-lisp/dtrt-indent"
-  :config
-  (dtrt-indent-mode)
-  (setq dtrt-indent-min-quality 60
-        dtrt-indent-verbosity 3))
-
-;; flycheck
-(use-package flycheck
-  :diminish flycheck-mode
-  :init (global-flycheck-mode))
-
-;; flyspell - use aspell instead of ispell
-(use-package flyspell
-  :commands (flyspell-mode flyspell-prog-mode)
-  :config (setq ispell-program-name (executable-find "aspell")
-                ispell-extra-args '("--sug-mode=ultra")))
-
-;; fortune
-(use-package fortune-cookie
-  :config
-  (setq fortune-cookie-fortune-args "-s"
-        fortune-cookie-cowsay-args "-f tux")
-  (fortune-cookie-mode))
-
-;; ggtags
-(use-package ggtags
-  :commands ggtags-mode
-  :diminish ggtags-mode
-  :config
-  (general-define-key
-   :keymaps 'ggtags-mode-map
-   :states '(normal)
-   "g d" 'helm-gtags-dwim)
-  (use-package helm-gtags
-    :commands (helm-gtags-dwim)
-    :config (helm-gtags-mode)))
-
-
-;; magit
+;;; Version control:
+(setq vc-follow-symlinks t)
 (use-package magit
+  :bind ("C-c g" . magit-status)
   :commands (magit-status projectile-vc)
   :config
   (use-package evil-magit)
   (add-to-list 'magit-log-arguments "--no-abbrev-commit")
   (setq magit-popup-use-prefix-argument 'default
-        magit-completing-read-function 'magit-ido-completing-read))
-
+        magit-completing-read-function 'ivy-completing-read))
 (global-git-commit-mode)
 
-;; saveplace
-(use-package saveplace
+(use-package git-gutter
+  :diminish git-gutter-mode
+  :config (global-git-gutter-mode))
+
+;;; Interface:
+(use-package smex)
+(use-package counsel
+  :diminish counsel-mode
+  :bind
+  ;; note that counsel-mode rebinds most commands
+  (("C-s"     . counsel-grep-or-swiper)
+   ("C-x l"   . counsel-locate)
+   ("C-c k"   . counsel-rg)
+   ("C-c i"   . counsel-imenu))
   :config
-  (setq-default save-place t
-                save-place-file (f-expand "saved-places" user-emacs-directory)))
-;; activate smartparens
+  (setq counsel-find-file-at-point t)
+  (setq counsel-find-file-ignore-regexp "\\.DS_Store\\|.git")
+  (setq counsel-grep-base-command
+        "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
+  (counsel-mode))
+
+(use-package ivy
+  :diminish ivy-mode
+  :bind (("C-c C-r" . ivy-resume))
+  :config
+  (ivy-mode)
+  (setq enable-recursive-minibuffers t)
+  ;; add ‘recentf-mode’ and bookmarks to ‘ivy-switch-buffer’.
+  (setq ivy-use-virtual-buffers t)
+  ;; press "C-p" to use input as-is
+  (setq ivy-use-selectable-prompt t)
+  ;; don't start with '^'
+  (setq ivy-initial-inputs-alist nil))
+
+(use-package which-key
+  :diminish which-key-mode
+  :config (which-key-mode))
+
+(use-package buffer-move
+  :commands (buf-move-up buf-move-down buf-move-left buf-move-right))
+
+;;; Navigation:
+(use-package projectile
+  :diminish projectile-mode
+  :config
+  (setq projectile-enable-caching t
+        projectile-completion-system 'ivy)
+  (projectile-global-mode))
+
+(use-package counsel-projectile
+  :config (counsel-projectile-mode))
+
+;;; Formatting:
+(setq-default indent-tabs-mode nil)
+(setq sentence-end-double-space nil)
+
+(use-package dtrt-indent
+  :diminish dtrt-indent-mode
+  :config
+  (dtrt-indent-mode)
+  (setq dtrt-indent-min-quality 60
+        dtrt-indent-verbosity 3))
+
+(use-package adaptive-wrap
+  :config (adaptive-wrap-prefix-mode))
+
+(use-package whitespace
+  :commands (whitespace-mode)
+  :config
+  (setq whitespace-style '(face tabs spaces newline empty
+                                trailing tab-mark newline-mark)))
+(use-package ws-butler
+  :diminish ws-butler-mode
+  :config (ws-butler-global-mode))
+
+;;; Editing:
 (use-package smartparens
   :diminish smartparens-mode
-  :init
-  (use-package evil-smartparens
-    :load-path "site-lisp/evil-smartparens"
-    :diminish evil-smartparens-mode
-    :config (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
+  :config
   (require 'smartparens-config)
   (smartparens-global-mode)
   (show-smartparens-global-mode)
   (smartparens-global-strict-mode))
 
-;; tramp
-(use-package tramp
-  :config
-  (setq tramp-verbose 9
-        tramp-default-method "ssh"
-        tramp-ssh-controlmaster-options
-        (concat "-o ControlPath=/tmp/tramp.%%r@%%h:%%p "
-                "-o ControlMaster=auto "
-                "-o ControlPersist=no")))
+(use-package evil-smartparens
+  :diminish evil-smartparens-mode
+  :config (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
 
-;; undo-tree
+(use-package highlight-parentheses
+  :diminish highlight-parentheses-mode
+  :config (global-highlight-parentheses-mode))
+
+(use-package hungry-delete
+  :diminish hungry-delete-mode
+  :config (global-hungry-delete-mode))
+
+(use-package saveplace
+  :config
+  (setq save-place-file (f-expand "saved-places" user-emacs-directory))
+  (save-place-mode))
+
 (use-package undo-tree
   :diminish undo-tree-mode
   :config
@@ -285,30 +232,35 @@
         `(("." . ,(f-expand "undo-tree" user-emacs-directory)))
         undo-tree-auto-save-history t))
 
-;; unfill autofill
 (use-package unfill
-  :commands (unfill-region unfill-paragraph toggle-fill-unfill))
+  :commands (unfill-region unfill-paragraph unfill-toggle))
 
-;; uniquify
+;;; Completion / tags:
+(use-package company
+  :diminish company-mode
+  :config
+  (push '(company-clang :with company-semantic) company-backends)
+  (global-company-mode))
+
+(use-package company-statistics
+  :config (company-statistics-mode))
+
+;;; Syntax / spell checking:
+(use-package flycheck
+  :diminish flycheck-mode
+  :config (global-flycheck-mode))
+
+(use-package flyspell
+  :diminish flyspell-mode
+  :config
+  (setq ispell-program-name (executable-find "aspell")
+        ispell-extra-args '("--sug-mode=ultra"))
+  (add-hook 'text-mode-hook 'flyspell-mode)
+  (add-hook 'prog-mode-hook 'flyspell-prog-mode))
+
 (use-package uniquify
   :ensure nil
   :config (setq uniquify-buffer-name-style 'forward))
-
-;; which-key
-(use-package which-key
-  :diminish which-key-mode
-  :config (which-key-mode))
-
-;; whitespace
-(use-package whitespace
-  :commands (whitespace-mode)
-  :config
-  (setq whitespace-style '(face tabs spaces newline empty
-                                trailing tab-mark newline-mark)))
-
-(use-package whitespace-cleanup-mode
-  :diminish whitespace-cleanup-mode
-  :init (global-whitespace-cleanup-mode))
 
 ;;; Language modes:
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c-mode))
@@ -393,9 +345,8 @@
   :commands demangle-mode)
 
 (use-package ibuffer
-  :bind ("C-x C-b" . ibuffer))
-
-(use-package ibuffer-vc)
+  :bind ("C-x C-b" . ibuffer)
+  :config (use-package ibuffer-vc))
 
 (use-package org-plus-contrib
   :mode (("\\.org\\'" . org-mode) ("[0-9]\\{8\\}\\'" . org-mode))
@@ -413,7 +364,7 @@
         org-export-backends '(html beamer ascii latex md)))
 
 (use-package restart-emacs
-  :commands (restart-emacs))
+  :bind ("C-c Q" . restart-emacs))
 
 (use-package tramp
   :config
