@@ -310,18 +310,15 @@
   :diminish whitespace-cleanup-mode
   :init (global-whitespace-cleanup-mode))
 
-;;; syntax support
-;; mode mappings
+;;; Language modes:
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c-mode))
 (add-to-list 'auto-mode-alist '("\\.vcsh\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
 (add-to-list 'magic-mode-alist '(";;; " . emacs-lisp-mode))
 
-;; CMake
 (use-package cmake-mode
   :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'"))
 
-;; C#
 (use-package csharp-mode
   :mode "\\.cs$"
   :config (setq csharp-want-imenu nil))
@@ -329,53 +326,84 @@
 (use-package dockerfile-mode
   :mode "Dockerfile.*\\'")
 
-;; git modes
 (use-package gitattributes-mode
-  :disabled t)
+  :mode ("/\\.gitattributes\\'"
+         "/info/attributes\\'"
+         "/git/attributes\\'"))
+
 (use-package gitconfig-mode
-  :mode ("/\\.gitconfig\\'" "/\\.git/config\\'" "/git/config\\'" "/\\.gitmodules\\'"))
+  :mode ("/\\.gitconfig\\'"
+         "/\\.git/config\\'"
+         "/modules/.*/config\\'"
+         "/git/config\\'"
+         "/\\.gitmodules\\'"
+         "/etc/gitconfig\\'"))
+
 (use-package gitignore-mode
-  :mode ("/\\.gitignore\\'" "/\\.git/info/exclude\\'" "/git/ignore\\'"))
+  :mode ("/\\.gitignore\\'"
+         "/info/exclude\\'"
+         "/git/ignore\\'"))
 
-
-
-
-;; json
 (use-package json-mode
-  :mode "\\.json$"
-  :config (setq js-indent-level 4))
+  :mode ("\\.json$" "\\.jsonld$"))
 
-  :config
-
-
-;; markdown
 (use-package markdown-mode
-  :mode ("\\.markdown\\'" "\\.mk?d\\'" "\\.text\\'")
-  :init
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :config
+  (setq markdown-command "multimarkdown")
   (evil-define-key 'normal markdown-mode-map
     (kbd "g d") 'markdown-jump
     (kbd "g x") 'markdown-follow-link-at-point))
 
-
-;; nginx
 (use-package nginx-mode
-  :mode ("nginx.conf$" "/etc/nginx/.*"))
+  :mode ("nginx\\.conf\\'" "/nginx/.+\\.conf\\'"))
 
-;; org mode extensions
+(use-package powershell
+  :mode ("\\.ps[dm]?1\\'" . powershell-mode))
+
+(use-package protobuf-mode
+  :mode "\\.proto\\'")
+
+(use-package puppet-mode
+  :mode "\\.pp\\'")
+
+(use-package ruby-mode
+  :mode "\\.\\(?:cap\\|gemspec\\|irbrc\\|gemrc\\|rake\\|rb\\|ru\\|thor\\)\\'")
+
+(use-package rust-mode
+  :mode "\\.rs\\'"
+  :config
+  (use-package flycheck-rust)
+  (setq rust-format-on-save t))
+
+(use-package ssh-config-mode
+  :mode (("/\\.ssh/config\\'" . ssh-config-mode)
+         ("/sshd?_config\\'" . ssh-config-mode)
+         ("/known_hosts\\'" . ssh-known-hosts-mode)
+         ("/authorized_keys2?\\'" . ssh-authorized-keys-mode)))
+
+(use-package yaml-mode
+  :mode "\\.ya?ml\'")
+
+;;; Tools:
+(use-package demangle-mode
+  :commands demangle-mode)
+
+(use-package ibuffer
+  :bind ("C-x C-b" . ibuffer))
+
+(use-package ibuffer-vc)
+
 (use-package org-plus-contrib
   :mode (("\\.org\\'" . org-mode) ("[0-9]\\{8\\}\\'" . org-mode))
-  :init
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((emacs-lisp . t) (gnuplot . t) (C . t) (emacs-lisp . t) (haskell . t)
-     (latex . t) (ledger . t) (python . t) (ruby . t) (sh . t)))
-  (evil-define-key 'normal org-mode-map (kbd "g x") 'org-open-at-point)
   :config
   (use-package evil-org)
   (add-hook 'org-mode-hook 'turn-on-auto-fill)
   (setq org-latex-listings t
         org-pretty-entities t
-        org-completion-use-ido t
         org-latex-custom-lang-environments '((C "lstlisting"))
         org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
                             ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
@@ -384,29 +412,18 @@
                             ("models" "\\models" nil "&#8872;" "" "" "⊧"))
         org-export-backends '(html beamer ascii latex md)))
 
-;; powershell
-(use-package powershell
-  :mode ("\\.ps[dm]?1\\'" . powershell-mode)
-  :config (add-hook 'powershell-mode-hook 'work-style))
+(use-package restart-emacs
+  :commands (restart-emacs))
 
-;; puppet
-(use-package puppet-mode
-  :mode "\\.pp\\'")
+(use-package tramp
+  :config
+  (setq tramp-verbose 9
+        tramp-default-method "ssh"
+        tramp-ssh-controlmaster-options
+        (concat "-o ControlPath=/tmp/tramp.%%r@%%h:%%p "
+                "-o ControlMaster=auto "
+                "-o ControlPersist=no")))
 
-;; ruby
-(use-package ruby-mode)
-
-;; rust
-(use-package rust-mode
-  :mode "\\.rs\\'"
-  :config (use-package flycheck-rust))
-
-;; ssh-config
-(use-package ssh-config-mode
-  :mode ((".ssh/config\\'"       . ssh-config-mode)
-         ("sshd?_config\\'"      . ssh-config-mode)
-         ("known_hosts\\'"       . ssh-known-hosts-mode)
-         ("authorized_keys2?\\'" . ssh-authorized-keys-mode)))
 ;;; Appearance:
 (if (display-graphic-p)
     (progn
@@ -418,9 +435,6 @@
   (setq solarized-use-variable-pitch nil)
   (load-theme 'solarized-dark t))
 
-;; yaml
-(use-package yaml-mode
-  :mode "\\.ya?ml\'")
 (use-package fortune-cookie
   :disabled t
   :config
