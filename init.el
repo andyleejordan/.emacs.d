@@ -4,53 +4,46 @@
 
 ;;; Code:
 
-;;; package setup
+;;; Package:
 (require 'package)
 (setq load-prefer-newer t
       package-enable-at-startup nil
       package-archives
-      '(("gnu" . "https://elpa.gnu.org/packages/")
-        ("org" . "http://orgmode.org/elpa/")
-        ("melpa" . "https://melpa.org/packages/")))
+      '(("melpa-stable" . "https://stable.melpa.org/packages/")
+        ("gnu" . "https://elpa.gnu.org/packages/")
+        ("org" . "https://orgmode.org/elpa/")))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
-(setq use-package-verbose t
-      use-package-always-ensure t)
+(setq use-package-always-ensure t)
 
 (eval-when-compile
   (require 'use-package))
 
-;; packages used in init
+(require 'diminish)
+(require 'bind-key)
+
 (use-package dash)
 (use-package f)
 
-;;; system specific packages
-;; load Linux configuration
+;;; Platform:
 (use-package linux
   :ensure nil
   :load-path "lisp/"
   :if (eq system-type 'gnu/linux))
 
-;; load OS X configurations
 (use-package osx
   :ensure nil
   :load-path "lisp/"
   :if (eq system-type 'darwin))
 
-;; load Windows configurations
 (use-package windows
   :ensure nil
   :load-path "lisp/"
   :if (eq system-type 'windows-nt))
-
-;;; load local settings
-(use-package local
-  :ensure nil
-  :load-path "site-lisp/")
 
 (use-package auto-compile
   :config
