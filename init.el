@@ -251,6 +251,7 @@
   :config (global-flycheck-mode))
 
 (use-package flyspell
+  :if (not (eq system-type 'windows-nt))
   :diminish flyspell-mode
   :config
   (use-package auto-correct
