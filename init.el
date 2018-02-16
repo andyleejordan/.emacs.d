@@ -235,20 +235,33 @@
 (use-package unfill
   :commands (unfill-region unfill-paragraph unfill-toggle))
 
-;;; Completion / tags:
+;;; Completion / syntax / tags:
 (use-package company
   :diminish company-mode
   :config
-  (push '(company-clang :with company-semantic) company-backends)
+  (use-package company-statistics
+    :config (company-statistics-mode))
   (global-company-mode))
 
-(use-package company-statistics
-  :config (company-statistics-mode))
-
-;;; Syntax / spell checking:
 (use-package flycheck
   :diminish flycheck-mode
   :config (global-flycheck-mode))
+
+;; alternatives include irony, cquery, rtags, and ggtags
+(use-package ycmd
+  :commands ycmd-mode
+  :config
+  (let ((x (f-expand "ycmd/ycmd" user-emacs-directory)))
+    (setq ycmd-server-command
+          (if (eq system-type 'windows-nt)
+              (list "python.exe" "-u" x) (list "python" x))))
+  (use-package company-ycmd
+    :config (company-ycmd-setup))
+  (use-package flycheck-ycmd
+    :config (flycheck-ycmd-setup))
+  (use-package ycmd-eldoc
+    :ensure nil
+    :config (add-hook 'ycmd-mode-hook 'ycmd-eldoc-setup)))
 
 (use-package flyspell
   :if (not (eq system-type 'windows-nt))
