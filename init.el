@@ -341,6 +341,11 @@
   :mode "\\.ya?ml\'")
 
 ;;; Tools:
+(use-package clang-format
+  :ensure nil
+  :load-path "lisp/"
+  :config (evil-define-key 'visual c++-mode-map "=" 'clang-format-region))
+
 (use-package demangle-mode
   :commands demangle-mode)
 
