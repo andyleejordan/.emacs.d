@@ -184,8 +184,7 @@
   :diminish dtrt-indent-mode
   :config
   (dtrt-indent-mode)
-  (setq dtrt-indent-min-quality 60
-        dtrt-indent-verbosity 3))
+  (setq dtrt-indent-min-quality 60))
 
 (use-package adaptive-wrap
   :config (adaptive-wrap-prefix-mode))
