@@ -255,7 +255,7 @@
   :config
   (use-package auto-correct
     :config (add-hook 'flyspell-mode-hook 'auto-correct-mode))
-  (setq ispell-program-name (executable-find "aspell")
+  (setq ispell-program-name "aspell"
         ispell-extra-args '("--sug-mode=ultra"))
   (add-hook 'text-mode-hook 'flyspell-mode)
   (add-hook 'prog-mode-hook 'flyspell-prog-mode))
