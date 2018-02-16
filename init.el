@@ -261,10 +261,6 @@
   (add-hook 'text-mode-hook 'flyspell-mode)
   (add-hook 'prog-mode-hook 'flyspell-prog-mode))
 
-(use-package uniquify
-  :ensure nil
-  :config (setq uniquify-buffer-name-style 'forward))
-
 ;;; Language modes:
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c-mode))
 (add-to-list 'auto-mode-alist '("\\.vcsh\\'" . conf-mode))
@@ -410,6 +406,10 @@
   :config
   (setq smooth-scroll/vscroll-step-size 8)
   (smooth-scroll-mode))
+
+(use-package uniquify
+  :ensure nil
+  :config (setq uniquify-buffer-name-style 'forward))
 
 ;;; Emacs configuration:
 (setq next-screen-context-lines 4)
