@@ -4,13 +4,7 @@
 ;;; Uses Consolas font
 
 ;;; Code:
-
-;; set font
-(set-frame-font
- "-outline-Consolas-normal-normal-normal-mono-16-*-*-*-c-*-iso8859-1" nil t)
-
-;; font size
-(set-face-attribute 'default nil :height 120)
+(set-face-attribute 'default nil :family "Consolas" :height 100)
 
 (provide 'windows)
 ;;; windows.el ends here
