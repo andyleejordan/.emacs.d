@@ -394,6 +394,9 @@
   (setq solarized-use-variable-pitch nil)
   (load-theme 'solarized-dark t))
 
+(use-package hl-todo
+  :config (global-hl-todo-mode))
+
 (use-package fortune-cookie
   :disabled t
   :config
