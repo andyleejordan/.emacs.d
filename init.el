@@ -169,7 +169,8 @@
   :diminish projectile-mode
   :config
   (setq projectile-enable-caching t
-        projectile-completion-system 'ivy)
+        projectile-completion-system 'ivy
+        projectile-indexing-method 'alien)
   (projectile-global-mode))
 
 (use-package counsel-projectile
