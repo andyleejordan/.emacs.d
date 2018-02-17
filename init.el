@@ -155,6 +155,8 @@
   (setq ivy-re-builders-alist
         '((t . ivy--regex-fuzzy)))
   (setq enable-recursive-minibuffers t)
+  ;; used with `C-o'
+  (use-package hydra)
   ;; add ‘recentf-mode’ and bookmarks to ‘ivy-switch-buffer’.
   (setq ivy-use-virtual-buffers t)
   ;; press "C-p" to use input as-is
