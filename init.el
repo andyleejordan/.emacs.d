@@ -128,7 +128,6 @@
   :config (global-git-gutter-mode))
 
 ;;; Interface:
-(use-package smex)
 (use-package counsel
   :diminish counsel-mode
   :bind
@@ -138,6 +137,8 @@
    ("C-c k"   . counsel-rg)
    ("C-c i"   . counsel-imenu))
   :config
+  ;; provides sorting for `counsel-M-x'
+  (use-package smex)
   (setq counsel-find-file-at-point t)
   (setq counsel-find-file-ignore-regexp "\\.DS_Store\\|.git")
   (setq counsel-grep-base-command
@@ -148,14 +149,19 @@
   :diminish ivy-mode
   :bind (("C-c C-r" . ivy-resume))
   :config
-  (ivy-mode)
+  ;; provides sorting for ivy
+  (use-package flx)
+  ;; use flx-like matching - https://oremacs.com/2016/01/06/ivy-flx/
+  (setq ivy-re-builders-alist
+        '((t . ivy--regex-fuzzy)))
   (setq enable-recursive-minibuffers t)
   ;; add ‘recentf-mode’ and bookmarks to ‘ivy-switch-buffer’.
   (setq ivy-use-virtual-buffers t)
   ;; press "C-p" to use input as-is
   (setq ivy-use-selectable-prompt t)
   ;; don't start with '^'
-  (setq ivy-initial-inputs-alist nil))
+  (setq ivy-initial-inputs-alist nil)
+  (ivy-mode))
 
 (use-package which-key
   :diminish which-key-mode
