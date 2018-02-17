@@ -411,9 +411,9 @@
   :config (global-hl-todo-mode))
 
 (use-package fortune-cookie
-  :disabled t
   :config
   (setq fortune-cookie-fortune-args "-s"
+        fortune-cookie-cowsay-enable t
         fortune-cookie-cowsay-args "-f tux")
   (fortune-cookie-mode))
 
