@@ -453,6 +453,7 @@
       kill-whole-line t)
 (setq-default set-mark-command-repeat-pop t)
 (setq system-uses-terminfo nil)
+(setq custom-file (f-expand "custom.el" user-emacs-directory))
 (setq backup-by-copying t
       delete-old-versions t
       kept-new-versions 4
