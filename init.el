@@ -374,6 +374,8 @@
   :config
   (use-package evil-org)
   (add-hook 'org-mode-hook 'turn-on-auto-fill)
+  (setq org-startup-indented nil
+        org-adapt-indentation nil)
   (setq org-latex-listings t
         org-pretty-entities t
         org-latex-custom-lang-environments '((C "lstlisting"))
