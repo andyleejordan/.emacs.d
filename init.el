@@ -12,7 +12,7 @@
 (setq load-prefer-newer t
       package-enable-at-startup nil
       package-archives
-      '(("melpa-stable" . "https://stable.melpa.org/packages/")
+      '(("melpa" . "https://melpa.org/packages/")
         ("gnu" . "https://elpa.gnu.org/packages/")
         ("org" . "https://orgmode.org/elpa/")))
 (package-initialize)
@@ -26,9 +26,8 @@
 (eval-when-compile
   (require 'use-package))
 
-(require 'diminish)
-(require 'bind-key)
-
+(use-package delight)
+(use-package bind-key)
 (use-package dash)
 (use-package f)
 
