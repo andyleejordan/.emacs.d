@@ -1,18 +1,21 @@
-sudo: required
-dist: trusty
-language: generic
-git:
-  submodules: true
+addons:
+  apt:
+    packages:
+      - build-essential
+      - libncurses-dev
+      - aspell
+      - aspell-en
+      - fortune
+      - cowsay
 before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get -qq install build-essential libncurses-dev wget
-  - wget https://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.xz
-  - tar xf emacs-24.5.tar.xz
+  - wget https://ftp.gnu.org/gnu/emacs/emacs-25.3.tar.xz
+  - tar xf emacs-25.3.tar.xz
 install:
-  - cd emacs-24.5 && ./configure --without-all && sudo make -j install && cd ..
-  - emacs --version
+  - cd emacs-25.3 && ./configure --without-all && make -j
+  - ./src/emacs --version
+  - cd ..
 before_script:
   - rm -rf ~/.emacs.d ~/.emacs
   - ln -s $(pwd) ~/.emacs.d
 script:
-  - emacs --batch --load init.el --kill
+  - ./emacs-25.3/src/emacs --batch --load ~/.emacs.d/init.el --kill
