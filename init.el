@@ -80,11 +80,11 @@
               ("K" . evil-jump-out-args)))
 
 (use-package evil-commentary
-  :diminish evil-commentary-mode
+  :delight
   :config (evil-commentary-mode))
 
 (use-package evil-escape
-  :diminish evil-escape-mode
+  :delight
   :bind ("C-c C-g" . evil-escape)
   :init
   (setq evil-escape-key-sequence "jk")
@@ -123,12 +123,12 @@
 (global-git-commit-mode)
 
 (use-package git-gutter
-  :diminish git-gutter-mode
+  :delight
   :config (global-git-gutter-mode))
 
 ;;; Interface:
 (use-package counsel
-  :diminish counsel-mode
+  :delight
   :bind
   ;; note that counsel-mode rebinds most commands
   (("C-s"     . counsel-grep-or-swiper)
@@ -148,7 +148,7 @@
   (counsel-mode))
 
 (use-package ivy
-  :diminish ivy-mode
+  :delight
   :bind (("C-c C-r" . ivy-resume))
   :config
   ;; provides sorting for ivy
@@ -167,7 +167,7 @@
   (ivy-mode))
 
 (use-package which-key
-  :diminish which-key-mode
+  :delight
   :config (which-key-mode))
 
 (use-package buffer-move
@@ -175,7 +175,7 @@
 
 ;;; Navigation:
 (use-package projectile
-  :diminish projectile-mode
+  :delight '(:eval (concat " " (projectile-project-name)))
   :config
   (setq projectile-enable-caching t
         projectile-completion-system 'ivy
@@ -190,7 +190,7 @@
 (setq sentence-end-double-space nil)
 
 (use-package dtrt-indent
-  :diminish dtrt-indent-mode
+  :delight
   :config
   (dtrt-indent-mode)
   (setq dtrt-indent-min-quality 60))
@@ -204,12 +204,12 @@
   (setq whitespace-style '(face tabs spaces newline empty
                                 trailing tab-mark newline-mark)))
 (use-package ws-butler
-  :diminish ws-butler-mode
+  :delight
   :config (ws-butler-global-mode))
 
 ;;; Editing:
 (use-package smartparens
-  :diminish smartparens-mode
+  :delight
   :config
   (require 'smartparens-config)
   (smartparens-global-mode)
@@ -217,16 +217,21 @@
   (smartparens-global-strict-mode))
 
 (use-package evil-smartparens
-  :diminish evil-smartparens-mode
+  :delight
   :config (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
 
 (use-package highlight-parentheses
-  :diminish highlight-parentheses-mode
+  :delight
   :config (global-highlight-parentheses-mode))
 
 (use-package hungry-delete
-  :diminish hungry-delete-mode
+  :delight
   :config (global-hungry-delete-mode))
+
+(use-package autorevert
+  :ensure nil
+  :delight auto-revert-mode
+  :config (global-auto-revert-mode))
 
 (use-package saveplace
   :config
@@ -234,7 +239,7 @@
   (save-place-mode))
 
 (use-package undo-tree
-  :diminish undo-tree-mode
+  :delight
   :config
   (global-undo-tree-mode)
   (setq undo-tree-history-directory-alist
@@ -246,14 +251,14 @@
 
 ;;; Completion / syntax / tags:
 (use-package company
-  :diminish company-mode
+  :delight
   :config
   (use-package company-statistics
     :config (company-statistics-mode))
   (global-company-mode))
 
 (use-package flycheck
-  :diminish flycheck-mode
+  :delight
   :config (global-flycheck-mode))
 
 ;; alternatives include irony, cquery, rtags, and ggtags
@@ -274,9 +279,10 @@
 
 (use-package flyspell
   :if (not (eq system-type 'windows-nt))
-  :diminish flyspell-mode
+  :delight
   :config
   (use-package auto-correct
+    :delight
     :config (add-hook 'flyspell-mode-hook 'auto-correct-mode))
   (setq ispell-program-name "aspell"
         ispell-extra-args '("--sug-mode=ultra"))
@@ -430,7 +436,7 @@
 
 (use-package smooth-scroll
   :if (display-graphic-p)
-  :diminish smooth-scroll-mode
+  :delight
   :config
   (setq smooth-scroll/vscroll-step-size 8)
   (smooth-scroll-mode))
@@ -468,7 +474,10 @@
 (setq recentf-max-saved-items 256
       recentf-max-menu-items 16)
 (recentf-mode)
-(global-auto-revert-mode)
+(use-package autorevert
+  :ensure nil
+  :delight auto-revert-mode
+  :config (global-auto-revert-mode))
 (setq dired-dwim-target t ; enable side-by-side dired buffer targets
       dired-recursive-copies 'always ; better recursion in dired
       dired-recursive-deletes 'top
