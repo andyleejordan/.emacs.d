@@ -139,6 +139,9 @@
   :config
   ;; provides sorting for `counsel-M-x'
   (use-package smex)
+  ;; enables using `swiper-query-replace' from `swiper' via `M-q'
+  (setq enable-recursive-minibuffers t)
+  (minibuffer-depth-indicate-mode)
   (setq counsel-find-file-at-point t)
   (setq counsel-find-file-ignore-regexp "\\.DS_Store\\|.git")
   (setq counsel-grep-base-command
@@ -154,7 +157,6 @@
   ;; use flx-like matching - https://oremacs.com/2016/01/06/ivy-flx/
   (setq ivy-re-builders-alist
         '((t . ivy--regex-fuzzy)))
-  (setq enable-recursive-minibuffers t)
   ;; used with `C-o'
   (use-package hydra)
   ;; add ‘recentf-mode’ and bookmarks to ‘ivy-switch-buffer’.
