@@ -358,6 +358,10 @@
   :load-path "lisp/"
   :config (evil-define-key 'visual c++-mode-map "=" 'clang-format-region))
 
+(setq compilation-ask-about-save nil
+      compilation-scroll-output t
+      compilation-always-kill t)
+
 (use-package demangle-mode
   :commands demangle-mode)
 
@@ -424,6 +428,11 @@
   :ensure nil
   :config (setq uniquify-buffer-name-style 'forward))
 
+(setq ring-bell-function 'ignore
+      visible-bell t)
+
+(setq inhibit-startup-message t)
+
 ;;; Emacs configuration:
 (setq next-screen-context-lines 4)
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -431,9 +440,6 @@
 (winner-mode)
 (setq disabled-command-function nil)
 (setq-default truncate-lines t)
-(setq ring-bell-function 'ignore
-      visible-bell t)
-(setq inhibit-startup-message t)
 (setq save-interprogram-paste-before-kill t
       kill-do-not-save-duplicates t
       kill-whole-line t)
@@ -455,8 +461,6 @@
       dired-recursive-copies 'always ; better recursion in dired
       dired-recursive-deletes 'top
       dired-listing-switches "-lahp")
-(setq compilation-ask-about-save nil
-      compilation-always-kill t)
 
 ;;; provide init package
 (provide 'init)
