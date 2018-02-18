@@ -263,6 +263,17 @@
   :delight
   :config (global-flycheck-mode))
 
+(use-package lsp-mode)
+
+(use-package cquery
+  :config
+  (add-hook 'c++mode-hook #'lsp-cquery-enable)
+  (setq cquery-executable (f-expand "cquery/build/release/bin/cquery" user-emacs-directory)
+        cquery-extra-init-params '(:enableComments 2 :cacheFormat "msgpack"))
+  (require 'lsp-flycheck))
+
+(use-package company-lsp :config (push 'company-lsp company-backends))
+
 ;; alternatives include irony, cquery, rtags, and ggtags
 (use-package ycmd
   :commands ycmd-mode
