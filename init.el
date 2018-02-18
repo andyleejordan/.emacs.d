@@ -212,7 +212,6 @@
 
 ;;; Editing:
 (use-package smartparens
-  :delight
   :config
   (require 'smartparens-config)
   (smartparens-global-mode)
