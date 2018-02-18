@@ -180,7 +180,7 @@
   (setq projectile-enable-caching t
         projectile-completion-system 'ivy
         projectile-indexing-method 'alien)
-  (projectile-global-mode))
+  (projectile-mode))
 
 (use-package counsel-projectile
   :config (counsel-projectile-mode))
