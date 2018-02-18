@@ -438,7 +438,21 @@
 (use-package solarized-theme
   :config
   (setq solarized-use-variable-pitch nil)
-  (load-theme 'solarized-dark t))
+  (load-theme 'solarized-dark t)
+  (let ((line (face-attribute 'mode-line :underline)))
+    (set-face-attribute 'mode-line-inactive nil :overline   line)
+    (set-face-attribute 'mode-line          nil :overline   line)
+    (set-face-attribute 'mode-line          nil :underline  line)
+    (set-face-attribute 'mode-line          nil :box        nil)
+    (set-face-attribute 'mode-line-inactive nil :box        nil)
+    (set-face-attribute 'mode-line-inactive nil :background "#f9f2d9")))
+
+(use-package moody
+  :load-path "lisp/"
+  :config
+  (setq x-underline-at-descent-line t)
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode))
 
 (use-package hl-todo
   :config (global-hl-todo-mode))
