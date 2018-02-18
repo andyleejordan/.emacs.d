@@ -195,6 +195,9 @@
   (dtrt-indent-mode)
   (setq dtrt-indent-min-quality 60))
 
+(use-package aggressive-indent
+  :config (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
+
 (use-package adaptive-wrap
   :config (adaptive-wrap-prefix-mode))
 
