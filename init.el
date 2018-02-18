@@ -282,10 +282,13 @@
 (use-package flyspell
   :if (not (eq system-type 'windows-nt))
   :delight
+  :bind (:map flyspell-mode-map
+              ("C-;" . #'flyspell-correct-previous-word-generic))
   :config
   (use-package auto-correct
     :delight
     :config (add-hook 'flyspell-mode-hook 'auto-correct-mode))
+  (use-package flyspell-correct-ivy)
   (setq ispell-program-name "aspell"
         ispell-extra-args '("--sug-mode=ultra"))
   (add-hook 'text-mode-hook 'flyspell-mode)
