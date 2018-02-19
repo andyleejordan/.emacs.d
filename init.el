@@ -114,16 +114,20 @@
   :bind ("C-=" . er/expand-region))
 
 ;;; Version control:
-(setq vc-follow-symlinks t)
+(use-package vc-hooks
+  :ensure nil
+  :custom (vc-follow-symlinks t))
+
 (use-package magit
   :bind ("C-c g" . magit-status)
   :commands (magit-status projectile-vc)
-  :config
-  (use-package evil-magit)
-  (add-to-list 'magit-log-arguments "--no-abbrev-commit")
-  (setq magit-popup-use-prefix-argument 'default
-        magit-completing-read-function 'ivy-completing-read))
-(global-git-commit-mode)
+  :custom (magit-completing-read-function 'ivy-completing-read))
+
+(use-package evil-magit
+  :after (evil magit))
+
+(use-package git-commit
+  :config (global-git-commit-mode))
 
 (use-package git-gutter
   :delight
