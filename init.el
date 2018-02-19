@@ -479,6 +479,7 @@
   :config (global-hl-todo-mode))
 
 (use-package fortune-cookie
+  :if (not (eq system-type 'windows-nt) )
   :custom
   (fortune-cookie-fortune-args "-s")
   (fortune-cookie-cowsay-enable t)
