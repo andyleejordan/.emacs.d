@@ -45,19 +45,19 @@
 
 ;;; Vim:
 (use-package evil
-  :config
-  (setq evil-want-C-u-scroll t
-        evil-want-fine-undo 'no
-        evil-cross-lines t
-        evil-disable-insert-state-bindings t)
-  (evil-mode)
-  (add-hook 'git-commit-mode-hook 'evil-insert-state))
+  :hook (git-commit-mode . evil-insert-state)
+  :custom
+  (evil-want-C-u-scroll t)
+  (evil-cross-lines t)
+  (evil-disable-insert-state-bindings t)
+  :config (evil-mode))
 
 ;; required by evil
 (use-package goto-chg
   :commands (goto-last-change goto-last-change-reverse))
 
 (use-package evil-args
+  :after evil
   :bind (;; bind evil-args text objects
          :map evil-inner-text-objects-map
               ("a" . evil-inner-arg)
@@ -76,20 +76,25 @@
               ("K" . evil-jump-out-args)))
 
 (use-package evil-commentary
+  :after evil
   :delight
   :config (evil-commentary-mode))
 
 (use-package evil-escape
+  :after evil
+  :demand ;; because "jk" isn't in :bind
   :delight
   :bind ("C-c C-g" . evil-escape)
-  :init
-  (setq evil-escape-key-sequence "jk")
-  (evil-escape-mode))
+  :custom (evil-escape-key-sequence "jk")
+  :config (evil-escape-mode))
 
+;; press % to jump between tags
 (use-package evil-matchit
+  :after evil
   :config (global-evil-matchit-mode))
 
 (use-package evil-numbers
+  :after evil
   :bind (:map evil-normal-state-map
               ("C-c +" . evil-numbers/inc-at-pt)
               ("C-c -" . evil-numbers/dec-at-pt)
@@ -98,9 +103,11 @@
               ("C-c -" . evil-numbers/dec-at-pt)))
 
 (use-package evil-surround
+  :after evil
   :config (global-evil-surround-mode))
 
 (use-package evil-visualstar
+  :after evil
   :config (global-evil-visualstar-mode))
 
 (use-package expand-region
