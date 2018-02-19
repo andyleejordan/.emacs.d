@@ -316,19 +316,23 @@
   :config (flycheck-ycmd-setup))
 
 (use-package flyspell
+  ;; Disable on Windows because `aspell' 0.6+ isn't available.
   :if (not (eq system-type 'windows-nt))
   :delight
+  :hook ((text-mode . flyspell-mode)
+         (prog-mode . flyspell-prog-mode))
   :bind (:map flyspell-mode-map
               ("C-;" . #'flyspell-correct-previous-word-generic))
-  :config
-  (use-package auto-correct
-    :delight
-    :config (add-hook 'flyspell-mode-hook 'auto-correct-mode))
-  (use-package flyspell-correct-ivy)
-  (setq ispell-program-name "aspell"
-        ispell-extra-args '("--sug-mode=ultra"))
-  (add-hook 'text-mode-hook 'flyspell-mode)
-  (add-hook 'prog-mode-hook 'flyspell-prog-mode))
+  :custom
+  (ispell-program-name "aspell")
+  (ispell-extra-args '("--sug-mode=ultra")))
+
+(use-package flyspell-correct-ivy
+  :after (flyspell ivy))
+
+(use-package auto-correct
+  :delight
+  :hook (flyspell-mode . auto-correct-mode))
 
 ;;; Language modes:
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c-mode))
