@@ -3,25 +3,22 @@
 ;; See readme.
 
 ;;; Code:
+(customize-set-variable 'gc-cons-threshold (* 10 1024 1024))
 
 ;;; Package:
-(setq gc-cons-threshold (* 10 1024 1024))
-
-(setq package-check-signature nil)
 (require 'package)
-(setq load-prefer-newer t
-      package-enable-at-startup nil
-      package-archives
-      '(("melpa" . "https://melpa.org/packages/")
-        ("gnu" . "https://elpa.gnu.org/packages/")
-        ("org" . "https://orgmode.org/elpa/")))
+(customize-set-variable
+ 'package-archives
+ '(("melpa" . "https://melpa.org/packages/")
+   ("gnu" . "https://elpa.gnu.org/packages/")
+   ("org" . "https://orgmode.org/elpa/")))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
-(setq use-package-always-ensure t)
+(customize-set-variable 'use-package-always-ensure t)
 
 (eval-when-compile
   (require 'use-package))
