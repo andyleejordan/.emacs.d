@@ -270,41 +270,50 @@
 ;;; Completion / syntax / tags:
 (use-package company
   :delight
-  :config
-  (use-package company-statistics
-    :config (company-statistics-mode))
-  (global-company-mode))
+  :config (global-company-mode))
+
+(use-package company-statistics
+  :after company
+  :config (company-statistics-mode))
 
 (use-package flycheck
   :delight
   :config (global-flycheck-mode))
 
+;; options include irony, cquery, rtags, ggtags, and ycmd
 (use-package lsp-mode)
 
 (use-package cquery
-  :config
-  (add-hook 'c++mode-hook #'lsp-cquery-enable)
-  (setq cquery-executable (f-expand "cquery/build/release/bin/cquery" user-emacs-directory)
-        cquery-extra-init-params '(:enableComments 2 :cacheFormat "msgpack"))
-  (require 'lsp-flycheck))
+  :after lsp-mode
+  :hook (c++-mode . lsp-cquery-enable)
+  :custom
+  (cquery-executable (f-expand "cquery/build/release/bin/cquery" user-emacs-directory))
+  (cquery-extra-init-params '(:enableComments 2 :cacheFormat "msgpack"))
+  :config (require 'lsp-flycheck))
 
-(use-package company-lsp :config (push 'company-lsp company-backends))
+(use-package company-lsp
+  :after (lsp-mode company)
+  :config (push 'company-lsp company-backends))
 
-;; alternatives include irony, cquery, rtags, and ggtags
 (use-package ycmd
   :commands ycmd-mode
+  :hook (ycmd-mode . ycmd-eldoc-setup)
   :config
   (let ((x (f-expand "ycmd/ycmd" user-emacs-directory)))
-    (setq ycmd-server-command
-          (if (eq system-type 'windows-nt)
-              (list "python.exe" "-u" x) (list "python" x))))
-  (use-package company-ycmd
-    :config (company-ycmd-setup))
-  (use-package flycheck-ycmd
-    :config (flycheck-ycmd-setup))
-  (use-package ycmd-eldoc
-    :ensure nil
-    :config (add-hook 'ycmd-mode-hook 'ycmd-eldoc-setup)))
+    (customize-set-variable
+     'ycmd-server-command
+     (if (eq system-type 'windows-nt)
+         (list "python.exe" "-u" x)
+       (list "python" x))))
+  (require 'ycmd-eldoc))
+
+(use-package company-ycmd
+  :after (ycmd company)
+  :config (company-ycmd-setup))
+
+(use-package flycheck-ycmd
+  :after (ycmd flycheck)
+  :config (flycheck-ycmd-setup))
 
 (use-package flyspell
   :if (not (eq system-type 'windows-nt))
