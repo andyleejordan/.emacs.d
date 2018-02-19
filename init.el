@@ -204,26 +204,26 @@
   :config (counsel-projectile-mode))
 
 ;;; Formatting:
-(setq-default indent-tabs-mode nil)
-(setq sentence-end-double-space nil)
+(customize-set-variable 'indent-tabs-mode nil)
+(customize-set-variable 'sentence-end-double-space nil)
 
 (use-package dtrt-indent
   :delight
-  :config
-  (dtrt-indent-mode)
-  (setq dtrt-indent-min-quality 60))
+  :custom (dtrt-indent-min-quality 60)
+  :config (dtrt-indent-mode))
 
 (use-package aggressive-indent
-  :config (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
+  :hook (emacs-lisp-mode . aggressive-indent-mode))
 
 (use-package adaptive-wrap
   :config (adaptive-wrap-prefix-mode))
 
 (use-package whitespace
-  :commands (whitespace-mode)
-  :config
-  (setq whitespace-style '(face tabs spaces newline empty
-                                trailing tab-mark newline-mark)))
+  :commands whitespace-mode
+  :custom
+  (whitespace-style
+   '(face tabs spaces newline empty trailing tab-mark newline-mark)))
+
 (use-package ws-butler
   :delight
   :config (ws-butler-global-mode))
@@ -233,12 +233,11 @@
   :config
   (require 'smartparens-config)
   (smartparens-global-mode)
-  (show-smartparens-global-mode)
   (smartparens-global-strict-mode))
 
 (use-package evil-smartparens
   :delight
-  :config (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
+  :hook (smartparens-enabled . evil-smartparens-mode))
 
 (use-package highlight-parentheses
   :delight
@@ -254,17 +253,16 @@
   :config (global-auto-revert-mode))
 
 (use-package saveplace
-  :config
-  (setq save-place-file (f-expand "saved-places" user-emacs-directory))
-  (save-place-mode))
+  :custom (save-place-file (f-expand ".emacs-places" user-emacs-directory))
+  :config (save-place-mode))
 
 (use-package undo-tree
   :delight
-  :config
-  (global-undo-tree-mode)
-  (setq undo-tree-history-directory-alist
-        `(("." . ,(f-expand "undo-tree" user-emacs-directory)))
-        undo-tree-auto-save-history t))
+  :custom
+  (undo-tree-history-directory-alist
+   `(("." . ,(f-expand "undo-tree" user-emacs-directory))))
+  (undo-tree-auto-save-history t)
+  :config (global-undo-tree-mode))
 
 (use-package unfill
   :commands (unfill-region unfill-paragraph unfill-toggle))
