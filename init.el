@@ -345,7 +345,7 @@
 
 (use-package csharp-mode
   :mode "\\.cs$"
-  :config (setq csharp-want-imenu nil))
+  :custom (csharp-want-imenu nil))
 
 (use-package dockerfile-mode
   :mode "Dockerfile.*\\'")
@@ -376,11 +376,10 @@
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :config
-  (setq markdown-command "multimarkdown")
-  (evil-define-key 'normal markdown-mode-map
-    (kbd "g d") 'markdown-jump
-    (kbd "g x") 'markdown-follow-link-at-point))
+  :custom (markdown-command "multimarkdown")
+  :config (evil-define-key 'normal markdown-mode-map
+            (kbd "g d") 'markdown-jump
+            (kbd "g x") 'markdown-follow-link-at-point))
 
 (use-package nginx-mode
   :mode ("nginx\\.conf\\'" "/nginx/.+\\.conf\\'"))
@@ -399,9 +398,11 @@
 
 (use-package rust-mode
   :mode "\\.rs\\'"
-  :config
-  (use-package flycheck-rust)
-  (setq rust-format-on-save t))
+  :custom (rust-format-on-save t))
+
+(use-package flycheck-rust
+  :after (rust-mode flycheck)
+  :hook (flycheck-mode . flycheck-rust-setup))
 
 (use-package ssh-config-mode
   :mode (("/\\.ssh/config\\'" . ssh-config-mode)
