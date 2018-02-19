@@ -194,11 +194,11 @@
 ;;; Navigation:
 (use-package projectile
   :delight '(:eval (concat " " (projectile-project-name)))
-  :config
-  (setq projectile-enable-caching t
-        projectile-completion-system 'ivy
-        projectile-indexing-method 'alien)
-  (projectile-mode))
+  :custom
+  (projectile-enable-caching t)
+  (projectile-completion-system 'ivy)
+  (projectile-indexing-method 'alien "Disable native indexing on Windows.")
+  :config (projectile-mode))
 
 (use-package counsel-projectile
   :config (counsel-projectile-mode))
