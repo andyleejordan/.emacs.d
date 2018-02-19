@@ -31,20 +31,19 @@
 (use-package dash)
 (use-package f)
 
+(push "~/.emacs.d/lisp" load-path)
+
 ;;; Platform:
 (use-package linux
   :ensure nil
-  :load-path "lisp/"
   :if (eq system-type 'gnu/linux))
 
 (use-package osx
   :ensure nil
-  :load-path "lisp/"
   :if (eq system-type 'darwin))
 
 (use-package windows
   :ensure nil
-  :load-path "lisp/"
   :if (eq system-type 'windows-nt))
 
 ;;; Vim:
@@ -386,7 +385,6 @@
 ;;; Tools:
 (use-package clang-format
   :ensure nil
-  :load-path "lisp/"
   :config (evil-define-key 'visual c++-mode-map "=" 'clang-format-region))
 
 (setq compilation-ask-about-save nil
