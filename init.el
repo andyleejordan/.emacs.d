@@ -210,7 +210,7 @@
 (use-package dtrt-indent
   :delight
   :custom (dtrt-indent-min-quality 60)
-  :config (dtrt-indent-mode))
+  :config (dtrt-indent-global-mode))
 
 (use-package aggressive-indent
   :hook (emacs-lisp-mode . aggressive-indent-mode))
