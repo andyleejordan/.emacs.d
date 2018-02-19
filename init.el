@@ -134,43 +134,54 @@
   :config (global-git-gutter-mode))
 
 ;;; Interface:
+
+;; provides sorting for `counsel-M-x'
+(use-package smex)
+
+(use-package mb-depth
+  :ensure nil
+  :custom
+  (enable-recursive-minibuffers
+   t "Enables using `swiper-query-replace' from `swiper' via `M-q'.")
+  :config (minibuffer-depth-indicate-mode))
+
 (use-package counsel
+  :after smex
   :delight
   :bind
   ;; note that counsel-mode rebinds most commands
-  (("C-s"     . counsel-grep-or-swiper)
-   ("C-x l"   . counsel-locate)
-   ("C-c k"   . counsel-rg)
-   ("C-c i"   . counsel-imenu))
-  :config
-  ;; provides sorting for `counsel-M-x'
-  (use-package smex)
-  ;; enables using `swiper-query-replace' from `swiper' via `M-q'
-  (setq enable-recursive-minibuffers t)
-  (minibuffer-depth-indicate-mode)
-  (setq counsel-find-file-at-point t)
-  (setq counsel-find-file-ignore-regexp "\\.DS_Store\\|.git")
-  (setq counsel-grep-base-command
-        "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
-  (counsel-mode))
+  (("C-s" . counsel-grep-or-swiper)
+   ("C-x l" . counsel-locate)
+   ("C-c k" . counsel-rg)
+   ("C-c i" . counsel-imenu)
+   ("C-h L" . counsel-find-library))
+  :custom
+  (counsel-find-file-at-point t)
+  (counsel-find-file-ignore-regexp "\\.DS_Store\\|.git")
+  (counsel-grep-base-command
+   "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
+  :config (counsel-mode))
+
+;; provides sorting for ivy
+(use-package flx)
+
+;; used with `C-o' in ivy
+(use-package hydra)
 
 (use-package ivy
+  :demand
+  :after (flx hydra)
   :delight
-  :bind (("C-c C-r" . ivy-resume))
+  :bind ("C-c C-r" . ivy-resume)
+  :custom
+  (ivy-re-builders-alist
+   '((t . ivy--regex-fuzzy))
+   "Use `flx'-like matching. See: https://oremacs.com/2016/01/06/ivy-flx/")
+  (ivy-use-virtual-buffers
+   t "Add `recentf-mode' and bookmarks to `ivy-switch-buffer'.")
+  (ivy-use-selectable-prompt t "Press `C-p' to use input as-is.")
+  (ivy-initial-inputs-alist nil "Don't start with '^'.")
   :config
-  ;; provides sorting for ivy
-  (use-package flx)
-  ;; use flx-like matching - https://oremacs.com/2016/01/06/ivy-flx/
-  (setq ivy-re-builders-alist
-        '((t . ivy--regex-fuzzy)))
-  ;; used with `C-o'
-  (use-package hydra)
-  ;; add ‘recentf-mode’ and bookmarks to ‘ivy-switch-buffer’.
-  (setq ivy-use-virtual-buffers t)
-  ;; press "C-p" to use input as-is
-  (setq ivy-use-selectable-prompt t)
-  ;; don't start with '^'
-  (setq ivy-initial-inputs-alist nil)
   (ivy-mode))
 
 (use-package which-key
