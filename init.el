@@ -549,6 +549,9 @@
 ;; Enables undo/redo of windows configurations with 'C-c <left/right>'.
 (winner-mode)
 
+;; Start the Emacs daemon.
+(server-start)
+
 ;;; provide init package
 (provide 'init)
 
