@@ -415,118 +415,139 @@
 
 ;;; Tools:
 (use-package clang-format
-  :ensure nil
+  :after evil
   :config (evil-define-key 'visual c++-mode-map "=" 'clang-format-region))
 
-(setq compilation-ask-about-save nil
-      compilation-scroll-output t
-      compilation-always-kill t)
+(use-package compile
+  :ensure nil
+  :custom
+  (compilation-ask-about-save nil)
+  (compilation-scroll-output t)
+  (compilation-always-kill t))
 
 (use-package demangle-mode
   :commands demangle-mode)
 
 (use-package ibuffer
-  :bind ("C-x C-b" . ibuffer)
-  :config (use-package ibuffer-vc))
+  :bind ("C-x C-b" . ibuffer))
 
-(use-package org-plus-contrib
+(use-package ibuffer-vc
+  :after ibuffer)
+
+(use-package org
+  :ensure org-plus-contrib
   :mode (("\\.org\\'" . org-mode) ("[0-9]\\{8\\}\\'" . org-mode))
-  :config
-  (use-package evil-org)
-  (add-hook 'org-mode-hook 'turn-on-auto-fill)
-  (setq org-startup-indented nil
-        org-adapt-indentation nil)
-  (setq org-latex-listings t
-        org-pretty-entities t
-        org-latex-custom-lang-environments '((C "lstlisting"))
-        org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
-                            ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
-                            ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
-                            ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
-                            ("models" "\\models" nil "&#8872;" "" "" "⊧"))
-        org-export-backends '(html beamer ascii latex md)))
+  :hook (org-mode . turn-on-auto-fill)
+  :custom
+  (org-startup-indented nil)
+  (org-adapt-indentation nil)
+  (org-latex-listings t)
+  (org-pretty-entities t)
+  (org-latex-custom-lang-environments '((C "lstlisting")))
+  (org-entities-user '(("join" "\\Join" nil "&#9285;" "" "" "⋈")
+                       ("reals" "\\mathbb{R}" t "&#8477;" "" "" "ℝ")
+                       ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
+                       ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
+                       ("models" "\\models" nil "&#8872;" "" "" "⊧")))
+  (org-export-backends '(html beamer ascii latex md)))
+
+(use-package evil-org
+  :after org)
 
 (use-package restart-emacs
   :bind ("C-c Q" . restart-emacs))
 
 (use-package tramp
-  :config
-  (setq tramp-verbose 9
-        tramp-default-method "ssh"
-        tramp-ssh-controlmaster-options
-        (concat "-o ControlPath=/tmp/tramp.%%r@%%h:%%p "
-                "-o ControlMaster=auto "
-                "-o ControlPersist=no")))
+  :ensure nil
+  :custom
+  (tramp-verbose 9)
+  (tramp-default-method "ssh")
+  (tramp-ssh-controlmaster-options
+   (concat "-o ControlPath=/tmp/tramp.%%r@%%h:%%p "
+           "-o ControlMaster=auto "
+           "-o ControlPersist=no")))
 
 ;;; Appearance:
-(if (display-graphic-p)
-    (progn
-      (tool-bar-mode 0)
-      (scroll-bar-mode 0)))
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
 
 (use-package solarized-theme
-  :config
-  (setq solarized-use-variable-pitch nil)
-  (load-theme 'solarized-dark t))
+  :custom (solarized-use-variable-pitch nil)
+  :config (load-theme 'solarized-dark t))
 
 (use-package hl-todo
   :config (global-hl-todo-mode))
 
 (use-package fortune-cookie
-  :config
-  (setq fortune-cookie-fortune-args "-s"
-        fortune-cookie-cowsay-enable t
-        fortune-cookie-cowsay-args "-f tux")
-  (fortune-cookie-mode))
+  :custom
+  (fortune-cookie-fortune-args "-s")
+  (fortune-cookie-cowsay-enable t)
+  (fortune-cookie-cowsay-args "-f tux")
+  :config (fortune-cookie-mode))
 
 (use-package smooth-scroll
   :if (display-graphic-p)
   :delight
-  :config
-  (setq smooth-scroll/vscroll-step-size 8)
-  (smooth-scroll-mode))
+  :custom (smooth-scroll/vscroll-step-size 8)
+  :config (smooth-scroll-mode))
 
 (use-package uniquify
   :ensure nil
-  :config (setq uniquify-buffer-name-style 'forward))
-
-(setq ring-bell-function 'ignore
-      visible-bell t)
-
-(setq inhibit-startup-message t)
+  :custom (uniquify-buffer-name-style 'forward))
 
 ;;; Emacs configuration:
-(setq next-screen-context-lines 4)
+
+;; Fix annoyances.
+(customize-set-variable 'ring-bell-function 'ignore)
+(customize-set-variable 'visible-bell t)
+(customize-set-variable 'inhibit-startup-screen t)
 (defalias 'yes-or-no-p 'y-or-n-p)
-(setq calendar-week-start-day 1) ; Monday
-(winner-mode)
-(setq disabled-command-function nil)
-(setq-default truncate-lines t)
-(setq save-interprogram-paste-before-kill t
-      kill-do-not-save-duplicates t
-      kill-whole-line t)
-(setq-default set-mark-command-repeat-pop t)
-(setq system-uses-terminfo nil)
-(setq custom-file (f-expand "custom.el" user-emacs-directory))
-(setq backup-by-copying t
-      delete-old-versions t
-      kept-new-versions 4
-      kept-old-versions 2
-      version-control t
-      backup-directory-alist `(("." . ,(f-expand
-                                        "backups" user-emacs-directory))))
-(setq large-file-warning-threshold (* 20 1000 1000)) ; 20 MB
-(setq recentf-max-saved-items 256
-      recentf-max-menu-items 16)
-(recentf-mode)
-(use-package autorevert
+(set-variable 'disabled-command-function nil)
+
+;; Save auto-generated customize data to `custom.el' instead of `init.el'.
+(customize-set-variable 'custom-file (f-expand "custom.el" user-emacs-directory))
+
+;; Default to truncating lines.
+(customize-set-variable 'truncate-lines t)
+
+;; Fix kill behavior.
+(use-package simple
   :ensure nil
-  :delight auto-revert-mode
-  :config (global-auto-revert-mode))
-(setq dired-dwim-target t ; enable side-by-side dired buffer targets
-      dired-recursive-copies 'always ; better recursion in dired
-      dired-recursive-deletes 'top
-      dired-listing-switches "-lahp")
+  :custom
+  (save-interprogram-paste-before-kill t)
+  (kill-do-not-save-duplicates t)
+  (kill-whole-line t))
+
+;; Pop repeatedly.
+(customize-set-variable 'set-mark-command-repeat-pop t)
+
+(use-package files
+  :ensure nil
+  :custom
+  (backup-by-copying t)
+  (delete-old-versions t)
+  (kept-new-versions 8)
+  (kept-old-versions 4)
+  (version-control t)
+  (backup-directory-alist `(("." . ,(f-expand "backups" user-emacs-directory))))
+  (large-file-warning-threshold (* 20 1000 1000) "20 megabytes."))
+
+(use-package recentf
+  :ensure nil
+  :custom (recentf-max-saved-items 256)
+  :config (recentf-mode))
+
+(use-package dired
+  :ensure nil
+  :commands dired
+  :custom
+  (dired-dwim-target t "Enable side-by-side `dired' buffer targets.")
+  (dired-recursive-copies 'always "Better recursion in `dired'.")
+  (dired-recursive-deletes 'top)
+  (dired-listing-switches "-lahp"))
+
+;; Enables undo/redo of windows configurations with 'C-c <left/right>'.
+(winner-mode)
 
 ;;; provide init package
 (provide 'init)
