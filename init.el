@@ -293,8 +293,12 @@
   :config (require 'lsp-flycheck))
 
 (use-package company-lsp
-  :after (lsp-mode company)
+  :after (cquery company)
   :config (push 'company-lsp company-backends))
+
+(use-package ivy-xref
+  :after cquery
+  :config (set-variable 'xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
 (use-package ycmd
   :commands ycmd-mode
