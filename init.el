@@ -287,6 +287,7 @@
   :after lsp-mode
   :hook (c++-mode . lsp-cquery-enable)
   :custom
+  (lsp-response-timeout 45)
   (cquery-executable (f-expand "cquery/build/release/bin/cquery" user-emacs-directory))
   (cquery-extra-init-params '(:enableComments 2 :cacheFormat "msgpack"))
   :config (require 'lsp-flycheck))
