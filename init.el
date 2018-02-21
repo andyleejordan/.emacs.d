@@ -355,6 +355,10 @@
 (use-package dockerfile-mode
   :mode "Dockerfile.*\\'")
 
+(use-package fish-mode
+  :mode ("\\.fish\\'" "/fish_funced\\..*\\'")
+  :interpreter "fish")
+
 (use-package gitattributes-mode
   :mode ("/\\.gitattributes\\'"
          "/info/attributes\\'"
