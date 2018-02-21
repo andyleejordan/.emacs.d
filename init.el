@@ -60,7 +60,7 @@
   (evil-want-C-u-scroll t)
   (evil-cross-lines t)
   (evil-disable-insert-state-bindings t)
-  :config (evil-mode))
+  :init (evil-mode))
 
 ;; required by evil
 (use-package goto-chg
