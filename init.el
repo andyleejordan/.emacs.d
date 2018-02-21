@@ -283,7 +283,6 @@
   :config (company-statistics-mode))
 
 (use-package flycheck
-  :delight
   :config (global-flycheck-mode))
 
 ;; options include irony, cquery, rtags, ggtags, and ycmd
