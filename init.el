@@ -30,6 +30,16 @@
 
 (push "~/.emacs.d/lisp" load-path)
 
+;; Save data files consistently:
+;; - `save-place-file'
+;; - `undo-tree-history-directory-alist'
+;; - `backup-directory-alist'
+;; - etc.
+(use-package no-littering)
+
+(customize-set-variable
+ 'custom-file (no-littering-expand-var-file-name "custom.el"))
+
 ;;; Platform:
 (use-package linux
   :ensure nil
@@ -253,15 +263,11 @@
   :config (global-auto-revert-mode))
 
 (use-package saveplace
-  :custom (save-place-file (f-expand ".emacs-places" user-emacs-directory))
   :config (save-place-mode))
 
 (use-package undo-tree
   :delight
-  :custom
-  (undo-tree-history-directory-alist
-   `(("." . ,(f-expand "undo-tree" user-emacs-directory))))
-  (undo-tree-auto-save-history t)
+  :custom (undo-tree-auto-save-history t)
   :config (global-undo-tree-mode))
 
 (use-package unfill
@@ -513,9 +519,6 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (set-variable 'disabled-command-function nil)
 
-;; Save auto-generated customize data to `custom.el' instead of `init.el'.
-(customize-set-variable 'custom-file (f-expand "custom.el" user-emacs-directory))
-
 ;; Default to truncating lines.
 (customize-set-variable 'truncate-lines t)
 
@@ -538,7 +541,8 @@
   (kept-new-versions 8)
   (kept-old-versions 4)
   (version-control t)
-  (backup-directory-alist `(("." . ,(f-expand "backups" user-emacs-directory))))
+  (auto-save-file-name-transforms
+   `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
   (large-file-warning-threshold (* 20 1000 1000) "20 megabytes."))
 
 (use-package recentf
