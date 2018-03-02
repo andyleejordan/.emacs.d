@@ -467,6 +467,10 @@
 (use-package evil-org
   :after org)
 
+(use-package ranger
+  :commands (ranger deer)
+  :custom (ranger-override-dired-mode t))
+
 (use-package re-builder
   :ensure nil
   :commands (re-builder regexp-builder)
