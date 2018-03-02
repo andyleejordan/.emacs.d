@@ -467,6 +467,11 @@
 (use-package evil-org
   :after org)
 
+(use-package re-builder
+  :ensure nil
+  :commands (re-builder regexp-builder)
+  :custom (reb-re-syntax 'string))
+
 (use-package restart-emacs
   :bind ("C-c Q" . restart-emacs))
 
