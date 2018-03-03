@@ -179,7 +179,7 @@
 (use-package hydra)
 
 (use-package ivy
-  :after (flx hydra)
+  :after flx
   :delight
   :bind ("C-c C-r" . ivy-resume)
   :custom
@@ -190,8 +190,10 @@
    t "Add `recentf-mode' and bookmarks to `ivy-switch-buffer'.")
   (ivy-use-selectable-prompt t "Press `C-p' to use input as-is.")
   (ivy-initial-inputs-alist nil "Don't start with '^'.")
-  :init
-  (ivy-mode))
+  :init (ivy-mode))
+
+(use-package ivy-hydra
+  :after (ivy hydra))
 
 (use-package which-key
   :delight
