@@ -5,6 +5,12 @@
 ;;; Code:
 (customize-set-variable 'gc-cons-threshold (* 10 1024 1024))
 
+;; used for deprecated functions
+(defun call-if-fbound (function &rest args)
+  "Call FUNCTION with optional ARGS, only if it is `fbound'."
+  "Return t if it is fbound and called without error, and nil otherwise."
+  (when (fboundp function) (apply function args) t))
+
 ;;; Package:
 (require 'package)
 (customize-set-variable
@@ -264,7 +270,9 @@
   :config (global-auto-revert-mode))
 
 (use-package saveplace
-  :config (save-place-mode))
+  :config
+  (or (call-if-fbound 'save-place-mode)
+      (call-if-fbound 'save-place)))
 
 (use-package undo-tree
   :delight
