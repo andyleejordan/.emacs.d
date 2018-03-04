@@ -509,8 +509,12 @@
       (scroll-bar-mode 0)))
 
 (use-package solarized-theme
+  :if (display-graphic-p)
   :custom (solarized-use-variable-pitch nil)
   :config (load-theme 'solarized-dark t))
+
+(if (not (display-graphic-p))
+    (load-theme 'tango-dark t))
 
 (use-package hl-todo
   :config (global-hl-todo-mode))
