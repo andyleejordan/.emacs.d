@@ -516,10 +516,10 @@
   :config (global-hl-todo-mode))
 
 (use-package fortune-cookie
-  :if (not (eq system-type 'windows-nt) )
+  :if (executable-find "fortune")
   :custom
   (fortune-cookie-fortune-args "-s")
-  (fortune-cookie-cowsay-enable t)
+  (fortune-cookie-cowsay-enable (executable-find "cowsay"))
   (fortune-cookie-cowsay-args "-f tux")
   :config (fortune-cookie-mode))
 
