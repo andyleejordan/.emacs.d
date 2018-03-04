@@ -495,8 +495,10 @@
            "-o ControlPersist=no")))
 
 ;;; Appearance:
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
+(if (display-graphic-p)
+    (progn
+      (tool-bar-mode 0)
+      (scroll-bar-mode 0)))
 
 (use-package solarized-theme
   :custom (solarized-use-variable-pitch nil)
