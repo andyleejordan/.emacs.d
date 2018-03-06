@@ -227,7 +227,11 @@
 (use-package dtrt-indent
   :delight
   :custom (dtrt-indent-min-quality 60)
-  :config (dtrt-indent-global-mode))
+  :config
+  (add-to-list
+   'dtrt-indent-hook-mapping-list
+   '(powershell-mode c/c++/java powershell-indent))
+  (dtrt-indent-global-mode))
 
 (use-package aggressive-indent
   :hook (emacs-lisp-mode . aggressive-indent-mode))
