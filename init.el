@@ -553,13 +553,15 @@
 ;; Default to truncating lines.
 (customize-set-variable 'truncate-lines t)
 
-;; Fix kill behavior.
+;; Simple is Emacs's built-in miscellaneous package.
 (use-package simple
   :ensure nil
   :custom
+  ;; Fix kill behavior.
   (save-interprogram-paste-before-kill t)
   (kill-do-not-save-duplicates t)
-  (kill-whole-line t))
+  (kill-whole-line t)
+  :config (column-number-mode))
 
 ;; Pop repeatedly.
 (customize-set-variable 'set-mark-command-repeat-pop t)
