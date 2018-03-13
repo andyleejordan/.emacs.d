@@ -569,6 +569,7 @@
 (use-package files
   :ensure nil
   :custom
+  (require-final-newline t)
   (backup-by-copying t)
   (delete-old-versions t)
   (kept-new-versions 8)
