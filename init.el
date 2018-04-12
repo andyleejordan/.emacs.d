@@ -53,6 +53,15 @@
 (customize-set-variable
  'custom-file (no-littering-expand-var-file-name "custom.el"))
 
+;; Auto-update packages.
+(use-package auto-package-update
+  :custom
+  (auto-package-update-interval 1)
+  (auto-package-update-prompt-before-update (not (getenv "CI")))
+  (apu--last-update-day-filename
+   (no-littering-expand-var-file-name "auto-update-package-last-update-day"))
+  :config (auto-package-update-maybe))
+
 ;;; Platform:
 (use-package linux
   :ensure nil
