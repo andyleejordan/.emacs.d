@@ -5,6 +5,13 @@
 ;;; Code:
 (customize-set-variable 'gc-cons-threshold (* 10 1024 1024))
 
+;; Default to UTF-8 early as this file uses Unicode symbols.
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(setq-default buffer-file-coding-system 'utf-8)
+
 ;; used for deprecated functions
 (defun call-if-fbound (function &rest args)
   "Call FUNCTION with optional ARGS, only if it is `fbound'."
