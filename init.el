@@ -315,28 +315,27 @@
   :config (global-flycheck-mode))
 
 ;; options include irony, cquery, rtags, ggtags, and ycmd
-(use-package lsp-mode
-  :requires emacs-25.1)
+(use-package lsp-mode)
+
+(use-package lsp-ui
+  :after lsp-mode
+  :hook (lsp-mode . lsp-ui-mode))
 
 (use-package cquery
-  :requires emacs-25.1
-  :after lsp-mode
-  :hook (c++-mode . lsp-cquery-enable)
+  :commands lsp-cquery-enable
+  :hook (c-mode-common .  lsp-cquery-enable)
   :custom
-  (lsp-response-timeout 45)
-  (cquery-executable (f-expand "cquery/build/release/bin/cquery" user-emacs-directory))
-  (cquery-extra-init-params '(:enableComments 2 :cacheFormat "msgpack"))
-  :config (require 'lsp-flycheck))
+  (cquery-executable (no-littering-expand-var-file-name
+                      "cquery/build/release/bin/cquery"))
+  (cquery-extra-init-params '(:completion (:detailedLabel t))))
 
 (use-package company-lsp
-  :requires emacs-25.1
   :after (cquery company)
+  :custom (company-lsp-enable-recompletion t)
   :config (push 'company-lsp company-backends))
 
 (use-package ivy-xref
-  :requires emacs-25.1
-  :after cquery
-  :config (set-variable 'xref-show-xrefs-function #'ivy-xref-show-xrefs))
+  :custom (xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
 (use-package ycmd
   :commands ycmd-mode
