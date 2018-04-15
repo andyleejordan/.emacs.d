@@ -269,8 +269,7 @@
 (use-package smartparens
   :config
   (require 'smartparens-config)
-  (smartparens-global-mode)
-  (smartparens-global-strict-mode))
+  (smartparens-global-mode))
 
 (use-package evil-smartparens
   :delight
