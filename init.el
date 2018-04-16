@@ -306,6 +306,7 @@
 ;;; Completion / syntax / tags:
 (use-package company
   :delight
+  :bind ("M-/" . company-complete)
   :config (global-company-mode))
 
 (use-package company-statistics
