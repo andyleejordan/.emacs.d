@@ -274,6 +274,7 @@
   (smartparens-global-mode))
 
 (use-package evil-smartparens
+  :after evil
   :delight
   :hook (smartparens-enabled . evil-smartparens-mode))
 
