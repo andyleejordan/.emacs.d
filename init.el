@@ -224,6 +224,9 @@
   :delight
   :config (which-key-mode))
 
+(use-package ace-window
+  :bind ("M-o" . ace-window))
+
 (use-package buffer-move
   :commands (buf-move-up buf-move-down buf-move-left buf-move-right))
 
