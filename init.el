@@ -525,6 +525,13 @@
            "-o ControlMaster=auto "
            "-o ControlPersist=no")))
 
+(use-package yasnippet
+  :delight
+  :config (yas-global-mode))
+
+(use-package yasnippet-snippets
+  :after yasnippet)
+
 ;;; Appearance:
 (if (display-graphic-p)
     (progn
