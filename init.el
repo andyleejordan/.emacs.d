@@ -206,8 +206,10 @@
   :bind ("C-c C-r" . ivy-resume)
   :custom
   (ivy-re-builders-alist
-   '((t . ivy--regex-fuzzy))
-   "Use `flx'-like matching. See: https://oremacs.com/2016/01/06/ivy-flx/")
+   '(;; Use `flx'-like matching. See: https://oremacs.com/2016/01/06/ivy-flx/
+     (counsel-M-x . ivy--regex-fuzzy)
+     ;; Use regex-plus but without ordering for files.
+     (t . ivy--regex-ignore-order)))
   (ivy-use-virtual-buffers
    t "Add `recentf-mode' and bookmarks to `ivy-switch-buffer'.")
   (ivy-use-selectable-prompt t "Press `C-p' to use input as-is.")
