@@ -77,6 +77,7 @@
 
 ;;; Vim:
 (use-package evil
+  :disabled
   :hook (git-commit-mode . evil-insert-state)
   :custom
   (evil-want-C-u-scroll t)
@@ -424,10 +425,7 @@
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :custom (markdown-command "multimarkdown")
-  :config (evil-define-key 'normal markdown-mode-map
-            (kbd "g d") 'markdown-jump
-            (kbd "g x") 'markdown-follow-link-at-point))
+  :custom (markdown-command "multimarkdown"))
 
 (use-package nginx-mode
   :mode ("nginx\\.conf\\'" "/nginx/.+\\.conf\\'"))
