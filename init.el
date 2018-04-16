@@ -333,7 +333,7 @@
 (use-package company-lsp
   :after (cquery company)
   :custom (company-lsp-enable-recompletion t)
-  :config (push 'company-lsp company-backends))
+  :config (add-to-list 'company-backends 'company-lsp))
 
 (use-package ivy-xref
   :custom (xref-show-xrefs-function #'ivy-xref-show-xrefs))
