@@ -371,7 +371,7 @@
   :hook ((text-mode . flyspell-mode)
          (prog-mode . flyspell-prog-mode))
   :bind (:map flyspell-mode-map
-              ("C-;" . #'flyspell-correct-previous-word-generic))
+              ("C-;" . flyspell-correct-previous-word-generic))
   :custom
   (ispell-program-name "aspell")
   (ispell-extra-args '("--sug-mode=ultra")))
@@ -464,8 +464,9 @@
 
 ;;; Tools:
 (use-package clang-format
-  :after evil
-  :config (evil-define-key 'visual c++-mode-map "=" 'clang-format-region))
+  :after cc-mode
+  ;; Does not use `:bind' in order to not delay loading `clang-format' indefinitely.
+  :config (bind-key "C-M-\\" 'clang-format-region c-mode-base-map))
 
 (use-package compile
   :ensure nil
