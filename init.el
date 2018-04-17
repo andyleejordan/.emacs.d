@@ -184,7 +184,7 @@
   :bind
   ;; note that counsel-mode rebinds most commands
   (("C-s" . counsel-grep-or-swiper)
-   ("C-x l" . counsel-locate)
+   ("C-x L" . counsel-locate)
    ("C-c k" . counsel-rg)
    ("C-c i" . counsel-imenu)
    ("C-h L" . counsel-find-library))
