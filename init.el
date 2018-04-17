@@ -470,6 +470,8 @@
 
 (use-package compile
   :ensure nil
+  :bind (("C-c c" . compile)
+         ("M-O" . show-compilation))
   :custom
   (compilation-ask-about-save nil)
   (compilation-scroll-output t)
