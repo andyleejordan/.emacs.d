@@ -207,10 +207,6 @@
   (require 'smartparens-config)
   (smartparens-global-mode))
 
-(use-package highlight-parentheses
-  :delight
-  :config (global-highlight-parentheses-mode))
-
 (use-package hungry-delete)
 
 (use-package autorevert
@@ -447,6 +443,9 @@
 
 (use-package hl-todo
   :config (global-hl-todo-mode))
+
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package fortune-cookie
   :if (executable-find "fortune")
