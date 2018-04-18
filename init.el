@@ -207,8 +207,6 @@
   (require 'smartparens-config)
   (smartparens-global-mode))
 
-(use-package hungry-delete)
-
 (use-package autorevert
   :ensure nil
   :delight auto-revert-mode
