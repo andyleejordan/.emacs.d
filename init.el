@@ -261,6 +261,7 @@
   :config (add-to-list 'company-backends 'company-lsp))
 
 (use-package ivy-xref
+  :after ivy
   :custom (xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
 (use-package flyspell
