@@ -195,10 +195,7 @@
   :config (adaptive-wrap-prefix-mode))
 
 (use-package whitespace
-  :commands whitespace-mode
-  :custom
-  (whitespace-style
-   '(face tabs spaces newline empty trailing tab-mark newline-mark)))
+  :commands whitespace-mode)
 
 (use-package ws-butler
   :delight
