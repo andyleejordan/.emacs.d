@@ -8,26 +8,13 @@ specific code.
 
 * Notable packages
 - [[https://github.com/magit/magit][Magit]] is a Git Porcelain
-- [[https://www.emacswiki.org/emacs/Evil][Evil]] for Vim emulation
 - [[https://github.com/bbatsov/projectile][Projectile]] to manage and interact with projects
 - [[https://github.com/jwiegley/use-package][use-package]] organizes =init.el= and manages packages
 - [[https://company-mode.github.io/][Company]] is the best auto-completion framework
 - [[https://github.com/flycheck/flycheck][Flycheck]] provides on-the-fly syntax and compilation checking
-- [[http://www.ledger-cli.org/3.0/doc/ledger-mode.html][Ledger]] because double-entry bookkeeping is all the rage
 - [[http://www.dr-qubit.org/emacs.php#undo-tree][Undo Tree]] records edits as a traversable graph
 - [[https://github.com/lewang/ws-butler][Whitespace Butler]] unobtrusively cleans up whitespace
 - [[https://github.com/capitaomorte/yasnippet][YASnippet]] is a great template system
-* Evil
-** easy-motion aka ace-jump =SPC<motion><char>=
-** find tag aka definition =gd=
-** open link in browser =gx=
-** reselect visual aka region =gv=
-** comment with =gc=
-** select paragraph =vip=
-** move up delimiter =[(= / =[{=
-** jump forward / backward aka pop / push mark =C-o= / =C-i=
-** repeat find / to (like =.=) =;=
-** substitute =s= is replace =r= and stay in insert
 * Elisp
 ** =(some-minor-mode)= enables a mode
 Enables when the argument is nil or positive and disables when zero or
@@ -53,24 +40,40 @@ negative.
 ** =cond= is better than =if= / =else=
 ** =let= for friendly names should be used liberally
 ** =save-excursion= to restore point
-* Tricks and tips
+* Key bindings
+** Universal arg: =C-u= =M-u= =C-M-u=
+** Negative arg: =C--= =M--= =C-M--=
+** Numeric args: =C- M- C-M- 0...9=
+** Repeat command =C-x z=
 ** Global mark: push =C-SPC C-SPC= pop =C-x C-SPC=
 Recording because =C-x C-@= is horrible.
 ** Narrowing =C-x n= region =n= defun =d= widen =w=
-https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html#Narrowing
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
+** Back to indentation =M-m=
+** Toggle between point and mark =C-x C-x=
 ** Zap to char =M-z=
-** Sexps: mark =C-M-SPC= kill =C-M-k=
+** Append next kill =C-M-w=
+** Sentences: move =M-a= =M-e= kill =M-k=
+** Paragraphs: move =M-{= =M-}= mark =M-h=
+
+** Sexps: move =C-M-f= =C-M-b= mark =C-M-SPC= kill =C-M-k=
 ** Defuns: move =C-M-a= =C-M-e= mark =C-M-h=
-** The opposite of =C-l= is =M-r=
+** Buffer: move =M-<= =M->= mark =C-x h=
+** The opposite of =C-l= is =M-r= recenter-positions
 ** Comment DWIM =M-;=
 ** Select nearest symbol with =M-s .=
+** Casing: words =M-u= =M-l= regions =C-x C-u= =C-x C-l=
+
 ** "Close" client buffer =C-x # (server-edit)=
 ** Evaluate lisp code on buffer =M-:=
 - use =eval-expression=
-** Setting fill prefix =C-x .=
+** Set fill prefix =C-x .=
 -
   [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Fill-Prefix.html][Fill-Prefix]] with point after prefix
-** Setting fill column =C-x f=
+** Set fill column =C-x f=
+** Bindings for command =C-h w=
+Inverse of =C-h k=
+* Tricks and tips
 ** Using quote marks within verbatim/code markup in org-mode
 - Unicode: <U200B> /xe2/x80/x8b ZERO WIDTH SPACE
 - Insert using: (C-x 8 RET 200b RET)
