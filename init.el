@@ -269,8 +269,6 @@
   :delight
   :hook ((text-mode . flyspell-mode)
          (prog-mode . flyspell-prog-mode))
-  :bind (:map flyspell-mode-map
-              ("C-;" . flyspell-correct-previous-word-generic))
   :custom
   (ispell-program-name "aspell")
   (ispell-extra-args '("--sug-mode=ultra")))
