@@ -75,9 +75,15 @@
   :ensure nil
   :if (eq system-type 'windows-nt))
 
+;;; Movement:
+(use-package ace-window
+  :bind ("M-o" . ace-window))
 
-(use-package goto-chg
-  :commands (goto-last-change goto-last-change-reverse))
+(use-package buffer-move
+  :bind (("<C-S-up>" . buf-move-up)
+         ("<C-S-down>" . buf-move-down)
+         ("<C-S-left>" . buf-move-left)
+         ("<C-S-right>" . buf-move-right)))
 
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
@@ -157,12 +163,6 @@
   :delight
   :config (which-key-mode))
 
-(use-package ace-window
-  :bind ("M-o" . ace-window))
-
-(use-package buffer-move
-  :commands (buf-move-up buf-move-down buf-move-left buf-move-right))
-
 ;;; Navigation:
 (use-package projectile
   :delight '(:eval (concat " " (projectile-project-name)))
@@ -214,9 +214,7 @@
   :delight
   :config (global-highlight-parentheses-mode))
 
-(use-package hungry-delete
-  :delight
-  :config (global-hungry-delete-mode))
+(use-package hungry-delete)
 
 (use-package autorevert
   :ensure nil
@@ -271,26 +269,6 @@
 
 (use-package ivy-xref
   :custom (xref-show-xrefs-function #'ivy-xref-show-xrefs))
-
-(use-package ycmd
-  :commands ycmd-mode
-  :hook (ycmd-mode . ycmd-eldoc-setup)
-  :config
-  (let ((x (f-expand "ycmd/ycmd" user-emacs-directory)))
-    (customize-set-variable
-     'ycmd-server-command
-     (if (eq system-type 'windows-nt)
-         (list "python.exe" "-u" x)
-       (list "python" x))))
-  (require 'ycmd-eldoc))
-
-(use-package company-ycmd
-  :after (ycmd company)
-  :config (company-ycmd-setup))
-
-(use-package flycheck-ycmd
-  :after (ycmd flycheck)
-  :config (flycheck-ycmd-setup))
 
 (use-package flyspell
   ;; Disable on Windows because `aspell' 0.6+ isn't available.
