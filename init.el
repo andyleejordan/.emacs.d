@@ -406,10 +406,6 @@
                        ("models" "\\models" nil "&#8872;" "" "" "⊧")))
   (org-export-backends '(html beamer ascii latex md)))
 
-(use-package ranger
-  :commands (ranger deer)
-  :custom (ranger-override-dired-mode t))
-
 (use-package re-builder
   :ensure nil
   :commands (re-builder regexp-builder)
