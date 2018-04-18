@@ -75,73 +75,9 @@
   :ensure nil
   :if (eq system-type 'windows-nt))
 
-;;; Vim:
-(use-package evil
-  :disabled
-  :hook (git-commit-mode . evil-insert-state)
-  :custom
-  (evil-want-C-u-scroll t)
-  (evil-cross-lines t)
-  (evil-disable-insert-state-bindings t)
-  :init (evil-mode))
 
-;; required by evil
 (use-package goto-chg
   :commands (goto-last-change goto-last-change-reverse))
-
-(use-package evil-args
-  :after evil
-  :bind (;; bind evil-args text objects
-         :map evil-inner-text-objects-map
-              ("a" . evil-inner-arg)
-              :map evil-outer-text-objects-map
-              ("a" . evil-outer-arg)
-
-              ;; bind evil-forward/backward-args
-              :map evil-normal-state-map
-              ("L" . evil-forward-arg)
-              ("H" . evil-backward-arg)
-              ("L" . evil-forward-arg)
-              ("H" . evil-backward-arg)
-
-              ;; bind evil-jump-out-args
-              :map evil-normal-state-map
-              ("K" . evil-jump-out-args)))
-
-(use-package evil-commentary
-  :after evil
-  :delight
-  :config (evil-commentary-mode))
-
-(use-package evil-escape
-  :after evil
-  :demand ;; because "jk" isn't in :bind
-  :delight
-  :bind ("C-c C-g" . evil-escape)
-  :custom (evil-escape-key-sequence "jk")
-  :config (evil-escape-mode))
-
-;; press % to jump between tags
-(use-package evil-matchit
-  :after evil
-  :config (global-evil-matchit-mode))
-
-(use-package evil-numbers
-  :after evil
-  :bind (:map evil-normal-state-map
-              ("C-c +" . evil-numbers/inc-at-pt)
-              ("C-c -" . evil-numbers/dec-at-pt)
-              :map evil-visual-state-map
-              ("C-c +" . evil-numbers/inc-at-pt)
-              ("C-c -" . evil-numbers/dec-at-pt)))
-
-(use-package evil-surround
-  :after evil
-  :config (global-evil-surround-mode))
-
-(use-package evil-visualstar
-  :after evil
-  :config (global-evil-visualstar-mode))
 
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
@@ -155,9 +91,6 @@
   :bind ("C-c g" . magit-status)
   :commands (magit-status projectile-vc)
   :custom (magit-completing-read-function 'ivy-completing-read))
-
-(use-package evil-magit
-  :after (evil magit))
 
 (use-package git-commit
   :config (global-git-commit-mode))
@@ -276,11 +209,6 @@
   :config
   (require 'smartparens-config)
   (smartparens-global-mode))
-
-(use-package evil-smartparens
-  :after evil
-  :delight
-  :hook (smartparens-enabled . evil-smartparens-mode))
 
 (use-package highlight-parentheses
   :delight
@@ -502,9 +430,6 @@
                        ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
                        ("models" "\\models" nil "&#8872;" "" "" "⊧")))
   (org-export-backends '(html beamer ascii latex md)))
-
-(use-package evil-org
-  :after org)
 
 (use-package ranger
   :commands (ranger deer)
