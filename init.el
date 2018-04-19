@@ -220,6 +220,10 @@
       (call-if-fbound 'save-place)))
 
 (use-package smartparens
+  :custom
+  (sp-override-key-bindings '(("C-M-a" . nil)
+                              ("C-M-e" . nil)))
+  (sp-base-key-bindings 'sp)
   :config
   (require 'smartparens-config)
   (smartparens-global-mode))
