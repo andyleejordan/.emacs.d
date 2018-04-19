@@ -126,7 +126,7 @@
   :delight
   :bind
   ;; note that counsel-mode rebinds most commands
-  (("C-s" . counsel-grep-or-swiper)
+  (([remap isearch-forward] . counsel-grep-or-swiper)
    ("C-x L" . counsel-locate)
    ("C-c k" . counsel-rg)
    ("C-c i" . counsel-imenu)
@@ -239,7 +239,7 @@
 ;;; Completion / syntax / tags:
 (use-package company
   :delight
-  :bind ("M-/" . company-complete)
+  :bind ([remap dabbrev-expand] . #'company-complete)
   :config (global-company-mode))
 
 (use-package company-statistics
@@ -388,7 +388,7 @@
   :commands demangle-mode)
 
 (use-package ibuffer
-  :bind ("C-x C-b" . ibuffer))
+  :bind ([remap list-buffers] . #'ibuffer))
 
 (use-package ibuffer-vc
   :after ibuffer)
