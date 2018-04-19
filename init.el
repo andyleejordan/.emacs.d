@@ -205,11 +205,6 @@
   :config (ws-butler-global-mode))
 
 ;;; Editing:
-(use-package smartparens
-  :config
-  (require 'smartparens-config)
-  (smartparens-global-mode))
-
 (use-package autorevert
   :ensure nil
   :delight auto-revert-mode
@@ -219,6 +214,11 @@
   :config
   (or (call-if-fbound 'save-place-mode)
       (call-if-fbound 'save-place)))
+
+(use-package smartparens
+  :config
+  (require 'smartparens-config)
+  (smartparens-global-mode))
 
 (use-package undo-tree
   :delight
