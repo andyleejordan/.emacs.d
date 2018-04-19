@@ -106,6 +106,9 @@
   :config (global-git-gutter-mode))
 
 ;;; Interface:
+(use-package avy
+  :bind (("C-'" . #'avy-goto-char)
+         ("M-g f" . #'avy-goto-line)))
 
 ;; provides sorting for `counsel-M-x'
 (use-package smex)
