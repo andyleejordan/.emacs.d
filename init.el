@@ -210,6 +210,9 @@
   :delight auto-revert-mode
   :config (global-auto-revert-mode))
 
+(use-package editorconfig
+  :config (editorconfig-mode))
+
 (use-package saveplace
   :config
   (or (call-if-fbound 'save-place-mode)
