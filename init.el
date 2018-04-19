@@ -431,6 +431,10 @@
 (use-package yasnippet-snippets
   :after yasnippet)
 
+(use-package auto-yasnippet
+  :after yasnippet
+  :commands (aya-create))
+
 ;;; Appearance:
 (if (display-graphic-p)
     (progn
