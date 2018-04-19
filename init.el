@@ -77,7 +77,8 @@
 
 ;;; Movement:
 (use-package ace-window
-  :bind ("M-o" . ace-window))
+  :bind ("M-o" . ace-window)
+  :custom (aw-keys '(?a ?s ?d ?f ?g ?h ?1 ?2 ?3)))
 
 (use-package buffer-move
   :bind (("<C-S-up>" . buf-move-up)
