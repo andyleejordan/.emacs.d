@@ -234,7 +234,7 @@
   :config (global-undo-tree-mode))
 
 (use-package unfill
-  :commands (unfill-region unfill-paragraph unfill-toggle))
+  :bind ([remap fill-paragraph] . #'unfill-toggle))
 
 ;;; Completion / syntax / tags:
 (use-package company
