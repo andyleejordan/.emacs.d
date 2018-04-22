@@ -448,7 +448,14 @@
 (use-package solarized-theme
   :if (display-graphic-p)
   :custom (solarized-use-variable-pitch nil)
-  :config (load-theme 'solarized-dark t))
+  :config
+  (defun toggle-theme ()
+    "Switch between Solarized variants."
+    (interactive)
+    (load-theme (if (eq (car custom-enabled-themes) 'solarized-dark)
+                    'solarized-light 'solarized-dark)
+                t))
+  (load-theme 'solarized-dark t))
 
 (if (not (display-graphic-p))
     (load-theme 'tango-dark t))
