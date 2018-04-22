@@ -77,17 +77,17 @@
 
 ;;; Movement:
 (use-package ace-window
-  :bind ("M-o" . ace-window)
+  :bind ("M-o" . #'ace-window)
   :custom (aw-keys '(?a ?s ?d ?f ?g ?h ?1 ?2 ?3)))
 
 (use-package buffer-move
-  :bind (("<C-S-up>" . buf-move-up)
-         ("<C-S-down>" . buf-move-down)
-         ("<C-S-left>" . buf-move-left)
-         ("<C-S-right>" . buf-move-right)))
+  :bind (("<C-S-up>" . #'buf-move-up)
+         ("<C-S-down>" . #'buf-move-down)
+         ("<C-S-left>" . #'buf-move-left)
+         ("<C-S-right>" . #'buf-move-right)))
 
 (use-package expand-region
-  :bind ("C-=" . er/expand-region))
+  :bind ("C-=" . #'er/expand-region))
 
 ;;; Version control:
 (use-package vc-hooks
@@ -95,9 +95,9 @@
   :custom (vc-follow-symlinks t))
 
 (use-package magit
-  :bind ("C-c g" . magit-status)
+  :bind ("C-c g" . #'magit-status)
   :commands (magit-status projectile-vc)
-  :custom (magit-completing-read-function 'ivy-completing-read))
+  :custom (magit-completing-read-function #'ivy-completing-read))
 
 (use-package git-commit
   :config (global-git-commit-mode))
@@ -126,11 +126,11 @@
   :delight
   :bind
   ;; note that counsel-mode rebinds most commands
-  (([remap isearch-forward] . counsel-grep-or-swiper)
-   ("C-x L" . counsel-locate)
-   ("C-c k" . counsel-rg)
-   ("C-c i" . counsel-imenu)
-   ("C-h L" . counsel-find-library))
+  (([remap isearch-forward] . #'counsel-grep-or-swiper)
+   ("C-x L" . #'counsel-locate)
+   ("C-c k" . #'counsel-rg)
+   ("C-c i" . #'counsel-imenu)
+   ("C-h L" . #'counsel-find-library))
   :custom
   (counsel-find-file-at-point t)
   (counsel-find-file-ignore-regexp "\\.DS_Store\\|.git")
@@ -147,7 +147,7 @@
 (use-package ivy
   :after flx
   :delight
-  :bind ("C-c C-r" . ivy-resume)
+  :bind ("C-c C-r" . #'ivy-resume)
   :custom
   (ivy-re-builders-alist
    '(;; Use `flx'-like matching. See: https://oremacs.com/2016/01/06/ivy-flx/
@@ -199,7 +199,7 @@
   :config (adaptive-wrap-prefix-mode))
 
 (use-package whitespace
-  :commands whitespace-mode)
+  :commands (whitespace-mode))
 
 (use-package ws-butler
   :delight
@@ -216,8 +216,8 @@
 
 (use-package saveplace
   :config
-  (or (call-if-fbound 'save-place-mode)
-      (call-if-fbound 'save-place)))
+  (or (call-if-fbound #'save-place-mode)
+      (call-if-fbound #'save-place)))
 
 (use-package smartparens
   :custom
@@ -257,8 +257,8 @@
   :hook (lsp-mode . lsp-ui-mode))
 
 (use-package cquery
-  :commands lsp-cquery-enable
-  :hook (c-mode-common .  lsp-cquery-enable)
+  :commands (lsp-cquery-enable)
+  :hook (c-mode-common . lsp-cquery-enable)
   :custom
   (cquery-executable (no-littering-expand-var-file-name
                       "cquery/build/release/bin/cquery"))
@@ -373,19 +373,19 @@
 (use-package clang-format
   :after cc-mode
   ;; Does not use `:bind' in order to not delay loading `clang-format' indefinitely.
-  :config (bind-key "C-M-\\" 'clang-format-region c-mode-base-map))
+  :config (bind-key "C-M-\\" #'clang-format-region c-mode-base-map))
 
 (use-package compile
   :ensure nil
-  :bind (("C-c c" . compile)
-         ("M-O" . show-compilation))
+  :bind (("C-c c" . #'compile)
+         ("M-O" . #'show-compilation))
   :custom
   (compilation-ask-about-save nil)
   (compilation-scroll-output t)
   (compilation-always-kill t))
 
 (use-package demangle-mode
-  :commands demangle-mode)
+  :commands (demangle-mode))
 
 (use-package ibuffer
   :bind ([remap list-buffers] . #'ibuffer))
@@ -416,7 +416,7 @@
   :custom (reb-re-syntax 'string))
 
 (use-package restart-emacs
-  :bind ("C-c Q" . restart-emacs))
+  :bind ("C-c Q" . #'restart-emacs))
 
 (use-package tramp
   :ensure nil
@@ -530,7 +530,7 @@
 
 (use-package dired
   :ensure nil
-  :commands dired
+  :commands (dired)
   :custom
   (dired-dwim-target t "Enable side-by-side `dired' buffer targets.")
   (dired-recursive-copies 'always "Better recursion in `dired'.")
