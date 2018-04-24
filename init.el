@@ -125,9 +125,8 @@
   :after smex
   :delight
   :bind
-  ;; note that counsel-mode rebinds most commands
-  (([remap isearch-forward] . #'counsel-grep-or-swiper)
-   ("C-x L" . #'counsel-locate)
+  ;; note that `counsel-mode' rebinds most commands
+  (("C-x L" . #'counsel-locate)
    ("C-c k" . #'counsel-rg)
    ("C-c i" . #'counsel-imenu)
    ("C-h L" . #'counsel-find-library))
@@ -417,6 +416,9 @@
 
 (use-package restart-emacs
   :bind ("C-c Q" . #'restart-emacs))
+
+(use-package swiper
+  :bind ([remap isearch-forward] . #'swiper))
 
 (use-package tramp
   :ensure nil
