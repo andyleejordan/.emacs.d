@@ -81,10 +81,10 @@
   :custom (aw-keys '(?a ?s ?d ?f ?g ?h ?1 ?2 ?3)))
 
 (use-package buffer-move
-  :bind (("<C-S-up>" . #'buf-move-up)
-         ("<C-S-down>" . #'buf-move-down)
-         ("<C-S-left>" . #'buf-move-left)
-         ("<C-S-right>" . #'buf-move-right)))
+  :bind (("C-S-<up>" . #'buf-move-up)
+         ("C-S-<down>" . #'buf-move-down)
+         ("C-S-<left>" . #'buf-move-left)
+         ("C-S-<right>" . #'buf-move-right)))
 
 (use-package expand-region
   :bind ("C-=" . #'er/expand-region))
@@ -222,7 +222,8 @@
 (use-package smartparens
   :custom
   (sp-override-key-bindings '(("C-M-a" . nil)
-                              ("C-M-e" . nil)))
+                              ("C-M-e" . nil)
+                              ("M-<backspace> " . nil)))
   (sp-base-key-bindings 'sp)
   :config
   (require 'smartparens-config)
