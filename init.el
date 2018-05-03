@@ -523,6 +523,7 @@
 (use-package files
   :ensure nil
   :custom
+  (save-abbrevs 'silently)
   (require-final-newline t)
   (backup-by-copying t)
   (delete-old-versions t)
