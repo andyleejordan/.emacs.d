@@ -111,7 +111,7 @@
   :bind (("C-'" . #'avy-goto-char)
          ("M-g f" . #'avy-goto-line)))
 
-;; provides sorting for `counsel-M-x'
+;; Provides sorting for `counsel-M-x'.
 (use-package smex)
 
 (use-package mb-depth
@@ -125,8 +125,9 @@
   :after smex
   :delight
   :bind
-  ;; note that `counsel-mode' rebinds most commands
-  (("C-M-y" . #'counsel-yank-pop)
+  ;; Note that `counsel-mode' rebinds most commands.
+  (;; Originally on `M-y', browses the kill ring.
+   ([remap yank-pop] . #'counsel-yank-pop)
    ("C-x L" . #'counsel-locate)
    ("C-c k" . #'counsel-rg)
    ("C-c i" . #'counsel-imenu)
