@@ -159,6 +159,10 @@
    t "Add `recentf-mode' and bookmarks to `ivy-switch-buffer'.")
   (ivy-use-selectable-prompt t "Press `C-p' to use input as-is.")
   (ivy-initial-inputs-alist nil "Don't start with '^'.")
+  :custom-face
+  ;; Add a Solarized Green underline to the ivy match.
+  ;; TODO: Consider `:inherit magit-diff-added-highlight'.
+  (ivy-current-match ((t (:underline (:color "#859900")))))
   :init (ivy-mode))
 
 (use-package ivy-hydra

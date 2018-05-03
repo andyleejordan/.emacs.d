@@ -159,6 +159,7 @@ tic -o ~/.terminfo
   marked with commas. [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html][RTFM]]
 ** Temporarily disable ido-completion =C-j=
 ** Set directory local variable =eval= to execute arbitrary code
+** See current faces =list-faces-display=
 ** View Lossage
 Use =M-x view-lossage= to see the most recent 300 keystrokes, per
 [[http://emacsredux.com/blog/2014/12/23/lossage/][Emacs Redux]]
