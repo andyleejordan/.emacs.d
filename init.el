@@ -282,6 +282,11 @@
   :hook ((text-mode . flyspell-mode)
          (prog-mode . flyspell-prog-mode))
   :custom
+  ;; NOTE: This unbinds `C-M-i' because it's interpreted as `M-TAB'.
+  ;; This is because `C-i' and `TAB' are the same character in ASCII.
+  ;;
+  ;; https://www.gnu.org/software/emacs/elisp/html_node/Function-Keys.html
+  (flyspell-use-meta-tab nil)
   (ispell-program-name "aspell")
   (ispell-extra-args '("--sug-mode=ultra")))
 
