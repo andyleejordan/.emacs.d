@@ -165,6 +165,17 @@ Use =M-x view-lossage= to see the most recent 300 keystrokes, per
 [[http://emacsredux.com/blog/2014/12/23/lossage/][Emacs Redux]]
 ** Smartparens
 https://ebzzry.github.io/emacs-pairs.html
+** Emacs Syntax Explained
+The C-j in C-q C-j is for inputing ASCII Line Feed char (used in unix
+as newline char), which does not have a corresponding key on the
+keyboard. The reason that C-j is for Line Feed is because it's a
+notation from the ASCII standard. That is, the non-printables are
+represented by a Control followed by a letter, regardless whether
+there is a corresponding key on the keyboard. Line feed is the 10th
+ASCII char, and j is the 10th letter, so Line Feed is C-j. Similarly,
+C-i is for Horizontal Tab, C-m is for Carriage Return, C-[ is for
+Escape, C-l is for Form Feed, etc.
+http://ergoemacs.org/emacs/keystroke_rep.html
 * Compiling Emacs from source
 See =INSTALL.REPO=
 ** update
