@@ -128,6 +128,8 @@
   ;; Note that `counsel-mode' rebinds most commands.
   (;; Originally on `M-y', browses the kill ring.
    ([remap yank-pop] . #'counsel-yank-pop)
+   ;; Browses the mark ring. Similar to `pop-global-mark' on `C-x C-SPC'.
+   ("C-c C-SPC" . #'counsel-mark-ring)
    ("C-x L" . #'counsel-locate)
    ("C-c k" . #'counsel-rg)
    ("C-c i" . #'counsel-imenu)
