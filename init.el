@@ -183,9 +183,6 @@
   (projectile-indexing-method 'alien "Disable native indexing on Windows.")
   :config (projectile-mode))
 
-(use-package counsel-projectile
-  :config (counsel-projectile-mode))
-
 ;;; Formatting:
 (customize-set-variable 'indent-tabs-mode nil)
 (customize-set-variable 'sentence-end-double-space nil)
