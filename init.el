@@ -250,10 +250,6 @@
   :bind ([remap dabbrev-expand] . #'company-complete)
   :config (global-company-mode))
 
-(use-package company-statistics
-  :after company
-  :config (company-statistics-mode))
-
 (use-package flycheck
   :config (global-flycheck-mode))
 
