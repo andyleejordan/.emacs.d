@@ -176,7 +176,7 @@
 
 ;;; Navigation:
 (use-package projectile
-  :delight '(:eval (concat " " (projectile-project-name)))
+  :delight '(:eval (concat " (" (projectile-project-name) ")"))
   :custom
   (projectile-enable-caching t)
   (projectile-completion-system 'ivy)
@@ -216,6 +216,7 @@
   :config (global-auto-revert-mode))
 
 (use-package editorconfig
+  :delight
   :config (editorconfig-mode))
 
 (use-package saveplace
@@ -224,6 +225,7 @@
       (call-if-fbound #'save-place)))
 
 (use-package smartparens
+  :delight
   :custom
   (sp-override-key-bindings '(("C-M-a" . nil)
                               ("C-M-e" . nil)
@@ -248,6 +250,7 @@
   :config (global-company-mode))
 
 (use-package flycheck
+  :delight
   :config (global-flycheck-mode))
 
 ;; options include irony, cquery, rtags, ggtags, and ycmd
@@ -438,7 +441,7 @@
            "-o ControlPersist=no")))
 
 (use-package yasnippet
-  :delight
+  :delight yas-minor-mode
   :config (yas-global-mode))
 
 (use-package yasnippet-snippets
