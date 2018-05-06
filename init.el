@@ -275,7 +275,13 @@
   :config (global-flycheck-mode))
 
 ;; options include irony, cquery, rtags, ggtags, and ycmd
-(use-package lsp-mode)
+(use-package lsp-mode
+  :custom-face
+  (lsp-face-highlight-textual ((t (:background unspecified))))
+  ;; Solarized Red
+  (lsp-face-highlight-read ((t (:background "#DC322F"))))
+  ;; Solarized Cyan
+  (lsp-face-highlight-write ((t (:background "#2AA198")))))
 
 (use-package lsp-ui
   :after lsp-mode
