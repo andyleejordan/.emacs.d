@@ -249,6 +249,10 @@
   :bind ([remap dabbrev-expand] . #'company-complete)
   :config (global-company-mode))
 
+(use-package company-flx
+  :after (company)
+  :config (company-flx-mode))
+
 (use-package flycheck
   :delight
   :config (global-flycheck-mode))
