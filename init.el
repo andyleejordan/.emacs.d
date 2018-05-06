@@ -136,7 +136,7 @@
    ("C-h L" . #'counsel-find-library))
   :custom
   (counsel-find-file-at-point t)
-  (counsel-find-file-ignore-regexp "\\.DS_Store\\|.git")
+  (counsel-find-file-ignore-regexp "\(?:\‘[#.]\)\|\(?:[#~]\’\)")
   (counsel-grep-base-command
    "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
   :config (counsel-mode))
