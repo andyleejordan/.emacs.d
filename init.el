@@ -131,6 +131,9 @@
    ;; Browses the mark ring. Similar to `pop-global-mark' on `C-x C-SPC'.
    ("C-c C-SPC" . #'counsel-mark-ring)
    ("C-x L" . #'counsel-locate)
+   ;; TODO: Maybe replace `projectile'.
+   ;; https://www.reddit.com/r/emacs/comments/407q2c/ivy_is_now_available_in_spacemacs/cys6nts/
+   ("C-c f" . #'counsel-git)
    ("C-c k" . #'counsel-rg)
    ("C-c i" . #'counsel-imenu)
    ("C-h L" . #'counsel-find-library))
