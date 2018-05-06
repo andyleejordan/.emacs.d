@@ -244,9 +244,23 @@
   :bind ([remap fill-paragraph] . #'unfill-toggle))
 
 ;;; Completion / syntax / tags:
+(customize-set-variable 'tab-always-indent 'complete)
+
 (use-package company
   :delight
-  :bind ([remap dabbrev-expand] . #'company-complete)
+  :bind
+  (;; Originally `TAB', first indents, then completes.
+   ;; https://github.com/company-mode/company-mode/issues/94
+   ([remap indent-for-tab-command] . #'company-indent-or-complete-common)
+   ([remap c-indent-line-or-region] . #'company-indent-or-complete-common)
+   ;; Originally `C-M-i'.
+   ([remap completion-at-point] . #'company-complete)
+   :map company-active-map
+   ("C-n" . #'company-select-next)
+   ("C-p" . #'company-select-previous)
+   ([remap company-complete-common] . #'company-complete-common-or-cycle))
+  :custom
+  (company-tooltip-limit 7)
   :config (global-company-mode))
 
 (use-package company-flx
