@@ -270,6 +270,10 @@
   :after (company)
   :config (company-flx-mode))
 
+(use-package company-quickhelp
+  :after (company)
+  :config (company-quickhelp-mode))
+
 (use-package flycheck
   :delight
   :config (global-flycheck-mode))
