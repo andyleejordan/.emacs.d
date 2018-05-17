@@ -97,7 +97,9 @@
 (use-package magit
   :bind ("C-c g" . #'magit-status)
   :commands (magit-status projectile-vc)
-  :custom (magit-completing-read-function #'ivy-completing-read))
+  :custom
+  (magit-completing-read-function #'ivy-completing-read)
+  (magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
 
 (use-package git-commit
   :config (global-git-commit-mode))
