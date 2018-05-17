@@ -99,7 +99,8 @@
   :commands (magit-status projectile-vc)
   :custom
   (magit-completing-read-function #'ivy-completing-read)
-  (magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
+  (magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+  (magit-save-repository-buffers 'dontask))
 
 (use-package git-commit
   :config (global-git-commit-mode))
