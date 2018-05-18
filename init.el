@@ -266,6 +266,7 @@
    ("C-p" . #'company-select-previous)
    ([remap company-complete-common] . #'company-complete-common-or-cycle))
   :custom
+  (company-idle-delay nil)
   (company-tooltip-limit 7)
   :config (global-company-mode))
 
