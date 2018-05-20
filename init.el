@@ -144,8 +144,6 @@
   :custom
   (counsel-find-file-at-point t)
   (counsel-find-file-ignore-regexp "\(?:\‘[#.]\)\|\(?:[#~]\’\)")
-  (counsel-grep-base-command
-   "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
   :config (counsel-mode))
 
 ;; provides sorting for ivy
