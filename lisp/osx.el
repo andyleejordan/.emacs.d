@@ -14,25 +14,16 @@
 (if (display-graphic-p)
     (set-face-attribute 'default nil :font "Hack"))
 
-;; set for shell-command-to-string on remote systems
+;; set for `shell-command-to-string' on remote systems
 (setenv "TTY" "/dev/ttys001")
 
+;; set for `shell-command-to-string' when using fish
+(customize-set-variable 'shell-file-name "bash")
+
 ;; fix woman's manpath on OS X
-(setq woman-manpath
-      (split-string (shell-command-to-string "man --path") ":" t "\n"))
-
-;; delete by moving to trash
-(setq delete-by-moving-to-trash t)
-
-;; open file's location in Finder
-(defun finder ()
-  "Opens file directory in Finder."
-  (interactive)
-  (let ((file (buffer-file-name)))
-    (if file
-        (shell-command
-         (format "%s %s" (executable-find "open") (file-name-directory file)))
-      (error "Buffer is not attached to any file"))))
+(customize-set-variable
+ 'woman-manpath
+ (split-string (shell-command-to-string "man --path") ":" t "\n"))
 
 ;;; provide OS X package
 (provide 'osx)

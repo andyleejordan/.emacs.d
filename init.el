@@ -533,6 +533,7 @@
 ;;; Emacs configuration:
 
 ;; Fix annoyances.
+(customize-set-variable 'delete-by-moving-to-trash t)
 (customize-set-variable 'ring-bell-function 'ignore)
 (customize-set-variable 'visible-bell t)
 (customize-set-variable 'inhibit-startup-screen t)
