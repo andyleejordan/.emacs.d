@@ -131,6 +131,7 @@
   ;; Note that `counsel-mode' rebinds most commands.
   (;; Originally on `M-y', browses the kill ring.
    ([remap yank-pop] . #'counsel-yank-pop)
+   ([remap list-buffers] . #'counsel-ibuffer)
    ;; Browses the mark ring. Similar to `pop-global-mark' on `C-x C-SPC'.
    ("C-c C-SPC" . #'counsel-mark-ring)
    ("C-x L" . #'counsel-locate)
@@ -431,7 +432,7 @@
   :commands (demangle-mode))
 
 (use-package ibuffer
-  :bind ([remap list-buffers] . #'ibuffer))
+  :commands (ibuffer))
 
 (use-package ibuffer-vc
   :after ibuffer)
