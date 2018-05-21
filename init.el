@@ -188,7 +188,9 @@
 ;;; Navigation:
 (use-package projectile
   :delight '(:eval (concat " (" (projectile-project-name) ")"))
+  :bind ("C-c P" . #'projectile-switch-project)
   :custom
+  (projectile-switch-project-action #'projectile-dired)
   (projectile-completion-system 'ivy)
   (projectile-indexing-method 'alien "Disable native indexing on Windows.")
   :config (projectile-mode))
