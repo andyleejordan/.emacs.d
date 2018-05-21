@@ -189,7 +189,6 @@
 (use-package projectile
   :delight '(:eval (concat " (" (projectile-project-name) ")"))
   :custom
-  (projectile-enable-caching t)
   (projectile-completion-system 'ivy)
   (projectile-indexing-method 'alien "Disable native indexing on Windows.")
   :config (projectile-mode))
