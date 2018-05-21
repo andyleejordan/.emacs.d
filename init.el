@@ -467,7 +467,8 @@
   :bind ("C-c Q" . #'restart-emacs))
 
 (use-package swiper
-  :bind ([remap isearch-forward] . #'swiper))
+  :bind (([remap isearch-backward] . #'swiper)
+         ([remap isearch-forward] . #'swiper)))
 
 (use-package tramp
   :ensure nil
