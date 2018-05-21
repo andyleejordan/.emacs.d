@@ -160,7 +160,10 @@
 (use-package ivy
   :after flx
   :delight
-  :bind ("C-c C-r" . #'ivy-resume)
+  :bind (("C-c C-r" . #'ivy-resume)
+         :map ivy-minibuffer-map
+         ("C-r" . #'ivy-previous-line-or-history)
+         ("M-x" . #'ivy-reverse-i-search))
   :custom
   (ivy-re-builders-alist
    '(;; Use regex-plus but without ordering for files.
