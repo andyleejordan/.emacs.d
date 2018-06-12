@@ -95,15 +95,13 @@
   :custom (vc-follow-symlinks t))
 
 (use-package magit
-  :bind ("C-c g" . #'magit-status)
-  :commands (magit-status projectile-vc)
+  ;; NOTE: This is not deferred because I both use the bindings setup
+  ;; by `global-magit-file-mode' and I need `global-git-commit-mode'
+  ;; enabled on startup to handle git when invoked externally.
   :custom
   (magit-completing-read-function #'ivy-completing-read)
   (magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
   (magit-save-repository-buffers 'dontask))
-
-(use-package git-commit
-  :config (global-git-commit-mode))
 
 (use-package git-gutter
   :delight
