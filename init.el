@@ -469,6 +469,10 @@
 (use-package restart-emacs
   :bind ("C-c Q" . #'restart-emacs))
 
+;; interactive ripgrep query
+(use-package rg
+  :commands (rg rg-project rg-dwim rg-literal))
+
 (use-package swiper
   :bind (([remap isearch-backward] . #'swiper)
          ([remap isearch-forward] . #'swiper)))
