@@ -181,6 +181,10 @@
 (use-package ivy-hydra
   :after (ivy hydra))
 
+;; used to apply edits from `ivy-occur' buffers
+(use-package wgrep
+  :custom (wgrep-auto-save-buffer t))
+
 (use-package which-key
   :delight
   :config (which-key-mode))
