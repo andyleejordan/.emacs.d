@@ -225,6 +225,7 @@
 
 (use-package ws-butler
   :delight
+  :custom (ws-butler-keep-whitespace-before-point nil)
   :config (ws-butler-global-mode))
 
 ;;; Editing:
