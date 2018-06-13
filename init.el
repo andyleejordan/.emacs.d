@@ -36,6 +36,10 @@
 (eval-when-compile
   (require 'use-package))
 
+(use-package benchmark-init
+  :hook (after-init . benchmark-init/deactivate)
+  :init (benchmark-init/activate))
+
 (use-package delight)
 (use-package bind-key)
 (use-package dash)
