@@ -105,7 +105,10 @@
   :custom
   (magit-completing-read-function #'ivy-completing-read)
   (magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
-  (magit-save-repository-buffers 'dontask))
+  (magit-save-repository-buffers 'dontask)
+  :config
+  (magit-define-popup-switch 'magit-push-popup ?u
+    "Set upstream" "--set-upstream"))
 
 (use-package git-gutter
   :delight
