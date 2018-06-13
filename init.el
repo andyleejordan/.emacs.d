@@ -292,6 +292,7 @@
 
 ;; options include irony, cquery, rtags, ggtags, and ycmd
 (use-package lsp-mode
+  :defer t
   :custom-face
   (lsp-face-highlight-textual ((t (:background unspecified))))
   ;; Solarized Red
@@ -311,7 +312,7 @@
   (cquery-extra-init-params '(:completion (:detailedLabel t))))
 
 (use-package company-lsp
-  :after (cquery company)
+  :after (cquery company lsp-mode)
   :custom (company-lsp-enable-recompletion t)
   :config (add-to-list 'company-backends 'company-lsp))
 
@@ -476,16 +477,6 @@
 (use-package swiper
   :bind (([remap isearch-backward] . #'swiper)
          ([remap isearch-forward] . #'swiper)))
-
-(use-package tramp
-  :ensure nil
-  :custom
-  (tramp-verbose 9)
-  (tramp-default-method "ssh")
-  (tramp-ssh-controlmaster-options
-   (concat "-o ControlPath=/tmp/tramp.%%r@%%h:%%p "
-           "-o ControlMaster=auto "
-           "-o ControlPersist=no")))
 
 (use-package yasnippet
   :delight yas-minor-mode
