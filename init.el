@@ -199,7 +199,6 @@
   :delight '(:eval (concat " (" (projectile-project-name) ")"))
   :bind-keymap ("C-c p" . projectile-command-map)
   :custom
-  (projectile-switch-project-action #'projectile-dired)
   (projectile-completion-system 'ivy)
   (projectile-indexing-method 'alien "Disable native indexing on Windows.")
   :config (projectile-mode))
