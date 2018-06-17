@@ -197,7 +197,7 @@
 ;;; Navigation:
 (use-package projectile
   :delight '(:eval (concat " (" (projectile-project-name) ")"))
-  :bind ("C-c P" . #'projectile-switch-project)
+  :bind-keymap ("C-c p" . projectile-command-map)
   :custom
   (projectile-switch-project-action #'projectile-dired)
   (projectile-completion-system 'ivy)
@@ -296,6 +296,7 @@
 
 (use-package flycheck
   :delight
+  :bind-keymap ("C-c !" . flycheck-mode-map)
   :config (global-flycheck-mode))
 
 ;; options include irony, cquery, rtags, ggtags, and ycmd
@@ -488,6 +489,7 @@
 
 (use-package yasnippet
   :delight yas-minor-mode
+  :bind-keymap ("C-c &" . yas-keymap)
   :config (yas-global-mode))
 
 (use-package yasnippet-snippets
