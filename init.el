@@ -81,17 +81,17 @@
 
 ;;; Movement:
 (use-package ace-window
-  :bind ("M-o" . #'ace-window)
+  :bind ("M-o" . ace-window)
   :custom (aw-keys '(?a ?s ?d ?f ?g ?h ?1 ?2 ?3)))
 
 (use-package buffer-move
-  :bind (("C-S-<up>" . #'buf-move-up)
-         ("C-S-<down>" . #'buf-move-down)
-         ("C-S-<left>" . #'buf-move-left)
-         ("C-S-<right>" . #'buf-move-right)))
+  :bind (("C-S-<up>" . buf-move-up)
+         ("C-S-<down>" . buf-move-down)
+         ("C-S-<left>" . buf-move-left)
+         ("C-S-<right>" . buf-move-right)))
 
 (use-package expand-region
-  :bind ("C-=" . #'er/expand-region))
+  :bind ("C-=" . er/expand-region))
 
 ;;; Version control:
 (use-package vc-hooks
@@ -116,8 +116,8 @@
 
 ;;; Interface:
 (use-package avy
-  :bind (("C-'" . #'avy-goto-char)
-         ("M-g f" . #'avy-goto-line)))
+  :bind (("C-'" . avy-goto-char)
+         ("M-g f" . avy-goto-line)))
 
 (use-package minibuf-eldef
   :ensure nil
@@ -140,17 +140,17 @@
   :bind
   ;; Note that `counsel-mode' rebinds most commands.
   (;; Originally on `M-y', browses the kill ring.
-   ([remap yank-pop] . #'counsel-yank-pop)
-   ([remap list-buffers] . #'counsel-ibuffer)
+   ([remap yank-pop] . counsel-yank-pop)
+   ([remap list-buffers] . counsel-ibuffer)
    ;; Browses the mark ring. Similar to `pop-global-mark' on `C-x C-SPC'.
-   ("C-c C-SPC" . #'counsel-mark-ring)
-   ("C-x L" . #'counsel-locate)
+   ("C-c C-SPC" . counsel-mark-ring)
+   ("C-x L" . counsel-locate)
    ;; TODO: Maybe replace `projectile'.
    ;; https://www.reddit.com/r/emacs/comments/407q2c/ivy_is_now_available_in_spacemacs/cys6nts/
-   ("C-c f" . #'counsel-git)
-   ("C-c k" . #'counsel-rg)
-   ("C-c i" . #'counsel-imenu)
-   ("C-h L" . #'counsel-find-library))
+   ("C-c f" . counsel-git)
+   ("C-c k" . counsel-rg)
+   ("C-c i" . counsel-imenu)
+   ("C-h L" . counsel-find-library))
   :custom
   (counsel-find-file-at-point t)
   (counsel-find-file-ignore-regexp "\(?:\‘[#.]\)\|\(?:[#~]\’\)")
@@ -165,10 +165,10 @@
 (use-package ivy
   :after flx
   :delight
-  :bind (("C-c C-r" . #'ivy-resume)
+  :bind (("C-c C-r" . ivy-resume)
          :map ivy-minibuffer-map
-         ("C-r" . #'ivy-previous-line-or-history)
-         ("M-x" . #'ivy-reverse-i-search))
+         ("C-r" . ivy-previous-line-or-history)
+         ("M-x" . ivy-reverse-i-search))
   :custom
   (ivy-re-builders-alist
    '(;; Use regex-plus but without ordering for files.
@@ -263,7 +263,7 @@
   :config (global-undo-tree-mode))
 
 (use-package unfill
-  :bind ([remap fill-paragraph] . #'unfill-toggle))
+  :bind ([remap fill-paragraph] . unfill-toggle))
 
 ;;; Completion / syntax / tags:
 (customize-set-variable 'tab-always-indent 'complete)
@@ -273,14 +273,14 @@
   :bind
   (;; Originally `TAB', first indents, then completes.
    ;; https://github.com/company-mode/company-mode/issues/94
-   ([remap indent-for-tab-command] . #'company-indent-or-complete-common)
-   ([remap c-indent-line-or-region] . #'company-indent-or-complete-common)
+   ([remap indent-for-tab-command] . company-indent-or-complete-common)
+   ([remap c-indent-line-or-region] . company-indent-or-complete-common)
    ;; Originally `C-M-i'.
-   ([remap completion-at-point] . #'company-complete)
+   ([remap completion-at-point] . company-complete)
    :map company-active-map
-   ("C-n" . #'company-select-next)
-   ("C-p" . #'company-select-previous)
-   ([remap company-complete-common] . #'company-complete-common-or-cycle))
+   ("C-n" . company-select-next)
+   ("C-p" . company-select-previous)
+   ([remap company-complete-common] . company-complete-common-or-cycle))
   :custom
   (company-idle-delay nil)
   (company-tooltip-limit 7)
@@ -433,12 +433,12 @@
 (use-package clang-format
   :after cc-mode
   ;; Does not use `:bind' in order to not delay loading `clang-format' indefinitely.
-  :config (bind-key "C-M-\\" #'clang-format-region c-mode-base-map))
+  :config (bind-key "C-M-\\" clang-format-region c-mode-base-map))
 
 (use-package compile
   :ensure nil
-  :bind (("C-c c" . #'compile)
-         ("M-O" . #'show-compilation))
+  :bind (("C-c c" . compile)
+         ("M-O" . show-compilation))
   :custom
   (compilation-ask-about-save nil)
   (compilation-scroll-output t)
@@ -476,15 +476,15 @@
   :custom (reb-re-syntax 'string))
 
 (use-package restart-emacs
-  :bind ("C-c Q" . #'restart-emacs))
+  :bind ("C-c Q" . restart-emacs))
 
 ;; interactive ripgrep query
 (use-package rg
   :commands (rg rg-project rg-dwim rg-literal))
 
 (use-package swiper
-  :bind (([remap isearch-backward] . #'swiper)
-         ([remap isearch-forward] . #'swiper)))
+  :bind (([remap isearch-backward] . swiper)
+         ([remap isearch-forward] . swiper)))
 
 (use-package yasnippet
   :delight yas-minor-mode
