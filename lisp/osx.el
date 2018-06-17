@@ -5,7 +5,7 @@
 ;;; Code:
 
 ;; pull in path
-(use-package "exec-path-from-shell"
+(use-package exec-path-from-shell
   :if (display-graphic-p)
   :config
   (add-to-list 'exec-path-from-shell-variables "SSH_AUTH_SOCK")
