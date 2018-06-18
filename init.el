@@ -19,19 +19,21 @@
   (when (fboundp function) (apply function args) t))
 
 ;;; Package:
-(require 'package)
-(customize-set-variable
- 'package-archives
- '(("melpa" . "https://melpa.org/packages/")
-   ("gnu" . "https://elpa.gnu.org/packages/")
-   ("org" . "https://orgmode.org/elpa/")))
-(package-initialize)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 4))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+(customize-set-variable 'straight-use-package-by-default t)
 
-(customize-set-variable 'use-package-always-ensure t)
+(straight-use-package 'use-package)
 
 (eval-when-compile
   (require 'use-package))
@@ -57,26 +59,17 @@
 (customize-set-variable
  'custom-file (no-littering-expand-var-file-name "custom.el"))
 
-;; Auto-update packages.
-(use-package auto-package-update
-  :custom
-  (auto-package-update-interval 1)
-  (auto-package-update-prompt-before-update (not (getenv "CI")))
-  (apu--last-update-day-filename
-   (no-littering-expand-var-file-name "auto-update-package-last-update-day"))
-  :config (auto-package-update-maybe))
-
 ;;; Platform:
 (use-package linux
-  :ensure nil
+  :straight nil
   :if (eq system-type 'gnu/linux))
 
 (use-package osx
-  :ensure nil
+  :straight nil
   :if (eq system-type 'darwin))
 
 (use-package windows
-  :ensure nil
+  :straight nil
   :if (eq system-type 'windows-nt))
 
 ;;; Movement:
@@ -95,7 +88,7 @@
 
 ;;; Version control:
 (use-package vc-hooks
-  :ensure nil
+  :straight nil
   :custom (vc-follow-symlinks t))
 
 (use-package magit
@@ -122,12 +115,12 @@
          ("M-g f" . avy-goto-line)))
 
 (use-package minibuf-eldef
-  :ensure nil
+  :straight nil
   :custom (minibuffer-eldef-shorten-default t)
   :config (minibuffer-electric-default-mode))
 
 (use-package mb-depth
-  :ensure nil
+  :straight nil
   :custom
   (enable-recursive-minibuffers
    t "Enables using `swiper-query-replace' from `swiper' via `M-q'.")
@@ -234,7 +227,7 @@
 
 ;;; Editing:
 (use-package autorevert
-  :ensure nil
+  :straight nil
   :delight auto-revert-mode
   :config (global-auto-revert-mode))
 
@@ -435,10 +428,10 @@
 (use-package clang-format
   :after cc-mode
   ;; Does not use `:bind' in order to not delay loading `clang-format' indefinitely.
-  :config (bind-key "C-M-\\" clang-format-region c-mode-base-map))
+  :config (bind-key "C-M-\\" #'clang-format-region c-mode-base-map))
 
 (use-package compile
-  :ensure nil
+  :straight nil
   :bind (("C-c c" . compile)
          ("M-O" . show-compilation))
   :custom
@@ -456,7 +449,7 @@
   :after ibuffer)
 
 (use-package org
-  :ensure org-plus-contrib
+  :straight org-plus-contrib
   :mode (("\\.org\\'" . org-mode) ("[0-9]\\{8\\}\\'" . org-mode))
   :hook (org-mode . turn-on-auto-fill)
   :custom
@@ -473,7 +466,7 @@
   (org-export-backends '(html beamer ascii latex md)))
 
 (use-package re-builder
-  :ensure nil
+  :straight nil
   :commands (re-builder regexp-builder)
   :custom (reb-re-syntax 'string))
 
@@ -541,7 +534,7 @@
   :config (smooth-scrolling-mode))
 
 (use-package uniquify
-  :ensure nil
+  :straight nil
   :custom (uniquify-buffer-name-style 'forward))
 
 ;;; Emacs configuration:
@@ -560,7 +553,7 @@
 
 ;; Simple is Emacs's built-in miscellaneous package.
 (use-package simple
-  :ensure nil
+  :straight nil
   :custom
   ;; Fix kill behavior.
   (save-interprogram-paste-before-kill t)
@@ -572,7 +565,7 @@
 (customize-set-variable 'set-mark-command-repeat-pop t)
 
 (use-package files
-  :ensure nil
+  :straight nil
   :custom
   (confirm-nonexistent-file-or-buffer t)
   (save-abbrevs 'silently)
@@ -587,12 +580,12 @@
   (large-file-warning-threshold (* 20 1000 1000) "20 megabytes."))
 
 (use-package recentf
-  :ensure nil
+  :straight nil
   :custom (recentf-max-saved-items 256)
   :config (recentf-mode))
 
 (use-package dired
-  :ensure nil
+  :straight nil
   :commands (dired)
   :custom
   (dired-dwim-target t "Enable side-by-side `dired' buffer targets.")
