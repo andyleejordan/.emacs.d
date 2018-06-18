@@ -535,11 +535,10 @@
   (fortune-cookie-cowsay-args "-f tux")
   :config (fortune-cookie-mode))
 
-(use-package smooth-scroll
-  :if (display-graphic-p)
+(use-package smooth-scrolling
   :delight
-  :custom (smooth-scroll/vscroll-step-size 8)
-  :config (smooth-scroll-mode))
+  :custom (smooth-scroll-margin 2)
+  :config (smooth-scrolling-mode))
 
 (use-package uniquify
   :ensure nil
