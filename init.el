@@ -39,8 +39,8 @@
   (require 'use-package))
 
 (use-package benchmark-init
-  :hook (after-init . benchmark-init/deactivate)
-  :init (benchmark-init/activate))
+  :init (benchmark-init/activate)
+  :hook (after-init . benchmark-init/deactivate))
 
 (use-package delight)
 (use-package bind-key)
@@ -132,6 +132,7 @@
 (use-package counsel
   :after smex
   :delight
+  :init (counsel-mode)
   :bind
   ;; Note that `counsel-mode' rebinds most commands.
   (;; Originally on `M-y', browses the kill ring.
@@ -148,8 +149,7 @@
    ("C-h L" . counsel-find-library))
   :custom
   (counsel-find-file-at-point t)
-  (counsel-find-file-ignore-regexp "\(?:\‘[#.]\)\|\(?:[#~]\’\)")
-  :config (counsel-mode))
+  (counsel-find-file-ignore-regexp "\(?:\‘[#.]\)\|\(?:[#~]\’\)"))
 
 ;; provides sorting for ivy
 (use-package flx)
@@ -160,6 +160,7 @@
 (use-package ivy
   :after flx
   :delight
+  :init (ivy-mode)
   :bind (("C-c C-r" . ivy-resume)
          :map ivy-minibuffer-map
          ("C-r" . ivy-previous-line-or-history)
@@ -175,8 +176,7 @@
   :custom-face
   ;; Add a Solarized Green underline to the ivy match.
   ;; TODO: Consider `:inherit magit-diff-added-highlight'.
-  (ivy-current-match ((t (:underline (:color "#859900")))))
-  :init (ivy-mode))
+  (ivy-current-match ((t (:underline (:color "#859900"))))))
 
 (use-package ivy-hydra
   :after (ivy hydra))
