@@ -127,10 +127,9 @@
   :config (minibuffer-depth-indicate-mode))
 
 ;; Provides sorting for `counsel-M-x'.
-(use-package smex)
+(use-package amx)
 
 (use-package counsel
-  :after smex
   :delight
   :init (counsel-mode)
   :bind
@@ -158,7 +157,6 @@
 (use-package hydra)
 
 (use-package ivy
-  :after flx
   :delight
   :init (ivy-mode)
   :bind (("C-c C-r" . ivy-resume)
