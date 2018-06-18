@@ -574,6 +574,7 @@
 (use-package files
   :ensure nil
   :custom
+  (confirm-nonexistent-file-or-buffer t)
   (save-abbrevs 'silently)
   (require-final-newline t)
   (backup-by-copying t)
