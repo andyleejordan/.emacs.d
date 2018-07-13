@@ -54,6 +54,7 @@ https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 ** Append next kill: =C-M-w=
 ** Back to indentation: =M-m=
 ** Sentences: move =M-a= =M-e= kill =M-k=
+In C and C++ modes, these move over statements.
 ** Paragraphs: move =M-{= =M-}= mark =M-h=
 ** Sexps: move =C-M-f= =C-M-b= mark =C-M-SPC= kill =C-M-k=
 ** Defuns: move =C-M-a= =C-M-e= mark =C-M-h=
