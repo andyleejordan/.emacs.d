@@ -309,7 +309,8 @@
   :commands (lsp-cquery-enable)
   :hook (c-mode-common . lsp-cquery-enable)
   :custom
-  (cquery-executable (no-littering-expand-var-file-name "cquery/build/cquery"))
+  (cquery-executable
+   (no-littering-expand-var-file-name "cquery/build/release/bin/cquery"))
   (cquery-extra-init-params '(:completion (:detailedLabel t))))
 
 (use-package company-lsp
