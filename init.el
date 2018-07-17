@@ -92,6 +92,7 @@
   :custom (vc-follow-symlinks t))
 
 (use-package magit
+  :straight (magit :host github :repo "magit/magit" :branch "maint")
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch-popup))
   :custom
