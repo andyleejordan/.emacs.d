@@ -552,6 +552,10 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (set-variable 'disabled-command-function nil)
 
+(use-package delsel
+  :straight nil
+  :config (delete-selection-mode))
+
 ;; Default to truncating lines.
 (customize-set-variable 'truncate-lines t)
 
