@@ -323,10 +323,23 @@
   :custom (company-lsp-enable-recompletion t)
   :config (add-to-list 'company-backends 'company-lsp))
 
+;; Use `omnisharp-install-server' to setup.
+(use-package omnisharp
+  :hook (csharp-mode . omnisharp-mode)
+  :custom (omnisharp-imenu-support t)
+  :bind (:map omnisharp-mode-map
+              ([remap xref-find-definitions] . omnisharp-go-to-definition)
+              ([remap xref-find-references] . omnisharp-find-usages)
+              ;; `xref-pop-marker-stack' works as expected.
+              ([remap indent-region] . omnisharp-code-format-region))
+  :config (eval-after-load 'company
+            '(add-to-list 'company-backends 'company-omnisharp)))
+
 (use-package ivy-xref
   :after ivy
   :custom (xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
+;; Spelling
 (use-package flyspell
   ;; Disable on Windows because `aspell' 0.6+ isn't available.
   :if (not (eq system-type 'windows-nt))
@@ -432,7 +445,7 @@
 (use-package clang-format
   :after cc-mode
   ;; Does not use `:bind' in order to not delay loading `clang-format' indefinitely.
-  :config (bind-key "C-M-\\" #'clang-format-region c-mode-base-map))
+  :config (bind-key [remap indent-region] #'clang-format-region c-mode-base-map))
 
 (use-package compile
   :straight nil
