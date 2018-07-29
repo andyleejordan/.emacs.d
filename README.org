@@ -40,6 +40,8 @@ negative.
 ** =cond= is better than =if= / =else=
 ** =let= for friendly names should be used liberally
 ** =save-excursion= to restore point
+** =replace-regexp-in-string=
+** =shell-command-to-string=
 * Key bindings
 ** Universal arg: =C-u= =M-u= =C-M-u=
 ** Negative arg: =C--= =M--= =C-M--=
@@ -51,6 +53,7 @@ Recording because =C-x C-@= is horrible.
 ** Narrowing: =C-x n= region =n= defun =d= widen =w=
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 ** Zap to char: =M-z=
+** Delete horizontal whitespace: =M-\=
 ** Append next kill: =C-M-w=
 ** Back to indentation: =M-m=
 ** Sentences: move =M-a= =M-e= kill =M-k=
@@ -68,6 +71,9 @@ In C and C++ modes, these move over statements.
 ** Set fill prefix: =C-x .=
 [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Fill-Prefix.html][Fill-Prefix]] with point after prefix
 ** Set fill column: =C-x f=
+** Toggle read-only (e.g. for =wgrep=): =C-x C-q=
+Very useful in [[https://oremacs.com/2016/04/26/ivy-0.8.0/][=ivy-occur-mode=]]
+** List buffer bindings: =C-h b=
 ** Bindings for command: =C-h w (where-is)=
 Inverse of =C-h k=
 ** Quote next character: =C-q=
