@@ -265,31 +265,6 @@
 ;;; Completion / syntax / tags:
 (customize-set-variable 'tab-always-indent 'complete)
 
-(use-package company
-  :delight
-  :bind
-  (;; Originally `TAB', first indents, then completes.
-   ;; https://github.com/company-mode/company-mode/issues/94
-   ([remap indent-for-tab-command] . company-indent-or-complete-common)
-   ([remap c-indent-line-or-region] . company-indent-or-complete-common)
-   ;; Originally `C-M-i'.
-   ([remap completion-at-point] . company-complete)
-   :map company-active-map
-   ("C-n" . company-select-next)
-   ("C-p" . company-select-previous)
-   ([remap company-complete-common] . company-complete-common-or-cycle))
-  :custom
-  (company-idle-delay nil)
-  (company-tooltip-limit 7)
-  :config (global-company-mode))
-
-(use-package company-flx
-  :after (company)
-  :config (company-flx-mode))
-
-(use-package company-quickhelp
-  :after (company)
-  :config (company-quickhelp-mode))
 
 (use-package flycheck
   :delight
@@ -318,11 +293,6 @@
    (no-littering-expand-var-file-name "cquery/build/release/bin/cquery"))
   (cquery-extra-init-params '(:completion (:detailedLabel t))))
 
-(use-package company-lsp
-  :after (cquery company lsp-mode)
-  :custom (company-lsp-enable-recompletion t)
-  :config (add-to-list 'company-backends 'company-lsp))
-
 ;; Use `omnisharp-install-server' to setup.
 (use-package omnisharp
   :hook (csharp-mode . omnisharp-mode)
@@ -331,9 +301,7 @@
               ([remap xref-find-definitions] . omnisharp-go-to-definition)
               ([remap xref-find-references] . omnisharp-find-usages)
               ;; `xref-pop-marker-stack' works as expected.
-              ([remap indent-region] . omnisharp-code-format-region))
-  :config (eval-after-load 'company
-            '(add-to-list 'company-backends 'company-omnisharp)))
+              ([remap indent-region] . omnisharp-code-format-region)))
 
 (use-package ivy-xref
   :after ivy
