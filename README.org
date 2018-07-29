@@ -73,6 +73,7 @@ Inverse of =C-h k=
 ** Quote next character: =C-q=
 Newline: C-j
 * Tricks and tips
+** Interactive Emacs Lisp Mode =ielm=
 ** Using quote marks within verbatim/code markup in org-mode
 - Unicode: <U200B> /xe2/x80/x8b ZERO WIDTH SPACE
 - Insert using: (C-x 8 RET 200b RET)

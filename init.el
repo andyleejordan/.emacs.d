@@ -465,6 +465,10 @@
 (use-package ibuffer-vc
   :after ibuffer)
 
+(use-package ielm
+  :commands (ielm)
+  :custom (ielm-prompt "> "))
+
 (use-package org
   :straight org-plus-contrib
   :mode (("\\.org\\'" . org-mode) ("[0-9]\\{8\\}\\'" . org-mode))
