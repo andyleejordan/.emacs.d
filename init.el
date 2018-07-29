@@ -459,6 +459,37 @@
 (use-package demangle-mode
   :commands (demangle-mode))
 
+(use-package eshell
+  :commands (eshell)
+  :custom
+  (eshell-visual-commands '("bash" "htop" "fish"))
+  (eshell-prompt-regexp "^> ")
+  (eshell-highlight-prompt nil)
+  (eshell-prompt-function
+   (lambda nil
+     (let ((red       "#dc322f")
+           (magenta   "#d33682")
+           (blue      "#268bd2")
+           (cyan      "#2aa198")
+           (green     "#859900")
+           (base      "#839496"))
+       ;; TODO: Make this macro "local."
+       (defmacro with-face (str &rest properties)
+         `(propertize ,str 'face (list ,@properties)))
+       (concat
+        (let ((status eshell-last-command-status))
+          (when (not (= status 0))
+            (with-face (concat (number-to-string status) " ") :foreground magenta)))
+        (with-face "@" :foreground (if (= (user-uid) 0) red blue))
+        (with-face (system-name) :foreground base) " "
+        ;; TODO: Display more Git info.
+        (let ((head (shell-command-to-string "git describe --contains --all HEAD")))
+          (unless (string-match "fatal:" head)
+            (concat "(" (with-face (replace-regexp-in-string "\n\\'" "" head) :foreground green) ") ")))
+        (with-face (replace-regexp-in-string (concat "\\`" (getenv "HOME")) "~" (eshell/pwd))
+                   :foreground blue) "\n"
+        (with-face ">" :foreground cyan) " ")))))
+
 (use-package ibuffer
   :commands (ibuffer))
 
