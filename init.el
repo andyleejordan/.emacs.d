@@ -553,6 +553,11 @@
   :custom (smooth-scroll-margin 2)
   :config (smooth-scrolling-mode))
 
+;; Kill old buffers at midnight.
+(use-package midnight
+  :straight nil
+  :config (midnight-mode))
+
 (use-package uniquify
   :straight nil
   :custom (uniquify-buffer-name-style 'forward))
