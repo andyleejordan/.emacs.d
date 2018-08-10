@@ -257,7 +257,12 @@
 (use-package undo-tree
   :delight
   :custom (undo-tree-auto-save-history t)
-  :config (global-undo-tree-mode))
+  :config
+  (global-undo-tree-mode)
+  (defun undo-tree-clear ()
+    "Clear undo-tree data."
+    (interactive)
+    (setq buffer-undo-tree nil)))
 
 (use-package unfill
   :bind ([remap fill-paragraph] . unfill-toggle))
