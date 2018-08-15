@@ -146,6 +146,7 @@
    ("C-c f" . counsel-git)
    ("C-c k" . counsel-rg)
    ("C-c i" . counsel-imenu)
+   ("C-c r" . counsel-recentf)
    ("C-h L" . counsel-find-library))
   :custom
   (counsel-find-file-at-point t)
