@@ -233,6 +233,7 @@
 (use-package autorevert
   :straight nil
   :delight auto-revert-mode
+  :custom (auto-revert-verbose nil)
   :config (global-auto-revert-mode))
 
 (use-package editorconfig
