@@ -191,6 +191,7 @@
 
 ;;; Navigation:
 (use-package projectile
+  :straight (projectile :host github :repo "bbatsov/projectile" :branch "v1.0.0")
   :delight '(:eval (concat " (" (projectile-project-name) ")"))
   :bind-keymap ("C-c p" . projectile-command-map)
   :custom
