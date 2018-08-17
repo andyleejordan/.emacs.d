@@ -506,8 +506,7 @@
   :commands (rg rg-project rg-dwim rg-literal))
 
 (use-package swiper
-  :bind (([remap isearch-backward] . swiper)
-         ([remap isearch-forward] . swiper)))
+  :bind (("M-s s" . swiper)))
 
 (use-package yasnippet
   :delight yas-minor-mode
