@@ -425,8 +425,7 @@
 
 (use-package compile
   :straight nil
-  :bind (("C-c c" . compile)
-         ("M-O" . show-compilation))
+  :bind (("C-c c" . compile))
   :custom
   (compilation-ask-about-save nil)
   (compilation-scroll-output t)
