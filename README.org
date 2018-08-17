@@ -53,6 +53,7 @@ Recording because =C-x C-@= is horrible.
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 ** Zap to char: =M-z=
 ** Delete horizontal whitespace: =M-\=
+** Delete indendation / join line with previous: =M-^=
 ** Append next kill: =C-M-w=
 ** Back to indentation: =M-m=
 ** Sentences: move =M-a= =M-e= kill =M-k=
@@ -70,7 +71,7 @@ In C and C++ modes, these move over statements.
 ** Set fill prefix: =C-x .=
 [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Fill-Prefix.html][Fill-Prefix]] with point after prefix
 ** Set fill column: =C-x f=
-** Toggle read-only (e.g. for =wgrep=): =C-x C-q=
+** Toggle read-only (e.g. for =wgrep=): =C-x C-q= or =C-c C-p=
 Very useful in [[https://oremacs.com/2016/04/26/ivy-0.8.0/][=ivy-occur-mode=]]
 ** List buffer bindings: =C-h b=
 ** Bindings for command: =C-h w (where-is)=
@@ -168,7 +169,8 @@ Use =M-x view-lossage= to see the most recent 300 keystrokes, per
 [[http://emacsredux.com/blog/2014/12/23/lossage/][Emacs Redux]]
 ** Smartparens
 https://ebzzry.github.io/emacs-pairs.html
-*** yank next movement/thing =sp-select-next-thing= on =C-M-]=
+*** Yank next movement/thing =sp-select-next-thing= on =C-M-]=
+*** Remove surround quotes aka splice =sp-splice-sexp= on =M-D=
 ** Emacs Syntax Explained
 The C-j in C-q C-j is for inputing ASCII Line Feed char (used in unix
 as newline char), which does not have a corresponding key on the
