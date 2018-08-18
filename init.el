@@ -436,6 +436,7 @@
 
 (use-package eshell
   :commands (eshell)
+  :bind (("C-c e" . eshell))
   :custom
   (eshell-visual-commands '("bash" "htop" "fish"))
   (eshell-prompt-regexp "^> ")
