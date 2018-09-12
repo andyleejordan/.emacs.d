@@ -502,6 +502,9 @@
 (use-package swiper
   :bind (("M-s s" . swiper)))
 
+(use-package toml-mode
+  :mode ("\\.toml\\'"))
+
 (use-package yasnippet
   :delight yas-minor-mode
   :bind-keymap ("C-c &" . yas-keymap)
