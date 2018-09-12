@@ -256,11 +256,6 @@
   (require 'smartparens-config)
   (smartparens-global-mode))
 
-(use-package undo-tree
-  :delight
-  :custom (undo-tree-auto-save-history t)
-  :init (global-undo-tree-mode))
-
 (use-package unfill
   :bind ([remap fill-paragraph] . unfill-toggle))
 
