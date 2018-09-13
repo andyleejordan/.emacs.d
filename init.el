@@ -112,8 +112,8 @@
 
 ;;; Interface:
 (use-package avy
-  :bind (("C-'" . avy-goto-char)
-         ("M-g f" . avy-goto-line)))
+  :bind (("C-'" . avy-goto-char-timer)
+         ("M-g M-g" . avy-goto-line)))
 
 (use-package minibuf-eldef
   :straight nil
