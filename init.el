@@ -144,7 +144,7 @@
    ;; TODO: Maybe replace `projectile'.
    ;; https://www.reddit.com/r/emacs/comments/407q2c/ivy_is_now_available_in_spacemacs/cys6nts/
    ("C-c f" . counsel-git)
-   ("C-c k" . counsel-rg)
+   ("M-s M-s" . counsel-rg)
    ("C-c i" . counsel-imenu)
    ("C-c r" . counsel-recentf)
    ("C-h L" . counsel-find-library))
@@ -492,7 +492,9 @@
 
 ;; interactive ripgrep query
 (use-package rg
-  :commands (rg rg-project rg-dwim rg-literal))
+  :bind (("M-s r" . rg)
+         ("M-s d" . rg-dwim))
+  :commands (rg-project rg-literal))
 
 (use-package swiper
   :bind (("M-s s" . swiper)))
