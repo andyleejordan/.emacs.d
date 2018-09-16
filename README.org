@@ -53,6 +53,7 @@ Recording because =C-x C-@= is horrible.
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 ** Zap to char: =M-z=
 ** Delete horizontal whitespace: =M-\=
+** Delete vertical whitespace: =C-x C-o=
 ** Delete indendation / join line with previous: =M-^=
 ** Append next kill: =C-M-w=
 ** Back to indentation: =M-m=
