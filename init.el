@@ -83,6 +83,9 @@
          ("C-S-<left>" . buf-move-left)
          ("C-S-<right>" . buf-move-right)))
 
+(use-package windmove
+  :init (windmove-default-keybindings))
+
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 
