@@ -57,12 +57,12 @@ https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 ** Delete indendation / join line with previous: =M-^=
 ** Append next kill: =C-M-w=
 ** Back to indentation: =M-m=
-** Sentences: move =M-a= =M-e= kill =M-k=
+** Sentences: =M-(a backward) (e forward) (k kill)= =C-x DEL (kill backward)=
 In C and C++ modes, these move over statements.
-** Paragraphs: move =M-{= =M-}= mark =M-h=
-** Sexps: move =C-M-f= =C-M-b= mark =C-M-SPC= kill =C-M-k=
-** Defuns: move =C-M-a= =C-M-e= mark =C-M-h=
-** Buffer: move =M-<= =M->= mark =C-x h=
+** Paragraphs: =M-({ backward) (} forward) (h mark)=
+** Sexps: =C-M-(b backward) (f forward) (u up) (SPC mark) (k kill) (w copy)=
+** Defuns: =C-M-(a begin) (e end) (h mark)=
+** Buffer: =M-(< begin) (> end)= =C-x h (mark)=
 ** The opposite of =C-l= is =M-r= recenter-positions
 ** Comment: DWIM =M-;= line =C-x C-;=
 ** Select nearest symbol: =M-s .=
