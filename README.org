@@ -45,7 +45,7 @@ negative.
 ** Universal arg: =C-u=
 ** Negative arg: =C--=
 ** Numeric args: =C- M- C-M- 0...9=
-** Repeat command: =C-x z=
+** Repeat command: =C-x z= follow with =z=
 ** Global mark: push =C-SPC C-SPC= pop =C-x C-SPC=
 Recording because =C-x C-@= is horrible.
 ** Toggle between point and mark: =C-x C-x=
