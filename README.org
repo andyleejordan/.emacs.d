@@ -42,8 +42,8 @@ negative.
 ** =replace-regexp-in-string=
 ** =shell-command-to-string=
 * Key bindings
-** Universal arg: =C-u= =M-u= =C-M-u=
-** Negative arg: =C--= =M--= =C-M--=
+** Universal arg: =C-u=
+** Negative arg: =C--=
 ** Numeric args: =C- M- C-M- 0...9=
 ** Repeat command: =C-x z=
 ** Global mark: push =C-SPC C-SPC= pop =C-x C-SPC=
