@@ -43,8 +43,8 @@ negative.
 ** =shell-command-to-string=
 * Key bindings
 ** Universal arg: =C-u=
-** Negative arg: =C--=
-** Numeric args: =C- M- C-M- 0...9=
+** Negative arg: =(C|M|C-M)--= like =M- M-l= to downcase backwards
+** Numeric args: =(C|M|C-M)-(0...9)=
 ** Repeat command: =C-x z= follow with =z=
 ** Global mark: push =C-SPC C-SPC= pop =C-x C-SPC=
 Recording because =C-x C-@= is horrible.
