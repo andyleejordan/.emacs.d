@@ -100,6 +100,8 @@
   (magit-completing-read-function #'ivy-completing-read)
   (magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
   (magit-save-repository-buffers 'dontask)
+  (magit-published-branches nil "Disable confirmation.")
+  ;; TODO: Maybe `(magit-dwim-selection '((magit-branch-and-checkout nil t)))'
   :config
   (magit-define-popup-switch 'magit-push-popup ?u
     "Set upstream" "--set-upstream"))
