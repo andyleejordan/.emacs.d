@@ -118,6 +118,10 @@
   :bind (("C-'" . avy-goto-char-timer)
          ("M-g M-g" . avy-goto-line)))
 
+(use-package eldoc
+  :delight
+  :straight nil)
+
 (use-package minibuf-eldef
   :straight nil
   :custom (minibuffer-eldef-shorten-default t)
@@ -264,7 +268,6 @@
 
 ;;; Completion / syntax / tags:
 (customize-set-variable 'tab-always-indent 'complete)
-
 
 (use-package flycheck
   :delight
