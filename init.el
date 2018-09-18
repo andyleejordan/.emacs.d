@@ -94,8 +94,7 @@
 
 (use-package magit
   :straight (magit :host github :repo "magit/magit" :branch "maint")
-  :bind (("C-x g" . magit-status)
-         ("C-x M-g" . magit-dispatch-popup))
+  :demand
   :custom
   (magit-completing-read-function #'ivy-completing-read)
   (magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
