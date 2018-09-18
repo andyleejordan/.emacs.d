@@ -63,6 +63,7 @@ In C and C++ modes, these move over statements.
 ** Sexps: =C-M-(b backward) (f forward) (u up) (SPC mark) (k kill) (w copy)=
 ** Defuns: =C-M-(a begin) (e end) (h mark)=
 ** Buffer: =M-(< begin) (> end)= =C-x h (mark)=
+** Magit sections: =M-(n next) (p previous)=
 ** The opposite of =C-l= is =M-r= recenter-positions
 ** Comment: DWIM =M-;= line =C-x C-;=
 ** Select nearest symbol: =M-s .=
