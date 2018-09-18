@@ -591,12 +591,16 @@
 ;; Simple is Emacs's built-in miscellaneous package.
 (use-package simple
   :straight nil
+  :delight visual-line-mode
   :custom
   ;; Fix kill behavior.
   (save-interprogram-paste-before-kill t)
   (kill-do-not-save-duplicates t)
   (kill-whole-line t)
-  :config (column-number-mode))
+  (visual-line-fringe-indicators '(nil right-curly-arrow))
+  :init
+  (visual-line-mode)
+  (column-number-mode))
 
 ;; Pop repeatedly.
 (customize-set-variable 'set-mark-command-repeat-pop t)
