@@ -370,6 +370,10 @@
          "/info/exclude\\'"
          "/git/ignore\\'"))
 
+(use-package groovy-mode
+  :mode (("\\.g\\(?:ant\\|roovy\\|radle\\)\\'" . groovy-mode)
+         ("Jenkinsfile" . groovy-mode)))
+
 (use-package json-mode
   :mode ("\\.json$" "\\.jsonld$"))
 
