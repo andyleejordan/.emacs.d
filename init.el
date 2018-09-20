@@ -113,10 +113,6 @@
   :config (global-git-gutter-mode))
 
 ;;; Interface:
-(use-package avy
-  :bind (("C-'" . avy-goto-char-timer)
-         ("M-g M-g" . avy-goto-line)))
-
 (use-package eldoc
   :delight
   :straight nil)
