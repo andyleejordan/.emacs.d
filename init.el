@@ -236,6 +236,10 @@
          ("M-s d" . rg-dwim))
   :commands (rg-project rg-literal))
 
+(use-package wdired
+  :straight nil
+  :custom (wdired-allow-to-change-permissions t))
+
 (use-package wgrep
   ;; makes `rg' buffers writable too
   :custom (wgrep-auto-save-buffer t))
