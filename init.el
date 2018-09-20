@@ -184,6 +184,22 @@
   :delight
   :config (which-key-mode))
 
+;;; Buffers:
+(use-package ibuffer
+  :commands (ibuffer))
+
+(use-package ibuffer-vc
+  :after ibuffer)
+
+(use-package midnight
+  ;; Kill old buffers at midnight.
+  :straight nil
+  :config (midnight-mode))
+
+(use-package uniquify
+  :straight nil
+  :custom (uniquify-buffer-name-style 'forward))
+
 ;;; Navigation / file searching:
 (use-package projectile
   :delight '(:eval (concat " (" (projectile-project-name) ")"))
@@ -461,12 +477,6 @@
                    :foreground blue) "\n"
         (with-face ">" :foreground cyan) " ")))))
 
-(use-package ibuffer
-  :commands (ibuffer))
-
-(use-package ibuffer-vc
-  :after ibuffer)
-
 (use-package ielm
   :commands (ielm)
   :custom (ielm-prompt "> "))
@@ -548,16 +558,7 @@
   :custom (smooth-scroll-margin 2)
   :config (smooth-scrolling-mode))
 
-;; Kill old buffers at midnight.
-(use-package midnight
-  :straight nil
-  :config (midnight-mode))
-
-(use-package uniquify
-  :straight nil
-  :custom (uniquify-buffer-name-style 'forward))
-
-;;; Emacs configuration:
+;;; Internal Emacs configuration:
 
 ;; Fix annoyances.
 (customize-set-variable 'minibuffer-message-timeout 0.5)
