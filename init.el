@@ -96,6 +96,9 @@
 (use-package windmove
   :init (windmove-default-keybindings))
 
+;; Enables undo/redo of windows configurations with 'C-c <left/right>'.
+(winner-mode)
+
 ;;; Minibuffer Interface:
 (use-package eldoc
   :delight
@@ -524,9 +527,6 @@
   (auto-save-file-name-transforms
    `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
   (large-file-warning-threshold (* 20 1000 1000) "20 megabytes."))
-
-;; Enables undo/redo of windows configurations with 'C-c <left/right>'.
-(winner-mode)
 
 ;;; Language modes:
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c-mode))
