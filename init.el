@@ -247,9 +247,14 @@
          ("M-s d" . rg-dwim))
   :commands (rg-project rg-literal))
 
-;;; Formatting:
+;;; Formatting / Indentation / Whitespace:
 (customize-set-variable 'indent-tabs-mode nil)
 (customize-set-variable 'sentence-end-double-space nil)
+
+(use-package clang-format
+  :after cc-mode
+  ;; Does not use `:bind' in order to not delay loading `clang-format' indefinitely.
+  :config (bind-key [remap indent-region] #'clang-format-region c-mode-base-map))
 
 (use-package dtrt-indent
   :delight
@@ -369,13 +374,7 @@
   :delight
   :hook (flyspell-mode . auto-correct-mode))
 
-
 ;;; Tools:
-(use-package clang-format
-  :after cc-mode
-  ;; Does not use `:bind' in order to not delay loading `clang-format' indefinitely.
-  :config (bind-key [remap indent-region] #'clang-format-region c-mode-base-map))
-
 (use-package compile
   :straight nil
   :bind (("C-c c" . compile))
