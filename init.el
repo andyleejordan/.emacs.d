@@ -600,6 +600,7 @@
   (save-interprogram-paste-before-kill t)
   (kill-do-not-save-duplicates t)
   (kill-whole-line t)
+  (shift-select-mode nil)
   (visual-line-fringe-indicators '(nil right-curly-arrow))
   :init
   (visual-line-mode)
