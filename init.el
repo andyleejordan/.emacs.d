@@ -73,8 +73,8 @@
   :if (eq system-type 'windows-nt))
 
 ;;; Cursor and Mark Movement:
-(bind-key "M-i" 'imenu)
-(bind-key* "M-o" 'other-window)
+(bind-key "M-i" #'imenu)
+(bind-key* "M-o" #'other-window)
 
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
