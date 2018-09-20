@@ -96,31 +96,6 @@
 (use-package windmove
   :init (windmove-default-keybindings))
 
-;;; Version control:
-(use-package vc-hooks
-  :straight nil
-  :custom (vc-follow-symlinks t))
-
-(use-package magit
-  :straight (magit :host github :repo "magit/magit" :branch "maint")
-  :demand
-  :custom
-  (magit-completing-read-function #'ivy-completing-read)
-  (magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
-  (magit-save-repository-buffers 'dontask)
-  (magit-published-branches nil "Disable confirmation.")
-  ;; TODO: Maybe `(magit-dwim-selection '((magit-branch-and-checkout nil t)))'
-  :config
-  (magit-define-popup-switch 'magit-push-popup ?u
-    "Set upstream" "--set-upstream"))
-
-(use-package git-commit
-  :config (global-git-commit-mode))
-
-(use-package git-gutter
-  :delight
-  :config (global-git-gutter-mode))
-
 ;;; Minibuffer Interface:
 (use-package eldoc
   :delight
@@ -183,6 +158,31 @@
 (use-package which-key
   :delight
   :config (which-key-mode))
+
+;;; Version Control:
+(use-package vc-hooks
+  :straight nil
+  :custom (vc-follow-symlinks t))
+
+(use-package magit
+  :straight (magit :host github :repo "magit/magit" :branch "maint")
+  :demand
+  :custom
+  (magit-completing-read-function #'ivy-completing-read)
+  (magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+  (magit-save-repository-buffers 'dontask)
+  (magit-published-branches nil "Disable confirmation.")
+  ;; TODO: Maybe `(magit-dwim-selection '((magit-branch-and-checkout nil t)))'
+  :config
+  (magit-define-popup-switch 'magit-push-popup ?u
+    "Set upstream" "--set-upstream"))
+
+(use-package git-commit
+  :config (global-git-commit-mode))
+
+(use-package git-gutter
+  :delight
+  :config (global-git-gutter-mode))
 
 ;;; Buffers:
 (use-package buffer-move
