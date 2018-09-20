@@ -271,6 +271,9 @@
   :config (ws-butler-global-mode))
 
 ;;; Editing:
+(customize-set-variable 'truncate-lines t)
+(bind-key "C-x w" #'toggle-truncate-lines)
+
 (use-package autorevert
   :straight nil
   :delight auto-revert-mode
@@ -481,6 +484,7 @@
 
 ;; Fix annoyances.
 (customize-set-variable 'minibuffer-message-timeout 0.5)
+(customize-set-variable 'set-mark-command-repeat-pop t)
 (customize-set-variable 'delete-by-moving-to-trash t)
 (customize-set-variable 'ring-bell-function 'ignore)
 (customize-set-variable 'visible-bell t)
@@ -493,30 +497,17 @@
   :straight nil
   :config (delete-selection-mode))
 
-;; Default to truncating lines.
-(customize-set-variable 'truncate-lines t)
-
 ;; Simple is Emacs's built-in miscellaneous package.
 (use-package simple
   :straight nil
-  :delight visual-line-mode
   :custom
   ;; Fix kill behavior.
   (save-interprogram-paste-before-kill t)
   (kill-do-not-save-duplicates t)
   (kill-whole-line t)
   (shift-select-mode nil)
-  (visual-line-fringe-indicators '(nil right-curly-arrow))
   :init
-  (visual-line-mode)
   (column-number-mode))
-
-;; Makes `visual-line-mode' wrap better.
-(use-package adaptive-wrap
-  :config (adaptive-wrap-prefix-mode))
-
-;; Pop repeatedly.
-(customize-set-variable 'set-mark-command-repeat-pop t)
 
 (use-package files
   :straight nil
