@@ -72,7 +72,10 @@
   :straight nil
   :if (eq system-type 'windows-nt))
 
-;;; Movement:
+;;; Movement around buffers and frames:
+(bind-key "M-i" 'imenu)
+(bind-key "M-o" 'other-window)
+
 (use-package buffer-move
   :bind (("C-S-<up>" . buf-move-up)
          ("C-S-<down>" . buf-move-down)
@@ -92,8 +95,6 @@
 
 (use-package windmove
   :init (windmove-default-keybindings))
-
-(bind-key "M-o" 'other-window)
 
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
