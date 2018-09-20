@@ -355,91 +355,6 @@
   :delight
   :hook (flyspell-mode . auto-correct-mode))
 
-;;; Language modes:
-(add-to-list 'auto-mode-alist '("\\.ino\\'" . c-mode))
-(add-to-list 'auto-mode-alist '("\\.vcsh\\'" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
-(add-to-list 'magic-mode-alist '(";;; " . emacs-lisp-mode))
-
-(use-package cmake-mode
-  :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'"))
-
-(use-package csharp-mode
-  :mode "\\.cs$"
-  :custom (csharp-want-imenu nil))
-
-(use-package dockerfile-mode
-  :mode "Dockerfile.*\\'")
-
-(use-package fish-mode
-  :mode ("\\.fish\\'" "/fish_funced\\..*\\'")
-  :interpreter "fish")
-
-(use-package gitattributes-mode
-  :mode ("/\\.gitattributes\\'"
-         "/info/attributes\\'"
-         "/git/attributes\\'"))
-
-(use-package gitconfig-mode
-  :mode ("/\\.gitconfig\\'"
-         "/\\.git/config\\'"
-         "/modules/.*/config\\'"
-         "/git/config\\'"
-         "/\\.gitmodules\\'"
-         "/etc/gitconfig\\'"))
-
-(use-package gitignore-mode
-  :mode ("/\\.gitignore\\'"
-         "/info/exclude\\'"
-         "/git/ignore\\'"))
-
-(use-package groovy-mode
-  :mode (("\\.g\\(?:ant\\|roovy\\|radle\\)\\'" . groovy-mode)
-         ("Jenkinsfile" . groovy-mode)))
-
-(use-package json-mode
-  :mode ("\\.json$" "\\.jsonld$"))
-
-(use-package markdown-mode
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :custom (markdown-command "multimarkdown"))
-
-(use-package nginx-mode
-  :mode ("nginx\\.conf\\'" "/nginx/.+\\.conf\\'"))
-
-(use-package powershell
-  :mode ("\\.ps[dm]?1\\'" . powershell-mode))
-
-(use-package protobuf-mode
-  :mode "\\.proto\\'")
-
-(use-package puppet-mode
-  :mode "\\.pp\\'")
-
-(use-package ruby-mode
-  :mode "\\.\\(?:cap\\|gemspec\\|irbrc\\|gemrc\\|rake\\|rb\\|ru\\|thor\\)\\'")
-
-(use-package rust-mode
-  :mode "\\.rs\\'"
-  :custom (rust-format-on-save t))
-
-(use-package flycheck-rust
-  :after (rust-mode flycheck)
-  :hook (flycheck-mode . flycheck-rust-setup))
-
-(use-package ssh-config-mode
-  :mode (("/\\.ssh/config\\'" . ssh-config-mode)
-         ("/sshd?_config\\'" . ssh-config-mode)
-         ("/known_hosts\\'" . ssh-known-hosts-mode)
-         ("/authorized_keys2?\\'" . ssh-authorized-keys-mode)))
-
-(use-package toml-mode
-  :mode ("\\.toml\\'"))
-
-(use-package yaml-mode
-  :mode "\\.ya?ml\'")
 
 ;;; Tools:
 (use-package clang-format
@@ -632,10 +547,94 @@
 ;; Enables undo/redo of windows configurations with 'C-c <left/right>'.
 (winner-mode)
 
-;; Start the Emacs daemon.
-(server-start)
+;;; Language modes:
+(add-to-list 'auto-mode-alist '("\\.ino\\'" . c-mode))
+(add-to-list 'auto-mode-alist '("\\.vcsh\\'" . conf-mode))
+(add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
+(add-to-list 'magic-mode-alist '(";;; " . emacs-lisp-mode))
 
-;;; provide init package
+(use-package cmake-mode
+  :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'"))
+
+(use-package csharp-mode
+  :mode "\\.cs$"
+  :custom (csharp-want-imenu nil))
+
+(use-package dockerfile-mode
+  :mode "Dockerfile.*\\'")
+
+(use-package fish-mode
+  :mode ("\\.fish\\'" "/fish_funced\\..*\\'")
+  :interpreter "fish")
+
+(use-package gitattributes-mode
+  :mode ("/\\.gitattributes\\'"
+         "/info/attributes\\'"
+         "/git/attributes\\'"))
+
+(use-package gitconfig-mode
+  :mode ("/\\.gitconfig\\'"
+         "/\\.git/config\\'"
+         "/modules/.*/config\\'"
+         "/git/config\\'"
+         "/\\.gitmodules\\'"
+         "/etc/gitconfig\\'"))
+
+(use-package gitignore-mode
+  :mode ("/\\.gitignore\\'"
+         "/info/exclude\\'"
+         "/git/ignore\\'"))
+
+(use-package groovy-mode
+  :mode (("\\.g\\(?:ant\\|roovy\\|radle\\)\\'" . groovy-mode)
+         ("Jenkinsfile" . groovy-mode)))
+
+(use-package json-mode
+  :mode ("\\.json$" "\\.jsonld$"))
+
+(use-package markdown-mode
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :custom (markdown-command "multimarkdown"))
+
+(use-package nginx-mode
+  :mode ("nginx\\.conf\\'" "/nginx/.+\\.conf\\'"))
+
+(use-package powershell
+  :mode ("\\.ps[dm]?1\\'" . powershell-mode))
+
+(use-package protobuf-mode
+  :mode "\\.proto\\'")
+
+(use-package puppet-mode
+  :mode "\\.pp\\'")
+
+(use-package ruby-mode
+  :mode "\\.\\(?:cap\\|gemspec\\|irbrc\\|gemrc\\|rake\\|rb\\|ru\\|thor\\)\\'")
+
+(use-package rust-mode
+  :mode "\\.rs\\'"
+  :custom (rust-format-on-save t))
+
+(use-package flycheck-rust
+  :after (rust-mode flycheck)
+  :hook (flycheck-mode . flycheck-rust-setup))
+
+(use-package ssh-config-mode
+  :mode (("/\\.ssh/config\\'" . ssh-config-mode)
+         ("/sshd?_config\\'" . ssh-config-mode)
+         ("/known_hosts\\'" . ssh-known-hosts-mode)
+         ("/authorized_keys2?\\'" . ssh-authorized-keys-mode)))
+
+(use-package toml-mode
+  :mode ("\\.toml\\'"))
+
+(use-package yaml-mode
+  :mode "\\.ya?ml\'")
+
+;;; Finish loading
+(server-start)
 (provide 'init)
 
 ;;; init.el ends here
