@@ -261,6 +261,18 @@
   (or (call-if-fbound #'save-place-mode)
       (call-if-fbound #'save-place)))
 
+(use-package yasnippet
+  :delight yas-minor-mode
+  :bind-keymap ("C-c &" . yas-keymap)
+  :config (yas-global-mode))
+
+(use-package yasnippet-snippets
+  :after yasnippet)
+
+(use-package auto-yasnippet
+  :after yasnippet
+  :commands (aya-create))
+
 (use-package smartparens
   :delight
   :custom
@@ -505,18 +517,6 @@
 
 (use-package restart-emacs
   :bind ("C-c Q" . restart-emacs))
-
-(use-package yasnippet
-  :delight yas-minor-mode
-  :bind-keymap ("C-c &" . yas-keymap)
-  :config (yas-global-mode))
-
-(use-package yasnippet-snippets
-  :after yasnippet)
-
-(use-package auto-yasnippet
-  :after yasnippet
-  :commands (aya-create))
 
 ;;; Appearance:
 (if (display-graphic-p)
