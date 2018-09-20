@@ -497,10 +497,6 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (set-variable 'disabled-command-function nil)
 
-(use-package delsel
-  :straight nil
-  :config (delete-selection-mode))
-
 ;; Simple is Emacs's built-in miscellaneous package.
 (use-package simple
   :straight nil
