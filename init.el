@@ -273,6 +273,7 @@
 ;;; Editing:
 (customize-set-variable 'truncate-lines t)
 (bind-key "C-x w" #'toggle-truncate-lines)
+(bind-key [remap zap-to-char] #'zap-up-to-char)
 
 (use-package autorevert
   :straight nil
