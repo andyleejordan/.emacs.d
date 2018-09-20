@@ -79,6 +79,17 @@
          ("C-S-<left>" . buf-move-left)
          ("C-S-<right>" . buf-move-right)))
 
+(use-package smartparens
+  :delight
+  :custom
+  (sp-override-key-bindings '(("C-M-a" . nil)
+                              ("C-M-e" . nil)
+                              ("M-<backspace> " . nil)))
+  (sp-base-key-bindings 'sp)
+  :config
+  (require 'smartparens-config)
+  (smartparens-global-mode))
+
 (use-package windmove
   :init (windmove-default-keybindings))
 
@@ -272,17 +283,6 @@
 (use-package auto-yasnippet
   :after yasnippet
   :commands (aya-create))
-
-(use-package smartparens
-  :delight
-  :custom
-  (sp-override-key-bindings '(("C-M-a" . nil)
-                              ("C-M-e" . nil)
-                              ("M-<backspace> " . nil)))
-  (sp-base-key-bindings 'sp)
-  :config
-  (require 'smartparens-config)
-  (smartparens-global-mode))
 
 (use-package unfill
   :bind ([remap fill-paragraph] . unfill-toggle))
