@@ -191,9 +191,6 @@
 (use-package ivy-hydra
   :after (ivy hydra))
 
-;; used to apply edits from `ivy-occur' buffers
-(use-package wgrep
-  :custom (wgrep-auto-save-buffer t))
 
 (use-package which-key
   :delight
@@ -246,6 +243,10 @@
   :bind (("M-s r" . rg)
          ("M-s d" . rg-dwim))
   :commands (rg-project rg-literal))
+
+(use-package wgrep
+  ;; makes `rg' buffers writable too
+  :custom (wgrep-auto-save-buffer t))
 
 ;;; Formatting / Indentation / Whitespace:
 (customize-set-variable 'indent-tabs-mode nil)
