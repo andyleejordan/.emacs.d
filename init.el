@@ -151,7 +151,7 @@
    ;; https://www.reddit.com/r/emacs/comments/407q2c/ivy_is_now_available_in_spacemacs/cys6nts/
    ("C-c f" . counsel-git)
    ("M-s M-s" . counsel-rg)
-   ("C-c i" . counsel-imenu)
+   ("M-i" . counsel-imenu)
    ("C-c r" . counsel-recentf)
    ("C-h L" . counsel-find-library))
   :custom
