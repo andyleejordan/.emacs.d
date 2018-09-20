@@ -72,7 +72,7 @@
   :straight nil
   :if (eq system-type 'windows-nt))
 
-;;; Movement around buffers and frames:
+;;; Cursor and Mark Movement:
 (bind-key "M-i" 'imenu)
 (bind-key "M-o" 'other-window)
 
@@ -81,6 +81,9 @@
          ("C-S-<down>" . buf-move-down)
          ("C-S-<left>" . buf-move-left)
          ("C-S-<right>" . buf-move-right)))
+
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
 
 (use-package smartparens
   :delight
@@ -98,9 +101,6 @@
 
 (use-package windmove
   :init (windmove-default-keybindings))
-
-(use-package expand-region
-  :bind ("C-=" . er/expand-region))
 
 ;;; Version control:
 (use-package vc-hooks
