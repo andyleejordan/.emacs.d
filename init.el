@@ -210,6 +210,10 @@
    '(powershell-mode c/c++/java powershell-indent))
   (dtrt-indent-global-mode))
 
+(use-package editorconfig
+  :delight
+  :config (editorconfig-mode))
+
 (use-package aggressive-indent
   :hook (emacs-lisp-mode . aggressive-indent-mode))
 
@@ -227,10 +231,6 @@
   :delight auto-revert-mode
   :custom (auto-revert-verbose nil)
   :config (global-auto-revert-mode))
-
-(use-package editorconfig
-  :delight
-  :config (editorconfig-mode))
 
 (use-package saveplace
   :config
