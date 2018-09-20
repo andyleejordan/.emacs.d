@@ -93,6 +93,9 @@
   (require 'smartparens-config)
   (smartparens-global-mode))
 
+(use-package swiper
+  :bind (("M-s s" . swiper)))
+
 (use-package windmove
   :init (windmove-default-keybindings))
 
@@ -229,9 +232,6 @@
   :bind (("M-s r" . rg)
          ("M-s d" . rg-dwim))
   :commands (rg-project rg-literal))
-
-(use-package swiper
-  :bind (("M-s s" . swiper)))
 
 ;;; Formatting:
 (customize-set-variable 'indent-tabs-mode nil)
