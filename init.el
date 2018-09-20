@@ -226,6 +226,12 @@
   (dired-recursive-deletes 'top)
   (dired-listing-switches "-lahp"))
 
+(use-package dired-x
+  :straight nil
+  :bind (("C-x C-j" . dired-jump)
+         ("C-x 4 C-j" . dired-jump-other-window))
+  :init (add-hook 'dired-mode-hook (lambda () (require 'dired-x))))
+
 (use-package recentf
   :straight nil
   :custom (recentf-max-saved-items 256)
@@ -395,7 +401,7 @@
   (eshell-prompt-regexp "^> ")
   (eshell-highlight-prompt nil)
   (eshell-prompt-function
-   (lambda nil
+   (lambda ()
      (let ((red       "#dc322f")
            (magenta   "#d33682")
            (blue      "#268bd2")
