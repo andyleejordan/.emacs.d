@@ -74,7 +74,7 @@
 
 ;;; Cursor and Mark Movement:
 (bind-key "M-i" 'imenu)
-(bind-key "M-o" 'other-window)
+(bind-key* "M-o" 'other-window)
 
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
@@ -121,7 +121,7 @@
   :delight
   :config (global-git-gutter-mode))
 
-;;; Interface:
+;;; Minibuffer Interface:
 (use-package eldoc
   :delight
   :straight nil)
@@ -159,14 +159,12 @@
 ;; provides sorting for ivy
 (use-package flx)
 
-;; used with `C-o' in ivy
-(use-package hydra)
-
 (use-package ivy
   :delight
   :init (ivy-mode)
   :bind (("C-c C-r" . ivy-resume)
          :map ivy-minibuffer-map
+         ("C-o" . ivy-dispatching-done)
          ("C-r" . ivy-previous-line-or-history)
          ("M-x" . ivy-reverse-i-search))
   :custom
@@ -181,10 +179,6 @@
   ;; Add a Solarized Green underline to the ivy match.
   ;; TODO: Consider `:inherit magit-diff-added-highlight'.
   (ivy-current-match ((t (:underline (:color "#859900"))))))
-
-(use-package ivy-hydra
-  :after (ivy hydra))
-
 
 (use-package which-key
   :delight
