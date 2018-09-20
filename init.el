@@ -106,17 +106,16 @@
   :custom (minibuffer-eldef-shorten-default t)
   :config (minibuffer-electric-default-mode))
 
-;; Provides sorting for `counsel-M-x'.
-(use-package amx)
+(use-package amx) ; fork of `smex', sorts `counsel-M-x'
 
 (use-package counsel
   :delight
   :init (counsel-mode)
   :bind
   ;; Note that `counsel-mode' rebinds most commands.
-  (;; Originally on `M-y', browses the kill ring.
-   ([remap yank-pop] . counsel-yank-pop)
-   ([remap list-buffers] . counsel-ibuffer)
+  (([remap list-buffers] . counsel-ibuffer)
+   ([remap imenu] . counsel-imenu)
+   ([remap yank-pop] . counsel-yank-pop) ; browse kill ring
    ;; Browses the mark ring. Similar to `pop-global-mark' on `C-x C-SPC'.
    ("C-c C-SPC" . counsel-mark-ring)
    ("C-x L" . counsel-locate)
@@ -124,24 +123,20 @@
    ;; https://www.reddit.com/r/emacs/comments/407q2c/ivy_is_now_available_in_spacemacs/cys6nts/
    ("C-c f" . counsel-git)
    ("M-s M-s" . counsel-rg)
-   ("M-i" . counsel-imenu)
    ("C-c r" . counsel-recentf)
    ("C-h L" . counsel-find-library))
   :custom
   (counsel-find-file-at-point t)
   (counsel-find-file-ignore-regexp "\(?:\‘[#.]\)\|\(?:[#~]\’\)"))
 
-;; provides sorting for ivy
-(use-package flx)
+(use-package flx) ; sorts `ivy' candidates
 
 (use-package ivy
   :delight
   :init (ivy-mode)
   :bind (("C-c C-r" . ivy-resume)
          :map ivy-minibuffer-map
-         ("C-o" . ivy-dispatching-done)
-         ("C-r" . ivy-previous-line-or-history)
-         ("M-x" . ivy-reverse-i-search))
+         ("C-o" . ivy-dispatching-done))
   :custom
   (ivy-re-builders-alist
    '(;; Use regex-plus but without ordering for files.
