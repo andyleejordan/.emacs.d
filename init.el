@@ -213,9 +213,6 @@
 (use-package aggressive-indent
   :hook (emacs-lisp-mode . aggressive-indent-mode))
 
-(use-package adaptive-wrap
-  :config (adaptive-wrap-prefix-mode))
-
 (use-package whitespace
   :commands (whitespace-mode))
 
@@ -594,6 +591,10 @@
   :init
   (visual-line-mode)
   (column-number-mode))
+
+;; Makes `visual-line-mode' wrap better.
+(use-package adaptive-wrap
+  :config (adaptive-wrap-prefix-mode))
 
 ;; Pop repeatedly.
 (customize-set-variable 'set-mark-command-repeat-pop t)
