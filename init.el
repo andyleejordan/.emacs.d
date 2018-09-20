@@ -138,6 +138,7 @@
          :map ivy-minibuffer-map
          ("C-o" . ivy-dispatching-done))
   :custom
+  (ivy-height 6)
   (ivy-re-builders-alist
    '(;; Use regex-plus but without ordering for files.
      (t . ivy--regex-ignore-order)))
