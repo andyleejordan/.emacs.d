@@ -122,13 +122,6 @@
   :custom (minibuffer-eldef-shorten-default t)
   :config (minibuffer-electric-default-mode))
 
-(use-package mb-depth
-  :straight nil
-  :custom
-  (enable-recursive-minibuffers
-   t "Enables using `swiper-query-replace' from `swiper' via `M-q'.")
-  :config (minibuffer-depth-indicate-mode))
-
 ;; Provides sorting for `counsel-M-x'.
 (use-package amx)
 
