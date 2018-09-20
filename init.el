@@ -300,7 +300,7 @@
 (use-package unfill
   :bind ([remap fill-paragraph] . unfill-toggle))
 
-;;; Completion / syntax / tags:
+;;; Completion / Syntax / Tags:
 (customize-set-variable 'tab-always-indent 'complete)
 
 (use-package flycheck
@@ -344,7 +344,7 @@
   :after ivy
   :custom (xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
-;; Spelling
+;;; Spelling:
 (use-package flyspell
   ;; Disable on Windows because `aspell' 0.6+ isn't available.
   :if (not (eq system-type 'windows-nt))
