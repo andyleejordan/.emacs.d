@@ -215,7 +215,7 @@
   :straight nil
   :custom (uniquify-buffer-name-style 'forward))
 
-;;; Navigation / file searching:
+;;; File Navigation:
 (use-package projectile
   :delight '(:eval (concat " (" (projectile-project-name) ")"))
   :bind-keymap ("C-c p" . projectile-command-map)
@@ -227,6 +227,20 @@
 (use-package counsel-projectile
   :after (counsel projectile)
   :config (counsel-projectile-mode))
+
+(use-package dired
+  :straight nil
+  :commands (dired)
+  :custom
+  (dired-dwim-target t "Enable side-by-side `dired' buffer targets.")
+  (dired-recursive-copies 'always "Better recursion in `dired'.")
+  (dired-recursive-deletes 'top)
+  (dired-listing-switches "-lahp"))
+
+(use-package recentf
+  :straight nil
+  :custom (recentf-max-saved-items 256)
+  :config (recentf-mode))
 
 (use-package rg ; `ripgrep'
   :bind (("M-s r" . rg)
@@ -529,20 +543,6 @@
   (auto-save-file-name-transforms
    `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
   (large-file-warning-threshold (* 20 1000 1000) "20 megabytes."))
-
-(use-package recentf
-  :straight nil
-  :custom (recentf-max-saved-items 256)
-  :config (recentf-mode))
-
-(use-package dired
-  :straight nil
-  :commands (dired)
-  :custom
-  (dired-dwim-target t "Enable side-by-side `dired' buffer targets.")
-  (dired-recursive-copies 'always "Better recursion in `dired'.")
-  (dired-recursive-deletes 'top)
-  (dired-listing-switches "-lahp"))
 
 ;; Enables undo/redo of windows configurations with 'C-c <left/right>'.
 (winner-mode)
