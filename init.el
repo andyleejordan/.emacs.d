@@ -398,6 +398,9 @@
          ("/known_hosts\\'" . ssh-known-hosts-mode)
          ("/authorized_keys2?\\'" . ssh-authorized-keys-mode)))
 
+(use-package toml-mode
+  :mode ("\\.toml\\'"))
+
 (use-package yaml-mode
   :mode "\\.ya?ml\'")
 
@@ -493,9 +496,6 @@
 
 (use-package swiper
   :bind (("M-s s" . swiper)))
-
-(use-package toml-mode
-  :mode ("\\.toml\\'"))
 
 (use-package yasnippet
   :delight yas-minor-mode
