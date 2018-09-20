@@ -184,7 +184,7 @@
   :delight
   :config (which-key-mode))
 
-;;; Navigation:
+;;; Navigation / file searching:
 (use-package projectile
   :delight '(:eval (concat " (" (projectile-project-name) ")"))
   :bind-keymap ("C-c p" . projectile-command-map)
@@ -196,6 +196,14 @@
 (use-package counsel-projectile
   :after (counsel projectile)
   :config (counsel-projectile-mode))
+
+(use-package rg ; `ripgrep'
+  :bind (("M-s r" . rg)
+         ("M-s d" . rg-dwim))
+  :commands (rg-project rg-literal))
+
+(use-package swiper
+  :bind (("M-s s" . swiper)))
 
 ;;; Formatting:
 (customize-set-variable 'indent-tabs-mode nil)
@@ -487,15 +495,6 @@
 
 (use-package restart-emacs
   :bind ("C-c Q" . restart-emacs))
-
-;; interactive ripgrep query
-(use-package rg
-  :bind (("M-s r" . rg)
-         ("M-s d" . rg-dwim))
-  :commands (rg-project rg-literal))
-
-(use-package swiper
-  :bind (("M-s s" . swiper)))
 
 (use-package yasnippet
   :delight yas-minor-mode
