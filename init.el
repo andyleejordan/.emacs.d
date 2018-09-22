@@ -494,6 +494,10 @@
   :custom (smooth-scroll-margin 2)
   :config (smooth-scrolling-mode))
 
+(use-package volatile-highlights
+  :delight
+  :config (volatile-highlights-mode))
+
 ;;; Internal Emacs configuration:
 
 ;; Fix annoyances.
