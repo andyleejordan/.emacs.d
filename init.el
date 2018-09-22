@@ -511,7 +511,8 @@
 (use-package simple
   :straight nil
   :custom
-  ;; Fix kill behavior.
+  (mark-ring-max 1024)
+  (global-mark-ring-max 1024)
   (save-interprogram-paste-before-kill t)
   (kill-do-not-save-duplicates t)
   (kill-whole-line t)
