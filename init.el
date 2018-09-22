@@ -81,13 +81,22 @@
 
 (use-package smartparens
   :delight
-  :custom
-  (sp-override-key-bindings '(("C-M-a" . nil)
-                              ("C-M-e" . nil)
-                              ("M-<backspace> " . nil)))
-  (sp-base-key-bindings 'sp)
-  :config
+  :init
   (require 'smartparens-config)
+  ;; Remap Emacs equivalent commands
+  (--each '(([remap forward-sexp]       . sp-forward-sexp)
+            ([remap backward-sexp]      . sp-backward-sexp)
+            ([remap forward-list]       . sp-next-sexp)
+            ([remap backward-list]      . sp-previous-sexp)
+            ([remap down-list]          . sp-down-sexp)
+            ([remap backward-up-list]   . sp-backward-up-sexp)
+            ([remap transpose-sexps]    . sp-transpose-sexp)
+            ([remap kill-sexp]          . sp-kill-sexp)
+            ([remap backward-kill-word] . sp-backward-kill-word)
+            ([remap mark-sexp]          . sp-mark-sexp)
+            ;; TODO: ([remap append-next-kill] . sp-copy-sexp)
+            ("C-M-<backspace>"          . sp-splice-sexp-killing-backward))
+    (bind-key (car it) (cdr it) smartparens-mode-map))
   (smartparens-global-mode))
 
 (use-package swiper
