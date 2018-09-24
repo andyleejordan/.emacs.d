@@ -100,6 +100,10 @@
     (bind-key (car it) (cdr it) smartparens-mode-map))
   (smartparens-global-mode))
 
+(use-package subword
+  :straight nil
+  :init (global-subword-mode))
+
 (use-package swiper
   :bind (("M-s s" . swiper)))
 
