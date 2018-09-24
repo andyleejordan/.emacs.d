@@ -489,6 +489,11 @@
 (use-package hl-todo
   :config (global-hl-todo-mode))
 
+(use-package paren
+  :straight nil
+  :custom (show-paren-delay 0)
+  :init (show-paren-mode))
+
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
