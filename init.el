@@ -164,8 +164,9 @@
   (ivy-initial-inputs-alist nil "Don't start with '^'.")
   :custom-face
   ;; Add a Solarized Green underline to the ivy match.
-  ;; TODO: Consider `:inherit magit-diff-added-highlight'.
-  (ivy-current-match ((t (:underline (:color "#859900"))))))
+  (ivy-current-match ((t (:underline (:color "#859900") :background "#002b36"))))
+  ;; Italicize variables declared with `defcustom'.
+  (ivy-highlight-face ((t (:inherit nil :slant italic)))))
 
 (use-package which-key
   :delight
