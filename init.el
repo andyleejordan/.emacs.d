@@ -478,6 +478,25 @@
       (tool-bar-mode 0)
       (scroll-bar-mode 0)))
 
+(use-package fortune-cookie
+  :if (executable-find "fortune")
+  :custom
+  (fortune-cookie-fortune-args "-s")
+  (fortune-cookie-cowsay-enable (executable-find "cowsay"))
+  (fortune-cookie-cowsay-args "-f tux")
+  :config (fortune-cookie-mode))
+
+(use-package hl-todo
+  :config (global-hl-todo-mode))
+
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
+(use-package smooth-scrolling
+  :delight
+  :custom (smooth-scroll-margin 2)
+  :config (smooth-scrolling-mode))
+
 (use-package solarized-theme
   :if (display-graphic-p)
   :custom (solarized-use-variable-pitch nil)
@@ -492,25 +511,6 @@
 
 (if (not (display-graphic-p))
     (load-theme 'tango-dark t))
-
-(use-package hl-todo
-  :config (global-hl-todo-mode))
-
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
-
-(use-package fortune-cookie
-  :if (executable-find "fortune")
-  :custom
-  (fortune-cookie-fortune-args "-s")
-  (fortune-cookie-cowsay-enable (executable-find "cowsay"))
-  (fortune-cookie-cowsay-args "-f tux")
-  :config (fortune-cookie-mode))
-
-(use-package smooth-scrolling
-  :delight
-  :custom (smooth-scroll-margin 2)
-  :config (smooth-scrolling-mode))
 
 (use-package volatile-highlights
   :delight
