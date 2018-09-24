@@ -106,8 +106,11 @@
 (use-package windmove
   :init (windmove-default-keybindings))
 
-;; Enables undo/redo of windows configurations with 'C-c <left/right>'.
-(winner-mode)
+(use-package winner
+  ;; Enables undo/redo of windows configurations with
+  ;; `C-c <left/right>'.
+  :straight nil
+  :init (winner-mode))
 
 ;;; Minibuffer Interface:
 (use-package eldoc
