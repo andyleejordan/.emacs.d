@@ -81,6 +81,7 @@
 
 (use-package smartparens
   :delight
+  :hook (emacs-lisp-mode . smartparens-strict-mode)
   :init
   (require 'smartparens-config)
   ;; Remap Emacs equivalent commands
