@@ -517,10 +517,6 @@
 (if (not (display-graphic-p))
     (load-theme 'tango-dark t))
 
-(use-package volatile-highlights
-  :delight
-  :config (volatile-highlights-mode))
-
 ;;; Internal Emacs configuration:
 
 ;; Fix annoyances.
