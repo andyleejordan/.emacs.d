@@ -82,6 +82,7 @@
 (use-package smartparens
   :delight
   :hook (emacs-lisp-mode . smartparens-strict-mode)
+  :custom (sp-wrap-repeat-last 2 "Always repeat")
   :init
   (require 'smartparens-config)
   ;; Remap Emacs equivalent commands
