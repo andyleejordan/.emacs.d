@@ -356,7 +356,12 @@
 
 (use-package cquery
   :commands (lsp-cquery-enable)
-  :hook (c-mode-common . lsp-cquery-enable)
+  :hook (c-mode-common . (lambda ()
+                           (or
+                            (boundp 'cquery-enabled)
+                            (when (setq cquery-enabled
+                                        (y-or-n-p "Start cquery?"))
+                              (lsp-cquery-enable)))))
   :custom
   (cquery-executable
    (no-littering-expand-var-file-name "cquery/build/release/bin/cquery"))
