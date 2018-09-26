@@ -188,7 +188,7 @@ http://ergoemacs.org/emacs/keystroke_rep.html
 See =INSTALL.REPO=
 ** update
 #+BEGIN_SRC sh
-  git clone --depth 1 -b emacs-24 git://git.sv.gnu.org/emacs.git
+  git clone -b emacs-26 https://github.com/emacs-mirror/emacs.git
 #+END_SRC
 ** prepare
 Can use =build-dep emacs= to get dependencies.
@@ -211,6 +211,13 @@ rendering. See other notes for X11 and Xft setup.
 Still needs GTK and FreeType.
 #+BEGIN_SRC sh
   sudo apt-get install texi2html texinfo
+#+END_SRC
+*** Ubuntu 18.04
+#+BEGIN_SRC sh
+  sudo apt build-dep emacs24
+  ./autogen.sh
+  ./configure --with-x-toolkit=gtk3
+  export GDK_SCALE=2
 #+END_SRC
 *** Windows
 **** Follow nt/INSTALL
@@ -276,3 +283,26 @@ Copy =nextstep/Emacs.app= to desired location
 #+BEGIN_SRC sh
   rm -rf ~/.emacs.d/elpa
 #+END_SRC
+* Bugs
+** Buffer content invisible when tunneling X
+[[https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25474][GNU Bug Report #25474]]
+#+begin_src lisp
+  (setq default-frame-alist
+        (append default-frame-alist '((inhibit-double-buffering . t))))
+#+end_src
+** =derived-mode-p= broken for aliased parents
+[[https://debbugs.gnu.org/cgi/bugreport.cgi?bug=32795][GNU Bug Report #32795]]
+#+begin_src lisp
+  (defun provided-mode-derived-p (mode &rest modes)
+    "Non-nil if MODE is derived from one of MODES.
+  Uses the `derived-mode-parent' property of the symbol to trace backwards.
+  Non-nil even if MODE is derived from an alias of any of MODES.
+  If you just want to check `major-mode', use `derived-mode-p'."
+    (while
+        (and
+         (not (memq mode modes))
+         (let* ((parent (get mode 'derived-mode-parent))
+                (parentfn (symbol-function parent)))
+           (setq mode (if (and parentfn (symbolp parentfn)) parentfn parent)))))
+    mode)
+#+end_src
