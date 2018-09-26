@@ -7,13 +7,14 @@ lovely minor modes, and conditionally loads operating and local system
 specific code.
 
 * Notable packages
-- [[https://github.com/magit/magit][Magit]] is a Git Porcelain
-- [[https://github.com/bbatsov/projectile][Projectile]] to manage and interact with projects
+- [[https://github.com/magit/magit][Magit]] is the best way to interact with Git
+- [[https://github.com/bbatsov/projectile][Projectile]] gives contexts for each project
 - [[https://github.com/jwiegley/use-package][use-package]] organizes =init.el= and manages packages
 - [[https://github.com/flycheck/flycheck][Flycheck]] provides on-the-fly syntax and compilation checking
-- [[http://www.dr-qubit.org/emacs.php#undo-tree][Undo Tree]] records edits as a traversable graph
+- [[https://github.com/jscheid/dtrt-indent][dtrt-indent]] intelligently guesses indentation rules
+- [[https://github.com/tarsius/hl-todo][hl-todo]] highlights TODOs in source code
+- [[https://github.com/justbur/emacs-which-key][which-key]] makes keybindings actually discoverable
 - [[https://github.com/lewang/ws-butler][Whitespace Butler]] unobtrusively cleans up whitespace
-- [[https://github.com/capitaomorte/yasnippet][YASnippet]] is a great template system
 * Elisp
 ** =(some-minor-mode)= enables a mode
 Enables when the argument is nil or positive and disables when zero or
