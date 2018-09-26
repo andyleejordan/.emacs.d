@@ -83,22 +83,22 @@
   :delight
   :hook (emacs-lisp-mode . smartparens-strict-mode)
   :custom (sp-wrap-repeat-last 2 "Always repeat")
-  :init
-  (require 'smartparens-config)
   ;; Remap Emacs equivalent commands
-  (--each '(([remap forward-sexp]       . sp-forward-sexp)
-            ([remap backward-sexp]      . sp-backward-sexp)
-            ([remap forward-list]       . sp-next-sexp)
-            ([remap backward-list]      . sp-previous-sexp)
-            ([remap down-list]          . sp-down-sexp)
-            ([remap backward-up-list]   . sp-backward-up-sexp)
-            ([remap transpose-sexps]    . sp-transpose-sexp)
-            ([remap kill-sexp]          . sp-kill-sexp)
-            ([remap backward-kill-word] . sp-backward-kill-word)
-            ([remap mark-sexp]          . sp-mark-sexp)
-            ;; TODO: ([remap append-next-kill] . sp-copy-sexp)
-            ("C-M-<backspace>"          . sp-splice-sexp-killing-backward))
-    (bind-key (car it) (cdr it) smartparens-mode-map))
+  :bind (:map smartparens-mode-map
+              ([remap forward-sexp]       . sp-forward-sexp)
+              ([remap backward-sexp]      . sp-backward-sexp)
+              ([remap forward-list]       . sp-next-sexp)
+              ([remap backward-list]      . sp-previous-sexp)
+              ([remap down-list]          . sp-down-sexp)
+              ([remap backward-up-list]   . sp-backward-up-sexp)
+              ([remap transpose-sexps]    . sp-transpose-sexp)
+              ([remap kill-sexp]          . sp-kill-sexp)
+              ([remap backward-kill-word] . sp-backward-kill-word)
+              ([remap mark-sexp]          . sp-mark-sexp)
+              ;; TODO: ([remap append-next-kill] . sp-copy-sexp)
+              ("C-M-<backspace>"          . sp-splice-sexp-killing-backward))
+  :config
+  (require 'smartparens-config)
   (smartparens-global-mode))
 
 (use-package subword
