@@ -540,6 +540,8 @@
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
 (add-to-list 'magic-mode-alist '(";;; " . emacs-lisp-mode))
 
+(use-package apt-sources-list)
+
 (use-package cmake-mode
   :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'"))
 
