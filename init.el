@@ -144,8 +144,11 @@
   :custom (ido-enable-flex-matching t)
   :config (flx-ido-mode))
 
-(use-package amx
-  ;; fork of `smex'
+(use-package amx ; fork of `smex'
+  :custom
+  (amx-history-length 20)
+  (amx-prompt-string (with-face "> " :foreground "#2aa198"))
+  (amx-show-key-bindings nil)
   :config (amx-mode))
 
 (use-package counsel
