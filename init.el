@@ -59,6 +59,10 @@
 (customize-set-variable
  'custom-file (no-littering-expand-var-file-name "custom.el"))
 
+;; Colorize strings:
+(defmacro with-face (str &rest properties)
+  `(propertize ,str 'face (list ,@properties)))
+
 ;;; Platform:
 (use-package linux
   :straight nil
@@ -397,9 +401,6 @@
            (cyan      "#2aa198")
            (green     "#859900")
            (base      "#839496"))
-       ;; TODO: Make this macro "local."
-       (defmacro with-face (str &rest properties)
-         `(propertize ,str 'face (list ,@properties)))
        (concat
         (let ((status eshell-last-command-status))
           (when (not (= status 0))
