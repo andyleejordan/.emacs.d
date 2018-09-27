@@ -140,6 +140,9 @@
 (use-package ido-completing-read+
   :config (ido-ubiquitous-mode))
 
+(use-package ido-complete-space-or-hyphen
+  :config (ido-complete-space-or-hyphen-mode))
+
 (use-package flx-ido
   :custom (ido-enable-flex-matching t)
   :config (flx-ido-mode))
