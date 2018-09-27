@@ -3,7 +3,7 @@
 ;; See readme.
 
 ;;; Code:
-(customize-set-variable 'gc-cons-threshold (* 10 1024 1024))
+(customize-set-variable 'gc-cons-threshold 20000000) ; 20 MB
 
 ;; Default to UTF-8 early as this file uses Unicode symbols.
 (prefer-coding-system 'utf-8)
@@ -118,60 +118,41 @@
   :init (winner-mode))
 
 ;;; Minibuffer Interface:
+(bind-key "C-h L" #'find-library)
+
 (use-package eldoc
   :delight
   :straight nil)
 
 (use-package minibuf-eldef
-  :straight nil
   :custom (minibuffer-eldef-shorten-default t)
   :config (minibuffer-electric-default-mode))
 
-(use-package amx) ; fork of `smex', sorts `counsel-M-x'
+(use-package ido
+  :straight nil
+  :custom
+  (ido-use-virtual-buffers t)
+  (ido-use-filename-at-point 'guess)
+  (ido-everywhere t)
+  :config (ido-mode))
+
+(use-package ido-completing-read+
+  :config (ido-ubiquitous-mode))
+
+(use-package flx-ido
+  :custom (ido-enable-flex-matching t)
+  :config (flx-ido-mode))
+
+(use-package amx
+  ;; fork of `smex'
+  :config (amx-mode))
 
 (use-package counsel
   :delight
-  :init (counsel-mode)
-  :bind
-  ;; Note that `counsel-mode' rebinds most commands.
-  (([remap list-buffers] . counsel-ibuffer)
-   ([remap imenu] . counsel-imenu)
-   ([remap yank-pop] . counsel-yank-pop) ; browse kill ring
-   ;; Browses the mark ring. Similar to `pop-global-mark' on `C-x C-SPC'.
-   ("C-c C-SPC" . counsel-mark-ring)
-   ("C-x L" . counsel-locate)
-   ;; TODO: Maybe replace `projectile'.
-   ;; https://www.reddit.com/r/emacs/comments/407q2c/ivy_is_now_available_in_spacemacs/cys6nts/
-   ("C-c f" . counsel-git)
-   ("M-s M-s" . counsel-rg)
-   ("C-c r" . counsel-recentf)
-   ("C-h L" . counsel-find-library))
-  :custom
-  (counsel-find-file-at-point t)
-  (counsel-find-file-ignore-regexp "\(?:\‘[#.]\)\|\(?:[#~]\’\)"))
-
-(use-package flx) ; sorts `ivy' candidates
-
-(use-package ivy
-  :delight
-  :init (ivy-mode)
-  :bind (("C-c C-r" . ivy-resume)
-         :map ivy-minibuffer-map
-         ("C-o" . ivy-dispatching-done))
-  :custom
-  (ivy-height 6)
-  (ivy-re-builders-alist
-   '(;; Use regex-plus but without ordering for files.
-     (t . ivy--regex-ignore-order)))
-  (ivy-use-virtual-buffers
-   t "Add `recentf-mode' and bookmarks to `ivy-switch-buffer'.")
-  (ivy-use-selectable-prompt t "Press `C-p' to use input as-is.")
-  (ivy-initial-inputs-alist nil "Don't start with '^'.")
-  :custom-face
-  ;; Add a Solarized Green underline to the ivy match.
-  (ivy-current-match ((t (:underline (:color "#859900") :background "#002b36"))))
-  ;; Italicize variables declared with `defcustom'.
-  (ivy-highlight-face ((t (:inherit nil :slant italic)))))
+  :bind (("C-c C-y" . counsel-yank-pop) ; browse kill ring
+         ("C-c C-SPC" . counsel-mark-ring)
+         ("C-c C-f" . counsel-git)
+         ([remap bookmark-jump] . counsel-bookmark)))
 
 (use-package which-key
   :delight
@@ -186,7 +167,7 @@
   :straight (magit :host github :repo "magit/magit" :branch "maint")
   :demand
   :custom
-  (magit-completing-read-function #'ivy-completing-read)
+  (magit-completing-read-function #'magit-ido-completing-read)
   (magit-save-repository-buffers 'dontask)
   (magit-published-branches nil "Disable confirmation.")
   ;; TODO: Maybe `(magit-dwim-selection '((magit-branch-and-checkout nil t)))'
@@ -209,7 +190,7 @@
          ("C-S-<right>" . buf-move-right)))
 
 (use-package ibuffer
-  :commands (ibuffer))
+  :bind ([remap list-buffers] . ibuffer))
 
 (use-package ibuffer-vc
   :after ibuffer)
@@ -227,14 +208,8 @@
 (use-package projectile
   :delight '(:eval (concat " (" (projectile-project-name) ")"))
   :bind-keymap ("C-c p" . projectile-command-map)
-  :custom
-  (projectile-completion-system 'ivy)
-  (projectile-indexing-method 'alien "Disable native indexing on Windows.")
+  :custom (projectile-indexing-method 'alien "Disable native indexing on Windows.")
   :config (projectile-mode))
-
-(use-package counsel-projectile
-  :after (counsel projectile)
-  :config (counsel-projectile-mode))
 
 (use-package dired
   :straight nil
@@ -378,10 +353,6 @@
               ;; `xref-pop-marker-stack' works as expected.
               ([remap indent-region] . omnisharp-code-format-region)))
 
-(use-package ivy-xref
-  :after ivy
-  :custom (xref-show-xrefs-function #'ivy-xref-show-xrefs))
-
 ;;; Spelling:
 (use-package flyspell
   ;; Disable on Windows because `aspell' 0.6+ isn't available.
@@ -397,9 +368,6 @@
   (flyspell-use-meta-tab nil)
   (ispell-program-name "aspell")
   (ispell-extra-args '("--sug-mode=ultra")))
-
-(use-package flyspell-correct-ivy
-  :after (flyspell ivy))
 
 (use-package auto-correct
   :delight
