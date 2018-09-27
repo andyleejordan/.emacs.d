@@ -211,7 +211,8 @@
 ;;; File Navigation:
 (use-package projectile
   :delight '(:eval (concat " (" (projectile-project-name) ")"))
-  :bind-keymap ("C-c p" . projectile-command-map)
+  :bind-keymap (("M-p"   . projectile-command-map)
+                ("C-c p" . projectile-command-map))
   :custom (projectile-indexing-method 'alien "Disable native indexing on Windows.")
   :config (projectile-mode))
 
