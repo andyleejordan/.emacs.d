@@ -105,9 +105,6 @@
   :straight nil
   :init (global-subword-mode))
 
-(use-package swiper
-  :bind (("M-s s" . swiper)))
-
 (use-package windmove
   :init (windmove-default-keybindings))
 
@@ -233,7 +230,7 @@
 
 (use-package rg ; `ripgrep'
   :bind (("M-s r" . rg)
-         ("M-s d" . rg-dwim))
+         ("M-s s" . rg-dwim))
   :commands (rg-project rg-literal))
 
 (use-package wdired
