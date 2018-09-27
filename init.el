@@ -99,7 +99,7 @@
               ([remap kill-sexp]          . sp-kill-sexp)
               ([remap backward-kill-word] . sp-backward-kill-word)
               ([remap mark-sexp]          . sp-mark-sexp)
-              ;; TODO: ([remap append-next-kill] . sp-copy-sexp)
+              ("C-M-m"                    . sp-copy-sexp) ; also M-RET
               ("C-M-<backspace>"          . sp-splice-sexp-killing-backward))
   :config
   (require 'smartparens-config)
