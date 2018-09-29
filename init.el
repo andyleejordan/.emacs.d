@@ -564,6 +564,7 @@
 (use-package json-mode)
 
 (use-package markdown-mode
+  :hook (markdown-mode . auto-fill-mode)
   :custom (markdown-command "multimarkdown"))
 
 (use-package nginx-mode)
