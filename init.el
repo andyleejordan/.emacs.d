@@ -115,7 +115,12 @@
               ("C-c s e" . sp-emit-sexp)
               ("C-c s s" . sp-split-sexp)
               ("C-c s j" . sp-join-sexp)
-              ("C-c s c" . sp-copy-sexp))
+              ("C-c s c" . sp-copy-sexp)
+              ;; Map slurp/barf to arrow keys
+              ("C-<right>"   . sp-forward-slurp-sexp)
+              ("C-<left>"    . sp-forward-barf-sexp)
+              ("C-M-<left>"  . sp-backward-slurp-sexp)
+              ("C-M-<right>" . sp-backward-barf-sexp))
   :config
   (require 'smartparens-config)
   (smartparens-global-mode))
