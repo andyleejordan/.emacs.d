@@ -324,6 +324,19 @@
   :bind-keymap ("C-c !" . flycheck-mode-map)
   :config (global-flycheck-mode))
 
+(use-package hippie-exp
+  :straight nil
+  :bind ([remap dabbrev-expand] . hippie-expand)
+  :custom (hippie-expand-try-functions-list
+           '(try-expand-all-abbrevs
+             try-expand-dabbrev-visible
+             try-expand-dabbrev ; this buffer
+             try-expand-dabbrev-all-buffers
+             try-expand-dabbrev-from-kill
+             try-expand-whole-kill
+             try-complete-file-name-partially
+             try-complete-file-name)))
+
 ;; options include irony, cquery, rtags, ggtags, and ycmd
 (use-package lsp-mode
   :defer t
