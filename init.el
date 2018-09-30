@@ -374,6 +374,7 @@
   ;;
   ;; https://www.gnu.org/software/emacs/elisp/html_node/Function-Keys.html
   (flyspell-use-meta-tab nil)
+  (flyspell-mode-map (make-sparse-keymap))
   (ispell-program-name "aspell")
   (ispell-extra-args '("--sug-mode=ultra")))
 
