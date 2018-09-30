@@ -519,7 +519,6 @@
   (kill-whole-line t)
   (shift-select-mode nil)
   :init
-  (column-number-mode)
   (size-indication-mode))
 
 (use-package files
