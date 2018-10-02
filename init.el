@@ -33,8 +33,6 @@
 (use-package dash)
 (use-package f)
 
-(push "~/.emacs.d/lisp" load-path)
-
 ;; Save data files consistently:
 ;; - `save-place-file'
 ;; - `undo-tree-history-directory-alist'
@@ -58,14 +56,17 @@
 ;;; Platform:
 (use-package linux
   :straight nil
+  :load-path "lisp"
   :if (eq system-type 'gnu/linux))
 
 (use-package osx
   :straight nil
+  :load-path "lisp"
   :if (eq system-type 'darwin))
 
 (use-package windows
   :straight nil
+  :load-path "lisp"
   :if (eq system-type 'windows-nt))
 
 ;;; Cursor and Mark Movement:
