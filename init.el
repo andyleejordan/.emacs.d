@@ -4,12 +4,6 @@
 
 ;;; Code:
 
-;; used for deprecated functions
-(defun call-if-fbound (function &rest args)
-  "Call FUNCTION with optional ARGS, only if it is `fbound'."
-  "Return t if it is fbound and called without error, and nil otherwise."
-  (when (fboundp function) (apply function args) t))
-
 ;;; Package:
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -50,6 +44,12 @@
 
 (customize-set-variable
  'custom-file (no-littering-expand-var-file-name "custom.el"))
+
+;;; Helper functions:
+(defun call-if-fbound (function &rest args)
+  "Call FUNCTION with optional ARGS, only if it is `fbound'."
+  "Return t if it is fbound and called without error, and nil otherwise."
+  (when (fboundp function) (apply function args) t))
 
 ;; Colorize strings:
 (defmacro with-face (str &rest properties)
