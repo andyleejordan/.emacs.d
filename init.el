@@ -1,10 +1,37 @@
-;;; init --- Andrew Schwartzmeyer's Emacs init file
+;;; init.el --- Andrew Schwartzmeyer's Emacs customizations
+
+;; Copyright (C) 2013-2018 Andrew Schwartzmeyer
+
+;; Author: Andrew Schwartzmeyer <andrew@schwartzmeyer.com>
+;; Created: 30 Aug 2013
+;; Homepage: https://github.com/andschwa/.emacs.d
+
+;; This file is not part of GNU Emacs.
+
+;; This file is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published
+;; by the Free Software Foundation, either version 3 of the License,
+;; or (at your option) any later version.
+
+;; This file is distributed in the hope that it will be useful, but
+;; WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+;; General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with GNU Emacs. If not, see <https://www.gnu.org/licenses/>.
+
 ;;; Commentary:
-;; See readme.
+
+;; This is my `init.el', there are many like it, but this is my own.
+;; It is constantly evolving, and attempts to make use of the best
+;; packages and best practices available. GNU Emacs is my favorite
+;; piece of software: I would not be the programmer I am today without
+;; GNU Emacs. Please take as much or as little from it as you need.
 
 ;;; Code:
 
-;;; Package:
+;;; Package System:
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
       (bootstrap-version 4))
@@ -43,7 +70,7 @@
 (customize-set-variable
  'custom-file (no-littering-expand-var-file-name "custom.el"))
 
-;;; Helper functions:
+;;; Helper Functions:
 (defun call-if-fbound (function &rest args)
   "Call FUNCTION with optional ARGS, only if it is `fbound'."
   "Return t if it is fbound and called without error, and nil otherwise."
@@ -529,7 +556,7 @@
 (if (not (display-graphic-p))
     (load-theme 'tango-dark t))
 
-;;; Internal Emacs configuration:
+;;; Internal Emacs Configuration:
 (customize-set-variable 'gc-cons-threshold 20000000)
 
 ;; Fix annoyances.
@@ -571,7 +598,7 @@
    `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
   (large-file-warning-threshold (* 20 1000 1000) "20 megabytes."))
 
-;;; Language modes:
+;;; Language Modes:
 (add-to-list 'auto-mode-alist '("\\.ino\\'" . c-mode))
 (add-to-list 'auto-mode-alist '("\\.vcsh\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
@@ -625,7 +652,7 @@
 
 (use-package yaml-mode)
 
-;;; Finish loading
+;;; Finish Loading:
 (server-start)
 (provide 'init)
 
