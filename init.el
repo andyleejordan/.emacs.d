@@ -485,6 +485,7 @@
   :hook (org-mode . turn-on-auto-fill)
   :custom
   (org-startup-indented nil)
+  (org-src-tab-acts-natively t)
   (org-adapt-indentation nil)
   (org-latex-listings t)
   (org-pretty-entities t)
