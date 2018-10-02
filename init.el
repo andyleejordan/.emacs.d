@@ -3,7 +3,6 @@
 ;; See readme.
 
 ;;; Code:
-(customize-set-variable 'gc-cons-threshold 20000000) ; 20 MB
 
 ;; Default to UTF-8 early as this file uses Unicode symbols.
 (prefer-coding-system 'utf-8)
@@ -530,6 +529,7 @@
     (load-theme 'tango-dark t))
 
 ;;; Internal Emacs configuration:
+(customize-set-variable 'gc-cons-threshold 20000000)
 
 ;; Fix annoyances.
 (customize-set-variable 'minibuffer-message-timeout 0.5)
