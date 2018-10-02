@@ -483,6 +483,13 @@
       (tool-bar-mode 0)
       (scroll-bar-mode 0)))
 
+;; Fix invisible buffer content when X is tunneled
+;; https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25474
+(when (getenv "SSH_CLIENT")
+  (customize-set-variable
+   'default-frame-alist
+   (append default-frame-alist '((inhibit-double-buffering . t)))))
+
 (use-package fortune-cookie
   :if (executable-find "fortune")
   :custom
