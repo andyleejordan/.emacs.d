@@ -223,6 +223,7 @@
     "Set upstream" "--set-upstream"))
 
 (use-package git-commit
+  :hook ((git-commit-mode . (lambda () (setq fill-column 72))))
   :config (global-git-commit-mode))
 
 (use-package git-gutter
