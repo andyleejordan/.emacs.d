@@ -212,6 +212,7 @@
 (use-package magit
   :straight (magit :host github :repo "magit/magit" :branch "maint")
   :demand
+  :bind (("C-x g" . magit-status)) ; bind globally
   :custom
   (magit-completing-read-function #'magit-ido-completing-read)
   (magit-save-repository-buffers 'dontask)
