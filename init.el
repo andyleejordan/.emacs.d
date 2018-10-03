@@ -628,7 +628,8 @@
 (use-package json-mode)
 
 (use-package markdown-mode
-  :hook (markdown-mode . auto-fill-mode)
+  :hook ((markdown-mode . auto-fill-mode)
+         (markdown-mode . (lambda () (setq fill-column 80))))
   :custom (markdown-command "multimarkdown"))
 
 (use-package nginx-mode)
