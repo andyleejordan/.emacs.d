@@ -254,7 +254,7 @@
 
 ;;; File Navigation:
 (use-package projectile
-  :delight '(:eval (concat " (" (projectile-project-name) ")"))
+  :delight
   :bind-keymap (("C-;" . projectile-command-map))
   :custom
   (projectile-indexing-method 'turbo-alien "Use Git")
@@ -538,6 +538,15 @@
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
+
+(use-package smart-mode-line
+  :custom
+  (sml/no-confirm-load-theme t)
+  (sml/theme 'respectful)
+  (sml/name-width 32)
+  (sml/shorten-modes nil)
+  (sml/replacer-regexp-list nil)
+  :config (sml/setup))
 
 (use-package smooth-scrolling
   :delight
