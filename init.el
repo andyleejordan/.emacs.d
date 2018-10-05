@@ -433,6 +433,12 @@
   (ispell-program-name "aspell")
   (ispell-extra-args '("--sug-mode=ultra")))
 
+(use-package flyspell-correct
+  :after flyspell
+  :bind (:map flyspell-mode-map
+              ([remap ispell-word] . flyspell-correct-wrapper))
+  :config (require 'flyspell-correct-ido))
+
 (use-package auto-correct
   :delight
   :custom (flyspell-use-global-abbrev-table-p t)
