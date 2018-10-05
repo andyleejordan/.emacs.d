@@ -558,6 +558,9 @@
 (use-package solarized-theme
   :if (display-graphic-p)
   :custom
+  (solarized-use-less-bold t)
+  (solarized-use-more-italic t)
+  (solarized-emphasize-indicators nil)
   (solarized-use-variable-pitch nil)
   (x-underline-at-descent-line t)
   :config
