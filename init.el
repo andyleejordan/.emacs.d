@@ -307,9 +307,9 @@
   :delight
   :custom (dtrt-indent-min-quality 60)
   :config
-  (add-to-list
-   'dtrt-indent-hook-mapping-list
-   '(powershell-mode c/c++/java powershell-indent))
+  (dolist (x '((powershell-mode c/c++/java powershell-indent)
+               (groovy-mode default groovy-indent-offset)))
+    (add-to-list 'dtrt-indent-hook-mapping-list x))
   (dtrt-indent-global-mode))
 
 (use-package editorconfig
