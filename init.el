@@ -435,6 +435,7 @@
 
 (use-package auto-correct
   :delight
+  :custom (flyspell-use-global-abbrev-table-p t)
   :hook (flyspell-mode . auto-correct-mode))
 
 ;;; Tools:
