@@ -557,7 +557,9 @@
 
 (use-package solarized-theme
   :if (display-graphic-p)
-  :custom (solarized-use-variable-pitch nil)
+  :custom
+  (solarized-use-variable-pitch nil)
+  (x-underline-at-descent-line t)
   :config
   (defun toggle-theme ()
     "Switch between Solarized variants."
@@ -567,8 +569,8 @@
                 t))
   (load-theme 'solarized-dark t))
 
-(if (not (display-graphic-p))
-    (load-theme 'tango-dark t))
+(unless (display-graphic-p)
+  (load-theme 'tango-dark t))
 
 ;;; Internal Emacs Configuration:
 (customize-set-variable 'gc-cons-threshold 20000000)
