@@ -633,6 +633,9 @@
          (markdown-mode . (lambda () (setq fill-column 80))))
   :custom (markdown-command "multimarkdown"))
 
+(use-package edit-indirect
+  :after markdown-mode)
+
 (use-package nginx-mode)
 
 (use-package powershell)
