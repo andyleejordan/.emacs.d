@@ -171,7 +171,6 @@
   :bind
   ;; Note that `counsel-mode' rebinds most commands.
   (([remap bookmark-jump] . counsel-bookmark)
-   ([remap list-buffers]  . counsel-ibuffer)
    ([remap imenu]         . counsel-imenu)
    ([remap yank-pop]      . counsel-yank-pop)
    ("C-c C-SPC"           . counsel-mark-ring)
@@ -261,7 +260,8 @@
          ("C-S-<left>" . buf-move-left)
          ("C-S-<right>" . buf-move-right)))
 
-(use-package ibuffer)
+(use-package ibuffer
+  :bind ([remap list-buffers] . ibuffer))
 
 (use-package ibuffer-vc)
 
