@@ -350,11 +350,9 @@
   :bind-keymap ("C-c &" . yas-keymap)
   :config (yas-global-mode))
 
-(use-package yasnippet-snippets
-  :after yasnippet)
+(use-package yasnippet-snippets)
 
 (use-package auto-yasnippet
-  :after yasnippet
   :commands (aya-create))
 
 (use-package unfill
@@ -392,7 +390,6 @@
   (lsp-face-highlight-write ((t (:background "#2AA198")))))
 
 (use-package lsp-ui
-  :after lsp-mode
   :hook (lsp-mode . lsp-ui-mode))
 
 (use-package cquery
@@ -651,8 +648,7 @@
          (markdown-mode . (lambda () (setq fill-column 80))))
   :custom (markdown-command "multimarkdown"))
 
-(use-package edit-indirect
-  :after markdown-mode)
+(use-package edit-indirect)
 
 (use-package nginx-mode)
 
@@ -668,7 +664,6 @@
   :custom (rust-format-on-save t))
 
 (use-package flycheck-rust
-  :after (rust-mode flycheck)
   :hook (flycheck-mode . flycheck-rust-setup))
 
 (use-package ssh-config-mode)
