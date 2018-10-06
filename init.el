@@ -97,7 +97,7 @@
   :if (eq system-type 'windows-nt))
 
 ;;; Cursor and Mark Movement:
-(bind-key* "M-o" #'other-window)
+(bind-key "M-o" #'other-window)
 
 (use-package avy
   :bind (([remap goto-line] . avy-goto-line)
@@ -107,7 +107,7 @@
   :bind ("C-=" . er/expand-region))
 
 (use-package imenu-anywhere
-  :bind (("M-i" . imenu-anywhere)))
+  :bind (("M-i" . ivy-imenu-anywhere)))
 
 (use-package smartparens
   :delight
@@ -151,6 +151,9 @@
   :straight nil
   :init (global-subword-mode))
 
+(use-package swiper
+  :bind ("M-s s" . swiper-from-isearch))
+
 (use-package windmove
   :init (windmove-default-keybindings))
 
@@ -163,44 +166,67 @@
 ;;; Minibuffer Interface:
 (bind-key "C-h L" #'find-library)
 
+(use-package amx ; fork of `smex'
+  :custom (amx-history-length 20))
+
+(use-package counsel
+  :delight
+  :init (counsel-mode)
+  :bind
+  ;; Note that `counsel-mode' rebinds most commands.
+  (([remap bookmark-jump] . counsel-bookmark)
+   ([remap list-buffers]  . counsel-ibuffer)
+   ([remap imenu]         . counsel-imenu)
+   ([remap yank-pop]      . counsel-yank-pop)
+   ("C-c C-SPC"           . counsel-mark-ring)
+   ("C-c l"               . counsel-locate)
+   ("C-c r"               . counsel-recentf)
+   ("C-h L"               . counsel-find-library)
+   ("M-s M-r"             . counsel-rg)
+   ("M-s g"               . counsel-grep-or-swiper))
+  :custom
+  (counsel-grep-base-command
+   "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
+  (counsel-find-file-at-point t)
+  (counsel-find-file-ignore-regexp "\(?:\‘[#.]\)\|\(?:[#~]\’\)"))
+
 (use-package eldoc
   :delight
   :straight nil)
 
+(use-package flx)
+
+(use-package hydra)
+
+(use-package ivy
+  :delight
+  :init (ivy-mode)
+  :bind (("C-c M-x" . ivy-resume))
+  :custom
+  (ivy-height 8)
+  (ivy-re-builders-alist
+   '((swiper . ivy--regex-plus)
+     (t . ivy--regex-fuzzy)) "`ido'-like matching.")
+  (ivy-use-virtual-buffers t "Add recentf to buffers.")
+  (ivy-virtual-abbreviate 'abbreviate "And show with path.")
+  (ivy-use-selectable-prompt t "Press `C-p' to use input as-is.")
+  (ivy-initial-inputs-alist nil "Don't start with '^'.")
+  (ivy-display-style 'plain)
+  :custom-face
+  ;; Add a Solarized Green underline to the ivy match.
+  (ivy-current-match ((t (:underline (:color "#859900") :background "#002b36"))))
+  ;; Italicize variables declared with `defcustom'.
+  (ivy-highlight-face ((t (:inherit nil :slant italic)))))
+
+(use-package ivy-hydra)
+
+(use-package ivy-rich
+  :custom (ivy-rich-path-style 'abbrev)
+  :config (ivy-rich-mode))
+
 (use-package minibuf-eldef
   :custom (minibuffer-eldef-shorten-default t)
   :config (minibuffer-electric-default-mode))
-
-(use-package ido
-  :straight nil
-  :custom
-  (ido-use-virtual-buffers t)
-  (ido-use-filename-at-point 'guess)
-  (ido-everywhere t)
-  :config (ido-mode))
-
-(use-package ido-completing-read+
-  :config (ido-ubiquitous-mode))
-
-(use-package ido-complete-space-or-hyphen
-  :config (ido-complete-space-or-hyphen-mode))
-
-(use-package flx-ido
-  :custom (ido-enable-flex-matching t)
-  :config (flx-ido-mode))
-
-(use-package amx ; fork of `smex'
-  :custom
-  (amx-history-length 20)
-  (amx-prompt-string (with-face "> " :foreground "#2aa198"))
-  (amx-show-key-bindings nil)
-  :config (amx-mode))
-
-(use-package counsel
-  :delight
-  :bind (("C-c C-y" . counsel-yank-pop) ; browse kill ring
-         ("C-c C-SPC" . counsel-mark-ring)
-         ([remap bookmark-jump] . counsel-bookmark)))
 
 (use-package which-key
   :delight
@@ -216,7 +242,7 @@
   :demand
   :bind (("C-x g" . magit-status)) ; bind globally
   :custom
-  (magit-completing-read-function #'magit-ido-completing-read)
+  (magit-completing-read-function #'ivy-completing-read)
   (magit-save-repository-buffers 'dontask)
   (magit-published-branches nil "Disable confirmation.")
   ;; TODO: Maybe `(magit-dwim-selection '((magit-branch-and-checkout nil t)))'
@@ -239,11 +265,9 @@
          ("C-S-<left>" . buf-move-left)
          ("C-S-<right>" . buf-move-right)))
 
-(use-package ibuffer
-  :bind ([remap list-buffers] . ibuffer))
+(use-package ibuffer)
 
-(use-package ibuffer-vc
-  :after ibuffer)
+(use-package ibuffer-vc)
 
 (use-package midnight
   ;; Kill old buffers at midnight.
@@ -259,9 +283,13 @@
   :delight
   :bind-keymap (("C-;" . projectile-command-map))
   :custom
+  (projectile-completion-system 'ivy)
   (projectile-indexing-method 'turbo-alien "Use Git")
   (projectile-git-submodule-command nil "Ignore submodules")
   :config (projectile-mode))
+
+(use-package counsel-projectile
+  :config (counsel-projectile-mode))
 
 (use-package dired
   :straight nil
@@ -285,7 +313,7 @@
 
 (use-package rg ; `ripgrep'
   :bind (("M-s r" . rg)
-         ("M-s s" . rg-dwim))
+         ("M-s d" . rg-dwim))
   :commands (rg-project rg-literal))
 
 (use-package wdired
@@ -427,11 +455,9 @@
   (ispell-program-name "aspell")
   (ispell-extra-args '("--sug-mode=ultra")))
 
-(use-package flyspell-correct
-  :after flyspell
+(use-package flyspell-correct-ivy
   :bind (:map flyspell-mode-map
-              ([remap ispell-word] . flyspell-correct-wrapper))
-  :config (require 'flyspell-correct-ido))
+              ([remap ispell-word] . flyspell-correct-wrapper)))
 
 (use-package auto-correct
   :delight
