@@ -592,9 +592,13 @@
   (defun toggle-theme ()
     "Switch between Solarized variants."
     (interactive)
-    (load-theme (if (eq (car custom-enabled-themes) 'solarized-dark)
-                    'solarized-light 'solarized-dark)
-                t))
+    (cond
+     ((member 'solarized-dark custom-enabled-themes)
+      (disable-theme 'solarized-dark)
+      (load-theme 'solarized-light t))
+     ((member 'solarized-light custom-enabled-themes)
+      (disable-theme 'solarized-light)
+      (load-theme 'solarized-dark t))))
   (load-theme 'solarized-dark t))
 
 (unless (display-graphic-p)
