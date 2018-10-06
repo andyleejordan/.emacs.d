@@ -99,10 +99,6 @@
 ;;; Cursor and Mark Movement:
 (bind-key "M-o" #'other-window)
 
-(use-package avy
-  :bind (([remap goto-line] . avy-goto-line)
-         ([remap goto-char] . avy-goto-char-timer)))
-
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 
