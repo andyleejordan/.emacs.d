@@ -112,7 +112,9 @@
 (use-package smartparens
   :delight
   :hook (emacs-lisp-mode . smartparens-strict-mode)
-  :custom (sp-wrap-repeat-last 2 "Always repeat")
+  :custom
+  (sp-wrap-repeat-last 2 "Always repeat")
+  (sp-hybrid-kill-excessive-whitespace t)
   :bind (:map smartparens-mode-map
               ;; Remap Emacs equivalent commands
               ([remap forward-sexp]       . sp-forward-sexp)
