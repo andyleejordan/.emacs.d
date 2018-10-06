@@ -200,8 +200,11 @@
   :custom
   (ivy-height 8)
   (ivy-re-builders-alist
-   '((swiper . ivy--regex-plus)
-     (t . ivy--regex-fuzzy)) "`ido'-like matching.")
+   '((counsel-M-x       . ivy--regex-fuzzy)
+     (ivy-switch-buffer . ivy--regex-fuzzy)
+     (swiper            . ivy--regex-plus)
+     (t                 . ivy--regex-ignore-order))
+   "Use ido-like for M-x and buffers, ivy-like elsewhere.")
   (ivy-use-virtual-buffers t "Add recentf to buffers.")
   (ivy-virtual-abbreviate 'abbreviate "And show with path.")
   (ivy-use-selectable-prompt t "Press `C-p' to use input as-is.")
