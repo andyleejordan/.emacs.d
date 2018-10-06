@@ -281,6 +281,8 @@
 (use-package projectile
   :delight
   :bind-keymap (("C-;" . projectile-command-map))
+  :bind (:map projectile-mode-map
+              ([remap projectile-find-file] . counsel-git))
   :custom
   (projectile-completion-system 'ivy)
   (projectile-indexing-method 'turbo-alien "Use Git")
