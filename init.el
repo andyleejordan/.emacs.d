@@ -210,7 +210,7 @@
   (ivy-display-style 'plain)
   :custom-face
   ;; Add a Solarized Green underline to the ivy match.
-  (ivy-current-match ((t (:underline (:color "#859900") :background "#002b36"))))
+  (ivy-current-match ((t (:underline (:color "#859900")))))
   ;; Italicize variables declared with `defcustom'.
   (ivy-highlight-face ((t (:inherit nil :slant italic)))))
 
