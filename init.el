@@ -374,6 +374,11 @@
   (or (call-if-fbound #'save-place-mode)
       (call-if-fbound #'save-place)))
 
+(use-package whole-line-or-region
+  ;; This replaces `kill-whole-line' on <C-S-backspace> with `C-w'
+  :delight whole-line-or-region-local-mode
+  :config (whole-line-or-region-global-mode))
+
 (use-package yasnippet
   :delight yas-minor-mode
   :bind-keymap ("C-c &" . yas-keymap)
