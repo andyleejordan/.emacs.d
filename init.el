@@ -329,6 +329,9 @@
 (customize-set-variable 'indent-tabs-mode nil)
 (customize-set-variable 'sentence-end-double-space nil)
 
+(use-package aggressive-indent
+  :hook (emacs-lisp-mode . aggressive-indent-mode))
+
 (use-package clang-format
   :after cc-mode
   ;; Does not use `:bind' in order to not delay loading `clang-format' indefinitely.
@@ -346,9 +349,6 @@
 (use-package editorconfig
   :delight
   :config (editorconfig-mode))
-
-(use-package aggressive-indent
-  :hook (emacs-lisp-mode . aggressive-indent-mode))
 
 (use-package whitespace
   :commands (whitespace-mode))
