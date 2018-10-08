@@ -379,18 +379,19 @@
   :delight whole-line-or-region-local-mode
   :config (whole-line-or-region-global-mode))
 
-(use-package yasnippet
-  :delight yas-minor-mode
-  :bind-keymap ("C-c &" . yas-keymap)
-  :config (yas-global-mode))
-
-(use-package yasnippet-snippets)
-
-(use-package auto-yasnippet
-  :commands (aya-create))
-
 (use-package unfill
   :bind ([remap fill-paragraph] . unfill-toggle))
+
+;;; Skeletons:
+;; https://www.gnu.org/software/emacs/manual/html_mono/autotype.html#Skeleton-Language
+(define-skeleton c-ifdef-skeleton
+  "Wraps code with a C pre-processor conditional block."
+  (completing-read "#if defined(IDENTIFIER): " '("__WINDOWS__"))
+  "#if defined(" str ")\n"
+  > - "\n"
+  "#else" \n
+  > _ "\n"
+  "#endif // defined(" str ")" \n)
 
 ;;; Completion / Syntax / Tags:
 (customize-set-variable 'tab-always-indent 'complete)
