@@ -306,9 +306,9 @@
 
 (use-package dired-x
   :straight nil
+  :hook ((dired-mode . (lambda () (require 'dired-x))))
   :bind (("C-x C-j" . dired-jump)
-         ("C-x 4 C-j" . dired-jump-other-window))
-  :init (add-hook 'dired-mode-hook (lambda () (require 'dired-x))))
+         ("C-x 4 C-j" . dired-jump-other-window)))
 
 (use-package recentf
   :straight nil
