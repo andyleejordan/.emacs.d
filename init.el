@@ -31,6 +31,9 @@
 
 ;;; Code:
 
+;; This should be set as early as possible.
+(customize-set-variable 'load-prefer-newer t)
+
 ;;; Package System:
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -623,7 +626,6 @@
 (customize-set-variable 'ring-bell-function 'ignore)
 (customize-set-variable 'visible-bell t)
 (customize-set-variable 'inhibit-startup-screen t)
-(customize-set-variable 'load-prefer-newer t)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (set-variable 'disabled-command-function nil)
 
