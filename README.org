@@ -47,9 +47,9 @@ specific code.
 ** Toggle between point and mark: =C-x C-x=
 ** Narrowing: =C-x n= region =n= defun =d= widen =w=
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
-** Zap to char: =M-z=
-** Delete horizontal whitespace: =M-\= or keep one =M-SPC=
-** Delete vertical whitespace: =C-x C-o=
+** Zap to char: =M-z= (remapped to =zap-up-to-char=)
+** Delete horizontal whitespace: =M-\= or keep one space =M-SPC=
+** Delete vertical whitespace (blank lines): =C-x C-o= (like "undo =C-o=")
 ** Delete indendation / join line with previous: =M-^=
 ** Append next kill: =C-M-w=
 ** Back to indentation: =M-m=
@@ -57,27 +57,42 @@ https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 ** Defuns: =C-M-(a begin) (e end) (h mark)=
 ** Buffer: =M-(< begin) (> end)= =C-x h (mark)=
 ** Magit sections: =M-(n next) (p previous)=
-** Sentences: =M-(a backward) (e forward) (k kill)= =C-x DEL (kill backward)=
+** Sentences: =M-(a backward) (e forward) (k kill) / C-x DEL (kill backward)=
 In C and C++ modes, these move over statements.
 ** Paragraphs: =M-({ backward) (} forward) (h mark)=
+** Transpose: =C-(char) M-(word) C-M-(sexp) t / C-x C-t (line)=
 ** The opposite of =C-l= is =M-r= recenter-positions
-** Comment: DWIM =M-;= line =C-x C-;=
-** Select nearest symbol: =M-s .=
-** Casing: words =M-u= =M-l= =M-c= regions =C-x C-u=
+** Reposition window to see comment/function: =C-M-l=
+** Comment: =M-; (DWIM) C-x C-; (line) M-j (newline comment)=
+** Occur: =M-s o= then =e (edit) / M-(n next) (p previous)=
+*** Also =multi-occur-in-matching-buffers=
+** Search nearest symbol: =M-s .=
+** Casing:
+*** words =M-u (upper) l (lower) c (capitalize)=
+*** regions =C-x C-(u upper) (l lower) / upcase-initials-region=
 ** "Close" client buffer: =C-x # (server-edit)=
 ** Evaluate lisp: interactive =M-:= last sexp =C-x C-e=
 ** Set fill prefix: =C-x .=
 [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Fill-Prefix.html][Fill-Prefix]] with point after prefix
 ** Set fill column: =C-x f=
-** Toggle read-only (e.g. for =wgrep=): =C-x C-q= or =C-c C-p=
-Very useful in [[https://oremacs.com/2016/04/26/ivy-0.8.0/][=ivy-occur-mode=]]
-** List buffer bindings: =C-h b=
+** Toggle read-only =C-x C-q=
+** Writable modes
+*** occur with =e= exit
+*** wgrep with =C-c C-p=
+*** wdired with =C-x C-q=
+*** ivy occur with =C-c C-o= then follows wgrep
+See [[https://oremacs.com/2016/04/26/ivy-0.8.0/][=ivy-occur-mode=]]
+** List bindings: =C-h b=
 ** Bindings for command: =C-h w (where-is)=
 Inverse of =C-h k=
 ** Quote next character: =C-q=
 Newline: C-j
 * Tricks and tips
 ** Interactive Emacs Lisp Mode =ielm=
+** Automatic alignment with =align-current=
+Fall back to =align-regexp=. Prefix that for complex mode.
+** Replace =uniq= with =delete-duplicate-lines=
+*** also =flush-lines= and =keep-lines=
 ** Using quote marks within verbatim/code markup in org-mode
 - Unicode: <U200B> /xe2/x80/x8b ZERO WIDTH SPACE
 - Insert using: (C-x 8 RET 200b RET)
@@ -85,7 +100,6 @@ Newline: C-j
 - http://orgmode.org/org.html#Easy-Templates
 ** Sudo mode using Tramp =C-x C-f /ssh:you@host|sudo:host:/file=
 - http://www.emacswiki.org/emacs/TrampMode
-** Rename files in dired =C-x C-q=
 ** Replace in files
 From [[https://stackoverflow.com/a/271136][StackOverflow]]:
 
@@ -163,7 +177,7 @@ tic -o ~/.terminfo
 ** Set directory local variable =eval= to execute arbitrary code
 ** See current faces =list-faces-display=
 ** View Lossage
-Use =M-x view-lossage= to see the most recent 300 keystrokes, per
+Use =M-x view-lossage= on =C-h l= to see the most recent 300 keystrokes, per
 [[http://emacsredux.com/blog/2014/12/23/lossage/][Emacs Redux]]
 ** Smartparens
 https://ebzzry.github.io/emacs-pairs.html
@@ -180,6 +194,14 @@ ASCII char, and j is the 10th letter, so Line Feed is C-j. Similarly,
 C-i is for Horizontal Tab, C-m is for Carriage Return, C-[ is for
 Escape, C-l is for Form Feed, etc.
 http://ergoemacs.org/emacs/keystroke_rep.html
+
+Setting =(flyspell-use-meta-tab nil)= unbinds =C-M-i= because it's
+interpreted as =M-TAB=. This is because =C-i= and =TAB= are the same
+character in ASCII. This is most annoying on Windows where =M-TAB= AKA
+"alt-tab" switches windows.
+
+https://www.gnu.org/software/emacs/elisp/html_node/Function-Keys.html
+
 * Compiling Emacs from source
 See =INSTALL.REPO=
 ** update

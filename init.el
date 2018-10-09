@@ -394,6 +394,7 @@
   "#endif // defined(" str ")" \n)
 
 ;;; Completion / Syntax / Tags:
+;; TODO: Maybe add `smart-tab'
 (customize-set-variable 'tab-always-indent 'complete)
 
 (use-package flycheck
@@ -472,6 +473,7 @@
   :hook (flyspell-mode . auto-correct-mode))
 
 ;;; Tools:
+;; TODO: Add `sudo-edit' package
 (use-package compile
   :straight nil
   :bind (("C-c c" . compile))
