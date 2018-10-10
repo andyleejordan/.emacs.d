@@ -209,6 +209,7 @@
      (t                 . ivy--regex-ignore-order))
    "Use ido-like for M-x and buffers, ivy-like elsewhere.")
   (ivy-use-virtual-buffers t "Add recentf to buffers.")
+  (ivy-extra-directories nil "Remove `.' and `..'.")
   (ivy-virtual-abbreviate 'abbreviate "And show with path.")
   (ivy-use-selectable-prompt t "Press `C-p' to use input as-is.")
   (ivy-initial-inputs-alist nil "Don't start with '^'.")
