@@ -202,6 +202,16 @@ character in ASCII. This is most annoying on Windows where =M-TAB= AKA
 
 https://www.gnu.org/software/emacs/elisp/html_node/Function-Keys.html
 
+** Faces
+#+begin_src elisp
+  (use-package ivy
+    :custom-face
+    (ivy-current-match
+     ((((class color) (background light))
+       :background "#fdf6e3" :underline (:color "#859900"))
+      (((class color) (background dark))
+       :background "#002b36" :underline (:color "#859900")))))
+#+end_src
 * Compiling Emacs from source
 See =INSTALL.REPO=
 ** update
