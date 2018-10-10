@@ -213,7 +213,7 @@
   (ivy-virtual-abbreviate 'abbreviate "And show with path.")
   (ivy-use-selectable-prompt t "Press `C-p' to use input as-is.")
   (ivy-initial-inputs-alist nil "Don't start with '^'.")
-  (ivy-display-style 'plain)
+  (ivy-display-style 'fancy)
   :custom-face
   ;; Add a Solarized Green underline to the ivy match.
   (ivy-current-match ((t (:underline (:color "#859900")))))
@@ -596,9 +596,6 @@
 (use-package solarized-theme
   :if (display-graphic-p)
   :custom
-  (solarized-use-less-bold t)
-  (solarized-use-more-italic t)
-  (solarized-emphasize-indicators nil)
   (solarized-use-variable-pitch nil)
   (x-underline-at-descent-line t)
   :config
