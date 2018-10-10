@@ -208,6 +208,7 @@
      (swiper            . ivy--regex-plus)
      (t                 . ivy--regex-ignore-order))
    "Use ido-like for M-x and buffers, ivy-like elsewhere.")
+  (ivy-flx-limit 2000 "Use more flx.")
   (ivy-use-virtual-buffers t "Add recentf to buffers.")
   (ivy-extra-directories nil "Remove `.' and `..'.")
   (ivy-virtual-abbreviate 'abbreviate "And show with path.")
