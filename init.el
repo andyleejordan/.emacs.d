@@ -542,6 +542,9 @@
                        ("models" "\\models" nil "&#8872;" "" "" "⊧")))
   (org-export-backends '(html beamer ascii latex md)))
 
+(use-package rainbow-mode
+  :commands (rainbow-mode))
+
 (use-package re-builder
   :straight nil
   :commands (re-builder regexp-builder)
