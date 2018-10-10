@@ -203,10 +203,10 @@
   :custom
   (ivy-height 8)
   (ivy-re-builders-alist
-   '((counsel-M-x       . ivy--regex-fuzzy)
-     (ivy-switch-buffer . ivy--regex-fuzzy)
-     (swiper            . ivy--regex-plus)
-     (t                 . ivy--regex-ignore-order))
+   '((counsel-git                  . ivy--regex-ignore-order)
+     (counsel-projectile-find-file . ivy--regex-ignore-order)
+     (swiper                       . ivy--regex-plus)
+     (t                            . ivy--regex-fuzzy))
    "Use ido-like for M-x and buffers, ivy-like elsewhere.")
   (ivy-flx-limit 2000 "Use more flx.")
   (ivy-use-virtual-buffers t "Add recentf to buffers.")
