@@ -1,9 +1,13 @@
-;;; windows --- Windows specific configurations
+;;; windows.el --- My Windows specific customizations
 
 ;;; Commentary:
-;;; Uses Consolas font
+
+;; This is part of Andrew Schwartzmeyer's Emacs customizations. See
+;; `init.el' for license etc.
 
 ;;; Code:
+
+;; Uses Consolas font
 (set-face-attribute 'default nil :family "Consolas" :height 100)
 
 ;; Windows performance tweaks
@@ -11,4 +15,5 @@
   (setq w32-pipe-read-delay 0))
 
 (provide 'windows)
+
 ;;; windows.el ends here

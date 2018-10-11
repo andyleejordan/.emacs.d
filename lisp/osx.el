@@ -1,6 +1,9 @@
-;;; osx --- OS X specific configurations
+;;; osx.el --- My OS X specific customizations
 
 ;;; Commentary:
+
+;; This is part of Andrew Schwartzmeyer's Emacs customizations. See
+;; `init.el' for license etc.
 
 ;;; Code:
 
@@ -25,7 +28,6 @@
  'woman-manpath
  (split-string (shell-command-to-string "man --path") ":" t "\n"))
 
-;;; provide OS X package
 (provide 'osx)
 
 ;;; osx.el ends here

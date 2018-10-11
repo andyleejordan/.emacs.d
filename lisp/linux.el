@@ -1,7 +1,9 @@
-;;; linux --- Linux specific configurations
+;;; linux.el --- My Linux specific customizations
 
 ;;; Commentary:
-;;; Bigger font
+
+;; This is part of Andrew Schwartzmeyer's Emacs customizations. See
+;; `init.el' for license etc.
 
 ;;; Code:
 
