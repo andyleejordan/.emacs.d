@@ -147,10 +147,13 @@
   (smartparens-global-mode))
 
 (use-package subword
+  ;; TODO: Instead add to `straight-built-in-pseudo-packages'.
   :straight nil
   :init (global-subword-mode))
 
 (use-package swiper
+  :straight (swiper :files ("swiper.el") :host github :repo "abo-abo/swiper"
+                    :fork (:host github :repo "andschwa/swiper"))
   :bind ("M-s s" . swiper-from-isearch))
 
 (use-package windmove
@@ -166,9 +169,13 @@
 (bind-key "C-h L" #'find-library)
 
 (use-package amx ; fork of `smex'
+  :straight (amx :host github :repo "DarwinAwardWinner/amx"
+                 :fork (:host github :repo "andschwa/amx"))
   :custom (amx-history-length 20))
 
 (use-package counsel
+  :straight (counsel :files ("counsel.el") :host github :repo "abo-abo/swiper"
+                     :fork (:host github :repo "andschwa/swiper"))
   :delight
   :init (counsel-mode)
   :bind
@@ -197,6 +204,9 @@
 (use-package hydra)
 
 (use-package ivy
+  :straight (ivy :files (:defaults (:exclude "swiper.el" "counsel.el" "ivy-hydra.el") "doc/ivy-help.org")
+                 :host github :repo "abo-abo/swiper"
+                 :fork (:host github :repo "andschwa/swiper"))
   :delight
   :init (ivy-mode)
   :bind (("C-c M-x" . ivy-resume))
@@ -286,6 +296,8 @@
 
 ;;; File Navigation:
 (use-package projectile
+  :straight (projectile :files ("projectile.el") :host github :repo "bbatsov/projectile"
+                        :fork (:host github :repo "andschwa/projectile"))
   :delight
   :bind-keymap (("C-;" . projectile-command-map))
   :bind (:map projectile-mode-map
@@ -345,6 +357,8 @@
   :config (bind-key [remap indent-region] #'clang-format-region c-mode-base-map))
 
 (use-package dtrt-indent
+  :straight (dtrt-indent :host github :repo "jscheid/dtrt-indent"
+                         :fork (:host github :repo "andschwa/dtrt-indent"))
   :delight
   :custom (dtrt-indent-min-quality 60)
   :config
@@ -697,7 +711,9 @@
 
 (use-package nginx-mode)
 
-(use-package powershell)
+(use-package powershell
+  :straight (powershell :host github :repo "jschaf/powershell.el"
+                        :fork (:host github :repo "andschwa/powershell.el")))
 
 (use-package protobuf-mode)
 
