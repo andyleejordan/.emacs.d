@@ -248,7 +248,10 @@
 (use-package magit
   :straight (magit :host github :repo "magit/magit" :branch "maint")
   :demand
-  :bind (("C-x g" . magit-status)) ; bind globally
+  :bind (("C-x g" . magit-status) ; bind globally
+         :map magit-file-mode-map
+         ("C-c g" . magit-file-popup)
+         ("C-c C-G" . magit-dispatch-popup))
   :custom
   (magit-completing-read-function #'ivy-completing-read)
   (magit-save-repository-buffers 'dontask)
