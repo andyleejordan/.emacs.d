@@ -103,7 +103,7 @@
 (bind-key "M-o" #'other-window)
 
 (use-package expand-region
-  :bind ("C-=" . er/expand-region))
+  :bind (("C-=" . er/expand-region)))
 
 (use-package imenu-anywhere
   :bind (("M-i" . ivy-imenu-anywhere)))
@@ -154,7 +154,7 @@
 (use-package swiper
   :straight (swiper :files ("swiper.el") :host github :repo "abo-abo/swiper"
                     :fork (:host github :repo "andschwa/swiper"))
-  :bind ("M-s s" . swiper-from-isearch))
+  :bind (("M-s s" . swiper-from-isearch)))
 
 (use-package windmove
   :init (windmove-default-keybindings))
@@ -277,7 +277,7 @@
          ("C-S-<right>" . buf-move-right)))
 
 (use-package ibuffer
-  :bind ([remap list-buffers] . ibuffer))
+  :bind (([remap list-buffers] . ibuffer)))
 
 (use-package ibuffer-vc)
 
@@ -384,7 +384,7 @@
   :config (whole-line-or-region-global-mode))
 
 (use-package unfill
-  :bind ([remap fill-paragraph] . unfill-toggle))
+  :bind (([remap fill-paragraph] . unfill-toggle)))
 
 ;;; Skeletons:
 ;; https://www.gnu.org/software/emacs/manual/html_mono/autotype.html#Skeleton-Language
@@ -403,12 +403,12 @@
 
 (use-package flycheck
   :delight
-  :bind-keymap ("C-c !" . flycheck-mode-map)
+  :bind-keymap (("C-c !" . flycheck-mode-map))
   :config (global-flycheck-mode))
 
 (use-package hippie-exp
   :straight nil
-  :bind ([remap dabbrev-expand] . hippie-expand)
+  :bind (([remap dabbrev-expand] . hippie-expand))
   :custom (hippie-expand-try-functions-list
            '(try-expand-all-abbrevs
              try-expand-dabbrev-visible
@@ -548,7 +548,7 @@
   :custom (reb-re-syntax 'string))
 
 (use-package restart-emacs
-  :bind ("C-c Q" . restart-emacs))
+  :bind (("C-c Q" . restart-emacs)))
 
 ;;; Appearance:
 (if (display-graphic-p)
