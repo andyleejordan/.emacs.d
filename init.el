@@ -640,6 +640,12 @@
   :init
   (column-number-mode))
 
+(use-package tramp
+  :straight nil
+  :custom
+  (tramp-default-method "ssh")
+  (tramp-use-ssh-controlmaster-options nil "Use `.ssh/config' options instead."))
+
 (use-package files
   :straight nil
   :custom
