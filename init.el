@@ -159,6 +159,18 @@
 (use-package windmove
   :init (windmove-default-keybindings))
 
+;;; Windows / Frames
+(use-package transpose-frame
+  :commands (transpose-frame-get-arrangement
+             transpose-frame-set-arrangement
+             transpose-frame
+             flip-frame
+             flop-frame
+             rotate-frame
+             rotate-frame-clockwise
+             rotate-frame-anticlockwise)
+  :bind (:map ctl-x-5-map ("r" . rotate-frame-anticlockwise)))
+
 (use-package winner
   ;; Enables undo/redo of windows configurations with
   ;; `C-c <left/right>'.
