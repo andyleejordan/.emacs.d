@@ -672,7 +672,8 @@
 
 (use-package apt-sources-list)
 
-(use-package cmake-mode)
+(use-package cmake-mode
+  :bind (:map cmake-mode-map ([remap xref-find-definitions] . cmake-help-command)))
 
 (use-package csharp-mode
   :custom (csharp-want-imenu nil))
