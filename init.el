@@ -227,8 +227,12 @@
   :custom-face
   ;; Add a Solarized Green underline to the ivy match.
   (ivy-current-match ((t (:underline (:color "#859900") :background unspecified))))
-  ;; Fix weird off-white color in partial fuzzy matches.
-  (ivy-minibuffer-match-face-1 ((t :foreground "#839496")))
+  ;; Fix match colors.
+  (ivy-minibuffer-match-face-1 ((t :foreground "#b58900"))) ; orange
+  (ivy-minibuffer-match-face-2 ((t :foreground "#6c71c4"))) ; violet
+  (ivy-minibuffer-match-face-3 ((t :foreground "#6c71c4")))
+  (ivy-minibuffer-match-face-4 ((t :foreground "#6c71c4")))
+
   ;; Italicize variables declared with `defcustom'.
   (ivy-highlight-face ((t (:inherit nil :slant italic)))))
 
