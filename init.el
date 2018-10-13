@@ -419,6 +419,9 @@
              try-complete-file-name-partially
              try-complete-file-name)))
 
+(use-package ivy-xref
+  :custom (xref-show-xrefs-function #'ivy-xref-show-xrefs))
+
 ;; options include irony, cquery, rtags, ggtags, and ycmd
 (use-package lsp-mode
   :defer t
