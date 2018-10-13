@@ -234,7 +234,14 @@
   :config (prescient-persist-mode))
 
 (use-package ivy-prescient
-  :config (ivy-prescient-mode))
+  :config
+  (dolist (command '(counsel-find-library
+                     counsel-git
+                     counsel-imenu
+                     counsel-recentf
+                     counsel-bookmark))
+    (add-to-list 'ivy-prescient-sort-commands command))
+  (ivy-prescient-mode))
 
 (use-package which-key
   :delight
