@@ -178,6 +178,7 @@
   (([remap bookmark-jump] . counsel-bookmark)
    ([remap imenu]         . counsel-imenu)
    ([remap yank-pop]      . counsel-yank-pop)
+   ("C-c f"               . counsel-git)
    ("C-c C-SPC"           . counsel-mark-ring)
    ("C-c l"               . counsel-locate)
    ("C-c r"               . counsel-recentf)
@@ -287,22 +288,6 @@
   :custom (uniquify-buffer-name-style 'forward))
 
 ;;; File Navigation:
-(use-package projectile
-  :straight (projectile :files ("projectile.el") :host github :repo "bbatsov/projectile"
-                        :fork (:host github :repo "andschwa/projectile"))
-  :delight
-  :bind-keymap (("C-;" . projectile-command-map))
-  :bind (:map projectile-mode-map
-              ([remap projectile-find-file] . counsel-git))
-  :custom
-  (projectile-completion-system 'ivy)
-  (projectile-indexing-method 'turbo-alien "Use Git")
-  (projectile-git-submodule-command nil "Ignore submodules")
-  :config (projectile-mode))
-
-(use-package counsel-projectile
-  :config (counsel-projectile-mode))
-
 (use-package dired
   :straight nil
   :commands (dired)
@@ -317,6 +302,9 @@
   :hook ((dired-mode . (lambda () (require 'dired-x))))
   :bind (("C-x C-j" . dired-jump)
          ("C-x 4 C-j" . dired-jump-other-window)))
+
+(use-package find-file-in-project
+  :bind (("C-c C-f" . find-file-in-project-by-selected)))
 
 (use-package recentf
   :straight nil
