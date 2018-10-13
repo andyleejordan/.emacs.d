@@ -168,11 +168,6 @@
 ;;; Minibuffer Interface:
 (bind-key "C-h L" #'find-library)
 
-(use-package amx ; fork of `smex'
-  :straight (amx :host github :repo "DarwinAwardWinner/amx"
-                 :fork (:host github :repo "andschwa/amx"))
-  :custom (amx-history-length 20))
-
 (use-package counsel
   :straight (counsel :files ("counsel.el") :host github :repo "abo-abo/swiper"
                      :fork (:host github :repo "andschwa/swiper"))
@@ -199,8 +194,6 @@
   :delight
   :straight nil)
 
-(use-package flx)
-
 (use-package hydra)
 
 (use-package ivy
@@ -212,13 +205,6 @@
   :bind (("C-c M-x" . ivy-resume))
   :custom
   (ivy-height 8)
-  (ivy-re-builders-alist
-   '((counsel-git                  . ivy--regex-ignore-order)
-     (counsel-projectile-find-file . ivy--regex-ignore-order)
-     (swiper                       . ivy--regex-plus)
-     (t                            . ivy--regex-fuzzy))
-   "Use ido-like for M-x and buffers, ivy-like elsewhere.")
-  (ivy-flx-limit 2000 "Use more flx.")
   (ivy-use-virtual-buffers t "Add recentf to buffers.")
   (ivy-extra-directories nil "Remove `.' and `..'.")
   (ivy-virtual-abbreviate 'abbreviate "And show with path.")
@@ -242,6 +228,12 @@
 (use-package minibuf-eldef
   :custom (minibuffer-eldef-shorten-default t)
   :config (minibuffer-electric-default-mode))
+
+(use-package prescient
+  :config (prescient-persist-mode))
+
+(use-package ivy-prescient
+  :config (ivy-prescient-mode))
 
 (use-package which-key
   :delight
