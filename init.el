@@ -678,6 +678,7 @@
 (use-package files
   :straight nil
   :custom
+  (find-file-visit-truename t)
   (confirm-nonexistent-file-or-buffer t)
   (save-abbrevs 'silently)
   (require-final-newline t)
