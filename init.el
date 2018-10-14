@@ -31,8 +31,13 @@
 
 ;;; Code:
 
-;; This should be set as early as possible.
+;; These should be set as early as possible.
 (customize-set-variable 'load-prefer-newer t)
+
+(with-eval-after-load 'gnutls
+  (custom-set-variables
+   '(gnutls-verify-error t)
+   '(gnutls-min-prime-bits 3072)))
 
 ;;; Package System:
 (let ((bootstrap-file
@@ -47,12 +52,9 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(customize-set-variable 'straight-use-package-by-default t)
-
 (straight-use-package 'use-package)
-
-(eval-when-compile
-  (require 'use-package))
+(customize-set-variable 'straight-use-package-by-default t)
+(eval-when-compile (require 'use-package))
 
 (use-package benchmark-init
   :init (benchmark-init/activate)
