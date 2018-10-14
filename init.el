@@ -398,6 +398,10 @@
   :straight nil
   :config (delete-selection-mode))
 
+(use-package outline
+  :straight nil
+  :bind (("C-c o" . outline-minor-mode)))
+
 (use-package saveplace
   :config
   (or (call-if-fbound #'save-place-mode)
