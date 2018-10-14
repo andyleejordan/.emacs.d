@@ -387,8 +387,6 @@
 
 ;;; Editing:
 (customize-set-variable 'truncate-lines t)
-(bind-key "C-x w" #'toggle-truncate-lines)
-(bind-key [remap zap-to-char] #'zap-up-to-char)
 
 (use-package autorevert
   :straight nil
@@ -663,6 +661,8 @@
 ;; Simple is Emacs's built-in miscellaneous package.
 (use-package simple
   :straight nil
+  :bind (("C-c t" . toggle-truncate-lines)
+         ([remap zap-to-char] . zap-up-to-char))
   :custom
   (mark-ring-max 1024)
   (global-mark-ring-max 1024)
