@@ -266,10 +266,6 @@
   :config (which-key-mode))
 
 ;;; Version Control:
-(use-package vc-hooks
-  :straight nil
-  :custom (vc-follow-symlinks t))
-
 (use-package magit
   :straight (magit :host github :repo "magit/magit" :branch "maint")
   :demand
@@ -293,6 +289,11 @@
 (use-package git-gutter
   :delight
   :config (global-git-gutter-mode))
+
+(use-package vc-hooks
+  ;; Replaced by Magit. Disabled for performance.
+  :straight nil
+  :custom (vc-handled-backends nil))
 
 ;;; Buffers:
 (use-package buffer-move
