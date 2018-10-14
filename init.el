@@ -57,8 +57,9 @@
 (eval-when-compile (require 'use-package))
 
 (use-package benchmark-init
-  :init (benchmark-init/activate)
-  :hook (after-init . benchmark-init/deactivate))
+  :demand
+  :hook ((after-init . benchmark-init/deactivate))
+  :config (benchmark-init/activate))
 
 (use-package delight)
 (use-package bind-key)
@@ -151,7 +152,7 @@
 (use-package subword
   ;; TODO: Instead add to `straight-built-in-pseudo-packages'.
   :straight nil
-  :init (global-subword-mode))
+  :config (global-subword-mode))
 
 (use-package swiper
   :straight (swiper :files ("swiper.el") :host github :repo "abo-abo/swiper"
@@ -159,7 +160,7 @@
   :bind (("M-s s" . swiper-from-isearch)))
 
 (use-package windmove
-  :init (windmove-default-keybindings))
+  :config (windmove-default-keybindings))
 
 ;;; Windows / Frames
 (use-package transpose-frame
@@ -177,7 +178,7 @@
   ;; Enables undo/redo of windows configurations with
   ;; `C-c <left/right>'.
   :straight nil
-  :init (winner-mode))
+  :config (winner-mode))
 
 ;;; Minibuffer Interface:
 (bind-key "C-h L" #'find-library)
@@ -186,7 +187,8 @@
   :straight (counsel :files ("counsel.el") :host github :repo "abo-abo/swiper"
                      :fork (:host github :repo "andschwa/swiper"))
   :delight
-  :init (counsel-mode)
+  :demand
+  :config (counsel-mode)
   :bind
   ;; Note that `counsel-mode' rebinds most commands.
   (([remap bookmark-jump] . counsel-bookmark)
@@ -216,7 +218,8 @@
                  :host github :repo "abo-abo/swiper"
                  :fork (:host github :repo "andschwa/swiper"))
   :delight
-  :init (ivy-mode)
+  :demand
+  :config (ivy-mode)
   :bind (("C-c M-x" . ivy-resume))
   :custom
   (ivy-height 8)
@@ -605,7 +608,7 @@
 (use-package paren
   :straight nil
   :custom (show-paren-delay 0)
-  :init (show-paren-mode))
+  :config (show-paren-mode))
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
@@ -668,8 +671,7 @@
   (kill-do-not-save-duplicates t)
   (kill-whole-line t)
   (shift-select-mode nil)
-  :init
-  (column-number-mode))
+  :config (column-number-mode))
 
 (use-package tramp
   :straight nil
