@@ -427,7 +427,7 @@
 (customize-set-variable 'tab-always-indent 'complete)
 
 (use-package flycheck
-  :delight
+  :demand
   :bind-keymap (("C-c !" . flycheck-mode-map))
   :config (global-flycheck-mode))
 
