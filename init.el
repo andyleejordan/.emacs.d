@@ -243,10 +243,6 @@
 
 (use-package ivy-hydra)
 
-(use-package ivy-rich
-  :custom (ivy-rich-path-style 'abbrev)
-  :config (ivy-rich-mode))
-
 (use-package minibuf-eldef
   :custom (minibuffer-eldef-shorten-default t)
   :config (minibuffer-electric-default-mode))
