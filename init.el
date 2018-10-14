@@ -515,7 +515,7 @@
   :bind (("C-c c" . compile))
   :custom
   (compilation-ask-about-save nil)
-  (compilation-scroll-output t)
+  (compilation-scroll-output 'first-error)
   (compilation-always-kill t))
 
 (use-package demangle-mode
