@@ -364,8 +364,7 @@
 
 (use-package clang-format
   :after cc-mode
-  ;; Does not use `:bind' in order to not delay loading `clang-format' indefinitely.
-  :config (bind-key [remap indent-region] #'clang-format-region c-mode-base-map))
+  :bind (:map c-mode-base-map ([remap indent-region] . clang-format-region)))
 
 (use-package dtrt-indent
   :straight (dtrt-indent :host github :repo "jscheid/dtrt-indent"
