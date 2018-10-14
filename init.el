@@ -506,6 +506,8 @@
 
 ;;; Tools:
 ;; TODO: Add `sudo-edit' package
+;; TODO: Add `helpful' package
+;; TODO: Add `outshine' package
 (use-package compile
   :straight nil
   :bind (("C-c c" . compile))
