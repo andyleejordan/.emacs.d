@@ -396,6 +396,10 @@
   :custom (auto-revert-verbose nil)
   :config (global-auto-revert-mode))
 
+(use-package delsel
+  :straight nil
+  :config (delete-selection-mode))
+
 (use-package saveplace
   :config
   (or (call-if-fbound #'save-place-mode)
