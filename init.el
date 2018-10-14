@@ -84,6 +84,7 @@
 
 ;; Colorize strings:
 (defmacro with-face (str &rest properties)
+  "Return STR with the given face PROPERTIES, suitable for `concat'."
   `(propertize ,str 'face (list ,@properties)))
 
 ;;; Platform:
@@ -466,7 +467,7 @@
                            (or
                             (boundp 'cquery-enabled)
                             (when (setq cquery-enabled
-                                        (y-or-n-p "Start cquery?"))
+                                        (y-or-n-p "Start cquery? "))
                               (lsp-cquery-enable)))))
   :custom
   (cquery-executable
