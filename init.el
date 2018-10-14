@@ -316,9 +316,10 @@
   :custom (uniquify-buffer-name-style 'forward))
 
 ;;; File Navigation:
+(require 'dired-loaddefs)
+
 (use-package dired
   :straight nil
-  :commands (dired)
   :custom
   (dired-dwim-target t "Enable side-by-side `dired' buffer targets.")
   (dired-recursive-copies 'always "Better recursion in `dired'.")
@@ -327,7 +328,6 @@
 
 (use-package dired-x
   :straight nil
-  :hook ((dired-mode . (lambda () (require 'dired-x))))
   :bind (("C-x C-j" . dired-jump)
          ("C-x 4 C-j" . dired-jump-other-window)))
 
