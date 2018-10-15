@@ -40,6 +40,13 @@
    '(gnutls-min-prime-bits 3072)))
 
 ;;; Package System:
+(customize-set-variable
+ 'straight-recipe-overrides
+ '((nil . ((straight
+	    :files ("straight*.el") :host github
+            ;; Note that `install.el' does not support `:fork'.
+            :repo "andschwa/straight.el" :branch "develop")))))
+
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
       (bootstrap-version 5))
