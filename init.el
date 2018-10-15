@@ -114,7 +114,7 @@
 
 (use-package smartparens
   :delight
-  :hook (emacs-lisp-mode . smartparens-strict-mode)
+  :hook ((emacs-lisp-mode . smartparens-strict-mode))
   :custom
   (sp-wrap-repeat-last 2 "Always repeat")
   (sp-hybrid-kill-excessive-whitespace t)
@@ -358,7 +358,7 @@
 (customize-set-variable 'sentence-end-double-space nil)
 
 (use-package aggressive-indent
-  :hook (emacs-lisp-mode . aggressive-indent-mode))
+  :hook ((emacs-lisp-mode . aggressive-indent-mode)))
 
 (use-package clang-format
   :after cc-mode
@@ -460,16 +460,16 @@
   (lsp-face-highlight-write ((t (:background "#2AA198")))))
 
 (use-package lsp-ui
-  :hook (lsp-mode . lsp-ui-mode))
+  :hook ((lsp-mode . lsp-ui-mode)))
 
 (use-package cquery
   :commands (lsp-cquery-enable)
-  :hook (c-mode-common . (lambda ()
-                           (or
-                            (boundp 'cquery-enabled)
-                            (when (setq cquery-enabled
-                                        (y-or-n-p "Start cquery? "))
-                              (lsp-cquery-enable)))))
+  :hook ((c-mode-common . (lambda ()
+                            (or
+                             (boundp 'cquery-enabled)
+                             (when (setq cquery-enabled
+                                         (y-or-n-p "Start cquery? "))
+                               (lsp-cquery-enable))))))
   :custom
   (cquery-executable
    (no-littering-expand-var-file-name "cquery/build/release/bin/cquery"))
@@ -477,7 +477,7 @@
 
 ;; Use `omnisharp-install-server' to setup.
 (use-package omnisharp
-  :hook (csharp-mode . omnisharp-mode)
+  :hook ((csharp-mode . omnisharp-mode))
   :custom (omnisharp-imenu-support t)
   :bind (:map omnisharp-mode-map
               ([remap xref-find-definitions] . omnisharp-go-to-definition)
@@ -504,7 +504,7 @@
 (use-package auto-correct
   :delight
   :custom (flyspell-use-global-abbrev-table-p t)
-  :hook (flyspell-mode . auto-correct-mode))
+  :hook ((flyspell-mode . auto-correct-mode)))
 
 ;;; Tools:
 ;; TODO: Add `sudo-edit' package
@@ -556,7 +556,7 @@
 
 (use-package org
   :straight org-plus-contrib
-  :hook (org-mode . turn-on-auto-fill)
+  :hook ((org-mode . turn-on-auto-fill))
   :custom
   (org-startup-indented nil)
   (org-src-tab-acts-natively t)
@@ -583,10 +583,9 @@
   :bind (("C-c Q" . restart-emacs)))
 
 ;;; Appearance:
-(if (display-graphic-p)
-    (progn
-      (tool-bar-mode 0)
-      (scroll-bar-mode 0)))
+(when (display-graphic-p)
+  (tool-bar-mode 0)
+  (scroll-bar-mode 0))
 
 ;; Fix invisible buffer content when X is tunneled
 ;; https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25474
@@ -612,7 +611,7 @@
   :config (show-paren-mode))
 
 (use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
+  :hook ((prog-mode . rainbow-delimiters-mode)))
 
 (use-package smart-mode-line
   :custom
@@ -749,7 +748,7 @@
   :custom (rust-format-on-save t))
 
 (use-package flycheck-rust
-  :hook (flycheck-mode . flycheck-rust-setup))
+  :hook ((flycheck-mode . flycheck-rust-setup)))
 
 (use-package ssh-config-mode)
 
