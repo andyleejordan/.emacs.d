@@ -92,19 +92,23 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   "Return STR with the given face PROPERTIES, suitable for `concat'."
   `(propertize ,str 'face (list ,@properties)))
 
+(defmacro use-feature (name &rest args)
+  "Like `use-package' for NAME and ARGS, but with `:straight' nil."
+  (declare (indent defun))
+  `(use-package ,name
+     :straight nil
+     ,@args))
+
 ;;; Platform:
-(use-package linux
-  :straight nil
+(use-feature linux
   :load-path "lisp"
   :if (eq system-type 'gnu/linux))
 
-(use-package osx
-  :straight nil
+(use-feature osx
   :load-path "lisp"
   :if (eq system-type 'darwin))
 
-(use-package windows
-  :straight nil
+(use-feature windows
   :load-path "lisp"
   :if (eq system-type 'windows-nt))
 
@@ -155,9 +159,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (require 'smartparens-config)
   (smartparens-global-mode))
 
-(use-package subword
+(use-feature subword
   ;; TODO: Instead add to `straight-built-in-pseudo-packages'.
-  :straight nil
   :config (global-subword-mode))
 
 (use-package swiper
@@ -180,10 +183,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
              rotate-frame-anticlockwise)
   :bind (:map ctl-x-5-map ("r" . rotate-frame-anticlockwise)))
 
-(use-package winner
+(use-feature winner
   ;; Enables undo/redo of windows configurations with
   ;; `C-c <left/right>'.
-  :straight nil
   :config (winner-mode))
 
 ;;; Minibuffer Interface:
@@ -213,9 +215,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (counsel-find-file-at-point t)
   (counsel-find-file-ignore-regexp "\(?:\‘[#.]\)\|\(?:[#~]\’\)"))
 
-(use-package eldoc
-  :delight
-  :straight nil)
+(use-feature eldoc
+  :delight)
 
 (use-package hydra)
 
@@ -295,9 +296,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :delight
   :config (global-git-gutter-mode))
 
-(use-package vc-hooks
+(use-feature vc-hooks
   ;; Replaced by Magit. Disabled for performance.
-  :straight nil
   :custom (vc-handled-backends nil))
 
 ;;; Buffers:
@@ -312,36 +312,31 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package ibuffer-vc)
 
-(use-package midnight
+(use-feature midnight
   ;; Kill old buffers at midnight.
-  :straight nil
   :config (midnight-mode))
 
-(use-package uniquify
-  :straight nil
+(use-feature uniquify
   :custom (uniquify-buffer-name-style 'forward))
 
 ;;; File Navigation:
 (require 'dired-loaddefs)
 
-(use-package dired
-  :straight nil
+(use-feature dired
   :custom
   (dired-dwim-target t "Enable side-by-side `dired' buffer targets.")
   (dired-recursive-copies 'always "Better recursion in `dired'.")
   (dired-recursive-deletes 'top)
   (dired-listing-switches "-lahp"))
 
-(use-package dired-x
-  :straight nil
+(use-feature dired-x
   :bind (("C-x C-j" . dired-jump)
          ("C-x 4 C-j" . dired-jump-other-window)))
 
 (use-package find-file-in-project
   :bind (("C-c C-f" . find-file-in-project-by-selected)))
 
-(use-package recentf
-  :straight nil
+(use-feature recentf
   :custom (recentf-max-saved-items 256)
   :config (add-args-to-list 'recentf-exclude
                             '("\\.gz\\'"
@@ -355,8 +350,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
          ("M-s d" . rg-dwim))
   :commands (rg-project rg-literal))
 
-(use-package wdired
-  :straight nil
+(use-feature wdired
   :custom (wdired-allow-to-change-permissions t))
 
 (use-package wgrep
@@ -400,14 +394,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;;; Editing:
 (customize-set-variable 'truncate-lines t)
 
-(use-package autorevert
-  :straight nil
+(use-feature autorevert
   :delight auto-revert-mode
   :custom (auto-revert-verbose nil)
   :config (global-auto-revert-mode))
 
-(use-package delsel
-  :straight nil
+(use-feature delsel
   :config (delete-selection-mode))
 
 (use-package saveplace
@@ -443,8 +435,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :bind-keymap (("C-c !" . flycheck-mode-map))
   :config (global-flycheck-mode))
 
-(use-package hippie-exp
-  :straight nil
+(use-feature hippie-exp
   :bind (([remap dabbrev-expand] . hippie-expand))
   :custom (hippie-expand-try-functions-list
            '(try-expand-all-abbrevs
@@ -520,8 +511,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;; TODO: Add `sudo-edit' package
 ;; TODO: Add `helpful' package
 ;; TODO: Add `outshine' package
-(use-package compile
-  :straight nil
+(use-feature compile
   :bind (("C-c c" . compile))
   :custom
   (compilation-ask-about-save nil)
@@ -584,8 +574,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package rainbow-mode
   :commands (rainbow-mode))
 
-(use-package re-builder
-  :straight nil
+(use-feature re-builder
   :commands (re-builder regexp-builder)
   :custom (reb-re-syntax 'string))
 
@@ -615,8 +604,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package hl-todo
   :config (global-hl-todo-mode))
 
-(use-package paren
-  :straight nil
+(use-feature paren
   :custom (show-paren-delay 0)
   :config (show-paren-mode))
 
@@ -672,8 +660,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (set-variable 'disabled-command-function nil)
 
 ;; Simple is Emacs's built-in miscellaneous package.
-(use-package simple
-  :straight nil
+(use-feature simple
   :bind (("C-c t" . toggle-truncate-lines)
          ([remap zap-to-char] . zap-up-to-char))
   :custom
@@ -685,14 +672,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (shift-select-mode nil)
   :config (column-number-mode))
 
-(use-package tramp
-  :straight nil
+(use-feature tramp
   :custom
   (tramp-default-method "ssh")
   (tramp-use-ssh-controlmaster-options nil "Use `.ssh/config' options instead."))
 
-(use-package files
-  :straight nil
+(use-feature files
   :custom
   (find-file-visit-truename t)
   (confirm-nonexistent-file-or-buffer t)
