@@ -52,8 +52,9 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(straight-use-package 'use-package)
+(customize-set-variable 'straight-cache-autoloads t)
 (customize-set-variable 'straight-use-package-by-default t)
+(straight-use-package 'use-package)
 (eval-when-compile (require 'use-package))
 
 (use-package benchmark-init
