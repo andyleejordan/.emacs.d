@@ -321,7 +321,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom (uniquify-buffer-name-style 'forward))
 
 ;;; File Navigation:
-(require 'dired-loaddefs)
+(use-feature dired-loaddefs)
 
 (use-feature dired
   :custom
