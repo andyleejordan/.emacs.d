@@ -213,7 +213,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
    ("C-c f"               . counsel-git)
    ("C-c C-SPC"           . counsel-mark-ring)
    ("C-c l"               . counsel-locate)
-   ("C-c r"               . counsel-recentf)
+   ("C-x C-r"             . counsel-recentf)
    ("C-h L"               . counsel-find-library)
    ("M-s M-r"             . counsel-rg)
    ("M-s g"               . counsel-grep-or-swiper))
@@ -345,7 +345,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :bind (("C-c C-f" . find-file-in-project-by-selected)))
 
 (use-feature recentf
-  :custom (recentf-max-saved-items 256)
+  :custom
+  (recentf-max-saved-items 256)
+  (recentf-auto-cleanup 'never "Disabled for performance with Tramp.")
   :config (add-args-to-list 'recentf-exclude
                             '("\\.gz\\'"
                               ;; exclude files in paths with symlinks
