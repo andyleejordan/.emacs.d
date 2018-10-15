@@ -276,10 +276,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package magit
   :straight (magit :host github :repo "magit/magit" :branch "maint")
   :demand
-  :bind (("C-x g" . magit-status) ; bind globally
+  :bind (("C-x g" . magit-status)
+         ("C-x C-g" . magit-dispatch-popup)
          :map magit-file-mode-map
-         ("C-c g" . magit-file-popup)
-         ("C-c C-G" . magit-dispatch-popup))
+         ("C-c g" . magit-file-popup))
   :custom
   (magit-completing-read-function #'ivy-completing-read)
   (magit-save-repository-buffers 'dontask)
