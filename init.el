@@ -343,7 +343,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package recentf
   :straight nil
   :custom (recentf-max-saved-items 256)
-  :config (recentf-mode))
+  :config (add-args-to-list 'recentf-exclude
+                            '("\\.gz\\'"
+                              ;; exclude files in paths with symlinks
+                              ;; (not just files which are symlinks)
+                              (lambda (f) (not (string= (file-truename f) f)))))
+  (recentf-mode))
 
 (use-package rg ; `ripgrep'
   :bind (("M-s r" . rg)
