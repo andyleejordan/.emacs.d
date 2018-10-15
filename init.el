@@ -77,6 +77,11 @@
  'custom-file (no-littering-expand-var-file-name "custom.el"))
 
 ;;; Helper Functions:
+(defmacro add-args-to-list (list-var elements &optional append compare-fn)
+  "Adapts `add-to-list' to add multiple ELEMENTS to LIST-VAR.
+Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
+  `(dolist (element ,elements) (add-to-list ,list-var element ,append ,compare-fn)))
+
 (defun call-if-fbound (function &rest args)
   "Call FUNCTION with optional ARGS, only if it is `fbound'."
   "Return t if it is fbound and called without error, and nil otherwise."
