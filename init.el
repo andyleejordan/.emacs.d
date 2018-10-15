@@ -258,12 +258,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package ivy-prescient
   :config
-  (dolist (command '(counsel-find-library
-                     counsel-git
-                     counsel-imenu
-                     counsel-recentf
-                     counsel-bookmark))
-    (add-to-list 'ivy-prescient-sort-commands command))
+  (add-args-to-list 'ivy-prescient-sort-commands
+                    '(counsel-find-library
+                      counsel-git
+                      counsel-imenu
+                      counsel-recentf
+                      counsel-bookmark))
   (ivy-prescient-mode))
 
 (use-package which-key
@@ -380,9 +380,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :delight
   :custom (dtrt-indent-min-quality 60)
   :config
-  (dolist (x '((powershell-mode c/c++/java powershell-indent)
-               (groovy-mode default groovy-indent-offset)))
-    (add-to-list 'dtrt-indent-hook-mapping-list x))
+  (add-args-to-list 'dtrt-indent-hook-mapping-list
+                    '((powershell-mode c/c++/java powershell-indent)
+                      (groovy-mode default groovy-indent-offset)))
   (dtrt-indent-global-mode))
 
 (use-package editorconfig
@@ -708,11 +708,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (large-file-warning-threshold (* 20 1000 1000) "20 megabytes."))
 
 ;;; Language Modes:
-(add-to-list 'auto-mode-alist '("\\.ino\\'" . c-mode))
-(add-to-list 'auto-mode-alist '("\\.vcsh\\'" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
-(add-to-list 'magic-mode-alist '(";;; " . emacs-lisp-mode))
-
+(add-args-to-list 'auto-mode-alist '(("\\.ino\\'" . c-mode)
+                                     ("\\.vcsh\\'" . conf-mode)
+                                     ("\\.zsh\\'" . sh-mode)))
 (use-package apt-sources-list)
 
 (use-package cmake-mode
