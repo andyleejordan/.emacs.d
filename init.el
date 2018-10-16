@@ -755,6 +755,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package toml-mode)
 
+(use-package tuareg) ; for OCaml
+
 (use-package yaml-mode)
 
 ;;; Finish Loading:
