@@ -340,7 +340,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
          ("C-x 4 C-j" . dired-jump-other-window)))
 
 (use-package find-file-in-project
-  :bind (("C-c C-f" . find-file-in-project-by-selected)))
+  :bind (("C-c C-f" . find-file-in-project)))
 
 (use-feature recentf
   :custom
