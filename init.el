@@ -281,10 +281,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package magit
   :straight (magit :host github :repo "magit/magit" :branch "maint")
   :demand
-  :bind (("C-x g" . magit-status)
+  :bind (("C-x g"   . magit-status)
          ("C-x C-g" . magit-dispatch-popup)
          :map magit-file-mode-map
-         ("C-c g" . magit-file-popup))
+         ("C-c g"   . magit-file-popup))
   :custom
   (magit-completing-read-function #'ivy-completing-read)
   (magit-save-repository-buffers 'dontask)
@@ -308,9 +308,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;;; Buffers:
 (use-package buffer-move
-  :bind (("C-S-<up>" . buf-move-up)
-         ("C-S-<down>" . buf-move-down)
-         ("C-S-<left>" . buf-move-left)
+  :bind (("C-S-<up>"    . buf-move-up)
+         ("C-S-<down>"  . buf-move-down)
+         ("C-S-<left>"  . buf-move-left)
          ("C-S-<right>" . buf-move-right)))
 
 (use-package ibuffer
@@ -336,7 +336,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (dired-listing-switches "-lahp"))
 
 (use-feature dired-x
-  :bind (("C-x C-j" . dired-jump)
+  :bind (("C-x C-j"   . dired-jump)
          ("C-x 4 C-j" . dired-jump-other-window)))
 
 (use-package find-file-in-project
@@ -704,9 +704,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (large-file-warning-threshold (* 20 1000 1000) "20 megabytes."))
 
 ;;; Language Modes:
-(add-args-to-list 'auto-mode-alist '(("\\.ino\\'" . c-mode)
+(add-args-to-list 'auto-mode-alist '(("\\.ino\\'"  . c-mode)
                                      ("\\.vcsh\\'" . conf-mode)
-                                     ("\\.zsh\\'" . sh-mode)))
+                                     ("\\.zsh\\'"  . sh-mode)))
 (use-package apt-sources-list)
 
 (use-package cmake-mode
