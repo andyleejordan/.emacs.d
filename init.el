@@ -174,7 +174,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package swiper
   :straight (swiper :files ("swiper.el") :host github :repo "abo-abo/swiper"
                     :fork (:host github :repo "andschwa/swiper"))
-  :bind (("M-s s" . swiper-from-isearch)))
+  :bind (:map search-map ("s" . swiper-from-isearch)))
 
 (use-package windmove
   :config (windmove-default-keybindings))
@@ -197,7 +197,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (winner-mode))
 
 ;;; Minibuffer Interface:
-(bind-key "C-h L" #'find-library)
+(bind-key "L" #'find-library help-map)
 
 (use-package counsel
   :straight (counsel :files ("counsel.el") :host github :repo "abo-abo/swiper"
@@ -208,15 +208,16 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :bind
   ;; Note that `counsel-mode' rebinds most commands.
   (([remap bookmark-jump] . counsel-bookmark)
+   ([remap find-library]  . counsel-find-library)
    ([remap imenu]         . counsel-imenu)
    ([remap yank-pop]      . counsel-yank-pop)
    ("C-c f"               . counsel-git)
    ("C-c C-SPC"           . counsel-mark-ring)
    ("C-c l"               . counsel-locate)
    ("C-x C-r"             . counsel-recentf)
-   ("C-h L"               . counsel-find-library)
-   ("M-s M-r"             . counsel-rg)
-   ("M-s g"               . counsel-grep-or-swiper))
+   :map search-map
+   ("M-r"                 . counsel-rg)
+   ("g"                   . counsel-grep-or-swiper))
   :custom
   (counsel-grep-base-command
    "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
@@ -354,8 +355,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (recentf-mode))
 
 (use-package rg ; `ripgrep'
-  :bind (("M-s r" . rg-project)
-         ("M-s d" . rg-dwim))
+  :bind (:map search-map
+              ("r" . rg-project)
+              ("d" . rg-dwim))
   :commands (rg-project rg-literal))
 
 (use-feature wdired
