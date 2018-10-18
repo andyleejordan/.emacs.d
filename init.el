@@ -168,7 +168,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (smartparens-global-mode))
 
 (use-feature subword
-  ;; TODO: Instead add to `straight-built-in-pseudo-packages'.
   :config (global-subword-mode))
 
 (use-package swiper
@@ -402,6 +401,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (ws-butler-global-mode))
 
 ;;; Editing:
+;; TODO: Maybe add `iedit'
 (customize-set-variable 'truncate-lines t)
 
 (use-feature autorevert
@@ -519,8 +519,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;;; Tools:
 ;; TODO: Add `sudo-edit' package
-;; TODO: Add `helpful' package
-;; TODO: Add `outshine' package
 (use-feature compile
   :bind (("C-c c" . compile))
   :custom
@@ -592,6 +590,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :bind (("C-c Q" . restart-emacs)))
 
 ;;; Appearance:
+;; TODO: Add `helpful' package
 (when (display-graphic-p)
   (tool-bar-mode 0)
   (scroll-bar-mode 0))
