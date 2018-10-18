@@ -354,7 +354,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (recentf-mode))
 
 (use-package rg ; `ripgrep'
-  :bind (("M-s r" . rg)
+  :bind (("M-s r" . rg-project)
          ("M-s d" . rg-dwim))
   :commands (rg-project rg-literal))
 
