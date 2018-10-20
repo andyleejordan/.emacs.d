@@ -665,6 +665,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (customize-set-variable 'minibuffer-message-timeout 0.5)
 (customize-set-variable 'set-mark-command-repeat-pop t)
 (customize-set-variable 'delete-by-moving-to-trash t)
+(customize-set-variable 'create-lockfiles nil)
 (customize-set-variable 'ring-bell-function 'ignore)
 (customize-set-variable 'visible-bell t)
 (customize-set-variable 'inhibit-startup-screen t)
