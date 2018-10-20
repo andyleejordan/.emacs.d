@@ -701,7 +701,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (version-control t)
   (auto-save-file-name-transforms
    `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
-  (large-file-warning-threshold (* 20 1000 1000) "20 megabytes."))
+  (large-file-warning-threshold (* 20 1000 1000) "20 megabytes.")
+  :config
+  (add-to-list
+   'backup-directory-alist
+   (cons tramp-file-name-regexp (no-littering-expand-var-file-name "tramp/backup/"))))
 
 ;;; Language Modes:
 (add-args-to-list 'auto-mode-alist '(("\\.ino\\'"  . c-mode)
