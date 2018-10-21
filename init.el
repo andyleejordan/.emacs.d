@@ -330,7 +330,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (dired-dwim-target t "Enable side-by-side `dired' buffer targets.")
   (dired-recursive-copies 'always "Better recursion in `dired'.")
   (dired-recursive-deletes 'top)
-  (dired-listing-switches "-lahp"))
+  (dired-listing-switches "-alhvp"))
 
 (use-feature dired-x
   :bind (("C-x C-j"   . dired-jump)
