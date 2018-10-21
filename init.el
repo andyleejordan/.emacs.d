@@ -712,6 +712,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
                                      ("\\.zsh\\'"  . sh-mode)))
 (use-package apt-sources-list)
 
+(use-package caml
+  :straight (caml :files ("emacs/*.el")
+                  :host github :repo "ocaml/ocaml" :branch "trunk"))
+
+(use-package tuareg) ; for OCaml
+
 (use-package cmake-mode
   :bind (:map cmake-mode-map ([remap xref-find-definitions] . cmake-help-command)))
 
@@ -761,8 +767,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package ssh-config-mode)
 
 (use-package toml-mode)
-
-(use-package tuareg) ; for OCaml
 
 (use-package yaml-mode)
 
