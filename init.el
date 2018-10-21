@@ -587,6 +587,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package restart-emacs
   :bind (("C-c Q" . restart-emacs)))
 
+(use-feature woman
+  :bind (("C-c m" . woman)))
+
 ;;; Appearance:
 ;; TODO: Add `helpful' package
 (when (display-graphic-p)
