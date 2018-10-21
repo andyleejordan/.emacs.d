@@ -694,6 +694,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature files
   :custom
   (find-file-visit-truename t)
+  (confirm-kill-emacs 'y-or-n-p)
   (confirm-nonexistent-file-or-buffer t)
   (save-abbrevs 'silently)
   (require-final-newline t)
