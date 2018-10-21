@@ -292,7 +292,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package git-gutter
   :delight
-  :config (global-git-gutter-mode))
+  :demand
+  :config (global-git-gutter-mode)
+  :bind (("C-x v s" . git-gutter:stage-hunk)
+         ("C-x v n" . git-gutter:next-hunk)
+         ("C-x v p" . git-gutter:previous-hunk)))
 
 (use-feature vc-hooks
   ;; Replaced by Magit. Disabled for performance.
