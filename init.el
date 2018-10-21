@@ -506,9 +506,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (ispell-program-name "aspell")
   (ispell-extra-args '("--sug-mode=ultra")))
 
-(use-package flyspell-correct-ivy
+(use-package flyspell-correct
   :bind (:map flyspell-mode-map
               ([remap ispell-word] . flyspell-correct-wrapper)))
+
+(use-package flyspell-correct-ivy)
 
 (use-package auto-correct
   :delight
