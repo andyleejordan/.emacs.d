@@ -454,9 +454,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
              try-complete-file-name-partially
              try-complete-file-name)))
 
-(use-package ivy-xref
-  :custom (xref-show-xrefs-function #'ivy-xref-show-xrefs))
-
 ;; options include irony, cquery, rtags, ggtags, and ycmd
 (use-package lsp-mode
   :defer t
@@ -493,6 +490,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
               ;; `xref-pop-marker-stack' works as expected.
               ([remap indent-region] . omnisharp-code-format-region)))
 
+(use-feature xref
+  :custom (xref-show-xrefs-function #'ivy-xref-show-xrefs)
+  :config (use-package ivy-xref))
+
 ;;; Spelling:
 (use-package flyspell
   ;; Disable on Windows because `aspell' 0.6+ isn't available.
@@ -508,9 +509,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package flyspell-correct
   :bind (:map flyspell-mode-map
-              ([remap ispell-word] . flyspell-correct-wrapper)))
-
-(use-package flyspell-correct-ivy)
+              ([remap ispell-word] . flyspell-correct-wrapper))
+  :config (use-package flyspell-correct-ivy))
 
 (use-package auto-correct
   :delight
