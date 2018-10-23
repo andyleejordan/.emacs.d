@@ -291,6 +291,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (global-git-commit-mode))
 
 (use-package git-gutter
+  :disabled
   :delight
   :demand
   :config (global-git-gutter-mode)
