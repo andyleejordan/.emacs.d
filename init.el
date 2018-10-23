@@ -372,7 +372,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :hook (emacs-lisp-mode . aggressive-indent-mode))
 
 (use-package clang-format
-  :after cc-mode
   :bind (:map c-mode-base-map ([remap indent-region] . clang-format-region)))
 
 (use-package dtrt-indent
@@ -723,30 +722,43 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package apt-sources-list)
 
 (use-package caml
+  :after tuareg
   :straight (caml :files ("emacs/*.el")
                   :host github :repo "ocaml/ocaml" :branch "trunk"))
 
-(use-package tuareg) ; for OCaml
+(use-package tuareg
+  :mode ("\\.ml\\'" . tuareg-mode)) ; for OCaml
 
 (use-package cmake-mode
   :bind (:map cmake-mode-map ([remap xref-find-definitions] . cmake-help-command)))
 
 (use-package csharp-mode
+  :mode "\\.cs$"
   :custom (csharp-want-imenu nil))
 
-(use-package dockerfile-mode)
+(use-package dockerfile-mode
+  :mode "Dockerfile\\(?:\\..*\\)?\\'")
 
 (use-package fish-mode)
 
 (use-package gitattributes-mode)
 
-(use-package gitconfig-mode)
+(use-package gitconfig-mode
+  :mode
+  "/\\.gitconfig\\'"      "/\\.git/config\\'"
+  "/modules/.*/config\\'" "/git/config\\'"
+  "/\\.gitmodules\\'"     "/etc/gitconfig\\'")
 
-(use-package gitignore-mode)
+(use-package gitignore-mode
+  :mode
+  "/\\.gitignore\\'"
+  "/info/exclude\\'"
+  "/git/ignore\\'")
 
 (use-package groovy-mode)
 
-(use-package json-mode)
+(use-package json-mode
+  :mode "\\.json\'")
 
 (use-package markdown-mode
   :hook
@@ -762,11 +774,14 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :straight (powershell :host github :repo "jschaf/powershell.el"
                         :fork (:host github :repo "andschwa/powershell.el")))
 
-(use-package protobuf-mode)
+(use-package protobuf-mode
+  :mode "\\.proto\\'")
 
-(use-package puppet-mode)
+(use-package puppet-mode
+  :mode "\\.pp\\'")
 
-(use-package ruby-mode)
+(use-package ruby-mode
+  :mode "\\(?:\\.\\(?:rbw?\\|ru\\|rake\\|thor\\|jbuilder\\|rabl\\|gemspec\\|podspec\\)\\|/\\(?:Gem\\|Rake\\|Cap\\|Thor\\|Puppet\\|Berks\\|Vagrant\\|Guard\\|Pod\\)file\\)\\'")
 
 (use-package rust-mode
   :custom (rust-format-on-save t))
@@ -774,9 +789,14 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package flycheck-rust
   :hook (flycheck-mode . flycheck-rust-setup))
 
-(use-package ssh-config-mode)
+(use-package ssh-config-mode
+  :mode (("/\\.ssh/config\\'" . ssh-config-mode)
+         ("/sshd?_config\\'" . ssh-config-mode)
+         ("/known_hosts\\'" . ssh-known-hosts-mode)
+         ("/authorized_keys\\'" . ssh-authorized-keys-mode)))
 
-(use-package toml-mode)
+(use-package toml-mode
+  :mode "\\.toml\\'")
 
 (use-package yaml-mode)
 
