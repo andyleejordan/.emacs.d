@@ -638,6 +638,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (sml/setup))
 
 (use-package smooth-scrolling
+  :disabled
   :delight
   :custom (smooth-scroll-margin 2)
   :config (smooth-scrolling-mode))
