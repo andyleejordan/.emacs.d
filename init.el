@@ -691,6 +691,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (column-number-mode))
 
 (use-feature tramp
+  :defer
   :custom (tramp-default-method "ssh"))
 
 (use-feature files
