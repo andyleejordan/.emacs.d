@@ -337,8 +337,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :bind (("C-x C-j"   . dired-jump)
          ("C-x 4 C-j" . dired-jump-other-window)))
 
-(use-package find-file-in-project
-  :bind (("C-c C-f" . find-file-in-project)))
+(use-package find-file-in-project ; `ffip'
+  :bind (("C-c C-f" . find-file-in-project-by-selected))
+  :custom (ffip-use-rust-fd (executable-find "fd")))
 
 (use-feature recentf
   :custom
