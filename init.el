@@ -123,6 +123,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :bind (("M-i" . ivy-imenu-anywhere)))
 
 (use-package smartparens
+  :disabled t
   :delight
   :hook (emacs-lisp-mode . smartparens-strict-mode)
   :custom
@@ -410,6 +411,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-feature delsel
   :config (delete-selection-mode))
+
+(use-feature electric
+  :config (electric-pair-mode))
 
 (use-package saveplace
   :config
