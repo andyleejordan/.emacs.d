@@ -531,6 +531,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package demangle-mode
   :commands (demangle-mode))
 
+(use-package elmacro
+  :config (elmacro-mode))
+
 (use-package eshell
   :commands (eshell)
   :bind (("C-c e" . eshell))
