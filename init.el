@@ -584,6 +584,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
                        ("models" "\\models" nil "&#8872;" "" "" "⊧")))
   (org-export-backends '(html beamer ascii latex md)))
 
+(use-package org-download
+  :commands (org-download-yank))
+
 (use-package rainbow-mode
   :commands (rainbow-mode))
 
