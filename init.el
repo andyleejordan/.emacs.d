@@ -122,6 +122,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package imenu-anywhere
   :bind (("M-i" . ivy-imenu-anywhere)))
 
+(use-package lispy
+  :hook (emacs-lisp-mode . lispy-mode))
+
 (use-package smartparens
   :disabled t
   :delight
