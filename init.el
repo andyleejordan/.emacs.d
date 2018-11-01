@@ -736,6 +736,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
                                      ("\\.zsh\\'"  . sh-mode)))
 (use-package apt-sources-list)
 
+(use-package bazel-mode)
+
 (use-package caml
   :straight (caml :files ("emacs/*.el")
                   :host github :repo "ocaml/ocaml" :branch "trunk"))
