@@ -443,7 +443,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   "#endif // defined(" str ")" \n)
 
 ;;; Completion / Syntax / Tags:
-;; TODO: Maybe add `smart-tab'
 (customize-set-variable 'tab-always-indent 'complete)
 
 (use-package flycheck
@@ -498,6 +497,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
               ([remap xref-find-references] . omnisharp-find-usages)
               ;; `xref-pop-marker-stack' works as expected.
               ([remap indent-region] . omnisharp-code-format-region)))
+
+(use-package smart-tab
+  :custom (smart-tab-using-hippie-expand t)
+  :config (global-smart-tab-mode))
 
 (use-feature xref
   :custom (xref-show-xrefs-function #'ivy-xref-show-xrefs)
