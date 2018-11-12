@@ -797,6 +797,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package toml-mode)
 
+(use-package web-mode)
+
 (use-package yaml-mode)
 
 ;;; Finish Loading:
