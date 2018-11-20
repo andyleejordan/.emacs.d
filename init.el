@@ -119,7 +119,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (bind-key "C-M-`" #'raise-sexp)
 
 (use-package imenu-anywhere
-  :bind (("M-i" . ivy-imenu-anywhere)))
+  :bind (("C-c i" . ivy-imenu-anywhere)))
 
 (use-feature subword
   :config (global-subword-mode))
