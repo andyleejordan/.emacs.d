@@ -119,45 +119,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package imenu-anywhere
   :bind (("M-i" . ivy-imenu-anywhere)))
 
-(use-package smartparens
-  :disabled t
-  :delight
-  :hook (emacs-lisp-mode . smartparens-strict-mode)
-  :custom
-  (sp-wrap-repeat-last 2 "Always repeat")
-  (sp-hybrid-kill-excessive-whitespace t)
-  :bind (:map smartparens-mode-map
-              ;; Remap Emacs equivalent commands
-              ([remap forward-sexp]       . sp-forward-sexp)
-              ([remap backward-sexp]      . sp-backward-sexp)
-              ([remap forward-list]       . sp-next-sexp)
-              ([remap backward-list]      . sp-previous-sexp)
-              ([remap down-list]          . sp-down-sexp)
-              ([remap backward-up-list]   . sp-backward-up-sexp)
-              ([remap transpose-sexps]    . sp-transpose-sexp)
-              ([remap kill-sexp]          . sp-kill-sexp)
-              ([remap backward-kill-word] . sp-backward-kill-word)
-              ([remap mark-sexp]          . sp-mark-sexp)
-              ;; Same as `unwrap' but arg moves up instead of forward
-              ("C-M-<backspace>"          . sp-splice-sexp)
-              ;; Map other useful commands to `C-c s' prefix
-              ("C-c s w" . sp-rewrap-sexp)
-              ("C-c s r" . sp-raise-sexp)
-              ("C-c s c" . sp-convolute-sexp)
-              ("C-c s a" . sp-absorb-sexp)
-              ("C-c s e" . sp-emit-sexp)
-              ("C-c s s" . sp-split-sexp)
-              ("C-c s j" . sp-join-sexp)
-              ("C-c s c" . sp-copy-sexp)
-              ;; Map slurp/barf to arrow keys
-              ("C-<right>"   . sp-forward-slurp-sexp)
-              ("C-<left>"    . sp-forward-barf-sexp)
-              ("C-M-<left>"  . sp-backward-slurp-sexp)
-              ("C-M-<right>" . sp-backward-barf-sexp))
-  :config
-  (require 'smartparens-config)
-  (smartparens-global-mode))
-
 (use-feature subword
   :config (global-subword-mode))
 
