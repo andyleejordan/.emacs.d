@@ -120,6 +120,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :bind (("M-i" . ivy-imenu-anywhere)))
 
 (use-package lispy
+  :delight
   :hook (emacs-lisp-mode . lispy-mode))
 
 (use-package smartparens
@@ -487,6 +488,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
               ([remap indent-region] . omnisharp-code-format-region)))
 
 (use-package smart-tab
+  :delight
   :custom (smart-tab-using-hippie-expand t)
   :config (global-smart-tab-mode))
 
@@ -530,6 +532,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :commands (demangle-mode))
 
 (use-package elmacro
+  :delight
   :config (elmacro-mode))
 
 (use-package eshell
