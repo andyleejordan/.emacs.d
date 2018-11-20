@@ -168,8 +168,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (global-subword-mode))
 
 (use-package swiper
-  :straight (swiper :files ("swiper.el") :host github :repo "abo-abo/swiper"
-                    :fork (:host github :repo "andschwa/swiper"))
   :bind (:map search-map ("s" . swiper-from-isearch)))
 
 (use-package windmove
@@ -196,8 +194,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (bind-key "L" #'find-library help-map)
 
 (use-package counsel
-  :straight (counsel :files ("counsel.el") :host github :repo "abo-abo/swiper"
-                     :fork (:host github :repo "andschwa/swiper"))
   :delight
   :demand
   :config (counsel-mode)
@@ -226,9 +222,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package hydra)
 
 (use-package ivy
-  :straight (ivy :files (:defaults (:exclude "swiper.el" "counsel.el" "ivy-hydra.el") "doc/ivy-help.org")
-                 :host github :repo "abo-abo/swiper"
-                 :fork (:host github :repo "andschwa/swiper"))
   :delight
   :demand
   :config (ivy-mode)
@@ -381,8 +374,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :bind (:map c-mode-base-map ([remap indent-region] . clang-format-region)))
 
 (use-package dtrt-indent
-  :straight (dtrt-indent :host github :repo "jscheid/dtrt-indent"
-                         :fork (:host github :repo "andschwa/dtrt-indent"))
   :delight
   :custom (dtrt-indent-min-quality 60)
   :config
@@ -777,9 +768,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package nginx-mode)
 
-(use-package powershell
-  :straight (powershell :host github :repo "jschaf/powershell.el"
-                        :fork (:host github :repo "andschwa/powershell.el")))
+(use-package powershell)
 
 (use-package protobuf-mode)
 
