@@ -404,7 +404,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature delsel
   :config (delete-selection-mode))
 
-(use-feature electric
+(use-feature elec-pair
   :config (electric-pair-mode))
 
 (use-package saveplace
