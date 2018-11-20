@@ -116,9 +116,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;;; Cursor and Mark Movement:
 (bind-key "M-o" #'other-window)
 
-(use-package expand-region
-  :bind (("C-=" . er/expand-region)))
-
 (use-package imenu-anywhere
   :bind (("M-i" . ivy-imenu-anywhere)))
 
