@@ -202,6 +202,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package ivy-hydra)
 
+(use-feature mb-depth
+  :custom (enable-recursive-minibuffers t)
+  :config (minibuffer-depth-indicate-mode))
+
 (use-package minibuf-eldef
   :custom (minibuffer-eldef-shorten-default t)
   :config (minibuffer-electric-default-mode))
