@@ -300,8 +300,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (recentf-max-saved-items 256)
   (recentf-auto-cleanup 'never "Disabled for performance with Tramp.")
   :config (add-args-to-list 'recentf-exclude
-                            '("\\.gz\\'"
-                              ;; exclude files in paths with symlinks
+                            '(;; exclude files in paths with symlinks
                               ;; (not just files which are symlinks)
                               (lambda (f) (not (string= (file-truename f) f)))))
   (recentf-mode))
