@@ -576,11 +576,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
    'default-frame-alist
    (append default-frame-alist '((inhibit-double-buffering . t)))))
 
-(use-package all-the-icons) ; use `all-the-icons-install-fonts'
-
-(use-package all-the-icons-ivy
-  :config (all-the-icons-ivy-setup))
-
 (use-package fortune-cookie
   :if (executable-find "fortune")
   :custom
