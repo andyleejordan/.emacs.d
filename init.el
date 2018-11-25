@@ -118,6 +118,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (bind-key "C-M-<backspace>" #'delete-pair)
 (bind-key "C-M-`" #'raise-sexp)
 
+(use-package iedit)
+
 (use-package imenu-anywhere
   :bind (("C-c i" . ivy-imenu-anywhere)))
 
