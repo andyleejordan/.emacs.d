@@ -530,6 +530,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :commands (ielm)
   :custom (ielm-prompt "> "))
 
+(use-package keyfreq
+  :config
+  (keyfreq-mode)
+  (keyfreq-autosave-mode))
+
 (use-package org
   :straight org-plus-contrib
   :hook (org-mode . turn-on-auto-fill)
