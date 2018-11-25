@@ -318,8 +318,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature wdired
   :custom (wdired-allow-to-change-permissions t))
 
-(use-package wgrep
-  ;; makes `rg' buffers writable too
+(use-package wgrep ; makes `rg' buffers writable too
+  :bind (:map grep-mode-map ("C-x C-q" . wgrep-change-to-wgrep-mode))
   :custom (wgrep-auto-save-buffer t))
 
 ;;; Formatting / Indentation / Whitespace:
