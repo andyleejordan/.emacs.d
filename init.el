@@ -246,6 +246,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package git-commit
   :hook (git-commit-mode . (lambda () (set-fill-column 72)))
+  :custom (git-commit-major-mode 'markdown-mode)
   :config (global-git-commit-mode))
 
 (use-package git-gutter
