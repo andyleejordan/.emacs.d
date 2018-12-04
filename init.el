@@ -669,7 +669,14 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-feature tramp
   :defer
-  :custom (tramp-default-method "ssh"))
+  :custom
+  (tramp-default-method "ssh")
+  (tramp-ssh-controlmaster-options
+   (concat
+    "-o ControlMaster=auto "
+    "-o ControlPath='tramp.%%C' "
+    ;; This defaults to no.
+    "-o ControlPersist=yes")))
 
 (use-feature files
   :custom
