@@ -418,7 +418,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;; options include irony, cquery, rtags, ggtags, and ycmd
 (use-package lsp-mode
-  :defer t
+  :commands (lsp)
+  :custom (lsp-prefer-flymake nil) ; use flycheck instead
   :custom-face
   (lsp-face-highlight-textual ((t (:background unspecified))))
   ;; Solarized Red
@@ -430,13 +431,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :hook (lsp-mode . lsp-ui-mode))
 
 (use-package cquery
-  :commands (lsp-cquery-enable)
   :hook (c-mode-common . (lambda ()
                            (or
                             (boundp 'cquery-enabled)
                             (when (setq cquery-enabled
                                         (y-or-n-p "Start cquery? "))
-                              (lsp-cquery-enable)))))
+                              (lsp)))))
   :custom
   (cquery-executable
    (no-littering-expand-var-file-name "cquery/build/release/bin/cquery"))
