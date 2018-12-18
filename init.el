@@ -399,6 +399,14 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;;; Completion / Syntax / Tags:
 (customize-set-variable 'tab-always-indent 'complete)
 
+;; TODO: Maybe https://github.com/yuutayamada/flycheck-tip/
+(use-package flymake
+  :hook
+  (emacs-lisp-mode . flymake-mode)
+  :bind (:map flymake-mode-map
+              ("M-n" . flymake-goto-next-error)
+              ("M-p" . flymake-goto-prev-error)))
+
 (use-package flycheck
   :demand
   :bind-keymap (("C-c !" . flycheck-mode-map))
