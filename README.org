@@ -2,15 +2,13 @@
 [[https://travis-ci.org/andschwa/.emacs.d][https://travis-ci.org/andschwa/.emacs.d.svg?branch=master]]
 
 Utilizes [[https://github.com/jwiegley/use-package][jwiegley's use-package]] macro to cleanly and quickly require,
-install via `package.el`, and setup various extensions. Enables lots of
-lovely minor modes, and conditionally loads operating and local system
-specific code.
+install via [[https://github.com/raxod502/straight.el][straight.el]], and setup various extensions. Tries to get
+back to the basics, and so is loosely based on [[https://masteringemacs.org/][Mastering Emacs]].
 
 * Notable packages
 - [[https://github.com/magit/magit][Magit]] is the best way to interact with Git
-- [[https://github.com/bbatsov/projectile][Projectile]] gives contexts for each project
 - [[https://github.com/jwiegley/use-package][use-package]] organizes =init.el= and manages packages
-- [[https://github.com/flycheck/flycheck][Flycheck]] provides on-the-fly syntax and compilation checking
+- [[https://github.com/raxod502/straight.el][straight.el]] replaces =package.el= with Git repos
 - [[https://github.com/jscheid/dtrt-indent][dtrt-indent]] intelligently guesses indentation rules
 - [[https://github.com/tarsius/hl-todo][hl-todo]] highlights TODOs in source code
 - [[https://github.com/justbur/emacs-which-key][which-key]] makes keybindings actually discoverable
