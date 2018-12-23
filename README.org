@@ -88,6 +88,44 @@ minibuffer which take interactive input (like =query-replace=).
 
 See [[https://masteringemacs.org/article/repeating-commands-emacs][Mastering Emacs]].
 
+** Keyboard macros
+
+When a more advanced action needs to be repeated, Emacs [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Keyboard-Macros.html][keyboard
+macros]] are awesome! To start recording a macro, use =C-x (=, to finish
+recording a macro, use =C-x )=, and to run the last recorded macro,
+use =C-x e=. That last command will also automatically finish
+recording a macro, and can be repeated with just =e=.
+
+The rest of the useful =kmacro= functions are bound to the prefix =C-x
+C-k=. If =C-x (= is annoying, =C-x C-k s= is also bound and is a bit
+more mnemonic ("execute kmacro start").
+
+When recording a macro, be careful not to quit by accident or with
+=C-g=, as this cancels the recording! I usually run into this when
+trying to cancel an =isearch=, and then have to start recording again.
+Instead, use =RET= to end (not quit) the search, and then use =C-u
+C-SPC= to pop the mark back to where you were. It is also a problem
+when deactivating a marked region. Instead of =C-g=, use =C-SPC C-SPC=
+to set and then deactivate the mark.
+
+If a mistake is made when recording, use =C-/= to undo. It will work
+just fine when applying the macro.
+
+Writing useful macros means using syntactic movements instead of
+characters, so that the macro works regardless of textual differences.
+The most useful movements are =C-s=, =C-a=, and =C-e=, but also useful
+are word and expression commands.
+
+To apply a macro to all lines in a region, use =C-x C-k r=. To
+repeatedly apply a macro until an error occurs (like reaching the end
+of the buffer, or no more search results), use =C-0 C-x e=.
+
+Macros can be saved by naming them with =C-x C-k n= and then saved
+permanently by writing their lisp code with =insert-kbd-macro= (or
+just view the last macro with =kmacro-view-macro=).
+
+See [[http://ergoemacs.org/emacs/emacs_macro_example.html][ErgoEmacs]].
+
 ** Jump to mark: =C-u C-SPC= (local) =C-x C-SPC= (global)
 ** Toggle between point and mark: =C-x C-x=
 ** Narrowing: =C-x n= region =n= defun =d= widen =w=
