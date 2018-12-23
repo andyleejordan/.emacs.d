@@ -72,7 +72,22 @@ argument is only on =C-u=. That is, =M-u= and =C-M-u= are bound to
 completely different commands.
 
 See [[http://ergoemacs.org/emacs_manual/emacs/Arguments.html][ErgoEmacs]].
-** Repeat command: =C-x z= follow with =z=
+
+** Repeating commands
+
+While numeric arguments can repeat a command N times, you have to
+specify it before calling the command. Often you realize _after_
+calling a command that it needs to be repeated, which you can do with
+=C-x z= (bound to =repeat=). This is equivalent to vi's =.= command.
+After the first invocation, =z= can be used for more repetitions. It
+also repeats the arguments used originally.
+
+More complex commands are repeatable with =repeat-complex-command=,
+annoyingly bound to =C-x M-:=. Complex commands are those used in the
+minibuffer which take interactive input (like =query-replace=).
+
+See [[https://masteringemacs.org/article/repeating-commands-emacs][Mastering Emacs]].
+
 ** Jump to mark: =C-u C-SPC= (local) =C-x C-SPC= (global)
 ** Toggle between point and mark: =C-x C-x=
 ** Narrowing: =C-x n= region =n= defun =d= widen =w=
