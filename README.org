@@ -142,12 +142,37 @@ rings such that you probably won't exhaust them. The large mark rings
 makes it possible to pop way back to an earlier context, but means it
 is practically impossible to cycle through the ring.
 
+** Deleting whitespace
+
+Delete all horizontal whitespace around the point on the current line
+with =M-\=. Use =M-- M-\= to only delete the space backwards.
+
+When a single space is desired (often the case after deleting some
+words), use =M-SPC=. The negative argument will delete newlines too,
+and numeric arguments keep N spaces. So =M-- M-SPC= is really useful
+to join text below the point separated by whitespace to the point on
+the same line after a space.
+
+You can delete blank lines (vertical whitespace) with =C-x C-o=, which
+is mnemonic since =C-o= inserts a newline. Use it on a non-blank line
+to join text below the point separated by whitespace, but with a
+newline in between instead of on the same line. Use it on a blank line
+to keep just one line (like =M-SPC= but for lines). Use it again on a
+single blank line to delete it.
+
+You can join text at the point to the _line above the point_ with
+=M-^=, which calls =delete-indentation=, so named because it also
+fixes up the whitespace at the join. The negative argument instead
+joins to the line below the point, essentially turning it into the
+commands above. I do not find this command as useful as the others.
+
+Also of interest is the unbound command =cycle-spacing=, which
+manipulates whitespace "intelligently." I do not use it yet, but it
+seems like a good replacement for =just-one-space=.
+
 ** Narrowing: =C-x n= region =n= defun =d= widen =w=
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 ** Zap to char: =M-z= (remapped to =zap-up-to-char=)
-** Delete horizontal whitespace: =M-\= or keep one space =M-SPC=
-** Delete vertical whitespace (blank lines): =C-x C-o= (like "undo =C-o=")
-** Delete indendation / join line with previous: =M-^=
 ** Append next kill: =C-M-w=
 ** Back to indentation: =M-m=
 ** Surround with parentheses: =M-(= on region or with numeric arg
