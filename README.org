@@ -322,9 +322,8 @@ Copy =nextstep/Emacs.app= to desired location
 [[https://debbugs.gnu.org/cgi/bugreport.cgi?bug=32795][GNU Bug Report #32795]]
 #+begin_src lisp
   (defun provided-mode-derived-p (mode &rest modes)
-    "Non-nil if MODE is derived from one of MODES.
+    "Non-nil if MODE is derived from one of MODES or their aliases.
   Uses the `derived-mode-parent' property of the symbol to trace backwards.
-  Non-nil even if MODE is derived from an alias of any of MODES.
   If you just want to check `major-mode', use `derived-mode-p'."
     (while
         (and
