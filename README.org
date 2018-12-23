@@ -5,15 +5,29 @@ Utilizes [[https://github.com/jwiegley/use-package][jwiegley's use-package]] mac
 install via [[https://github.com/raxod502/straight.el][straight.el]], and setup various extensions. Tries to get
 back to the basics, and so is loosely based on [[https://masteringemacs.org/][Mastering Emacs]].
 
+These configurations work a lot better with at least Emacs 26,
+although Emacs 25 should be supported, and I tend to build from source
+so I can apply my [[https://github.com/emacs-mirror/emacs/commit/48ff4c0b2f78f1812fa12e3a56ee5f2a0bc712f7#diff-3b23fdba3dbc1527e9de42e7d7f14bbc][patch]].
+
+This readme is currently going through a rewrite.
+
 * Notable packages
-- [[https://github.com/magit/magit][Magit]] is the best way to interact with Git
-- [[https://github.com/jwiegley/use-package][use-package]] organizes =init.el= and manages packages
-- [[https://github.com/raxod502/straight.el][straight.el]] replaces =package.el= with Git repos
+
+This is not an exhaustive list, just the ones I have found the most
+useful.
+
 - [[https://github.com/jscheid/dtrt-indent][dtrt-indent]] intelligently guesses indentation rules
+- [[https://github.com/abo-abo/swiper][ivy and counsel]] for enhanced command completions
+- [[https://github.com/magit/magit][magit]] is the best way to interact with Git
 - [[https://github.com/tarsius/hl-todo][hl-todo]] highlights TODOs in source code
+- [[https://github.com/Malabarba/smart-mode-line/][smart-mode-line]] makes the mode readable and useful
+- [[https://github.com/bbatsov/solarized-emacs][solarized-emacs]] is the color theme
+- [[https://github.com/jwiegley/use-package][use-package]] organizes =init.el= and manages packages
 - [[https://github.com/justbur/emacs-which-key][which-key]] makes keybindings actually discoverable
-- [[https://github.com/lewang/ws-butler][Whitespace Butler]] unobtrusively cleans up whitespace
-* Key bindings
+- [[https://github.com/lewang/ws-butler][whitespace-butler]] unobtrusively cleans up whitespace
+
+* Using Emacs
+
 ** Interactive arguments
 
 Negative and numeric arguments can be used to perform actions like
