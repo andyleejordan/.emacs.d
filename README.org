@@ -334,3 +334,7 @@ Copy =nextstep/Emacs.app= to desired location
            (setq mode (if (and parentfn (symbolp parentfn)) parentfn parent)))))
     mode)
 #+end_src
+** Installing =org-mode= with =straight.el=
+There is a [[https://github.com/raxod502/straight.el#installing-org-with-straightel][known bug]] when installing =org-mode= with =straight.el=. I
+have not applied the workaround because the bug is pretty much just
+cosmetic.
