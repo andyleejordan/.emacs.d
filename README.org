@@ -13,29 +13,6 @@ back to the basics, and so is loosely based on [[https://masteringemacs.org/][Ma
 - [[https://github.com/tarsius/hl-todo][hl-todo]] highlights TODOs in source code
 - [[https://github.com/justbur/emacs-which-key][which-key]] makes keybindings actually discoverable
 - [[https://github.com/lewang/ws-butler][Whitespace Butler]] unobtrusively cleans up whitespace
-* Elisp
-** =add-hook= and =eval-after-load= for conditional execution
-** =expand-file-name= and =f-expand= for filename expansion
-** =file-name-basename= and =file-name-nondirectory= etc.
-** =message= and =princ= for printing
-** =concat= and =format= for strings
-** =get-buffer-create= for buffers
-** =add-to-list= and =append= for lists
-** =mapcar= with list of results
-** =mapconcat= for string of results
-** =dolist= for mapc with implicit bind
-** =cadr= for last item of pair, as in, =(car (cdr foo))=
-** =cons= to append without copying
-** =remove= to filter items from list
-** =getenv=, =setenv=, =compilation-environment= for env
-** =executable-find= for binaries
-** =nth= and =elt= for indexing a list
-** =cond= is better than =if= / =else=
-** =let= and =let*= for local variables
-** =save-excursion= to restore point
-** =replace-regexp-in-string=
-** =shell-command-to-string=
-** [[https://github.com/magnars/dash.el][dash.el]] modern list library
 * Key bindings
 ** Interactive arguments
 
@@ -297,6 +274,29 @@ https://www.gnu.org/software/emacs/elisp/html_node/Function-Keys.html
       (((class color) (background dark))
        :background "#002b36" :underline (:color "#859900")))))
 #+end_src
+* Emacs lisp programming notes
+- =add-hook= and =eval-after-load= for conditional execution
+- =expand-file-name= and =f-expand= for filename expansion
+- =file-name-basename= and =file-name-nondirectory= etc.
+- =message= and =princ= for printing
+- =concat= and =format= for strings
+- =get-buffer-create= for buffers
+- =add-to-list= and =append= for lists
+- =mapcar= with list of results
+- =mapconcat= for string of results
+- =dolist= for mapc with implicit bind
+- =cadr= for last item of pair, as in, =(car (cdr foo))=
+- =cons= to append without copying
+- =remove= to filter items from list
+- =getenv=, =setenv=, =compilation-environment= for env
+- =executable-find= for binaries
+- =nth= and =elt= for indexing a list
+- =cond= is better than =if= / =else=
+- =let= and =let*= for local variables
+- =save-excursion= to restore point
+- =replace-regexp-in-string=
+- =shell-command-to-string=
+- [[https://github.com/magnars/dash.el][dash.el]] modern list library
 * Compiling Emacs from source
 See =INSTALL.REPO=
 ** update
