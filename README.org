@@ -37,9 +37,41 @@ back to the basics, and so is loosely based on [[https://masteringemacs.org/][Ma
 ** =shell-command-to-string=
 ** [[https://github.com/magnars/dash.el][dash.el]] modern list library
 * Key bindings
-** Universal arg: =C-u=
-** Negative arg: =(C|M|C-M)--= like =M- M-l= to downcase backwards
-** Numeric args: =(C|M|C-M)-(0...9)=
+** Interactive arguments
+
+Negative and numeric arguments can be used to perform actions like
+with vi's composable grammar. That is, =3dd= in vi is equivalent to
+=C-3 C-k=, and =3k= is =C-3 C-p=. I am not sure if vi has an
+equivalent to the negative argument: it is used to do things
+backwards, that is, =M-- M-l= will downcase the word _before_ the
+point instead of after, and =C-M-- C-M-SPC= will mark the previous
+sexp instead of the next.
+
+As you may have noticed, the negative and numeric arguments are bound
+to control, meta, and control-meta so that they can be easily combined
+with any other binding. You can type any number as a numeric argument.
+For example, =C-SPC C-1 C-3 C-n= marks the next 13 lines.
+
+In my opinion, the only real difference between the two grammars is
+that in vi, you have to explicitly change modes with =ESC=, and with
+Emacs, you temporarily change modes with modifier key chords (control
+and alt/meta).
+
+The strange argument is =C-u= for "universal" argument (also known as
+the "prefix" argument). Technically it is equivalent to =C-4=, but it
+is not usually used for this. Instead, interactive functions often
+have alternative modes of operation, and the use of the universal
+argument will toggle these. It is usually used after reading the
+documentation of a function, and then promptly forgotten. The only
+common use I can think of is =C-u C-SPC=, as a single prefix argument
+to =set-mark-command= causes it to pop the local mark ring (jump back
+to last marked spot in the buffer, like =C-x C-SPC= but not global).
+
+Note that unlike the numeric and negative arguments, the universal
+argument is only on =C-u=. That is, =M-u= and =C-M-u= are bound to
+completely different commands.
+
+See [[http://ergoemacs.org/emacs_manual/emacs/Arguments.html][ErgoEmacs]].
 ** Repeat command: =C-x z= follow with =z=
 ** Jump to mark: =C-u C-SPC= (local) =C-x C-SPC= (global)
 ** Toggle between point and mark: =C-x C-x=
