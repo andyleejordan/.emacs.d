@@ -593,11 +593,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
    (append default-frame-alist '((inhibit-double-buffering . t)))))
 
 (use-package fortune-cookie
-  :if (executable-find "fortune")
   :custom
-  (fortune-cookie-fortune-args "-s")
+  (fortune-cookie-fortune-string
+   "History repeats itself: the first time as tragedy, the second time as farce.")
   (fortune-cookie-cowsay-enable (executable-find "cowsay"))
-  (fortune-cookie-cowsay-args "-f tux")
+  (fortune-cookie-cowsay-args '("-f" "tux"))
   :config (fortune-cookie-mode))
 
 (use-package hl-todo
