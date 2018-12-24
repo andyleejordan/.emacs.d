@@ -3,7 +3,7 @@
 
 Utilizes [[https://github.com/jwiegley/use-package][jwiegley's use-package]] macro to cleanly and quickly require,
 install via [[https://github.com/raxod502/straight.el][straight.el]], and setup various extensions. Tries to get
-back to the basics, and so is loosely based on [[https://masteringemacs.org/][Mastering Emacs]].
+back to the basics.
 
 These configurations work a lot better with at least Emacs 26,
 although Emacs 25 should be supported, and I tend to build from source
@@ -27,6 +27,10 @@ useful.
 - [[https://github.com/lewang/ws-butler][whitespace-butler]] unobtrusively cleans up whitespace
 
 * Using Emacs
+
+Much of what I know about using Emacs I learned over a decade, but I
+highly recommend reading the book [[https://masteringemacs.org/][Mastering Emacs]] by Mickey Petersen.
+Xah Lee's [[http://ergoemacs.org/emacs/emacs.html][Practial Emacs Tutorial]] is also fantastic.
 
 ** Syntactic movements
 
