@@ -28,6 +28,89 @@ useful.
 
 * Using Emacs
 
+** Syntactic movements
+
+See [[https://masteringemacs.org/article/effective-editing-movement][Effective Editing Movement]] for more.
+
+*** Characters and words
+
+Moving forward a character is =C-f=, backward is =C-b=, and deleting
+is =C-d=. I mention this because the next syntactic movement is by
+word. The keys are symmetric to the character movements, just with
+meta instead of control: forward is =M-f=, backward is =M-b=, and
+deleting is =M-d=. You can also mark a word with =M-@= (which explains
+why =C-@= is another binding for =set-mark-command=). My configuration
+enables =subword-mode=, indicated by a comma in the mode line, which
+turns =CamelCase= into two words instead of one.
+
+*** Expressions
+
+Now combine control and meta, and you can move by "s-expression," or
+=sexp=: forward is =C-M-f= and backward is =C-M-b=. However, delete is
+different as it is =C-M-k= (for "kill"). This is because you can move
+through nested expressions with up =C-M-u= and down =C-M-d=. Marking
+should be familiar on =C-M-SPC= (and is also on =C-M-@= for symmetry).
+Honestly, moving by sexp is usually much better than by word.
+
+*** Lines and sentences
+
+Similar to =C-a= to move to the beginning of the line, =C-e= to move
+to the end, and =C-k= to kill, sentence movement is =M-a=, =M-e=, and
+=M-k=. Marking a sentence is =M-h=. Sentences are more useful than
+they would seem, as modes are free to define a sentence how they see
+fit. For instance, in the C and C++ modes, a sentence is defined to be
+a language statement.
+
+There is also a special command to move "back to indentation" on
+=M-m=. This places the point at the first non-whitespace text on the
+line, which is a nice shortcut.
+
+*** Functions
+
+Movement by function (or =defun=), is similar to lines and sentences,
+but with control and meta. Move to the beginning is =C-M-a=, end is
+=C-M-e=, and mark is =C-M-h=. In some modes, like =Emacs-lisp=, you
+can also evaluate a =defun= with =C-M-x=.
+
+*** Buffers
+
+Buffer movement consists only of beginning on =M-<=, end on =M->=, and
+mark on =C-x h=. That last binding makes sense in the context of
+=kill-buffer= on =C-x k=, =save-some-buffers= on =C-x s=, and
+=switch-buffer= on =C-x b=.
+
+*** Going places
+
+Two bindings that are conspicuously missing are =M-n= and =M-p=, but
+in fact these are usually specific to the mode. In a Magit status
+buffer, for example, they move between sections; in an Occur buffer
+they move between occurrences; and in a compilation buffer they move
+between errors. They can be accessed from the original buffer with the
+prefix =M-g=, so =M-g M-n= will take you to the next occurrence
+without having to switch to the Occur buffer.
+
+That last prefix mentioned, =M-g=, is actually a binding for the
+entire =goto-map=. Going to a specific line is done with =M-g M-g=, a
+specific character is =M-g c=, and a specific column (character on the
+current line) is =M-g TAB=.
+
+As Mickey Petersen points out in Effective Editing Movement, a handy
+use of the universal argument for =goto-line= is to switch from a
+source buffer to some other buffer that has a line number
+corresponding to that source, then =C-u M-g M-g= will take the number
+at point and go to that line in the previous buffer. Considering how
+many tools emit line numbers (like compilers, linters, search tools,
+etc.), this can be quite useful.
+
+*** Paragraphs
+
+When writing blocks of text, such as documentation or notes,
+paragraphs become a useful syntactic movement. Moving forward a
+paragraph is =M-{= and backward is =M-}=. Wrapping a paragraph is done
+with =fill-paragraph= on =M-q=, which can also justify text when given
+a prefix argument. My configuration includes the package =unfill=
+which makes =M-q= undo itself when repeated.
+
 ** Interactive arguments
 
 Negative and numeric arguments can be used to perform actions like
@@ -188,15 +271,7 @@ seems like a good replacement for =just-one-space=.
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 ** Zap to char: =M-z= (remapped to =zap-up-to-char=)
 ** Append next kill: =C-M-w=
-** Back to indentation: =M-m=
 ** Surround with parentheses: =M-(= on region or with numeric arg
-** Sexps: =C-M-(b backward) (f forward) (u up) (SPC mark) (k kill) (w copy)=
-** Defuns: =C-M-(a begin) (e end) (h mark)=
-** Buffer: =M-(< begin) (> end)= =C-x h (mark)=
-** Magit sections: =M-(n next) (p previous)=
-** Sentences: =M-(a backward) (e forward) (k kill) / C-x DEL (kill backward)=
-In C and C++ modes, these move over statements.
-** Paragraphs: =M-({ backward) (} forward) (h mark)=
 ** Transpose: =C-(char) M-(word) C-M-(sexp) t / C-x C-t (line)=
 ** The opposite of =C-l= is =M-r= recenter-positions
 ** Reposition window to see comment/function: =C-M-l=
