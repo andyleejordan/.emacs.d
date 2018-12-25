@@ -115,6 +115,23 @@ with =fill-paragraph= on =M-q=, which can also justify text when given
 a prefix argument. My configuration includes the package =unfill=
 which makes =M-q= undo itself when repeated.
 
+** Cut and paste
+
+Or in Emacs parlance, kill and yank. In addition to the syntactic kill
+commands, you can also kill a region with =C-w=. Yanking text is done
+with =C-y=. Follow it up with =M-y= repeatedly to cycle through the
+kill ring until you have yanked what you want.
+
+Before killing text, you can use =C-M-w= to append the next kill to
+the previous kill. This is useful when killing pieces of text
+throughout the buffer, to be yanked all at once elsewhere.
+
+You can "zap" text with =M-z [char]=. This is equivalent to vi's
+=df[char]=. It kills from the point to (and including) the next
+instance of the given character. I actually prefer the semantics of
+=dt[char]=, which kills to (but excluding) the character. So my
+configuration remaps =zap-to-char= to =zap-up-to-char=.
+
 ** Prefix arguments
 
 Negative and numeric arguments can be prefixed to other commands in
@@ -317,8 +334,6 @@ a sexp is =C-M-t=, and a line is =C-x C-t=.
 
 ** Narrowing: =C-x n= region =n= defun =d= widen =w=
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
-** Zap to char: =M-z= (remapped to =zap-up-to-char=)
-** Append next kill: =C-M-w=
 ** Surround with parentheses: =M-(= on region or with numeric arg
 ** The opposite of =C-l= is =M-r= recenter-positions
 ** Reposition window to see comment/function: =C-M-l=
