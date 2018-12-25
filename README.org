@@ -442,13 +442,6 @@ From [[https://stackoverflow.com/a/271136][StackOverflow]]:
 - see [[http://www.emacswiki.org/emacs/RenumberList][Wiki]]; the comma indicates elisp code to evaluate
 - e.g. [0-9]+ -> \,(+ 257 \#)
 - or by 8 starting at 10 \,(+ 10 (* 8 \#))
-** Capture all regexp matches
-#+begin_src elisp
-  ;; captures all non-terminals in Bison grammar
-  (save-excursion
-    (while (re-search-forward "^\\([a-z_]+\\):" nil t)
-      (princ (format "%s " (match-string 1)) (get-buffer-create "matches"))))
-#+end_src
 ** regexp-builder for replace
 - Use =C-c C-i= and choose the "string" syntax
 - Copy the regexp without the surrounding quotes
@@ -482,7 +475,7 @@ See [[https://masteringemacs.org/article/evaluating-elisp-emacs][Mastering Emacs
 - =add-to-list= and =append= for lists
 - =mapcar= with list of results
 - =mapconcat= for string of results
-- =dolist= for mapc with implicit bind
+- =dolist= for =mapc= with implicit bind
 - =cadr= for last item of pair, as in, =(car (cdr foo))=
 - =cons= to append without copying
 - =remove= to filter items from list
@@ -518,6 +511,16 @@ marked with commas. [[https://www.gnu.org/software/emacs/manual/html_node/elisp/
 
 #+begin_src elisp
   (add-to-list 'somelist `(symbol . ,(expression to be evaluated)))
+#+end_src
+
+** Capture all regexp matches
+
+Captures all non-terminals in Bison grammar.
+
+#+begin_src elisp
+  (save-excursion
+    (while (re-search-forward "^\\([a-z_]+\\):" nil t)
+      (princ (format "%s " (match-string 1)) (get-buffer-create "matches"))))
 #+end_src
 
 * Compiling Emacs from source
