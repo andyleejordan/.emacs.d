@@ -384,6 +384,16 @@ This explains why setting =flyspell-use-meta-tab= to nil unbinds
 because this default binding is really annoying on Windows where
 =M-TAB= (or "alt-tab") switches windows.
 
+
+** Future sections
+
+- isearch / occur / =M-s= / ripgrep
+- wgrep (and occur)
+- compilation
+- eshell
+- rectangle
+- raise and surround
+
 * Emacs lisp programming notes
 
 ** Interactive Emacs Lisp Mode
