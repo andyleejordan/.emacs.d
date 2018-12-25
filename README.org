@@ -332,6 +332,25 @@ this as well he did, so just go read Mastering Emacs. Transposing a
 character is =C-t= (useful after an immediate typo), a word is =M-t=,
 a sexp is =C-M-t=, and a line is =C-x C-t=.
 
+** Help!
+
+The only help command you need to know is =C-h h=, which gets help for
+the help system. It brings up a buffer describing all the possible
+other help systems and shortcuts to get there. The other helpful
+commands are:
+
+- =C-h e= to view the messages buffers
+- =C-h k= to get help for a binding
+- =C-h b= to list and search bindings
+- =C-h w= to ask =where-is= a function bound
+- =C-h f= to get help for a function
+- =C-h v= to get help for a variable
+- =C-h m= to list help for the current modes
+- =C-h l= to view lossage (history of keystrokes)
+
+That last one is for curious people to figure out what keys they are
+using too often.
+
 ** Narrowing: =C-x n= region =n= defun =d= widen =w=
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 ** Surround with parentheses: =M-(= on region or with numeric arg
@@ -352,9 +371,6 @@ https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 *** wdired with =C-x C-q=
 *** ivy occur with =C-c C-o= then follows wgrep
 See [[https://oremacs.com/2016/04/26/ivy-0.8.0/][=ivy-occur-mode=]]
-** List bindings: =C-h b=
-** Bindings for command: =C-h w (where-is)=
-Inverse of =C-h k=
 ** Quote next character: =C-q=
 Newline: C-j
 * Tricks and tips
@@ -443,9 +459,6 @@ tic -o ~/.terminfo
 ** Temporarily disable ido-completion =C-j=
 ** Set directory local variable =eval= to execute arbitrary code
 ** See current faces =list-faces-display=
-** View Lossage
-Use =M-x view-lossage= on =C-h l= to see the most recent 300 keystrokes, per
-[[http://emacsredux.com/blog/2014/12/23/lossage/][Emacs Redux]]
 ** Smartparens
 https://ebzzry.github.io/emacs-pairs.html
 *** Yank next movement/thing =sp-select-next-thing= on =C-M-]=
