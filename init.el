@@ -666,6 +666,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature simple
   :bind (("C-c t" . toggle-truncate-lines)
          ([remap just-one-space] . cycle-spacing)
+         ([remap upcase-word] . upcase-dwim)
+         ([remap downcase-word] . downcase-dwim)
+         ([remap capitalize-word] . capitalize-dwim)
          ([remap zap-to-char] . zap-up-to-char))
   :custom
   (mark-ring-max 1024)
