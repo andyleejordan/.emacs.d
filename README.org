@@ -351,6 +351,39 @@ commands are:
 That last one is for curious people to figure out what keys they are
 using too often.
 
+** Quoting characters
+
+Sometimes you need to insert a character whose key usually triggers an
+action. An example is typing a lone open parenthesis or quotation mark
+when electric modes would otherwise type the whole pair. You can do
+this by "quoting" the character with =C-q=, such =C-q (=.
+
+Another example is typing a newline in a query replacement, where
+hitting enter would accept the input instead of inserting a newline.
+However, =C-q RET= inserts =^M=, which is a carriage return, not a
+newline. You actually want =C-q C-j=. But why is that?
+
+*** Emacs syntax explained
+
+The answer goes all the way back to the ASCII table and the notion of
+Unix line endings. You might be familiar with line endings being
+"CRLF" on Windows and just "LF" on Linux. The "LF" is "line feed" (or
+=^J=, read as "control J," just like =C-j=) and the "CR" is "carriage
+return" (or =^M=). The caret in those notations is for control (as in
+the key), because the ASCII standard represents these characters as
+the combination of control followed by a letter. The letter
+corresponds to the position of the character on the ASCII table. Since
+line feed is the tenth ASCII character, and "J" is the tenth letter,
+=^J= is its notation. Hence Emacs literally interprets =C-j= as a line
+feed. Similarly, =C-i= is for horizontal tab, =C-m= is for carriage
+return, =C-[= is for escape, etc. See [[http://ergoemacs.org/emacs/keystroke_rep.html][ErgoEmacs]] for more.
+
+This explains why setting =flyspell-use-meta-tab= to nil unbinds
+=C-M-i= because it is interpreted as =M-TAB=. This is because =C-i=
+/is/ horizontal tab according to the ASCII standard. I mention this
+because this default binding is really annoying on Windows where
+=M-TAB= (or "alt-tab") switches windows.
+
 ** Narrowing: =C-x n= region =n= defun =d= widen =w=
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 ** Surround with parentheses: =M-(= on region or with numeric arg
@@ -371,8 +404,6 @@ https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 *** wdired with =C-x C-q=
 *** ivy occur with =C-c C-o= then follows wgrep
 See [[https://oremacs.com/2016/04/26/ivy-0.8.0/][=ivy-occur-mode=]]
-** Quote next character: =C-q=
-Newline: C-j
 * Tricks and tips
 ** Interactive Emacs Lisp Mode =ielm=
 ** Automatic alignment with =align-current=
@@ -463,25 +494,6 @@ tic -o ~/.terminfo
 https://ebzzry.github.io/emacs-pairs.html
 *** Yank next movement/thing =sp-select-next-thing= on =C-M-]=
 *** Remove surround quotes aka splice =sp-splice-sexp= on =M-D=
-** Emacs Syntax Explained
-The C-j in C-q C-j is for inputing ASCII Line Feed char (used in unix
-as newline char), which does not have a corresponding key on the
-keyboard. The reason that C-j is for Line Feed is because it's a
-notation from the ASCII standard. That is, the non-printables are
-represented by a Control followed by a letter, regardless whether
-there is a corresponding key on the keyboard. Line feed is the 10th
-ASCII char, and j is the 10th letter, so Line Feed is C-j. Similarly,
-C-i is for Horizontal Tab, C-m is for Carriage Return, C-[ is for
-Escape, C-l is for Form Feed, etc.
-http://ergoemacs.org/emacs/keystroke_rep.html
-
-Setting =(flyspell-use-meta-tab nil)= unbinds =C-M-i= because it's
-interpreted as =M-TAB=. This is because =C-i= and =TAB= are the same
-character in ASCII. This is most annoying on Windows where =M-TAB= AKA
-"alt-tab" switches windows.
-
-https://www.gnu.org/software/emacs/elisp/html_node/Function-Keys.html
-
 * Emacs lisp programming notes
 - =add-hook= and =eval-after-load= for conditional execution
 - =expand-file-name= and =f-expand= for filename expansion
