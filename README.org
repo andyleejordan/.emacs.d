@@ -307,12 +307,19 @@ There is also an obscure version of the last one called
 =upcase-initials-region=, which specifically only alters the initial
 characters.
 
+** Transposing
+
+I did not use the transpose commands until Mickey explained that they
+"pull" characters (and words and sexps) to the right. I cannot explain
+this as well he did, so just go read Mastering Emacs. Transposing a
+character is =C-t= (useful after an immediate typo), a word is =M-t=,
+a sexp is =C-M-t=, and a line is =C-x C-t=.
+
 ** Narrowing: =C-x n= region =n= defun =d= widen =w=
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 ** Zap to char: =M-z= (remapped to =zap-up-to-char=)
 ** Append next kill: =C-M-w=
 ** Surround with parentheses: =M-(= on region or with numeric arg
-** Transpose: =C-(char) M-(word) C-M-(sexp) t / C-x C-t (line)=
 ** The opposite of =C-l= is =M-r= recenter-positions
 ** Reposition window to see comment/function: =C-M-l=
 ** Occur: =M-s o= then =e (edit) / M-(n next) (p previous)=
