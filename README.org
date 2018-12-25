@@ -115,15 +115,15 @@ with =fill-paragraph= on =M-q=, which can also justify text when given
 a prefix argument. My configuration includes the package =unfill=
 which makes =M-q= undo itself when repeated.
 
-** Interactive arguments
+** Prefix arguments
 
-Negative and numeric arguments can be used to perform actions like
-with vi's composable grammar. That is, =3dd= in vi is equivalent to
-=C-3 C-k=, and =3k= is =C-3 C-p=. I am not sure if vi has an
-equivalent to the negative argument: it is used to do things
-backwards, that is, =M-- M-l= will downcase the word _before_ the
-point instead of after, and =C-M-- C-M-SPC= will mark the previous
-sexp instead of the next.
+Negative and numeric arguments can be prefixed to other commands in
+order to perform actions (similar to vi's composable grammar). That
+is, =3dd= in vi is equivalent to =C-3 C-k=, and =3k= is =C-3 C-p=. I
+am not sure if vi has an equivalent to the negative argument: it is
+used to do things backwards, that is, =M-- M-l= will downcase the word
+_before_ the point instead of after, and =C-M-- C-M-SPC= will mark the
+previous sexp instead of the next.
 
 As you may have noticed, the negative and numeric arguments are bound
 to control, meta, and control-meta so that they can be easily combined
@@ -135,15 +135,23 @@ that in vi, you have to explicitly change modes with =ESC=, and with
 Emacs, you temporarily change modes with modifier key chords (control
 and alt/meta).
 
-The strange argument is =C-u= for "universal" argument (also known as
-the "prefix" argument). Technically it is equivalent to =C-4=, but it
-is not usually used for this. Instead, interactive functions often
-have alternative modes of operation, and the use of the universal
-argument will toggle these. It is usually used after reading the
-documentation of a function, and then promptly forgotten. The only
-common use I can think of is =C-u C-SPC=, as a single prefix argument
-to =set-mark-command= causes it to pop the local mark ring (jump back
-to last marked spot in the buffer, like =C-x C-SPC= but not global).
+*** Universal argument
+
+The negative and numeric argument bindings are truly just shortcuts
+for the "universal" argument =C-u=, which begins a numeric argument
+sequence (and remember, numbers can be negative). An example is the
+combined command =M-- M-6 M-d=, which kills the last six words, and is
+equivalent to =C-u - 6 M-d=.
+
+More interesting is that =C-u= has a default numeric value of four. So
+if it is used alone as in =C-u C-f= it will move forward four
+characters. While this has some value, it is more useful in the
+context of alternative modes of operation for interactive functions. I
+will be honest, I usually use it after reading the documentation of a
+function, and then promptly forget it. One example I can think of is
+=C-u C-SPC=: a single prefix argument to =set-mark-command= causes it
+to pop the local mark ring (jump back to last marked spot in the
+buffer, like =C-x C-SPC= but not global).
 
 Note that unlike the numeric and negative arguments, the universal
 argument is only on =C-u=. That is, =M-u= and =C-M-u= are bound to
