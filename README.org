@@ -272,6 +272,18 @@ fixes up the whitespace at the join. The negative argument instead
 joins to the line below the point, essentially turning it into the
 commands above. I do not find this command as useful as the others.
 
+** Writing comments
+
+Probably one of my most used commands is =comment-dwim=, or "comment
+Do What I Mean," on =M-;=. Given a region, it comments it (or
+uncomments it). This is best combined with syntactic mark commands.
+Otherwise it starts a new comment, and with a prefix, kills a comment.
+To turn the current line into a comment, use =C-x C-;=.
+
+While writing a multi-line comment, use =M-j= to insert a newline and
+comment syntax. This will also indent such as when you are writing to
+the side of a block of code. Its counterpart =C-j= inserts a newline
+and indents (without commenting). I should use these more.
 
 ** Narrowing: =C-x n= region =n= defun =d= widen =w=
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
@@ -281,7 +293,6 @@ https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 ** Transpose: =C-(char) M-(word) C-M-(sexp) t / C-x C-t (line)=
 ** The opposite of =C-l= is =M-r= recenter-positions
 ** Reposition window to see comment/function: =C-M-l=
-** Comment: =M-; (DWIM) C-x C-; (line) M-j (newline comment)=
 ** Occur: =M-s o= then =e (edit) / M-(n next) (p previous)=
 *** Also =multi-occur-in-matching-buffers=
 ** Search nearest symbol: =M-s .=
