@@ -392,7 +392,6 @@ https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 ** Occur: =M-s o= then =e (edit) / M-(n next) (p previous)=
 *** Also =multi-occur-in-matching-buffers=
 ** Search nearest symbol: =M-s .=
-** "Close" client buffer: =C-x # (server-edit)=
 ** Set fill prefix: =C-x .=
 [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Fill-Prefix.html][Fill-Prefix]] with point after prefix
 ** Set fill column: =C-x f=
@@ -454,44 +453,8 @@ From [[https://stackoverflow.com/a/271136][StackOverflow]]:
 - Use =C-c C-i= and choose the "string" syntax
 - Copy the regexp without the surrounding quotes
 - Use =C-c C-q= to close regexp-builder
-** Projectile commands
-*** Project
-- switch :: p
-- commander :: m
-- command :: !
-- async :: &
-- make :: c
-- make test :: P
-- make tags :: R
-- replace :: r
-- dired :: D
-- vcs :: v
-- ag :: ss
-- tag :: j
-- buffers :: b
-- kill :: k
-- recent :: e
-*** File
-- alternate :: a
-- test files :: T
-- toggle test :: t
-** Flycheck
-*** =(flycheck-compile)= for debugging
-** ansi-term
-- Needs [[https://stackoverflow.com/a/8920373][terminfo]]
-- Remove TERM from shell's rc file
-#+begin_src sh
-tic -o ~/.terminfo
-/usr/local/Cellar/emacs/HEAD/share/emacs/24.4.50/etc/e/eterm-color.ti
-#+end_src
-
-** Temporarily disable ido-completion =C-j=
 ** Set directory local variable =eval= to execute arbitrary code
 ** See current faces =list-faces-display=
-** Smartparens
-https://ebzzry.github.io/emacs-pairs.html
-*** Yank next movement/thing =sp-select-next-thing= on =C-M-]=
-*** Remove surround quotes aka splice =sp-splice-sexp= on =M-D=
 * Emacs lisp programming notes
 
 ** Interactive Emacs Lisp Mode
