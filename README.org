@@ -254,6 +254,11 @@ and numeric arguments keep N spaces. So =M-- M-SPC= is really useful
 to join text below the point separated by whitespace to the point on
 the same line after a space.
 
+My configuration actually rebinds =M-SPC= to =cycle-spacing=, which is
+an enhanced version of =just-one-space=. On the first call it operates
+the same; on the second it deletes all spaces (like =M-\=); and on the
+third it restores the original whitespace.
+
 You can delete blank lines (vertical whitespace) with =C-x C-o=, which
 is mnemonic since =C-o= inserts a newline. Use it on a non-blank line
 to join text below the point separated by whitespace, but with a
@@ -267,9 +272,6 @@ fixes up the whitespace at the join. The negative argument instead
 joins to the line below the point, essentially turning it into the
 commands above. I do not find this command as useful as the others.
 
-Also of interest is the unbound command =cycle-spacing=, which
-manipulates whitespace "intelligently." I do not use it yet, but it
-seems like a good replacement for =just-one-space=.
 
 ** Narrowing: =C-x n= region =n= defun =d= widen =w=
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html

@@ -665,6 +665,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;; Simple is Emacs's built-in miscellaneous package.
 (use-feature simple
   :bind (("C-c t" . toggle-truncate-lines)
+         ([remap just-one-space] . cycle-spacing)
          ([remap zap-to-char] . zap-up-to-char))
   :custom
   (mark-ring-max 1024)
