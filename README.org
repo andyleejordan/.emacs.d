@@ -285,6 +285,20 @@ comment syntax. This will also indent such as when you are writing to
 the side of a block of code. Its counterpart =C-j= inserts a newline
 and indents (without commenting). I should use these more.
 
+** Adjusting case
+
+Words can be UPPERCASED with =M-u=, lowercased with =M-l=, and
+Capitalized with =M-u=. I find that I run these with the negative
+argument more often than not so that I can fix the case of a word just
+written.
+
+My configuration remaps the Do What I Mean versions of the above so
+that they work on regions too. Otherwise the region versions are =C-x
+C-u= and =C-x C-l=, with =capitalize-region= conspicuously unbound.
+There is also an obscure version of the last one called
+=upcase-initials-region=, which specifically only alters the initial
+characters.
+
 ** Narrowing: =C-x n= region =n= defun =d= widen =w=
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 ** Zap to char: =M-z= (remapped to =zap-up-to-char=)
@@ -296,9 +310,6 @@ https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 ** Occur: =M-s o= then =e (edit) / M-(n next) (p previous)=
 *** Also =multi-occur-in-matching-buffers=
 ** Search nearest symbol: =M-s .=
-** Casing:
-*** words =M-u (upper) l (lower) c (capitalize)=
-*** regions =C-x C-(u upper) (l lower) / upcase-initials-region=
 ** "Close" client buffer: =C-x # (server-edit)=
 ** Evaluate lisp: interactive =M-:= last sexp =C-x C-e=
 ** Set fill prefix: =C-x .=
