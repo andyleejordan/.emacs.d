@@ -393,7 +393,6 @@ https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 *** Also =multi-occur-in-matching-buffers=
 ** Search nearest symbol: =M-s .=
 ** "Close" client buffer: =C-x # (server-edit)=
-** Evaluate lisp: interactive =M-:= last sexp =C-x C-e=
 ** Set fill prefix: =C-x .=
 [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Fill-Prefix.html][Fill-Prefix]] with point after prefix
 ** Set fill column: =C-x f=
@@ -405,7 +404,6 @@ https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 *** ivy occur with =C-c C-o= then follows wgrep
 See [[https://oremacs.com/2016/04/26/ivy-0.8.0/][=ivy-occur-mode=]]
 * Tricks and tips
-** Interactive Emacs Lisp Mode =ielm=
 ** Automatic alignment with =align-current=
 Fall back to =align-regexp=. Prefix that for complex mode.
 ** Replace =uniq= with =delete-duplicate-lines=
@@ -495,6 +493,23 @@ https://ebzzry.github.io/emacs-pairs.html
 *** Yank next movement/thing =sp-select-next-thing= on =C-M-]=
 *** Remove surround quotes aka splice =sp-splice-sexp= on =M-D=
 * Emacs lisp programming notes
+
+** Interactive Emacs Lisp Mode
+
+Unsurprisingly, Emacs comes with an Emacs Lisp REPL, =ielm=, or the
+Interactive Emacs Lisp Mode. Use this when testing lots of Emacs Lisp.
+
+The scratch buffer defaults to Emacs Lisp mode so that it is kind of a
+REPL. It can be used as such because =C-M-x= evaluates the current
+function, =C-x C-e= evaluates the last sexp, and =C-j= will evaluate
+/and print/ the last sexp.
+
+Use =M-:= to evaluate an expression queried from the minibuffer.
+
+See [[https://masteringemacs.org/article/evaluating-elisp-emacs][Mastering Emacs]] for more.
+
+** Common functions
+
 - =add-hook= and =eval-after-load= for conditional execution
 - =expand-file-name= and =f-expand= for filename expansion
 - =file-name-basename= and =file-name-nondirectory= etc.
@@ -519,6 +534,10 @@ https://ebzzry.github.io/emacs-pairs.html
 - [[https://github.com/magnars/dash.el][dash.el]] modern list library
 
 ** Custom faces
+
+This was particularly annoying to get right, so here is how to set a
+custom face that varies with the background type.
+
 #+begin_src elisp
   (use-package ivy
     :custom-face
@@ -531,12 +550,12 @@ https://ebzzry.github.io/emacs-pairs.html
 
 ** Partially evaluate list elements
 
+The backquote is like a normal quote except it evaluates elements
+marked with commas. [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html][See the manual]].
+
 #+begin_src elisp
   (add-to-list 'somelist `(symbol . ,(expression to be evaluated)))
 #+end_src
-
-The backquote is like a normal quote except it evaluates elements
-marked with commas. [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html][See the manual]].
 
 * Compiling Emacs from source
 See =INSTALL.REPO=
