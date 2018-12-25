@@ -399,10 +399,6 @@ tic -o ~/.terminfo
 /usr/local/Cellar/emacs/HEAD/share/emacs/24.4.50/etc/e/eterm-color.ti
 #+end_src
 
-** Partially evaluate list elements
-- (add-to-list 'somelist `(symbol . ,(expression to be evaluated)))
-- The backquote is like a normal quote except it evaluates elements
-  marked with commas. [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html][RTFM]]
 ** Temporarily disable ido-completion =C-j=
 ** Set directory local variable =eval= to execute arbitrary code
 ** See current faces =list-faces-display=
@@ -432,16 +428,6 @@ character in ASCII. This is most annoying on Windows where =M-TAB= AKA
 
 https://www.gnu.org/software/emacs/elisp/html_node/Function-Keys.html
 
-** Faces
-#+begin_src elisp
-  (use-package ivy
-    :custom-face
-    (ivy-current-match
-     ((((class color) (background light))
-       :background "#fdf6e3" :underline (:color "#859900"))
-      (((class color) (background dark))
-       :background "#002b36" :underline (:color "#859900")))))
-#+end_src
 * Emacs lisp programming notes
 - =add-hook= and =eval-after-load= for conditional execution
 - =expand-file-name= and =f-expand= for filename expansion
@@ -465,6 +451,27 @@ https://www.gnu.org/software/emacs/elisp/html_node/Function-Keys.html
 - =replace-regexp-in-string=
 - =shell-command-to-string=
 - [[https://github.com/magnars/dash.el][dash.el]] modern list library
+
+** Custom faces
+#+begin_src elisp
+  (use-package ivy
+    :custom-face
+    (ivy-current-match
+     ((((class color) (background light))
+       :background "#fdf6e3" :underline (:color "#859900"))
+      (((class color) (background dark))
+       :background "#002b36" :underline (:color "#859900")))))
+#+end_src
+
+** Partially evaluate list elements
+
+#+begin_src elisp
+  (add-to-list 'somelist `(symbol . ,(expression to be evaluated)))
+#+end_src
+
+The backquote is like a normal quote except it evaluates elements
+marked with commas. [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html][See the manual]].
+
 * Compiling Emacs from source
 See =INSTALL.REPO=
 ** update
