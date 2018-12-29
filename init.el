@@ -676,8 +676,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;; Simple is Emacs's built-in miscellaneous package.
 (use-feature simple
-  :bind (("C-c t" . toggle-truncate-lines)
-         ([remap just-one-space] . cycle-spacing)
+  :delight visual-line-mode
+  :bind (([remap just-one-space] . cycle-spacing)
          ([remap upcase-word] . upcase-dwim)
          ([remap downcase-word] . downcase-dwim)
          ([remap capitalize-word] . capitalize-dwim)
@@ -689,7 +689,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (kill-do-not-save-duplicates t)
   (kill-whole-line t)
   (shift-select-mode nil)
-  :config (column-number-mode))
+  (visual-line-fringe-indicators '(nil right-curly-arrow))
+  :config
+  (column-number-mode)
+  (global-visual-line-mode))
 
 (use-feature tramp
   :defer
