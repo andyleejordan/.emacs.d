@@ -588,9 +588,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;; Fix invisible buffer content when X is tunneled
 ;; https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25474
 (when (getenv "SSH_CLIENT")
-  (customize-set-variable
-   'default-frame-alist
-   (append default-frame-alist '((inhibit-double-buffering . t)))))
+  (add-to-list 'default-frame-alist '(inhibit-double-buffering . t)))
 
 (use-package fortune-cookie
   :custom
@@ -708,12 +706,14 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config
   (add-to-list
    'backup-directory-alist
-   (cons tramp-file-name-regexp (no-littering-expand-var-file-name "tramp/backup/"))))
+   `(,tramp-file-name-regexp . ,(no-littering-expand-var-file-name "tramp/backup/"))))
 
 ;;; Language Modes:
-(add-args-to-list 'auto-mode-alist '(("\\.ino\\'"  . c-mode)
-                                     ("\\.vcsh\\'" . conf-mode)
-                                     ("\\.zsh\\'"  . sh-mode)))
+(add-args-to-list
+ 'auto-mode-alist '(("\\.ino\\'"  . c-mode)
+                    ("\\.vcsh\\'" . conf-mode)
+                    ("\\.zsh\\'"  . sh-mode)))
+
 (use-package apt-sources-list)
 
 (use-package bazel-mode)
