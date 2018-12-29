@@ -123,6 +123,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package imenu-anywhere
   :bind (("C-c i" . ivy-imenu-anywhere)))
 
+(use-feature isearch
+  :custom (isearch-allow-scroll t))
+
 (use-feature subword
   :config (global-subword-mode))
 
