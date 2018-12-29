@@ -396,6 +396,18 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   > _ "\n"
   "#endif // defined(" str ")" \n)
 
+(use-feature autoinsert
+  :config
+  (auto-insert-mode)
+  (define-auto-insert
+    '(sh-mode . "Bash skeleton")
+    [(lambda () (sh-set-shell "bash" t nil))
+     '(()
+       "#!/bin/bash" \n
+       \n
+       "set -o errexit" \n
+       "set -o pipefail" "\n\n")]))
+
 ;;; Completion / Syntax / Tags:
 (customize-set-variable 'tab-always-indent 'complete)
 
