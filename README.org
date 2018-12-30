@@ -384,6 +384,40 @@ This explains why setting =flyspell-use-meta-tab= to nil unbinds
 because this default binding is really annoying on Windows where
 =M-TAB= (or "alt-tab") switches windows.
 
+** Arranging buffers
+
+Emacs is old, so old that it existed before windowing systems. Because
+of this, it does not use the now commonplace terminology of "tabs" and
+"windows." An operating system window is, to Emacs, a "frame," and
+within a frame each portion is a "window" (Mickey Petersen likens it
+to window panes in a physical frame). These windows display buffers
+(usually an open file, but also any other set of text like
+=*Messages*= or =*Help*=), and they are similar to tabs in younger
+editors.
+
+Splitting a window horizontally is bound to =C-x 2=, and splitting
+vertically is =C-x 3=. Closing a window is =C-x 0=, and closing all
+/other/ windows is =C-x 1= (kind of like "maximize this window"). The
+other window commands are on the =C-x 4= keymap. What is handy is that
+most of these commands are reflective of the =C-x= commands, just
+applied to the "other" window. So while =C-x b= switches the current
+window's buffer, =C-x 4 b= switches to the other window and then
+switches buffers (it will split the current frame to open the other
+window if it needs to). You can find a file with =C-x 4 f=, and open
+Dired with =C-x 4 d=.
+
+I often find myself with windows split horizontally but I want them
+split vertically. Fixing this with vanilla Emacs is an annoying
+combination of closing and opening windows. With the
+=transpose-frame.el= package, it becomes a simple matter of calling
+=transpose-frame=, which I have bound to =C-x 4 r=. This package
+provides many other potentially useful functions depending on your
+windowing needs, so check it out.
+
+Finally, if you need to deal with frames, all the bindings are under
+=C-x 5=, with the important ones being close on =C-x 5 0=, close
+others on =C-x 5 1=, and create on =C-x 5 2= (these should be familiar
+now as they are symmetric to the basic frame bindings).
 
 ** Future sections
 
