@@ -419,10 +419,63 @@ Finally, if you need to deal with frames, all the bindings are under
 others on =C-x 5 1=, and create on =C-x 5 2= (these should be familiar
 now as they are symmetric to the basic frame bindings).
 
+** Searching
+
+Using =C-s= to incrementally search within a buffer must become second
+nature. This command is =isearch=, and you can reverse the direction
+with =C-r=. Using =isearch= to move within a buffer is probably the
+most powerful method, as it is precise and easy to do.
+
+After typing =C-s=, you can restart your last search by pressing it
+again, or you can yank successive words from the point onward with
+=C-w=. Once searching for something, move through the matches with
+=C-s= and =C-r=, or switch to regular expression mode with =M-s r=.
+You can also initiate a regex isearch directly with =C-M-s= and
+=C-M-r=, but this introduces us to the =isearch= prefix binding,
+=M-s=.
+
+Other useful bindings in this map are =M-s .=, which will start a
+search for the symbol at point (=M-s _= starts an empty search in
+symbol mode), and =M-s w= which starts a word search (that is, search
+for a sequence without regard to the separating characters). If a
+search is already in progress, these same bindings toggle the search
+semantics, in addition to many other toggles available under =M-s=.
+Check them out the next time you need to narrow or expand your search.
+
+Also handy is that calling =query-replace= with =M-%= while searching
+will use your current search string as the input. This lets you figure
+out your exact matching string first and then directly replace it.
+
+You can cancel a search with =M-g=, which will drop you back to your
+starting point (but also cancel a macro if one is being recorded), or
+you can finish a search with =RET=. Finishing a search will push your
+starting location onto the mark ring, which means you can jump right
+back with =C-u C-SPC=.
+
+** Occur
+
+One of the neatest features of Emacs is the command =occur=, bound to
+=M-s o=. Essentially, it is =grep= within Emacs. Calling it alone
+prompts for a regular expression, but you can also call it during a
+Essentially, it is =grep= within Emacs. It lists all the occurrences
+of the search in an overview buffer (in fact, =list-matching-lines= is
+an alias for =occur=). This buffer is interactive: selecting an
+occurrence with =RET= jumps you to it in the original buffer (=C-o=
+does the same but leaves the point in the Occur buffer), and typing
+=e= switches us to =occur-edit-mode=.
+
+This last command is awesome. It makes the Occur buffer editable: any
+changes you make will be made to the original buffer when you finish
+with =C-c C-c=. In this way, you can edit matching lines (and
+additional context lines by customizing
+=list-matching-lines-default-context-lines=) in an overview. I find
+this to be a much friendlier way of making changes than slowly going
+through a =query-replace=.
+
 ** Future sections
 
-- isearch / occur / =M-s= / ripgrep
-- wgrep (and occur)
+- ripgrep / wgrep
+- wgrep
 - compilation
 - eshell
 - rectangle
