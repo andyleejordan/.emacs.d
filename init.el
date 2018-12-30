@@ -145,7 +145,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
              rotate-frame
              rotate-frame-clockwise
              rotate-frame-anticlockwise)
-  :bind (:map ctl-x-5-map ("r" . rotate-frame-anticlockwise)))
+  :bind (:map ctl-x-4-map ("t" . transpose-frame)))
 
 (use-feature winner
   ;; Enables undo/redo of windows configurations with
