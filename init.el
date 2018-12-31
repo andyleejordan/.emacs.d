@@ -679,6 +679,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (customize-set-variable 'inhibit-startup-screen t)
 (set-variable 'disabled-command-function nil)
 
+;; Save Emacs sessions
+(use-feature desktop
+  :config (desktop-save-mode))
+
 ;; Simple is Emacs's built-in miscellaneous package.
 (use-feature simple
   :bind (([remap just-one-space] . cycle-spacing)
