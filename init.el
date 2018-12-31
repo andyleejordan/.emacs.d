@@ -283,10 +283,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
                      (unless (eq ibuffer-sorting-mode 'alphabetic)
                        (ibuffer-do-sort-by-alphabetic)))))
 
-(use-feature midnight
-  ;; Kill old buffers at midnight.
-  :config (midnight-mode))
-
 (use-feature uniquify
   :custom (uniquify-buffer-name-style 'forward))
 
