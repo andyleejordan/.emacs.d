@@ -519,6 +519,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (compilation-scroll-output 'first-error)
   (compilation-always-kill t))
 
+(use-package default-text-scale)
+
 (use-package demangle-mode
   :commands (demangle-mode))
 
