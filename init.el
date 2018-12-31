@@ -277,7 +277,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package ibuffer
   :bind (([remap list-buffers] . ibuffer)))
 
-(use-package ibuffer-vc)
+(use-package ibuffer-vc
+  :hook (ibuffer . (lambda ()
+                     (ibuffer-vc-set-filter-groups-by-vc-root)
+                     (unless (eq ibuffer-sorting-mode 'alphabetic)
+                       (ibuffer-do-sort-by-alphabetic)))))
 
 (use-feature midnight
   ;; Kill old buffers at midnight.
