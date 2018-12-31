@@ -398,6 +398,8 @@ to window panes in a physical frame). These windows display buffers
 =*Messages*= or =*Help*=), and they are similar to tabs in younger
 editors.
 
+Switch buffers =C-x b=, and list them with [[ibuffer]] on =C-x C-b=.
+
 Splitting a window horizontally is bound to =C-x 2=, and splitting
 vertically is =C-x 3=. Closing a window is =C-x 0=, and closing all
 /other/ windows is =C-x 1= (kind of like "maximize this window"). The
@@ -460,6 +462,23 @@ additional context lines by customizing
 =list-matching-lines-default-context-lines=) in an overview. I find
 this to be a much friendlier way of making changes than slowly going
 through a =query-replace=.
+
+Occur is made even better by the ability to run it across multiple
+buffers, with the interactive =multi-occur=, or the filtered
+=multi-occur-in-matching-buffers=.
+
+** Listing buffers <<ibuffer>>
+
+My configuration remaps =C-x C-b= to =ibuffer=, a much improved buffer
+listing. Frankly, I should use this more than I currently do, but
+usually I just switch buffers with =C-x b=. You can group and filter
+(with =/=) all your buffers, and once marked (individually with =m= or
+all with =t=), apply operations to them.
+
+Instead of using =multi-occur=, you can select your buffers in
+=ibuffer= and hit =O= to run Occur across them as a group. You can
+also start a query replace with =Q=, and setup a =multi-isearch= with
+=M-s a C-s=. Hit =h= to see all the other options with =ibuffer=.
 
 ** Future sections
 
@@ -602,9 +621,6 @@ https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 ** Surround with parentheses: =M-(= on region or with numeric arg
 ** The opposite of =C-l= is =M-r= recenter-positions
 ** Reposition window to see comment/function: =C-M-l=
-** Occur: =M-s o= then =e (edit) / M-(n next) (p previous)=
-*** Also =multi-occur-in-matching-buffers=
-** Search nearest symbol: =M-s .=
 ** Set fill prefix: =C-x .=
 [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Fill-Prefix.html][Fill-Prefix]] with point after prefix
 ** Set fill column: =C-x f=
