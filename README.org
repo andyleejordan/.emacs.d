@@ -68,11 +68,29 @@ mark on =C-x h=. That last binding makes sense in the context of
 =kill-buffer= on =C-x k=, =save-some-buffers= on =C-x s=, and
 =switch-buffer= on =C-x b=.
 
+*** Searching
+
+Using =C-s= to incrementally search within a buffer must become second
+nature. This command is =isearch=. Using [[isearch]] to move within a
+buffer is probably the most powerful syntactic movement, as it is
+precise and easy to do. You can search in /reverse/ with =C-r=.
+
+After typing =C-s= or =C-r=, you can restart your last search by
+pressing it again, or you can yank successive words from the point
+onward with =C-w=. While searching for something, move forward through
+the matches with =C-s= and backward with =C-r=.
+
+You can cancel a search with =M-g=, which will drop you back to your
+starting point, or you can finish a search with =RET=. Finishing a
+search will push your starting location onto the mark ring and drop
+you at the current match. You can jump right back with =C-u C-SPC=,
+which pops the [[mark ring]].
+
 *** Going places
 
 Two bindings that are conspicuously missing are =M-n= and =M-p=, but
 in fact these are usually specific to the mode. In a Magit status
-buffer, for example, they move between sections; in an Occur buffer
+buffer, for example, they move between sections; in an [[Occur]] buffer
 they move between occurrences; and in a compilation buffer they move
 between errors. They can be accessed from the original buffer with the
 prefix =M-g=, so =M-g M-n= will take you to the next occurrence
@@ -214,7 +232,7 @@ just view the last macro with =kmacro-view-macro=).
 
 See [[http://ergoemacs.org/emacs/emacs_macro_example.html][ErgoEmacs]].
 
-** Mark rings
+** Mark rings <<mark ring>>
 
 The mark rings are used for recording positions in buffers. The global
 mark ring records the latest mark for each buffer, and each buffer's
@@ -404,50 +422,36 @@ Finally, if you need to deal with frames, all the bindings are under
 others on =C-x 5 1=, and create on =C-x 5 2= (these should be familiar
 now as they are symmetric to the basic frame bindings).
 
-** Searching
+** Advanced searching <<isearch>>
 
-Using =C-s= to incrementally search within a buffer must become second
-nature. This command is =isearch=, and you can reverse the direction
-with =C-r=. Using =isearch= to move within a buffer is probably the
-most powerful method, as it is precise and easy to do.
+As mentioned earlier, =isearch= is /incredible/ incremental searching.
 
-After typing =C-s=, you can restart your last search by pressing it
-again, or you can yank successive words from the point onward with
-=C-w=. Once searching for something, move through the matches with
-=C-s= and =C-r=, or switch to regular expression mode with =M-s r=.
-You can also initiate a regex isearch directly with =C-M-s= and
-=C-M-r=, but this introduces us to the =isearch= prefix binding,
-=M-s=.
+In =isearch=, switch to regular expression mode with =M-s r=. You can
+also initiate a regex search directly with =C-M-s= and =C-M-r=, but
+this introduces us to the =isearch= prefix binding, =M-s=.
 
-Other useful bindings in this map are =M-s .=, which will start a
-search for the symbol at point (=M-s _= starts an empty search in
-symbol mode), and =M-s w= which starts a word search (that is, search
-for a sequence without regard to the separating characters). If a
-search is already in progress, these same bindings toggle the search
-semantics, in addition to many other toggles available under =M-s=.
-Check them out the next time you need to narrow or expand your search.
+Other useful bindings in this map are =M-s _= which starts a search in
+symbol mode (use =M-s .= to start searching for the symbol at point),
+and =M-s w= which starts a word search (that is, search for a sequence
+without regard to the separating characters). If a search is already
+in progress, these same bindings toggle the search semantics, in
+addition to many other toggles available under =M-s=. Check them out
+the next time you need to narrow or expand your search.
 
 Also handy is that calling =query-replace= with =M-%= while searching
 will use your current search string as the input. This lets you figure
-out your exact matching string first and then directly replace it.
-
-You can cancel a search with =M-g=, which will drop you back to your
-starting point (but also cancel a macro if one is being recorded), or
-you can finish a search with =RET=. Finishing a search will push your
-starting location onto the mark ring, which means you can jump right
-back with =C-u C-SPC=.
+out your exact match string and then immediately replace it.
 
 ** Occur
 
 One of the neatest features of Emacs is the command =occur=, bound to
 =M-s o=. Essentially, it is =grep= within Emacs. Calling it alone
-prompts for a regular expression, but you can also call it during a
-Essentially, it is =grep= within Emacs. It lists all the occurrences
-of the search in an overview buffer (in fact, =list-matching-lines= is
-an alias for =occur=). This buffer is interactive: selecting an
-occurrence with =RET= jumps you to it in the original buffer (=C-o=
-does the same but leaves the point in the Occur buffer), and typing
-=e= switches us to =occur-edit-mode=.
+prompts for a regular expression, but you can also call it during an
+[[isearch]]. It lists all the occurrences of the search in an overview
+buffer (in fact, =list-matching-lines= is an alias for =occur=).
+Selecting an occurrence with =RET= jumps you to it in the original
+buffer (=C-o= does the same but leaves the point in the Occur buffer),
+and typing =e= switches us to =occur-edit-mode=.
 
 This last command is awesome. It makes the Occur buffer editable: any
 changes you make will be made to the original buffer when you finish
