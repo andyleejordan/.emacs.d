@@ -275,7 +275,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
          ("C-S-<right>" . buf-move-right)))
 
 (use-package ibuffer
-  :bind (([remap list-buffers] . ibuffer)))
+  :bind (([remap list-buffers] . ibuffer))
+  :custom (ibuffer-default-sorting-mode 'major-mode))
 
 (use-package ibuffer-vc
   :hook (ibuffer . (lambda ()
