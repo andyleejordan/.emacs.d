@@ -11,21 +11,6 @@ so I can apply my [[https://github.com/emacs-mirror/emacs/commit/48ff4c0b2f78f18
 
 This readme is currently going through a rewrite.
 
-* Notable packages
-
-This is not an exhaustive list, just the ones I have found the most
-useful.
-
-- [[https://github.com/jscheid/dtrt-indent][dtrt-indent]] intelligently guesses indentation rules
-- [[https://github.com/abo-abo/swiper][ivy and counsel]] for enhanced command completions
-- [[https://github.com/magit/magit][magit]] is the best way to interact with Git
-- [[https://github.com/tarsius/hl-todo][hl-todo]] highlights TODOs in source code
-- [[https://github.com/Malabarba/smart-mode-line/][smart-mode-line]] makes the mode readable and useful
-- [[https://github.com/bbatsov/solarized-emacs][solarized-emacs]] is the color theme
-- [[https://github.com/jwiegley/use-package][use-package]] organizes =init.el= and manages packages
-- [[https://github.com/justbur/emacs-which-key][which-key]] makes keybindings actually discoverable
-- [[https://github.com/lewang/ws-butler][whitespace-butler]] unobtrusively cleans up whitespace
-
 * Using Emacs
 
 Much of what I know about using Emacs I learned over a decade, but I
@@ -481,6 +466,21 @@ through a =query-replace=.
 - rectangle
 - raise and surround
 
+* Notable packages
+
+This is not an exhaustive list, just the ones I have found the most
+useful.
+
+- [[https://github.com/jscheid/dtrt-indent][dtrt-indent]] intelligently guesses indentation rules
+- [[https://github.com/abo-abo/swiper][ivy and counsel]] for enhanced command completions
+- [[https://github.com/magit/magit][magit]] is the best way to interact with Git
+- [[https://github.com/tarsius/hl-todo][hl-todo]] highlights TODOs in source code
+- [[https://github.com/Malabarba/smart-mode-line/][smart-mode-line]] makes the mode readable and useful
+- [[https://github.com/bbatsov/solarized-emacs][solarized-emacs]] is the color theme
+- [[https://github.com/jwiegley/use-package][use-package]] organizes =init.el= and manages packages
+- [[https://github.com/justbur/emacs-which-key][which-key]] makes keybindings actually discoverable
+- [[https://github.com/lewang/ws-butler][whitespace-butler]] unobtrusively cleans up whitespace
+
 * Emacs lisp programming notes
 
 ** Interactive Emacs Lisp Mode
@@ -557,14 +557,18 @@ Captures all non-terminals in Bison grammar.
 #+end_src
 
 * Bugs
+
 ** Buffer content invisible when tunneling X
-[[https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25474][GNU Bug Report #25474]]
+[[https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25474][
+GNU Bug Report #25474]]
 #+begin_src lisp
   (setq default-frame-alist
         (append default-frame-alist '((inhibit-double-buffering . t))))
 #+end_src
+
 ** =derived-mode-p= broken for aliased parents
-[[https://debbugs.gnu.org/cgi/bugreport.cgi?bug=32795][GNU Bug Report #32795]]
+[[https://debbugs.gnu.org/cgi/bugreport.cgi?bug=32795][
+GNU Bug Report #32795]]
 #+begin_src lisp
   (defun provided-mode-derived-p (mode &rest modes)
     "Non-nil if MODE is derived from one of MODES or their aliases.
@@ -578,10 +582,13 @@ Captures all non-terminals in Bison grammar.
            (setq mode (if (and parentfn (symbolp parentfn)) parentfn parent)))))
     mode)
 #+end_src
+
 ** Installing =org-mode= with =straight.el=
+
 There is a [[https://github.com/raxod502/straight.el#installing-org-with-straightel][known bug]] when installing =org-mode= with =straight.el=. I
 have not applied the workaround because the bug is pretty much just
 cosmetic.
+
 * Unfiled
 
 Everything in this section is yet to be rewritten and refiled.
