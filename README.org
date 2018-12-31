@@ -58,20 +58,22 @@ line, which is a nice shortcut.
 
 Movement by function (or =defun=), is similar to lines and sentences,
 but with control and meta. Move to the beginning is =C-M-a=, end is
-=C-M-e=, and mark is =C-M-h=. In some modes, like =Emacs-lisp=, you
-can also evaluate a =defun= with =C-M-x=.
+=C-M-e=, and mark is =C-M-h=. In some modes, like that for Emacs Lisp,
+you can also evaluate a =defun= with =C-M-x=.
 
 *** Buffers
 
-Buffer movement consists only of beginning on =M-<=, end on =M->=, and
-mark on =C-x h=. That last binding makes sense in the context of
-=kill-buffer= on =C-x k=, =save-some-buffers= on =C-x s=, and
-=switch-buffer= on =C-x b=.
+Buffer movement only has a commands: move to the beginning is bound to
+=M-<=, move to the end is =M->=, and mark the whole buffer is =C-x h=.
+
+That last binding makes sense in the context of =kill-buffer= on =C-x
+k=, =save-some-buffers= on =C-x s=, =switch-buffer= on =C-x b=, and
+=list-buffers= on =C-x C-b=. [[#buffers][See more.]]
 
 *** Searching
 
 Using =C-s= to incrementally search within a buffer must become second
-nature. This command is =isearch=. Using [[isearch]] to move within a
+nature. This command is =isearch=. Using [[#isearch][isearch]] to move within a
 buffer is probably the most powerful syntactic movement, as it is
 precise and easy to do. You can search in /reverse/ with =C-r=.
 
@@ -82,15 +84,15 @@ the matches with =C-s= and backward with =C-r=.
 
 You can cancel a search with =M-g=, which will drop you back to your
 starting point, or you can finish a search with =RET=. Finishing a
-search will push your starting location onto the mark ring and drop
+search will push your starting location onto the [[#mark-ring][mark ring]] and drop
 you at the current match. You can jump right back with =C-u C-SPC=,
-which pops the [[mark ring]].
+which pops the mark ring.
 
 *** Going places
 
 Two bindings that are conspicuously missing are =M-n= and =M-p=, but
-in fact these are usually specific to the mode. In a Magit status
-buffer, for example, they move between sections; in an [[Occur]] buffer
+in fact these are usually specific to the mode. In a [[#packages][Magit]] status
+buffer, for example, they move between sections; in an [[#occur][Occur]] buffer
 they move between occurrences; and in a compilation buffer they move
 between errors. They can be accessed from the original buffer with the
 prefix =M-g=, so =M-g M-n= will take you to the next occurrence
@@ -232,7 +234,10 @@ just view the last macro with =kmacro-view-macro=).
 
 See [[http://ergoemacs.org/emacs/emacs_macro_example.html][ErgoEmacs]].
 
-** Mark rings <<mark ring>>
+** Mark rings
+:PROPERTIES:
+:CUSTOM_ID: mark-ring
+:END:
 
 The mark rings are used for recording positions in buffers. The global
 mark ring records the latest mark for each buffer, and each buffer's
@@ -388,6 +393,9 @@ because this default binding is really annoying on Windows where
 =M-TAB= (or "alt-tab") switches windows.
 
 ** Arranging buffers
+:PROPERTIES:
+:CUSTOM_ID: buffers
+:END:
 
 Emacs is old, so old that it existed before windowing systems. Because
 of this, it does not use the now commonplace terminology of "tabs" and
@@ -398,7 +406,7 @@ to window panes in a physical frame). These windows display buffers
 =*Messages*= or =*Help*=), and they are similar to tabs in younger
 editors.
 
-Switch buffers =C-x b=, and list them with [[ibuffer]] on =C-x C-b=.
+Switch buffers with =C-x b=, and [[#ibuffer][list them]] with =C-x C-b=.
 
 Splitting a window horizontally is bound to =C-x 2=, and splitting
 vertically is =C-x 3=. Closing a window is =C-x 0=, and closing all
@@ -424,7 +432,10 @@ Finally, if you need to deal with frames, all the bindings are under
 others on =C-x 5 1=, and create on =C-x 5 2= (these should be familiar
 now as they are symmetric to the basic frame bindings).
 
-** Advanced searching <<isearch>>
+** Advanced searching
+:PROPERTIES:
+:CUSTOM_ID: isearch
+:END:
 
 As mentioned earlier, =isearch= is /incredible/ incremental searching.
 
@@ -445,11 +456,14 @@ will use your current search string as the input. This lets you figure
 out your exact match string and then immediately replace it.
 
 ** Occur
+:PROPERTIES:
+:CUSTOM_ID: occur
+:END:
 
 One of the neatest features of Emacs is the command =occur=, bound to
 =M-s o=. Essentially, it is =grep= within Emacs. Calling it alone
 prompts for a regular expression, but you can also call it during an
-[[isearch]]. It lists all the occurrences of the search in an overview
+[[#isearch][isearch]]. It lists all the occurrences of the search in an overview
 buffer (in fact, =list-matching-lines= is an alias for =occur=).
 Selecting an occurrence with =RET= jumps you to it in the original
 buffer (=C-o= does the same but leaves the point in the Occur buffer),
@@ -467,7 +481,10 @@ Occur is made even better by the ability to run it across multiple
 buffers, with the interactive =multi-occur=, or the filtered
 =multi-occur-in-matching-buffers=.
 
-** Listing buffers <<ibuffer>>
+** Listing buffers
+:PROPERTIES:
+:CUSTOM_ID: ibuffer
+:END:
 
 My configuration remaps =C-x C-b= to =ibuffer=, a much improved buffer
 listing. Frankly, I should use this more than I currently do, but
@@ -490,6 +507,9 @@ also start a query replace with =Q=, and setup a =multi-isearch= with
 - raise and surround
 
 * Notable packages
+:PROPERTIES:
+:CUSTOM_ID: packages
+:END:
 
 This is not an exhaustive list, just the ones I have found the most
 useful.
@@ -504,7 +524,7 @@ useful.
 - [[https://github.com/justbur/emacs-which-key][which-key]] makes keybindings actually discoverable
 - [[https://github.com/lewang/ws-butler][whitespace-butler]] unobtrusively cleans up whitespace
 
-* Emacs lisp programming notes
+* Emacs Lisp programming notes
 
 ** Interactive Emacs Lisp Mode
 
