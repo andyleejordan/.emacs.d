@@ -363,6 +363,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :delight
   :config (editorconfig-mode))
 
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Comment-Commands.html
+(use-feature newcomment
+  :custom (comment-fill-column 0))
+
 (use-package whitespace
   :commands (whitespace-mode))
 
