@@ -291,6 +291,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-feature dired
   :hook (dired-mode . dired-hide-details-mode)
+  :bind ([remap list-directory] . dired)
   :custom
   (dired-dwim-target t "Enable side-by-side `dired' buffer targets.")
   (dired-recursive-copies 'always "Better recursion in `dired'.")
