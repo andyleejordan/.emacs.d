@@ -321,11 +321,21 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
               ("r" . rg-project))
   :commands (rg-literal))
 
+;; Use the same binding as `occur-edit-mode' for other writable modes.
+;; Can always initiate with `e' and exit with `C-c C-c' or `C-x C-s'.
+;;
+;; I have no idea why these are otherwise scattered across `e', `C-x
+;; C-q', and `C-c C-p'.
+
+(use-feature replace
+  :bind (:map occur-edit-mode-map ("C-x C-s" . occur-cease-edit)))
+
 (use-feature wdired
+  :bind (:map dired-mode-map ("e" . dired-toggle-read-only))
   :custom (wdired-allow-to-change-permissions t))
 
 (use-package wgrep ; makes `rg' buffers writable too
-  :bind (:map grep-mode-map ("C-x C-q" . wgrep-change-to-wgrep-mode))
+  :bind (:map grep-mode-map ("e" . wgrep-change-to-wgrep-mode))
   :custom (wgrep-auto-save-buffer t))
 
 ;;; Formatting / Indentation / Whitespace:
