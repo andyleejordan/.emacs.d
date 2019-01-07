@@ -129,8 +129,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature subword
   :config (global-subword-mode))
 
-(use-package swiper
-  :bind (:map search-map ("s" . swiper-from-isearch)))
+(use-package swiper)
 
 (use-package windmove
   :config (windmove-default-keybindings))
@@ -169,9 +168,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
    ("C-c C-SPC"           . counsel-mark-ring)
    ("C-c l"               . counsel-locate)
    ("C-x C-r"             . counsel-recentf)
-   :map search-map
-   ("M-r"                 . counsel-rg)
-   ("g"                   . counsel-grep-or-swiper))
+   ("M-s M-c"             . counsel-grep-or-swiper) ; global binding
+   :map search-map ; `M-s'
+   ("M-c"                 . swiper-from-isearch) ; local binding
+   ("M-r"                 . counsel-rg))
   :custom
   (counsel-grep-base-command
    "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
@@ -316,10 +316,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (recentf-mode))
 
 (use-package rg ; `ripgrep'
-  :bind (:map search-map
-              ("r" . rg-project)
-              ("d" . rg-dwim))
-  :commands (rg-project rg-literal))
+  :bind (:map search-map ; `M-s'
+              ("s" . rg-dwim)
+              ("r" . rg-project))
+  :commands (rg-literal))
 
 (use-feature wdired
   :custom (wdired-allow-to-change-permissions t))
