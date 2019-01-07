@@ -681,6 +681,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (customize-set-variable 'gc-cons-threshold 20000000)
 
 ;; Fix annoyances.
+(defalias 'yes-or-no-p 'y-or-n-p)
 (customize-set-variable 'minibuffer-message-timeout 0.5)
 (customize-set-variable 'set-mark-command-repeat-pop t)
 (customize-set-variable 'delete-by-moving-to-trash t)
