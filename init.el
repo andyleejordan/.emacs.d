@@ -436,7 +436,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
               ("M-n" . flymake-goto-next-error)
               ("M-p" . flymake-goto-prev-error)))
 
-(use-package flymake-shell)
+(use-package flymake-shellcheck
+  :hook ((sh-mode . flymake-shellcheck-load)
+         (sh-mode . flymake-mode)))
 
 (use-package flycheck-tip) ; also for flymake
 
