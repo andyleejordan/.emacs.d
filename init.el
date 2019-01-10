@@ -755,8 +755,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package bazel-mode)
 
 (use-package caml
-  :straight (caml :files ("emacs/*.el")
-                  :host github :repo "ocaml/ocaml" :branch "trunk"))
+  :straight (:host github :repo "ocaml/caml-mode"))
 
 (use-package tuareg) ; for OCaml
 
