@@ -431,20 +431,14 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (customize-set-variable 'tab-always-indent 'complete)
 
 (use-package flymake
-  :hook
-  (emacs-lisp-mode . flymake-mode)
+  :hook (emacs-lisp-mode . flymake-mode)
   :bind (:map flymake-mode-map
               ("M-n" . flymake-goto-next-error)
               ("M-p" . flymake-goto-prev-error)))
 
 (use-package flymake-shell)
 
-;; also for flymake
-(use-package flycheck-tip)
-
-(use-package flycheck
-  :bind-keymap (("C-c !" . flycheck-mode-map))
-  :config (global-flycheck-mode))
+(use-package flycheck-tip) ; also for flymake
 
 (use-feature hippie-exp
   :bind (([remap dabbrev-expand] . hippie-expand))
@@ -461,7 +455,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;; options include irony, cquery, rtags, ggtags, and ycmd
 (use-package lsp-mode
   :commands (lsp)
-  :custom (lsp-prefer-flymake nil) ; use flycheck instead
   :custom-face
   (lsp-face-highlight-textual ((t (:background unspecified))))
   ;; Solarized Red
@@ -807,9 +800,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package rust-mode
   :custom (rust-format-on-save t))
-
-(use-package flycheck-rust
-  :hook (flycheck-mode . flycheck-rust-setup))
 
 (use-package ssh-config-mode)
 
