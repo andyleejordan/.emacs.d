@@ -759,6 +759,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package tuareg) ; for OCaml
 
+(use-package merlin
+  :hook ((tuareg-mode caml-mode) . merlin-mode))
+
+(use-package merlin-eldoc
+  :hook ((tuareg-mode caml-mode) . merlin-eldoc-setup))
+
 (use-package cmake-mode
   :bind (:map cmake-mode-map ([remap xref-find-definitions] . cmake-help-command)))
 
