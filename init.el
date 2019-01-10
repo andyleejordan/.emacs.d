@@ -431,14 +431,13 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (customize-set-variable 'tab-always-indent 'complete)
 
 (use-package flymake
-  :hook (emacs-lisp-mode . flymake-mode)
+  :hook ((emacs-lisp-mode sh-mode) . flymake-mode)
   :bind (:map flymake-mode-map
               ("M-n" . flymake-goto-next-error)
               ("M-p" . flymake-goto-prev-error)))
 
 (use-package flymake-shellcheck
-  :hook ((sh-mode . flymake-shellcheck-load)
-         (sh-mode . flymake-mode)))
+  :hook (sh-mode . flymake-shellcheck-load))
 
 (use-package flycheck-tip) ; also for flymake
 
@@ -456,6 +455,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;; options include irony, cquery, rtags, ggtags, and ycmd
 (use-package lsp-mode
+  ;; automatically sets up flymake
   :commands (lsp)
   :custom-face
   (lsp-face-highlight-textual ((t (:background unspecified))))
