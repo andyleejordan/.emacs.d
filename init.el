@@ -244,6 +244,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (magit-completing-read-function #'ivy-completing-read)
   (magit-save-repository-buffers 'dontask)
   (magit-published-branches nil "Disable confirmation.")
+  (magit-diff-refine-hunk 'all "Word diffs.")
   ;; TODO: Maybe `(magit-dwim-selection '((magit-branch-and-checkout nil t)))'
   :config
   (magit-define-popup-switch 'magit-push-popup ?u
