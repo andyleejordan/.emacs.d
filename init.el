@@ -256,6 +256,13 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (magit-define-popup-switch 'magit-push-popup ?u
     "Set upstream" "--set-upstream"))
 
+;; TODO: Figure out why the forge package doesn't bring its own
+;; dependencies.
+(use-package closql)
+(use-package ghub)
+(use-package forge
+  :after markdown-mode)
+
 (use-package git-commit
   :hook (git-commit-mode . (lambda () (set-fill-column 72)))
   :custom (git-commit-major-mode 'markdown-mode)
