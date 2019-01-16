@@ -223,6 +223,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (prescient-persist-mode))
 
 (use-package ivy-prescient
+  :defines ivy-prescient-sort-commands
   :config
   (add-args-to-list 'ivy-prescient-sort-commands
                     '(counsel-find-library
@@ -238,6 +239,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;;; Version Control:
 (use-package magit
+  :defines magit-file-mode-map
   :straight (magit :host github :repo "magit/magit" :branch "maint")
   :demand
   :bind (("C-x g"   . magit-status)
@@ -341,6 +343,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom (wdired-allow-to-change-permissions t))
 
 (use-package wgrep ; makes `rg' buffers writable too
+  :defines grep-mode-map
   :bind (:map grep-mode-map ("e" . wgrep-change-to-wgrep-mode))
   :custom (wgrep-auto-save-buffer t))
 
@@ -352,11 +355,13 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :hook (emacs-lisp-mode . aggressive-indent-mode))
 
 (use-package clang-format
+  :defines c-mode-base-map
   :after cc-mode
   :bind (:map c-mode-base-map ([remap indent-region] . clang-format-region)))
 
 (use-package dtrt-indent
   :delight
+  :defines dtrt-indent-hook-mapping-list
   :custom (dtrt-indent-min-quality 60)
   :config
   (add-args-to-list 'dtrt-indent-hook-mapping-list
@@ -472,6 +477,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :hook (lsp-mode . lsp-ui-mode))
 
 (use-package cquery
+  :defines cquery-enabled
   :hook (c-mode-common . (lambda ()
                            (or
                             (boundp 'cquery-enabled)
@@ -485,6 +491,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;; Use `omnisharp-install-server' to setup.
 (use-package omnisharp
+  :defines omnisharp-mode-map
   :hook (csharp-mode . omnisharp-mode)
   :custom (omnisharp-imenu-support t)
   :bind (:map omnisharp-mode-map
@@ -772,7 +779,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :hook ((tuareg-mode caml-mode) . merlin-eldoc-setup))
 
 (use-package cmake-mode
-  :bind (:map cmake-mode-map ([remap xref-find-definitions] . cmake-help-command)))
+  :defines cmake-mode-map
+  :bind (:map cmake-mode-map
+              ([remap xref-find-definitions] . cmake-help-command)))
 
 (use-package csharp-mode
   :custom (csharp-want-imenu nil))
