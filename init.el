@@ -40,22 +40,26 @@
    '(gnutls-min-prime-bits 3072)))
 
 ;;; Package System:
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
+(eval-when-compile
+  (let ((bootstrap-file
+         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+        (bootstrap-version 5))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage)))
 
 (customize-set-variable 'straight-cache-autoloads t)
 (customize-set-variable 'straight-use-package-by-default t)
-(straight-use-package 'use-package)
-(eval-when-compile (require 'use-package))
+(add-to-list 'straight-check-for-modifications 'check-on-save)
+
+(eval-when-compile
+  (straight-use-package 'use-package)
+  (require 'use-package))
 
 (use-package benchmark-init
   :demand
@@ -430,7 +434,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;;; Completion / Syntax / Tags:
 (customize-set-variable 'tab-always-indent 'complete)
 
-(use-package flymake
+(use-feature flymake
   :hook ((emacs-lisp-mode sh-mode) . flymake-mode)
   :bind (:map flymake-mode-map
               ("M-n" . flymake-goto-next-error)
