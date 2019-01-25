@@ -753,8 +753,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (require-final-newline t)
   (backup-by-copying t)
   (delete-old-versions t)
-  (kept-new-versions 8)
-  (kept-old-versions 4)
   (version-control t)
   (auto-save-file-name-transforms
    `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
