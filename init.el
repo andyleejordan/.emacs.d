@@ -122,7 +122,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (bind-key "C-M-<backspace>" #'delete-pair)
 (bind-key "C-M-`" #'raise-sexp)
 
-(use-package iedit)
+(use-package iedit) ; TODO: maybe remove
 
 (use-package imenu-anywhere
   :bind (("C-c i" . ivy-imenu-anywhere)))
@@ -389,7 +389,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (ws-butler-global-mode))
 
 ;;; Editing:
-;; TODO: Maybe add `iedit'
 (customize-set-variable 'truncate-lines t)
 
 (use-feature autorevert
