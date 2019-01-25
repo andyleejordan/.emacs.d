@@ -277,10 +277,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
          ("C-x v n" . git-gutter:next-hunk)
          ("C-x v p" . git-gutter:previous-hunk)))
 
-(use-feature vc-hooks
-  ;; Replaced by Magit. Disabled for performance.
-  :custom (vc-handled-backends nil))
-
 ;;; Buffers:
 (use-package buffer-move
   :bind (("C-S-<up>"    . buf-move-up)
