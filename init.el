@@ -729,6 +729,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (dolist (mode '(compilation-mode-hook text-mode-hook help-mode))
     (add-hook mode 'turn-on-visual-line-mode)))
 
+(use-package super-save
+  :delight
+  :config (super-save-mode))
+
 (use-feature tramp
   :defer
   :custom
@@ -750,8 +754,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (backup-by-copying t)
   (delete-old-versions t)
   (version-control t)
-  (auto-save-file-name-transforms
-   `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+  (auto-save-default nil)
   (large-file-warning-threshold (* 20 1000 1000) "20 megabytes.")
   :config
   (add-to-list
