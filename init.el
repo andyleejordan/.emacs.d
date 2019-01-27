@@ -55,7 +55,6 @@
 
 (customize-set-variable 'straight-cache-autoloads t)
 (customize-set-variable 'straight-use-package-by-default t)
-(add-to-list 'straight-check-for-modifications 'check-on-save)
 
 (eval-when-compile
   (straight-use-package 'use-package)
@@ -63,6 +62,7 @@
 
 (use-package benchmark-init
   :demand
+  :functions benchmark-init/activate
   :hook (after-init . benchmark-init/deactivate)
   :config (benchmark-init/activate))
 
@@ -161,6 +161,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package counsel
   :delight
   :demand
+  :functions counsel-mode
   :config (counsel-mode)
   :bind
   ;; Note that `counsel-mode' rebinds most commands.
@@ -190,6 +191,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package ivy
   :delight
   :demand
+  :functions ivy-mode
   :config (ivy-mode)
   :bind (("C-c M-x" . ivy-resume))
   :custom
@@ -220,10 +222,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (minibuffer-electric-default-mode))
 
 (use-package prescient
+  :functions prescient-persist-mode
   :config (prescient-persist-mode))
 
 (use-package ivy-prescient
   :defines ivy-prescient-sort-commands
+  :functions ivy-prescient-mode
   :config
   (add-args-to-list 'ivy-prescient-sort-commands
                     '(counsel-find-library
@@ -235,11 +239,13 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package which-key
   :delight
+  :functions which-key-mode
   :config (which-key-mode))
 
 ;;; Version Control:
 (use-package magit
   :defines magit-file-mode-map
+  :functions ivy-completing-read magit-define-popup-switch
   :straight (magit :host github :repo "magit/magit" :branch "master")
   :demand
   :bind (("C-x g"   . magit-status)
@@ -264,6 +270,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :after markdown-mode)
 
 (use-package git-commit
+  :functions (set-fill-column global-git-commit-mode)
   :hook (git-commit-mode . (lambda () (set-fill-column 72)))
   :custom (git-commit-major-mode 'markdown-mode)
   :config (global-git-commit-mode))
@@ -288,6 +295,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :bind (([remap list-buffers] . ibuffer)))
 
 (use-package ibuffer-vc
+  :functions (ibuffer-do-sort-by-alphabetic ibuffer-vc-set-filter-groups-by-vc-root)
   :hook (ibuffer . (lambda ()
                      (ibuffer-vc-set-filter-groups-by-vc-root)
                      (unless (eq ibuffer-sorting-mode 'alphabetic)
@@ -317,6 +325,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom (ffip-use-rust-fd (executable-find "fd")))
 
 (use-feature recentf
+  :defines recentf-exclude
   :custom
   (recentf-max-saved-items 256)
   (recentf-auto-cleanup 'never "Disabled for performance with Tramp.")
@@ -364,6 +373,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package dtrt-indent
   :delight
+  :functions dtrt-indent-global-mode
   :defines dtrt-indent-hook-mapping-list
   :custom (dtrt-indent-min-quality 60)
   :config
@@ -374,6 +384,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package editorconfig
   :delight
+  :functions editorconfig-mode
   :config (editorconfig-mode))
 
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Comment-Commands.html
@@ -385,6 +396,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package ws-butler
   :delight
+  :functions ws-butler-global-mode
   :custom (ws-butler-keep-whitespace-before-point nil)
   :config (ws-butler-global-mode))
 
@@ -402,13 +414,14 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (electric-pair-mode))
 
 (use-package saveplace
-  :config
-  (or (call-if-fbound #'save-place-mode)
-      (call-if-fbound #'save-place)))
+  :functions (save-place-mode save-place)
+  :config (or (call-if-fbound #'save-place-mode)
+              (call-if-fbound #'save-place)))
 
 (use-package whole-line-or-region
   ;; This replaces `kill-whole-line' on <C-S-backspace> with `C-w'
   :delight whole-line-or-region-local-mode
+  :functions whole-line-or-region-global-mode
   :config (whole-line-or-region-global-mode))
 
 (use-package unfill
@@ -478,6 +491,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :hook (lsp-mode . lsp-ui-mode))
 
 (use-package cquery
+  :functions no-littering-expand-var-file-name
   :defines cquery-enabled
   :hook (c-mode-common . (lambda ()
                            (or
@@ -503,10 +517,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package smart-tab
   :delight
+  :functions global-smart-tab-mode
   :custom (smart-tab-using-hippie-expand t)
   :config (global-smart-tab-mode))
 
 (use-feature xref
+  :functions ivy-xref-show-xrefs
   :custom (xref-show-xrefs-function #'ivy-xref-show-xrefs)
   :config (use-package ivy-xref))
 
@@ -549,9 +565,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package elmacro
   :delight
+  :functions elmacro-mode
   :config (elmacro-mode))
 
 (use-package eshell
+  :functions eshell/pwd
   :commands (eshell)
   :bind (("C-c e" . eshell))
   :custom
@@ -585,6 +603,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom (ielm-prompt "> "))
 
 (use-package keyfreq
+  :functions (keyfreq-mode keyfreq-autosave-mode)
   :config
   (keyfreq-mode)
   (keyfreq-autosave-mode))
@@ -634,6 +653,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (add-to-list 'default-frame-alist '(inhibit-double-buffering . t)))
 
 (use-package fortune-cookie
+  :functions fortune-cookie-mode
   :custom
   (fortune-cookie-fortune-string
    "History repeats itself: the first time as tragedy, the second time as farce.")
@@ -642,6 +662,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (fortune-cookie-mode))
 
 (use-package hl-todo
+  :functions global-hl-todo-mode
   :config (global-hl-todo-mode))
 
 (use-feature paren
@@ -654,6 +675,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package smart-mode-line
+  :functions sml/setup
   :custom
   (sml/no-confirm-load-theme t)
   (sml/theme 'respectful)
@@ -709,6 +731,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;; Simple is Emacs's built-in miscellaneous package.
 (use-feature simple
+  :functions column-number-mode
   :bind (([remap just-one-space] . cycle-spacing)
          ([remap upcase-word] . upcase-dwim)
          ([remap downcase-word] . downcase-dwim)
@@ -743,6 +766,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
     "-o ControlPersist=yes")))
 
 (use-feature files
+  :functions no-littering-expand-var-file-name
   :custom
   (find-file-visit-truename t)
   (confirm-kill-emacs 'y-or-n-p)
@@ -803,6 +827,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package json-mode)
 
 (use-package markdown-mode
+  :functions set-fill-column
   :hook
   (markdown-mode . turn-on-auto-fill)
   (markdown-mode . (lambda () (set-fill-column 80)))
