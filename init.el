@@ -456,6 +456,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;;; Completion / Syntax / Tags:
 (customize-set-variable 'tab-always-indent 'complete)
 
+(use-package dumb-jump
+  :bind (("M-g o" . dumb-jump-go-other-window)
+         ("M-g j" . dumb-jump-go))
+  :custom (dumb-jump-selector 'ivy))
+
 (use-feature flymake
   :hook ((emacs-lisp-mode sh-mode) . flymake-mode)
   :bind (:map flymake-mode-map
