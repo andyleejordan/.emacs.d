@@ -560,6 +560,8 @@ See [[https://masteringemacs.org/article/evaluating-elisp-emacs][Mastering Emacs
 - =nth= and =elt= for indexing a list
 - =cond= is better than =if= / =else=
 - =let= and =let*= for local variables
+- =symbol-function= to find an alias
+- =where-is-internal= to get bindings
 - =save-excursion= to restore point
 - =replace-regexp-in-string=
 - =shell-command-to-string=
