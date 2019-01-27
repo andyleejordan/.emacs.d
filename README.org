@@ -516,7 +516,7 @@ useful.
 
 - [[https://github.com/jscheid/dtrt-indent][dtrt-indent]] intelligently guesses indentation rules
 - [[https://github.com/abo-abo/swiper][ivy and counsel]] for enhanced command completions
-- [[https://github.com/magit/magit][magit]] is the best way to interact with Git
+- [[https://github.com/magit/magit][magit]] is the best way to interact with Git, see [[https://emacsair.me/2017/09/01/magit-walk-through/][the walk-through]]
 - [[https://github.com/tarsius/hl-todo][hl-todo]] highlights TODOs in source code
 - [[https://github.com/Malabarba/smart-mode-line/][smart-mode-line]] makes the mode readable and useful
 - [[https://github.com/bbatsov/solarized-emacs][solarized-emacs]] is the color theme
