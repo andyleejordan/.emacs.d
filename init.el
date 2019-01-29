@@ -796,6 +796,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package tuareg) ; for OCaml
 
 (use-package merlin
+  :defines merlin-mode-map
+  :bind (:map merlin-mode-map
+              ;; TODO: Maybe map phrases to paragraphs.
+              ([remap xref-find-definitions] . merlin-locate)
+              ([remap xref-pop-marker-stack] . merlin-pop-stack))
   :hook ((tuareg-mode caml-mode) . merlin-mode))
 
 (use-package merlin-eldoc
