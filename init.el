@@ -174,6 +174,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (defalias 'wsc  #'whitespace-cleanup)
 (defalias 'wsm  #'whitespace-mode)
 
+(use-package amx
+  :custom (amx-history-length history-length))
+
 (use-package counsel
   :delight
   :demand
@@ -201,6 +204,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature eldoc
   :delight)
 
+(use-package flx)
+
 (use-package hydra)
 
 (use-package ivy
@@ -210,6 +215,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :bind (("C-c M-x" . ivy-resume))
   :custom
   (ivy-height 8)
+  (ivy-re-builders-alist
+   '((counsel-M-x       . ivy--regex-fuzzy)
+     (counsel-git       . ivy--regex-ignore-order)
+     (ivy-switch-buffer . ivy--regex-ignore-order))
+   "Use ido-like for M-x and buffers, ivy-like elsewhere.")
+  (ivy-flx-limit 2000 "Use more flx.")
   (ivy-use-virtual-buffers t "Add recentf to buffers.")
   (ivy-virtual-abbreviate 'abbreviate "And show with path.")
   (ivy-initial-inputs-alist nil "Don't start with '^'.")
@@ -235,19 +246,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom (minibuffer-eldef-shorten-default t)
   :config (minibuffer-electric-default-mode))
 
-(use-package prescient
-  :config (prescient-persist-mode))
-
-(use-package ivy-prescient
-  :defines ivy-prescient-sort-commands
-  :config
-  (add-args-to-list 'ivy-prescient-sort-commands
-                    '(counsel-find-library
-                      counsel-git
-                      counsel-imenu
-                      counsel-recentf
-                      counsel-bookmark))
-  (ivy-prescient-mode))
 (use-feature savehist
   :config (savehist-mode))
 
