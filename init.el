@@ -248,6 +248,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
                       counsel-recentf
                       counsel-bookmark))
   (ivy-prescient-mode))
+(use-feature savehist
+  :config (savehist-mode))
 
 (use-package which-key
   :delight
