@@ -508,7 +508,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
                               (lsp)))))
   :custom
   (cquery-executable
-   (no-littering-expand-var-file-name "cquery/build/release/bin/cquery"))
+   (no-littering-expand-var-file-name "cquery/build/cquery"))
   (cquery-extra-init-params '(:completion (:detailedLabel t))))
 
 ;; Use `omnisharp-install-server' to setup.
