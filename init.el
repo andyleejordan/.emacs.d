@@ -806,6 +806,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package merlin-eldoc
   :hook ((tuareg-mode caml-mode) . merlin-eldoc-setup))
 
+(use-package ocp-indent)
+
 (use-package cmake-mode
   :defines cmake-mode-map
   :bind (:map cmake-mode-map
