@@ -118,6 +118,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :if (eq system-type 'windows-nt))
 
 ;; Experimental:
+(use-feature compile-commands
+  :load-path "lisp")
+
 (use-feature edl-mode
   :load-path "lisp")
 
