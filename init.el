@@ -117,6 +117,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :load-path "lisp"
   :if (eq system-type 'windows-nt))
 
+;; Experimental:
+(use-feature edl-mode
+  :load-path "lisp")
+
 ;;; Cursor and Mark Movement:
 (bind-key "M-o" #'other-window)
 (bind-key "C-M-<backspace>" #'delete-pair)
