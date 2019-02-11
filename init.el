@@ -222,12 +222,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :bind (("C-c M-x" . ivy-resume))
   :custom
   (ivy-height 8)
-  (ivy-re-builders-alist
-   '((counsel-M-x       . ivy--regex-fuzzy)
-     (counsel-git       . ivy--regex-ignore-order)
-     (ivy-switch-buffer . ivy--regex-ignore-order))
-   "Use ido-like for M-x and buffers, ivy-like elsewhere.")
-  (ivy-flx-limit 2000 "Use more flx.")
   (ivy-use-virtual-buffers t "Add recentf to buffers.")
   (ivy-virtual-abbreviate 'abbreviate "And show with path.")
   (ivy-initial-inputs-alist nil "Don't start with '^'.")
