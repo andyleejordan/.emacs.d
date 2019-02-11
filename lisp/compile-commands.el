@@ -17,18 +17,15 @@ With ARG, clean first. CMD is one of `configure', `compile', or `test'."
   (when (or arg (eq cmd 'clean)) (delete-directory dir t))
   (make-directory dir t)
   (when (eq cmd 'clean) (return))
-  (let ((compile-command
-         ;; TODO: Use a join function join these with ` && ' instead
-         ;; of this terrible `concat'.
+  (let ((default-directory dir) ; Using this instead of `cd' works with Tramp.
+        (compile-command
          (combine-and-quote-strings
-          (remove nil `(,(concat "cd " (abbreviate-file-name dir)) ; TODO: Make this work with Tramp.
-                        ,(when (member cmd (list 'configure 'compile 'test))
-                           (let ((root (cdr (project-current)))
-                                 ;; TODO: Check for SGX support.
-                                 (sgx nil))
+          (remove nil `(,(when (member cmd (list 'configure 'compile 'test))
+                           (let ((root (file-relative-name (cdr (project-current)) dir))
+                                 (sgx nil)) ;; TODO: Check for SGX support.
                              (format "cmake %s -GNinja -DUSE_LIBSGX=%s" root (if sgx "ON" "OFF"))))
                         ,(when (member cmd (list 'compile 'test)) "ninja -v")
-                        ,(when (eq cmd 'test)
+                        ,(when (eq cmd 'test) ; TODO: `defvar' a list of test expressions.
                            (let ((re (completing-read "Regex? " (list "^edger8r_" "signedness"))))
                              (concat "ctest -V -R " re)))))
           " && ")))
