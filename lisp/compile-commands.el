@@ -22,12 +22,12 @@ With ARG, clean first. CMD is one of `configure', `compile', or `test'."
          (combine-and-quote-strings
           (remove nil `(,(when (member cmd (list 'configure 'compile 'test))
                            (let ((root (file-relative-name (cdr (project-current)) dir))
-                                 (sgx nil)) ;; TODO: Check for SGX support.
+                                 (sgx (file-exists-p (concat (file-remote-p default-directory) "/dev/sgx"))))
                              (format "cmake %s -GNinja -DUSE_LIBSGX=%s" root (if sgx "ON" "OFF"))))
                         ,(when (member cmd (list 'compile 'test)) "ninja -v")
                         ,(when (eq cmd 'test) ; TODO: `defvar' a list of test expressions.
                            (let ((re (completing-read "Regex? " (list "^edger8r_" "signedness"))))
-                             (concat "ctest -V -R " re)))))
+                             (concat "ctest -V -R " re))))) ; TODO: Set OE_SIMULATION based on `sgx'
           " && ")))
     (call-interactively 'compile)))
 
