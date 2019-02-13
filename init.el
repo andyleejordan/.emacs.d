@@ -727,6 +727,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;; Save Emacs sessions
 (use-feature desktop
+  :custom (desktop-restore-frames nil)
   :config (desktop-save-mode))
 
 ;; Simple is Emacs's built-in miscellaneous package.
