@@ -410,6 +410,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-feature autorevert
   :delight auto-revert-mode
+  :custom (auto-revert-remote-files t)
   :config (global-auto-revert-mode))
 
 (use-feature delsel
