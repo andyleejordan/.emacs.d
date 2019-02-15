@@ -459,9 +459,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (customize-set-variable 'tab-always-indent 'complete)
 
 (use-package dumb-jump
-  :bind (("M-g M-." . dumb-jump-go)
-         ("M-g M-," . dumb-jump-back))
-  :custom (dumb-jump-selector 'ivy))
+  :bind (("C-c M-." . dumb-jump-go)
+         ("C-c M-," . dumb-jump-back))
+  :custom
+  (dumb-jump-selector 'ivy))
 
 (use-feature flymake
   :hook ((emacs-lisp-mode sh-mode) . flymake-mode)
