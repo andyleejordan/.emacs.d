@@ -720,6 +720,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (load-theme 'tango-dark t))
 
 ;;; Internal Emacs Configuration:
+(customize-set-variable 'cursor-type 'bar)
 (customize-set-variable 'gc-cons-threshold 20000000)
 
 ;; Fix annoyances.
