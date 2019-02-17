@@ -11,6 +11,7 @@
   "Build Open Enclave in DIR.
 With ARG, clean first. CMD is one of `configure', `compile', or `test'."
   (interactive (list current-prefix-arg
+                     ;; TODO: Add GDB support.
                      (intern (completing-read "Command? " (list 'clean 'configure 'compile 'test) nil t))
                      (let ((root (expand-file-name "build" (cdr (project-current)))))
                        (expand-file-name (read-directory-name "Build directory? " root) root))))
@@ -25,7 +26,8 @@ With ARG, clean first. CMD is one of `configure', `compile', or `test'."
                                    (sgx (file-exists-p (concat (file-remote-p default-directory) "/dev/sgx"))))
                                (format "cmake %s -GNinja -DUSE_LIBSGX=%s" root (if sgx "ON" "OFF"))))
                           ,(when (member cmd (list 'compile 'test)) "ninja -v")
-                          ,(when (eq cmd 'test) ; TODO: `defvar' a list of test expressions.
+                          ,(when (eq cmd 'test)
+                             ;; TODO: `defvar' a list of test expressions. Add history. Allow no regex.
                              (let ((re (completing-read "Regex? " (list "^edger8r_" "signedness"))))
                                (concat "ctest -V -R " re))))) ; TODO: Set OE_SIMULATION based on `sgx'
             " && ")))
