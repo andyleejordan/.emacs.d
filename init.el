@@ -61,7 +61,8 @@
   (straight-use-package 'use-package)
   (require 'use-package))
 
-(use-package benchmark-init
+(use-package benchmark-init ; TODO: Delete?
+  :disabled
   :demand
   :hook (after-init . benchmark-init/deactivate)
   :config (benchmark-init/activate))
@@ -129,7 +130,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (bind-key "C-M-<backspace>" #'delete-pair)
 (bind-key "C-M-`" #'raise-sexp)
 
-(use-package iedit) ; TODO: maybe remove
+(use-package iedit ; TODO: Delete?
+  :disabled)
 
 (use-package imenu-anywhere
   :bind (("C-c i" . ivy-imenu-anywhere)))
@@ -211,7 +213,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature eldoc
   :delight)
 
-(use-package flx)
+(use-package flx
+  :disabled) ; TODO: Delete?
 
 (use-package hydra)
 
@@ -295,7 +298,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package ibuffer
   :bind (([remap list-buffers] . ibuffer)))
 
-(use-package ibuffer-vc
+(use-package ibuffer-vc ; TODO: Delete?
+  :disabled
   :hook (ibuffer . (lambda ()
                      (ibuffer-vc-set-filter-groups-by-vc-root)
                      (unless (eq ibuffer-sorting-mode 'alphabetic)
@@ -320,7 +324,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :bind (("C-x C-j"   . dired-jump)
          ("C-x 4 C-j" . dired-jump-other-window)))
 
-(use-package find-file-in-project ; `ffip'
+(use-package find-file-in-project ; `ffip' TODO: Delete?
+  :disabled
   :bind (("C-c C-f" . find-file-in-project-by-selected))
   :custom (ffip-use-rust-fd (executable-find "fd")))
 
@@ -417,7 +422,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (or (call-if-fbound #'save-place-mode)
       (call-if-fbound #'save-place)))
 
-(use-package whole-line-or-region
+(use-package whole-line-or-region ; TODO: Delete?
+  :disabled
   ;; This replaces `kill-whole-line' on <C-S-backspace> with `C-w'
   :delight whole-line-or-region-local-mode
   :config (whole-line-or-region-global-mode))
@@ -605,7 +611,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :commands (ielm)
   :custom (ielm-prompt "> "))
 
-(use-package keyfreq
+(use-package keyfreq ; TODO: Delete?
+  :disabled
   :config
   (keyfreq-mode)
   (keyfreq-autosave-mode))
