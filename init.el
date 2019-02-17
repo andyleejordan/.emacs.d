@@ -566,7 +566,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :bind (("C-c c" . compile))
   :custom
   (compilation-ask-about-save nil)
-  (compilation-scroll-output 'first-error)
+  (compilation-scroll-output t)
   (compilation-always-kill t))
 
 (use-package default-text-scale)
