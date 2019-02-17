@@ -663,6 +663,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (when (getenv "SSH_CLIENT")
   (add-to-list 'default-frame-alist '(inhibit-double-buffering . t)))
 
+(use-feature frame
+  :custom (blink-cursor-mode nil))
+
 (use-package fortune-cookie
   :custom
   (fortune-cookie-fortune-string
