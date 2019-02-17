@@ -574,7 +574,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package demangle-mode
   :commands (demangle-mode))
 
-(use-package elmacro
+(use-package elmacro ; show macros as Emacs Lisp
   :delight
   :config (elmacro-mode))
 
@@ -637,7 +637,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package org-download
   :commands (org-download-yank))
 
-(use-package rainbow-mode
+(use-package rainbow-mode ; highlight color codes like "#aabbcc"
   :commands (rainbow-mode))
 
 (use-feature re-builder
