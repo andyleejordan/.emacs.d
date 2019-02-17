@@ -285,15 +285,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom (git-commit-major-mode 'markdown-mode)
   :config (global-git-commit-mode))
 
-(use-package git-gutter
-  :disabled
-  :delight
-  :demand
-  :config (global-git-gutter-mode)
-  :bind (("C-x v s" . git-gutter:stage-hunk)
-         ("C-x v n" . git-gutter:next-hunk)
-         ("C-x v p" . git-gutter:previous-hunk)))
-
 ;;; Buffers:
 (use-package buffer-move
   :bind (("C-S-<up>"    . buf-move-up)
@@ -694,12 +685,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (sml/shorten-modes nil)
   (sml/replacer-regexp-list nil)
   :config (sml/setup))
-
-(use-package smooth-scrolling
-  :disabled
-  :delight
-  :custom (smooth-scroll-margin 2)
-  :config (smooth-scrolling-mode))
 
 (use-package solarized-theme
   :if (display-graphic-p)
