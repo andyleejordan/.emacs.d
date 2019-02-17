@@ -460,6 +460,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;;; Completion / Syntax / Tags:
 (customize-set-variable 'tab-always-indent 'complete)
 
+;; Treat backquotes as pairs in text mode.
+(modify-syntax-entry ?\` "$`" text-mode-syntax-table)
+
 (use-package dumb-jump
   :bind (("C-c M-." . dumb-jump-go)
          ("C-c M-," . dumb-jump-back))
@@ -838,6 +841,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package json-mode)
 
 (use-package markdown-mode
+  :defines markdown-mode-syntax-table
   :hook
   (markdown-mode . turn-on-auto-fill)
   (markdown-mode . (lambda () (set-fill-column 80)))
