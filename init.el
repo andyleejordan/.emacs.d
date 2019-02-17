@@ -144,10 +144,13 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package swiper)
 
-(use-package windmove
-  :config (windmove-default-keybindings))
+;;; Windows / Frames and the buffers in them
+(use-package buffer-move
+  :bind (("C-S-<up>"    . buf-move-up)
+         ("C-S-<down>"  . buf-move-down)
+         ("C-S-<left>"  . buf-move-left)
+         ("C-S-<right>" . buf-move-right)))
 
-;;; Windows / Frames
 (use-package transpose-frame
   :commands (transpose-frame-get-arrangement
              transpose-frame-set-arrangement
@@ -159,9 +162,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
              rotate-frame-anticlockwise)
   :bind (:map ctl-x-4-map ("t" . transpose-frame)))
 
-(use-feature winner
-  ;; Enables undo/redo of windows configurations with
-  ;; `C-c <left/right>'.
+(use-package windmove ; `S-<left,right,up,down>' to move windows
+  :config (windmove-default-keybindings))
+
+(use-feature winner ; `C-c <left,right>' to undo/redo windows
   :config (winner-mode))
 
 ;;; Minibuffer Interface:
@@ -289,12 +293,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (global-git-commit-mode))
 
 ;;; Buffers:
-(use-package buffer-move
-  :bind (("C-S-<up>"    . buf-move-up)
-         ("C-S-<down>"  . buf-move-down)
-         ("C-S-<left>"  . buf-move-left)
-         ("C-S-<right>" . buf-move-right)))
-
 (use-package ibuffer
   :bind (([remap list-buffers] . ibuffer)))
 
