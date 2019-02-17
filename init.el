@@ -676,9 +676,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (global-hl-todo-mode))
 
 (use-feature paren
-  :custom
-  (show-paren-delay 0)
-  (show-paren-style 'expression)
+  :custom (show-paren-delay 0)
   :config (show-paren-mode))
 
 (use-package rainbow-delimiters
