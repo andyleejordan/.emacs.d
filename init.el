@@ -271,14 +271,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
          :map magit-file-mode-map
          ("C-c g"   . magit-file-popup))
   :custom
+  ;; TODO: Maybe `(magit-dwim-selection '((magit-branch-and-checkout nil t)))'
   (magit-completing-read-function #'ivy-completing-read)
   (magit-save-repository-buffers 'dontask)
   (magit-published-branches nil "Disable confirmation.")
-  (magit-diff-refine-hunk 'all "Word diffs.")
-  ;; TODO: Maybe `(magit-dwim-selection '((magit-branch-and-checkout nil t)))'
-  :config
-  (magit-define-popup-switch 'magit-push-popup ?u
-    "Set upstream" "--set-upstream"))
+  (magit-diff-refine-hunk 'all "Word diffs."))
 
 ;; TODO: Figure out why the forge package doesn't bring its own
 ;; dependencies.
