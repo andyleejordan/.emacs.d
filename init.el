@@ -657,7 +657,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (add-to-list 'default-frame-alist '(inhibit-double-buffering . t)))
 
 (use-feature frame
-  :custom (blink-cursor-mode nil))
+  :custom (blink-cursor-blinks 0))
 
 (use-package fortune-cookie
   :custom
@@ -708,7 +708,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (load-theme 'tango-dark t))
 
 ;;; Internal Emacs Configuration:
-(customize-set-variable 'cursor-type 'bar)
 (customize-set-variable 'gc-cons-threshold 20000000)
 
 ;; Fix annoyances.
