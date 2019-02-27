@@ -61,12 +61,6 @@
   (straight-use-package 'use-package)
   (require 'use-package))
 
-(use-package benchmark-init ; TODO: Delete?
-  :disabled
-  :demand
-  :hook (after-init . benchmark-init/deactivate)
-  :config (benchmark-init/activate))
-
 (use-package delight)
 (use-package bind-key)
 (use-package dash)
@@ -129,9 +123,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (bind-key "M-o" #'other-window)
 (bind-key "C-M-<backspace>" #'delete-pair)
 (bind-key "C-M-`" #'raise-sexp)
-
-(use-package iedit ; TODO: Delete?
-  :disabled)
 
 (use-package imenu-anywhere
   :bind (("C-c i" . ivy-imenu-anywhere)))
@@ -217,9 +208,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature eldoc
   :delight)
 
-(use-package flx
-  :disabled) ; TODO: Delete?
-
 (use-package hydra)
 
 (use-package ivy
@@ -293,13 +281,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package ibuffer
   :bind (([remap list-buffers] . ibuffer)))
 
-(use-package ibuffer-vc ; TODO: Delete?
-  :disabled
-  :hook (ibuffer . (lambda ()
-                     (ibuffer-vc-set-filter-groups-by-vc-root)
-                     (unless (eq ibuffer-sorting-mode 'alphabetic)
-                       (ibuffer-do-sort-by-alphabetic)))))
-
 (use-feature uniquify
   :custom (uniquify-buffer-name-style 'forward))
 
@@ -325,11 +306,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature dired-x
   :bind (("C-x C-j"   . dired-jump)
          ("C-x 4 C-j" . dired-jump-other-window)))
-
-(use-package find-file-in-project ; `ffip' TODO: Delete?
-  :disabled
-  :bind (("C-c C-f" . find-file-in-project-by-selected))
-  :custom (ffip-use-rust-fd (executable-find "fd")))
 
 (use-feature recentf
   :custom
@@ -423,12 +399,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config
   (or (call-if-fbound #'save-place-mode)
       (call-if-fbound #'save-place)))
-
-(use-package whole-line-or-region ; TODO: Delete?
-  :disabled
-  ;; This replaces `kill-whole-line' on <C-S-backspace> with `C-w'
-  :delight whole-line-or-region-local-mode
-  :config (whole-line-or-region-global-mode))
 
 (use-package unfill
   :bind (([remap fill-paragraph] . unfill-toggle)))
@@ -612,12 +582,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package ielm
   :commands (ielm)
   :custom (ielm-prompt "> "))
-
-(use-package keyfreq ; TODO: Delete?
-  :disabled
-  :config
-  (keyfreq-mode)
-  (keyfreq-autosave-mode))
 
 (use-package org
   :straight org-plus-contrib
