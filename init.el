@@ -311,10 +311,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom
   (recentf-max-saved-items 256)
   (recentf-auto-cleanup 'never "Disabled for performance with Tramp.")
-  :config (add-args-to-list 'recentf-exclude
-                            '(;; exclude files in paths with symlinks
-                              ;; (not just files which are symlinks)
-                              (lambda (f) (not (string= (file-truename f) f)))))
+  :config (add-to-list 'recentf-exclude
+                       (lambda (f) (not (string= (file-truename f) f))))
   (recentf-mode))
 
 (use-package rg ; `ripgrep'
@@ -719,7 +717,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package super-save
   :delight
-  :config (super-save-mode))
+  :defines super-save-triggers
+  :config
+  (add-args-to-list 'super-save-triggers
+                    '(magit-status dired-jump ivy-switch-buffer))
+  (super-save-mode))
 
 (use-feature tramp
   :defer
