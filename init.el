@@ -303,6 +303,13 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature uniquify
   :custom (uniquify-buffer-name-style 'forward))
 
+(use-feature vc-hooks
+  :custom
+  (vc-ignore-dir-regexp
+   (format "\\(%s\\)\\|\\(%s\\)"
+           vc-ignore-dir-regexp
+           tramp-file-name-regexp)))
+
 ;;; File Navigation:
 (use-feature dired-loaddefs)
 
