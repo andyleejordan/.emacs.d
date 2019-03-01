@@ -14,9 +14,6 @@
   (add-to-list 'exec-path-from-shell-variables "SSH_AUTH_SOCK")
   (exec-path-from-shell-initialize))
 
-(if (display-graphic-p)
-    (set-face-attribute 'default nil :font "Hack"))
-
 ;; set for `shell-command-to-string' on remote systems
 (setenv "TTY" "/dev/ttys001")
 
