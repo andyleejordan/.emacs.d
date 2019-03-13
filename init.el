@@ -729,7 +729,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :defines super-save-triggers
   :config
   (add-args-to-list 'super-save-triggers
-                    '(magit-status dired-jump ivy-switch-buffer))
+                    '(magit-refresh
+                      magit-status
+                      counsel-find-file
+                      dired-jump
+                      ivy-switch-buffer))
   (super-save-mode))
 
 (use-feature tramp
