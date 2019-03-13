@@ -443,7 +443,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :bind (("C-c M-." . dumb-jump-go)
          ("C-c M-," . dumb-jump-back))
   :custom
-  (dumb-jump-max-find-time 4 "Wait longer for remote systems.")
+  (dumb-jump-max-find-time 8 "Wait longer for remote systems.")
   (dumb-jump-selector 'ivy))
 
 (use-feature flymake
