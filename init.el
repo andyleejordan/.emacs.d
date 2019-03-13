@@ -284,6 +284,15 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature uniquify
   :custom (uniquify-buffer-name-style 'forward))
 
+(use-feature project
+  :defines project-find-functions
+  :config
+  ;; Similar to project-try-vc but works when VC is disabled.
+  (defun project-try-magit (dir)
+    (let* ((root (magit-toplevel dir)))
+      (and root (cons 'vc root))))
+  (add-to-list 'project-find-functions #'project-try-magit))
+
 (use-feature vc-hooks
   :custom
   (vc-ignore-dir-regexp
