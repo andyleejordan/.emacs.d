@@ -291,7 +291,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (defun project-try-magit (dir)
     (let* ((root (magit-toplevel dir)))
       (and root (cons 'vc root))))
-  (add-to-list 'project-find-functions #'project-try-magit))
+  (add-to-list 'project-find-functions #'project-try-magit t))
 
 (use-feature vc-hooks
   :custom
