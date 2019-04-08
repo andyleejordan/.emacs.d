@@ -546,7 +546,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom
   (compilation-ask-about-save nil)
   (compilation-scroll-output t)
-  (compilation-always-kill t))
+  (compilation-always-kill t)
+  (compilation-error-regexp-alist
+   (delete 'maven compilation-error-regexp-alist)))
 
 (use-package default-text-scale)
 
