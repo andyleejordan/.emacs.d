@@ -11,7 +11,8 @@
 (use-package exec-path-from-shell
   :if (display-graphic-p)
   :config
-  (add-to-list 'exec-path-from-shell-variables "SSH_AUTH_SOCK")
+  (add-args-to-list 'exec-path-from-shell-variables
+                    '("SSH_AUTH_SOCK" "CAML_LD_LIBRARY_PATH"))
   (exec-path-from-shell-initialize))
 
 ;; set for `shell-command-to-string' on remote systems

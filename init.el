@@ -786,6 +786,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package tuareg) ; for OCaml
 
+(use-package utop) ; OCaml shell
+
 (use-package merlin
   :defines merlin-mode-map
   :bind (:map merlin-mode-map
