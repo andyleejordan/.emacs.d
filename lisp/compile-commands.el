@@ -24,7 +24,7 @@ With ARG, clean first. CMD is one of `configure', `compile', or `test'."
             (remove nil `(,(when (member cmd (list 'configure 'compile 'test))
                              (let ((root (file-relative-name (cdr (project-current)) dir))
                                    (sgx (file-exists-p (concat (file-remote-p default-directory) "/dev/sgx"))))
-                               (format "cmake %s -GNinja -DUSE_LIBSGX=%s" root (if sgx "ON" "OFF"))))
+                               (format "cmake %s -GNinja -DUSE_LIBSGX=%s%s" root (if sgx "ON" "OFF") (unless (executable-find "doxygen") " -DENABLE_REFMAN=OFF"))))
                           ,(when (member cmd (list 'compile 'test)) "ninja -v")
                           ,(when (eq cmd 'test)
                              ;; TODO: `defvar' a list of test expressions. Add history. Allow no regex.
