@@ -254,10 +254,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :defines magit-file-mode-map
   :straight (magit :host github :repo "magit/magit" :branch "master")
   :demand
-  :bind (("C-x g"   . magit-status)
-         ("C-x C-g" . magit-dispatch-popup)
-         :map magit-file-mode-map
-         ("C-c g"   . magit-file-popup))
+  ;; C-x M-g . `magit-dispatch'
+  ;; C-c M-g . `magit-file-dispatch'
+  :bind (("C-x g" . magit-status))
   :custom
   ;; TODO: Maybe `(magit-dwim-selection '((magit-branch-and-checkout nil t)))'
   (magit-completing-read-function #'ivy-completing-read)
