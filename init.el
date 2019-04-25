@@ -632,7 +632,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;; Fix invisible buffer content when X is tunneled
 ;; https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25474
-(when (getenv "SSH_CLIENT")
+(when (getenv "DISPLAY")
   (add-to-list 'default-frame-alist '(inhibit-double-buffering . t)))
 
 (use-feature frame
