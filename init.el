@@ -783,7 +783,15 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package caml
   :straight (:host github :repo "ocaml/caml-mode"))
 
-(use-package tuareg) ; for OCaml
+(use-package ocamlformat
+  :straight (:host github :repo "ocaml-ppx/ocamlformat" :files ("emacs/ocamlformat.el"))
+  ;; TODO: May want to limit this to certain files.
+  :hook ((tuareg-mode) . (lambda ()
+                           (add-hook 'before-save-hook 'ocamlformat-before-save nil 't))))
+
+(use-package tuareg
+  :defines tuareg-mode-map
+  :bind (:map tuareg-mode-map ([remap indent-region] . ocamlformat)))
 
 (use-package utop) ; OCaml shell
 
