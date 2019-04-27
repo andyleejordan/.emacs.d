@@ -28,7 +28,7 @@ With ARG, clean first. CMD is one of `configure', `compile', or `test'."
                           ,(when (member cmd (list 'compile 'test)) "ninja -v")
                           ,(when (eq cmd 'test)
                              ;; TODO: `defvar' a list of test expressions. Add history. Allow no regex.
-                             (let ((re (completing-read "Regex? " (list "^edger8r_" "signedness"))))
+                             (let ((re (completing-read "Regex? " (list "oeedger8r" "^edger8r_" "signedness"))))
                                (concat "ctest -V -R " re))))) ; TODO: Set OE_SIMULATION based on `sgx'
             " && ")))
       (call-interactively 'compile))))
