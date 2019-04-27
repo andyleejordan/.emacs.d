@@ -554,6 +554,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package demangle-mode
   :commands (demangle-mode))
 
+(use-feature ediff
+  :custom
+  (ediff-diff-options "-w")
+  (ediff-split-window-function 'split-window-horizontally)
+  (ediff-window-setup-function 'ediff-setup-windows-plain))
+
 (use-package elmacro ; show macros as Emacs Lisp
   :delight
   :config (elmacro-mode))
