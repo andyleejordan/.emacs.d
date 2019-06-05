@@ -791,6 +791,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package ocamlformat
   :straight (:host github :repo "ocaml-ppx/ocamlformat" :files ("emacs/ocamlformat.el"))
+  :custom (ocamlformat-show-errors nil)
   ;; TODO: May want to limit this to certain files.
   :hook ((tuareg-mode) . (lambda ()
                            (add-hook 'before-save-hook 'ocamlformat-before-save nil 't))))
