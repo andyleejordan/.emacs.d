@@ -474,6 +474,13 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package lsp-mode
   ;; automatically sets up flymake
   :commands (lsp)
+  :defines clangd-enabled
+  :hook (c-mode-common . (lambda ()
+                           (or
+                            (boundp 'clangd-enabled)
+                            (when (setq clangd-enabled
+                                        (y-or-n-p "Start clangd? "))
+                              (lsp)))))
   :custom-face
   (lsp-face-highlight-textual ((t (:background unspecified))))
   ;; Solarized Red
