@@ -1,6 +1,3 @@
 [submodule "snippets"]
 	path = snippets
 	url = https://github.com/AndreaCrotti/yasnippet-snippets.git
-[submodule "var/cquery"]
-	path = var/cquery
-	url = https://github.com/cquery-project/cquery.git
