@@ -593,6 +593,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
                    :foreground blue) "\n"
         (with-face ">" :foreground cyan) " ")))))
 
+(use-feature gud
+  :custom (gdb-many-windows t))
+
 (use-package ielm
   :commands (ielm)
   :custom (ielm-prompt "> "))
