@@ -484,19 +484,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode))
 
-(use-package cquery
-  :defines cquery-enabled
-  :hook (c-mode-common . (lambda ()
-                           (or
-                            (boundp 'cquery-enabled)
-                            (when (setq cquery-enabled
-                                        (y-or-n-p "Start cquery? "))
-                              (lsp)))))
-  :custom
-  (cquery-executable
-   (no-littering-expand-var-file-name "cquery/build/cquery"))
-  (cquery-extra-init-params '(:completion (:detailedLabel t))))
-
 ;; Use `omnisharp-install-server' to setup.
 (use-package omnisharp
   :defines omnisharp-mode-map
