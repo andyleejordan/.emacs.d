@@ -7,7 +7,7 @@
 
 ;;; Code:
 
-(defun build-open-enclave (arg cmd dir)
+(defun oe-build (arg cmd dir)
   "Build Open Enclave in DIR.
 With ARG, clean first. CMD is one of `configure', `compile', or `test'."
   (interactive (list current-prefix-arg
@@ -32,6 +32,11 @@ With ARG, clean first. CMD is one of `configure', `compile', or `test'."
                                (concat "ctest -V -R " re))))) ; TODO: Set OE_SIMULATION based on `sgx'
             " && ")))
       (call-interactively 'compile))))
+
+(defun oe-gdb-edger8r ()
+  (interactive)
+  (let ((gud-gdb-command-name "~/src/openenclave/build/output/bin/oegdb -i=mi --args ~/src/openenclave/build/tests/oeedger8r/host/edl_host ~/src/openenclave/build/tests/oeedger8r/enc/edl_enc"))
+    (call-interactively 'gdb)))
 
 (provide 'compile-commands)
 ;;; compile-commands.el ends here
