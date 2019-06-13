@@ -362,7 +362,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package dtrt-indent
   :delight
   :defines dtrt-indent-hook-mapping-list
-  :custom (dtrt-indent-min-quality 60)
+  :custom
+  (dtrt-indent-verbosity 0)
+  (dtrt-indent-min-quality 60)
   :config
   (add-args-to-list 'dtrt-indent-hook-mapping-list
                     '((powershell-mode c/c++/java powershell-indent)
