@@ -481,6 +481,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
                             (when (setq clangd-enabled
                                         (y-or-n-p "Start clangd? "))
                               (lsp)))))
+  :custom (lsp-enable-snippet nil)
   :custom-face
   (lsp-face-highlight-textual ((t (:background unspecified))))
   ;; Solarized Red
