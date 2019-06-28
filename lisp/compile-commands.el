@@ -7,11 +7,12 @@
 
 ;;; Code:
 
+(defun project-relative (dir) (file-relative-name (cdr (project-current)) dir))
+
 (defun oe-build (arg cmd dir)
   "Build Open Enclave in DIR.
 With ARG, clean first. CMD is one of `configure', `compile', or `test'."
   (interactive (list current-prefix-arg
-                     ;; TODO: Add GDB support.
                      (intern (completing-read "Command? " (list 'clean 'configure 'compile 'test) nil t))
                      (let ((root (expand-file-name "build" (cdr (project-current)))))
                        (expand-file-name (read-directory-name "Build directory? " root) root))))
@@ -22,7 +23,7 @@ With ARG, clean first. CMD is one of `configure', `compile', or `test'."
           (compile-command
            (combine-and-quote-strings
             (remove nil `(,(when (member cmd (list 'configure 'compile 'test))
-                             (let ((root (file-relative-name (cdr (project-current)) dir))
+                             (let ((root (project-relative dir))
                                    (sgx (file-exists-p (concat (file-remote-p default-directory) "/dev/sgx"))))
                                (format "cmake %s -GNinja -DUSE_LIBSGX=%s%s" root (if sgx "ON" "OFF") (unless (executable-find "doxygen") " -DENABLE_REFMAN=OFF"))))
                           ,(when (member cmd (list 'compile 'test)) "ninja -v")
@@ -33,9 +34,17 @@ With ARG, clean first. CMD is one of `configure', `compile', or `test'."
             " && ")))
       (call-interactively 'compile))))
 
-(defun oe-gdb-edger8r ()
-  (interactive)
-  (let ((gud-gdb-command-name "~/src/openenclave/build/output/bin/oegdb -i=mi --args ~/src/openenclave/build/tests/oeedger8r/host/edl_host ~/src/openenclave/build/tests/oeedger8r/enc/edl_enc"))
+(defun oe-gdb (arg dir host enclave)
+  "Launch oe-gdb for HOST and ENCLAVE in DIR. Ignore ARG."
+  (interactive (list current-prefix-arg
+                     (let ((root (expand-file-name "build" (cdr (project-current)))))
+                       (expand-file-name (read-directory-name "Build directory? " root) root))
+                     (intern (completing-read "Host? " (list "/tests/oeedger8r/host/edl_host") nil t))
+                     (intern (completing-read "Enclave? " (list "/tests/oeedger8r/enc/edl_enc") nil t))))
+  (let* ((root (project-relative dir))
+         (host (concat dir "tests/oeedger8r/host/edl_host"))
+         (enclave (concat dir "tests/oeedger8r/enc/edl_enc"))
+         (gud-gdb-command-name (concat dir "output/bin/oegdb -i=mi --args " host " " enclave)))
     (call-interactively 'gdb)))
 
 (provide 'compile-commands)
