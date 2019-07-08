@@ -133,7 +133,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature subword
   :config (global-subword-mode))
 
-(use-package swiper)
+(use-package swiper
+  :bind (("C-s" . swiper-isearch)))
 
 ;;; Windows / Frames and the buffers in them
 (use-package buffer-move
@@ -214,7 +215,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :delight
   :demand
   :config (ivy-mode)
-  :bind (("C-c M-x" . ivy-resume))
+  :bind (("C-c M-x" . ivy-resume)
+         :map ivy-minibuffer-map
+         ("C-r" . ivy-previous-line-or-history))
   :custom
   (ivy-height 8)
   (ivy-use-virtual-buffers t "Add recentf to buffers.")
