@@ -134,7 +134,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (global-subword-mode))
 
 (use-package swiper
-  :bind (("C-s" . swiper-isearch)))
+  :bind (("C-s" . swiper-isearch))
+  :custom-face
+  ;; Change from yellow to magenta.
+  (swiper-match-face-2 ((t :foreground "#d33682")))
+  (swiper-match-face-3 ((t :foreground "#d33682")))
+  (swiper-match-face-4 ((t :foreground "#d33682"))))
 
 ;;; Windows / Frames and the buffers in them
 (use-package buffer-move
