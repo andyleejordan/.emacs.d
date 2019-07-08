@@ -232,11 +232,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom-face
   ;; Remove underline.
   (ivy-current-match ((t (:underline nil))))
-  ;; Fix match colors.
-  (ivy-minibuffer-match-face-1 ((t :foreground "#b58900"))) ; orange for substring
-  (ivy-minibuffer-match-face-2 ((t :foreground "#268bd2"))) ; blue for initials
-  (ivy-minibuffer-match-face-3 ((t :foreground "#268bd2")))
-  (ivy-minibuffer-match-face-4 ((t :foreground "#268bd2")))
   ;; Italicize variables declared with `defcustom'.
   (ivy-highlight-face ((t (:inherit nil :slant italic)))))
 
