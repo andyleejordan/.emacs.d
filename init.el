@@ -134,7 +134,19 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (global-subword-mode))
 
 (use-package swiper
-  :bind (("C-s" . swiper-isearch))
+  :defines swiper-map
+  :demand
+  :bind
+  (([remap isearch-forward] . swiper-isearch)
+   ([remap isearch-backward] . swiper-isearch-backward)
+   ([remap isearch-forward-symbol-at-point] . swiper-isearch-thing-at-point)
+   :map search-map ; `M-s'
+   ("M-c" . swiper-from-isearch) ; local binding
+   ("M-r" . counsel-rg)
+   ("M-t" . swiper-isearch-toggle)
+   :map swiper-map
+   ;; NOTE: `swiper-isearch-toggle' ought to work too but doesn't.
+   ("M-t" . swiper-from-isearch))
   :custom-face
   ;; Change from yellow to magenta.
   (swiper-match-face-2 ((t :foreground "#d33682")))
@@ -200,14 +212,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
    ("C-c f"               . counsel-git)
    ("C-c C-SPC"           . counsel-mark-ring)
    ("C-c l"               . counsel-locate)
-   ("C-x C-r"             . counsel-recentf)
-   ("M-s M-c"             . counsel-grep-or-swiper) ; global binding
-   :map search-map ; `M-s'
-   ("M-c"                 . swiper-from-isearch) ; local binding
-   ("M-r"                 . counsel-rg))
+   ("C-x C-r"             . counsel-recentf))
   :custom
-  (counsel-grep-base-command
-   "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
   (counsel-find-file-at-point t)
   (counsel-find-file-ignore-regexp "\(?:\‘[#.]\)\|\(?:[#~]\’\)"))
 
