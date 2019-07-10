@@ -134,6 +134,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (global-subword-mode))
 
 (use-package swiper
+  :straight (swiper :files ("swiper.el") :host github :repo "abo-abo/swiper"
+                    :fork (:host github :repo "andschwa/swiper" :branch "swiper-isearch-backward"))
   :defines swiper-map
   :demand
   :bind
@@ -200,6 +202,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom (amx-history-length history-length))
 
 (use-package counsel
+  :straight (counsel :files ("counsel.el") :host github :repo "abo-abo/swiper"
+                     :fork (:host github :repo "andschwa/swiper" :branch "swiper-isearch-backward"))
   :delight
   :demand
   :config (counsel-mode)
@@ -223,6 +227,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package hydra)
 
 (use-package ivy
+  :straight (ivy :files (:defaults (:exclude "swiper.el" "counsel.el" "ivy-hydra.el") "doc/ivy-help.org" "ivy-pkg.el")
+                 :host github :repo "abo-abo/swiper"
+                 :fork (:host github :repo "andschwa/swiper" :branch "swiper-isearch-backward"))
   :delight
   :demand
   :config (ivy-mode)
