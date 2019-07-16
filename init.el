@@ -1,6 +1,6 @@
 ;;; init.el --- Andrew Schwartzmeyer's Emacs customizations
 
-;; Copyright (C) 2013-2018 Andrew Schwartzmeyer
+;; Copyright (C) 2013-2019 Andrew Schwartzmeyer
 
 ;; Author: Andrew Schwartzmeyer <andrew@schwartzmeyer.com>
 ;; Created: 30 Aug 2013
