@@ -211,6 +211,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
    ([remap find-library]  . counsel-find-library)
    ([remap imenu]         . counsel-imenu)
    ([remap yank-pop]      . counsel-yank-pop)
+   ("C-c c"               . counsel-compile)
    ("C-c f"               . counsel-git)
    ("C-c C-SPC"           . counsel-mark-ring)
    ("C-c l"               . counsel-locate)
@@ -549,7 +550,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;;; Tools:
 ;; TODO: Add `sudo-edit' package
 (use-feature compile
-  :bind (("C-c c" . compile))
   :custom
   (compilation-ask-about-save nil)
   (compilation-scroll-output t)
