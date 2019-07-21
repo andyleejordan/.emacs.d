@@ -120,9 +120,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :load-path "lisp")
 
 ;;; Cursor and Mark Movement:
-(bind-key "M-o" #'other-window)
 (bind-key "C-M-<backspace>" #'delete-pair)
 (bind-key "C-M-`" #'raise-sexp)
+
+(use-package ace-window
+  :bind (("M-o" . ace-window)))
 
 (use-package imenu-anywhere
   :bind (("C-c i" . ivy-imenu-anywhere)))
