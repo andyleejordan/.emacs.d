@@ -126,9 +126,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package ace-window
   :bind (("M-o" . ace-window)))
 
-(use-package imenu-anywhere
-  :bind (("C-c i" . ivy-imenu-anywhere)))
-
 (use-feature isearch
   :custom (isearch-allow-scroll t))
 
@@ -209,10 +206,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   ;; Note that `counsel-mode' rebinds most commands.
   (([remap bookmark-jump] . counsel-bookmark)
    ([remap find-library]  . counsel-find-library)
-   ([remap imenu]         . counsel-imenu)
    ([remap yank-pop]      . counsel-yank-pop)
    ("C-c c"               . counsel-compile)
    ("C-c f"               . counsel-git)
+   ("C-c i"               . counsel-imenu)
    ("C-c C-SPC"           . counsel-mark-ring)
    ("C-c l"               . counsel-locate)
    ("C-x C-r"             . counsel-recentf))
