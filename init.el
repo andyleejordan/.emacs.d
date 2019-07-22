@@ -203,14 +203,14 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (counsel-mode)
   :bind
   ;; Note that `counsel-mode' rebinds most commands.
-  (([remap dired]           . counsel-dired)
+  (([remap dired] . counsel-dired)
    ([remap insert-register] . counsel-register)
-   ("C-c c"                 . counsel-compile)
-   ("C-c f"                 . counsel-git)
-   ("C-c i"                 . counsel-imenu)
-   ("C-c C-SPC"             . counsel-mark-ring)
-   ("C-c l"                 . counsel-locate)
-   ("C-x C-r"               . counsel-recentf))
+   ("C-c c" . counsel-compile)
+   ("C-c f" . counsel-git)
+   ("C-c i" . counsel-imenu)
+   ("C-c C-SPC" . counsel-mark-ring)
+   ("C-c l" . counsel-locate)
+   ("C-x C-r" . counsel-recentf))
   :custom
   (counsel-find-file-at-point t)
   (counsel-find-file-ignore-regexp "\(?:\‘[#.]\)\|\(?:[#~]\’\)"))
