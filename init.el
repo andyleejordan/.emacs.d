@@ -203,10 +203,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (counsel-mode)
   :bind
   ;; Note that `counsel-mode' rebinds most commands.
-  (([remap bookmark-jump]   . counsel-bookmark)
-   ([remap find-library]    . counsel-find-library)
+  (([remap dired]           . counsel-dired)
    ([remap insert-register] . counsel-register)
-   ([remap yank-pop]        . counsel-yank-pop)
    ("C-c c"                 . counsel-compile)
    ("C-c f"                 . counsel-git)
    ("C-c i"                 . counsel-imenu)
