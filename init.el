@@ -633,6 +633,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package restart-emacs
   :bind (("C-c Q" . restart-emacs)))
 
+(use-feature shell
+  :bind (:map shell-mode-map ("C-r" . counsel-shell-history)))
+
 (use-feature woman
   :bind (("C-c m" . woman)))
 
