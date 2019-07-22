@@ -140,12 +140,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
    ([remap isearch-backward] . swiper-isearch-backward)
    ([remap isearch-forward-symbol-at-point] . swiper-isearch-thing-at-point)
    :map search-map ; `M-s'
-   ("M-c" . swiper-from-isearch) ; local binding
    ("M-r" . counsel-rg)
-   ("M-t" . swiper-isearch-toggle)
    :map swiper-map
-   ;; NOTE: `swiper-isearch-toggle' ought to work too but doesn't.
-   ("M-t" . swiper-from-isearch))
+   ("M-t" . swiper-isearch-toggle)
+   :map isearch-mode-map
+   ("M-t" . swiper-isearch-toggle))
   :custom-face
   ;; Change from yellow to magenta.
   (swiper-match-face-2 ((t :foreground "#d33682")))
