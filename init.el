@@ -226,7 +226,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (ivy-mode)
   :bind (("C-c M-x" . ivy-resume)
          :map ivy-minibuffer-map
-         ("C-r" . ivy-previous-line-or-history))
+         ("C-r" . ivy-previous-line-or-history)
+         ("C-w" . ivy-yank-word))
   :custom
   (ivy-height 8)
   (ivy-use-virtual-buffers t "Add recentf to buffers.")
