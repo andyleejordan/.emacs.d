@@ -710,6 +710,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;;; Internal Emacs Configuration:
 (customize-set-variable 'gc-cons-threshold 20000000)
+(customize-set-variable 'garbage-collection-messages t)
 
 ;; Fix annoyances.
 (defalias 'yes-or-no-p 'y-or-n-p)
