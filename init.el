@@ -232,6 +232,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom
   (ivy-height 8)
   (ivy-use-virtual-buffers t "Add recentf to buffers.")
+  (ivy-use-selectable-prompt t "Easier creation of new files.")
   (ivy-virtual-abbreviate 'abbreviate "And show with path.")
   (ivy-initial-inputs-alist nil "Don't start with '^'.")
   (ivy-display-style 'fancy)
