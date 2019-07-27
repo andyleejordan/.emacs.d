@@ -329,7 +329,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-feature recentf
   :custom
-  (recentf-max-saved-items 256)
+  (recentf-max-saved-items 1024)
   (recentf-auto-cleanup 'never "Disabled for performance with Tramp.")
   :config (add-to-list 'recentf-exclude
                        (lambda (f) (not (string= (file-truename f) f))))
