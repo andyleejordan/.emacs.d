@@ -124,10 +124,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (bind-key "C-M-<backspace>" #'delete-pair)
 (bind-key "C-M-`" #'raise-sexp)
 
-(use-package ace-window
-  :bind (("M-o" . ace-window))
-  :custom (aw-scope 'frame))
-
 (use-feature isearch
   :custom (isearch-allow-scroll t))
 
@@ -154,6 +150,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (swiper-match-face-4 ((t :foreground "#d33682"))))
 
 ;;; Windows / Frames and the buffers in them
+(use-package ace-window
+  :bind (("M-o" . ace-window))
+  :custom (aw-scope 'frame))
+
 (use-package buffer-move
   :bind (("C-S-<up>"    . buf-move-up)
          ("C-S-<down>"  . buf-move-down)
