@@ -743,8 +743,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
          ([remap capitalize-word] . capitalize-dwim)
          ([remap zap-to-char] . zap-up-to-char))
   :custom
-  (mark-ring-max 1024)
-  (global-mark-ring-max 1024)
   (save-interprogram-paste-before-kill t)
   (kill-do-not-save-duplicates t)
   (kill-whole-line t)
