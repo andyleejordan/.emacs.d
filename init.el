@@ -125,7 +125,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (bind-key "C-M-`" #'raise-sexp)
 
 (use-package ace-window
-  :bind (("M-o" . ace-window)))
+  :bind (("M-o" . ace-window))
+  :custom (aw-scope 'frame))
 
 (use-feature isearch
   :custom (isearch-allow-scroll t))
