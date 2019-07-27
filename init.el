@@ -192,6 +192,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (defalias 'sl   #'sort-lines)
 (defalias 'spa  #'straight-pull-all)
 (defalias 'tdoe #'toggle-debug-on-error)
+(defalias 'tt   #'toggle-theme)
 (defalias 'vlm  #'visual-line-mode)
 (defalias 'wsc  #'whitespace-cleanup)
 (defalias 'wsm  #'whitespace-mode)
