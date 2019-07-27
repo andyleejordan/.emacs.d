@@ -453,6 +453,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (modify-syntax-entry ?\` "$`" text-mode-syntax-table)
 
 (use-package dumb-jump
+  ;; TODO: Maybe remove this.
   :bind (("C-c M-." . dumb-jump-go)
          ("C-c M-," . dumb-jump-back))
   :custom
@@ -516,6 +517,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
               ([remap indent-region] . omnisharp-code-format-region)))
 
 (use-package smart-tab
+  ;; TODO: Maybe remove this.
   :delight
   :custom (smart-tab-using-hippie-expand t)
   :config (global-smart-tab-mode))
@@ -674,6 +676,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (show-paren-mode))
 
 (use-package rainbow-delimiters
+  ;; TODO: Maybe remove this.
   :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package smart-mode-line
@@ -728,6 +731,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;; Save Emacs sessions
 (use-feature desktop
+  ;; TODO: Maybe remove this.
   :custom (desktop-restore-frames nil)
   :config (desktop-save-mode))
 
