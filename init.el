@@ -487,13 +487,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package lsp-mode
   ;; automatically sets up flymake
   :commands (lsp)
-  :defines clangd-enabled
-  :hook (c-mode-common . (lambda ()
-                           (or
-                            (boundp 'clangd-enabled)
-                            (when (setq clangd-enabled
-                                        (y-or-n-p "Start clangd? "))
-                              (lsp)))))
+  :hook (c-mode-common . lsp-deferred)
   :custom (lsp-enable-snippet nil)
   :custom-face
   (lsp-face-highlight-textual ((t (:background unspecified))))
@@ -503,7 +497,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (lsp-face-highlight-write ((t (:background "#2AA198")))))
 
 (use-package lsp-ui
-  :hook (lsp-mode . lsp-ui-mode))
+  :commands lsp-ui-mode)
 
 ;; Use `omnisharp-install-server' to setup.
 (use-package omnisharp
