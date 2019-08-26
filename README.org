@@ -639,6 +639,7 @@ cosmetic.
 
 Everything in this section is yet to be rewritten and refiled.
 
+** Markdown dwim header =C-c C-t h=
 ** Narrowing: =C-x n= region =n= defun =d= widen =w=
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 ** Surround with parentheses: =M-(= on region or with numeric arg
