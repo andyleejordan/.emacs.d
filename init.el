@@ -823,6 +823,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :defines tuareg-mode-map
   :bind (:map tuareg-mode-map ([remap indent-region] . ocamlformat)))
 
+(use-package dune)
+
 (use-package utop) ; OCaml shell
 
 (use-package merlin
