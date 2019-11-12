@@ -30,7 +30,7 @@ With ARG, clean first. CMD is one of `clean', `configure',
          (combine-and-quote-strings
           (remove nil `(,(let ((root (project-relative dir))
                                (sgx (file-exists-p (concat (file-remote-p default-directory) "/dev/sgx"))))
-                           (format "cmake %s -GNinja -DUSE_LIBSGX=%s -DENABLE_REFMAN=%s"
+                           (format "cmake %s -GNinja -DHAS_QUOTE_PROVIDER=%s -DENABLE_REFMAN=%s"
                                    root
                                    (if sgx "ON" "OFF")
                                    (if (executable-find "doxygen") "ON" "OFF")))
