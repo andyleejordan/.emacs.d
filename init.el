@@ -698,12 +698,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
      ((member 'solarized-light custom-enabled-themes)
       (disable-theme 'solarized-light)
       (load-theme 'solarized-dark t))))
-  (load-theme 'solarized-dark t))
+  (load-theme 'solarized-light t))
 
 (when (equal (system-name) "andschwa-oe")
-  (set-face-attribute 'default nil :family "Ubuntu Mono" :height 160)
-  (disable-theme 'solarized-dark)
-  (load-theme 'solarized-light t))
+  (set-face-attribute 'default nil :family "Ubuntu Mono" :height 160))
 
 (unless (display-graphic-p)
   (load-theme 'tango-dark t))
