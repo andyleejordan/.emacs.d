@@ -642,6 +642,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;;; Appearance:
 ;; TODO: Add `helpful' package
+
+;; Try preferred fonts
+(--map-first (member it (font-family-list))
+             (set-face-attribute 'default nil :family it :height 140)
+             '("Cascadia Code" "Source Code Pro" "Menlo" "Ubuntu Mono"))
+
 (when (display-graphic-p)
   (tool-bar-mode 0)
   (scroll-bar-mode 0))
@@ -699,9 +705,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
       (disable-theme 'solarized-light)
       (load-theme 'solarized-dark t))))
   (load-theme 'solarized-light t))
-
-(when (equal (system-name) "andschwa-oe")
-  (set-face-attribute 'default nil :family "Ubuntu Mono" :height 160))
 
 (unless (display-graphic-p)
   (load-theme 'tango-dark t))
