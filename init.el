@@ -720,7 +720,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;; Save Emacs sessions
 (use-feature desktop
-  ;; TODO: Maybe remove this.
+  :disabled
   :custom (desktop-restore-frames nil)
   :config (desktop-save-mode))
 
