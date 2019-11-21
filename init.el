@@ -276,12 +276,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (magit-published-branches nil "Disable confirmation.")
   (magit-diff-refine-hunk 'all "Word diffs."))
 
-;; TODO: Figure out why the forge package doesn't bring its own
-;; dependencies.
-(use-package closql)
-(use-package ghub)
-(use-package forge
-  :after markdown-mode)
+(use-package forge)
 
 (use-package git-commit
   :hook (git-commit-mode . (lambda () (set-fill-column 72)))
