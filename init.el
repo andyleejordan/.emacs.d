@@ -671,7 +671,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (show-paren-mode))
 
 (use-package rainbow-delimiters
-  ;; TODO: Maybe remove this.
   :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package smart-mode-line
