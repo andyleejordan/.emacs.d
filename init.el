@@ -75,7 +75,7 @@
 (use-package no-littering)
 
 (customize-set-variable
- 'custom-file (no-littering-expand-var-file-name "custom.el"))
+ 'custom-file (no-littering-expand-etc-file-name "custom.el"))
 
 ;;; Helper Functions:
 (defmacro add-args-to-list (list-var elements &optional append compare-fn)
@@ -101,24 +101,28 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
      ,@args))
 
 ;;; Platform:
+(use-feature local
+  :load-path "etc"
+  :if (file-readable-p (no-littering-expand-etc-file-name "local.el")))
+
 (use-feature linux
-  :load-path "lisp"
+  :load-path "etc"
   :if (eq system-type 'gnu/linux))
 
 (use-feature osx
-  :load-path "lisp"
+  :load-path "etc"
   :if (eq system-type 'darwin))
 
 (use-feature windows
-  :load-path "lisp"
+  :load-path "etc"
   :if (eq system-type 'windows-nt))
 
 ;; Experimental:
 (use-feature compile-commands
-  :load-path "lisp")
+  :load-path "etc")
 
 (use-feature edl-mode
-  :load-path "lisp")
+  :load-path "etc")
 
 ;;; Cursor and Mark Movement:
 (bind-key "C-M-<backspace>" #'delete-pair)
