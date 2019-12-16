@@ -644,7 +644,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;; Try preferred fonts
 (--map-first (member it (font-family-list))
-             (set-face-attribute 'default nil :family it :height 140)
+             (set-face-attribute 'default nil :family it :height 120)
              '("Cascadia Code" "Source Code Pro" "Menlo" "Ubuntu Mono"))
 
 (when (display-graphic-p)
