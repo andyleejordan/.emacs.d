@@ -702,7 +702,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
      ((member 'solarized-light custom-enabled-themes)
       (disable-theme 'solarized-light)
       (load-theme 'solarized-dark t))))
-  (load-theme 'solarized-light t))
+  (load-theme 'solarized-dark t))
 
 (unless (display-graphic-p)
   (load-theme 'tango-dark t))
