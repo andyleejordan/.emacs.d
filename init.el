@@ -662,7 +662,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package fortune-cookie
   :custom
   (fortune-cookie-fortune-string
-   "History repeats itself: the first time as tragedy, the second time as farce.")
+   "History repeats itself:\nthe first time as tragedy,\nthe second time as farce.")
   (fortune-cookie-cowsay-enable (executable-find "cowsay"))
   (fortune-cookie-cowsay-args '("-f" "tux"))
   :config (fortune-cookie-mode))
