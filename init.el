@@ -883,6 +883,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package rust-mode
   :custom (rust-format-on-save t))
 
+(use-package systemd)
+
 (use-package ssh-config-mode)
 
 (use-package toml-mode)
