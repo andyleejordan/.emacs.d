@@ -668,7 +668,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (fortune-cookie-mode))
 
 (use-package hl-todo
-  :config (global-hl-todo-mode))
+  :defines hl-todo-keyword-faces
+  :config
+  (add-to-list 'hl-todo-keyword-faces '("ANDY" . "#d0bf8f"))
+  (global-hl-todo-mode))
 
 (use-feature paren
   :custom (show-paren-delay 0)
