@@ -659,6 +659,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature frame
   :custom (blink-cursor-blinks 0))
 
+(use-package emojify
+  :bind (("C-c E" . emojify-insert-emoji))
+  :custom (global-emojify-mode))
+
 (use-package fortune-cookie
   :custom
   (fortune-cookie-fortune-string
