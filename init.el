@@ -460,7 +460,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (dumb-jump-selector 'ivy))
 
 (use-feature flymake
-  :hook ((emacs-lisp-mode sh-mode) . flymake-mode)
+  :hook ((emacs-lisp-mode sh-mode python-mode) . flymake-mode)
   :bind (:map flymake-mode-map
               ("M-n" . flymake-goto-next-error)
               ("M-p" . flymake-goto-prev-error)))
@@ -884,6 +884,20 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package protobuf-mode)
 
 (use-package puppet-mode)
+
+(use-package pyvenv
+  :config
+  (pyvenv-mode)
+  (pyvenv-tracking-mode))
+
+(use-package anaconda-mode
+  :hook
+  (python-mode
+   (python-mode . anaconda-eldoc-mode)))
+
+(use-package blacken
+  :hook (python-mode . blacken-mode)
+  :custom (blacken-only-if-project-is-blackened t))
 
 (use-package ruby-mode)
 
