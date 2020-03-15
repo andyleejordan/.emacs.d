@@ -661,6 +661,8 @@ See [[https://oremacs.com/2016/04/26/ivy-0.8.0/][=ivy-occur-mode=]]
 Fall back to =align-regexp=. Prefix that for complex mode.
 *** Replace =uniq= with =delete-duplicate-lines=
 **** also =flush-lines= and =keep-lines=
+*** Delete blank lines =M-x flush-lines RET ^$ RET=
+https://masteringemacs.org/article/removing-blank-lines-buffer
 *** Using quote marks within verbatim/code markup in org-mode
 - Unicode: <U200B> /xe2/x80/x8b ZERO WIDTH SPACE
 - Insert using: (C-x 8 RET 200b RET)
