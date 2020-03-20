@@ -543,7 +543,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :hook (flyspell-mode . auto-correct-mode))
 
 ;;; Tools:
-;; TODO: Add `sudo-edit' package
+(use-package auto-sudoedit
+  :commands (auto-sudoedit-sudoedit)
+  :config (defalias 'sudoedit #'auto-sudoedit-sudoedit))
+
 (use-feature compile
   :custom
   (compilation-ask-about-save nil)
