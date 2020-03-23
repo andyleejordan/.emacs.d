@@ -621,7 +621,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
                        ("ints" "\\mathbb{Z}" t "&#8484;" "" "" "ℤ")
                        ("complex" "\\mathbb{C}" t "&#2102;" "" "" "ℂ")
                        ("models" "\\models" nil "&#8872;" "" "" "⊧")))
-  (org-export-backends '(html beamer ascii latex md)))
+  (org-export-backends '(html beamer ascii latex md))
+  (org-babel-load-languages '((emacs-lisp . t)
+                              (shell . t))))
 
 (use-package org-download
   :commands (org-download-yank))
