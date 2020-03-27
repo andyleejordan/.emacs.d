@@ -135,6 +135,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (global-subword-mode))
 
 (use-package swiper
+  :disabled
   :defines swiper-map
   :demand
   :bind
