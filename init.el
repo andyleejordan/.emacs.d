@@ -882,6 +882,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package edit-indirect)
 
+(use-package mediawiki)
+
 (use-package nginx-mode)
 
 (use-package powershell)
