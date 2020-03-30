@@ -165,6 +165,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
          ("C-S-<left>"  . buf-move-left)
          ("C-S-<right>" . buf-move-right)))
 
+(use-package popwin
+  :defines popwin:special-display-config
+  :config
+  (add-to-list 'popwin:special-display-config #'(rg-mode :noselect t) t)
+  (popwin-mode))
+
 (use-package transpose-frame
   :commands (transpose-frame-get-arrangement
              transpose-frame-set-arrangement
