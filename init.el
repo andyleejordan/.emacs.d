@@ -288,11 +288,19 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-feature recentf
   :custom
-  (recentf-max-saved-items 1024)
+  (recentf-max-saved-items 200)
   (recentf-auto-cleanup 'never "Disabled for performance with Tramp.")
   :config (add-to-list 'recentf-exclude
                        (lambda (f) (not (string= (file-truename f) f))))
   (recentf-mode))
+
+(defun selectrum-recentf ()
+  "Use `selectrum' to open a recent file."
+  (interactive)
+  (let ((files (mapcar 'abbreviate-file-name recentf-list)))
+    (find-file (selectrum-completing-read "Find recent file: " files nil t))))
+
+(bind-key "C-x C-r" #'selectrum-recentf)
 
 ;; TODO: Find replacement for `counsel-rg'.
 (use-package rg ; `ripgrep'
