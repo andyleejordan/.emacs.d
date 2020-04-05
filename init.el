@@ -188,24 +188,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (defalias 'wsc  #'whitespace-cleanup)
 (defalias 'wsm  #'whitespace-mode)
 
-(use-package counsel
-  :delight
-  :demand
-  :config (counsel-mode)
-  :bind
-  ;; Note that `counsel-mode' rebinds most commands.
-  (([remap dired] . counsel-dired)
-   ([remap insert-register] . counsel-register)
-   ("C-c c" . counsel-compile)
-   ("C-c f" . counsel-git)
-   ("C-c i" . counsel-imenu)
-   ("C-c C-SPC" . counsel-mark-ring)
-   ("C-c l" . counsel-locate)
-   ("C-x C-r" . counsel-recentf))
-  :custom
-  (counsel-find-file-at-point t)
-  (counsel-find-file-ignore-regexp "\(?:\‘[#.]\)\|\(?:[#~]\’\)"))
-
 (use-feature eldoc
   :delight)
 
@@ -271,6 +253,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature uniquify
   :custom (uniquify-buffer-name-style 'forward))
 
+;; TODO: Find replacement for `counsel-git', maybe `project-find-file'?
 (use-feature project
   :defines project-find-functions
   :config
@@ -311,6 +294,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
                        (lambda (f) (not (string= (file-truename f) f))))
   (recentf-mode))
 
+;; TODO: Find replacement for `counsel-rg'.
 (use-package rg ; `ripgrep'
   :bind (:map search-map ; `M-s'
               ("s" . rg-dwim)
