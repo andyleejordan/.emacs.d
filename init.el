@@ -127,6 +127,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;;; Cursor and Mark Movement:
 (bind-key "C-M-<backspace>" #'delete-pair)
 (bind-key "C-M-`" #'raise-sexp)
+(bind-key "M-o" #'other-window)
 
 (use-feature isearch
   :custom (isearch-allow-scroll t))
@@ -135,10 +136,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (global-subword-mode))
 
 ;;; Windows / Frames and the buffers in them
-(use-package ace-window
-  :bind (("M-o" . ace-window))
-  :custom (aw-scope 'frame))
-
 (use-package buffer-move
   :bind (("C-S-<up>"    . buf-move-up)
          ("C-S-<down>"  . buf-move-down)
