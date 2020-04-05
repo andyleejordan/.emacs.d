@@ -233,6 +233,23 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :delight)
 
 (use-package hydra)
+(use-package selectrum
+  :straight (selectrum :host github :repo "raxod502/selectrum")
+  :config (selectrum-mode)
+  :custom-face
+  (selectrum-current-candidate ; Solarized Green
+   ((t (:inherit highlight :weight bold :foreground "#859900" ))))
+  (selectrum-primary-highlight ; Solarized Yellow
+   ((t (:weight bold :foreground "#b58900"))))
+  (selectrum-secondary-highlight ; Solarized Magenta
+   ((t (:weight bold :foreground "#d33682")))))
+
+(use-package selectrum-prescient
+  :straight (selectrum-prescient :host github :repo "raxod502/prescient.el"
+                                 :files ("selectrum-prescient.el"))
+  :config
+  (selectrum-prescient-mode)
+  (prescient-persist-mode))
 
 (use-package ivy
   :delight
@@ -498,9 +515,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom-face
   (lsp-face-highlight-textual ((t (:background unspecified))))
   ;; Solarized Red
-  (lsp-face-highlight-read ((t (:background "#DC322F"))))
+  (lsp-face-highlight-read ((t (:background "#dc322f"))))
   ;; Solarized Cyan
-  (lsp-face-highlight-write ((t (:background "#2AA198")))))
+  (lsp-face-highlight-write ((t (:background "#2aa198")))))
 
 (use-package lsp-ui
   :commands lsp-ui-mode)
