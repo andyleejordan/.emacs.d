@@ -134,26 +134,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature subword
   :config (global-subword-mode))
 
-(use-package swiper
-  :disabled
-  :defines swiper-map
-  :demand
-  :bind
-  (([remap isearch-forward] . swiper-isearch)
-   ([remap isearch-backward] . swiper-isearch-backward)
-   ([remap isearch-forward-symbol-at-point] . swiper-isearch-thing-at-point)
-   :map search-map ; `M-s'
-   ("M-r" . counsel-rg)
-   :map swiper-map
-   ("M-t" . swiper-isearch-toggle)
-   :map isearch-mode-map
-   ("M-t" . swiper-isearch-toggle))
-  :custom-face
-  ;; Change from yellow to magenta.
-  (swiper-match-face-2 ((t :foreground "#d33682")))
-  (swiper-match-face-3 ((t :foreground "#d33682")))
-  (swiper-match-face-4 ((t :foreground "#d33682"))))
-
 ;;; Windows / Frames and the buffers in them
 (use-package ace-window
   :bind (("M-o" . ace-window))
