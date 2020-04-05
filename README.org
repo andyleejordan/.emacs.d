@@ -246,16 +246,21 @@ ring essentially records your buffer switching history (with the
 helpful context of _where_ in the buffer you were), and the local mark
 ring records your position history in each buffer.
 
-Use =C-x C-SPC= to pop the global mark to go back after jumping into
+Setting the mark command is done with =C-SPC= (aptly named
+=set-mark-command=). This sets the mark at the point and pushes the
+last location onto the local mark ring.
+
+Use =C-u C-SPC= (which internally calls =pop-to-mark-command=) to pop
+the local mark after jumping around in a buffer, such as when using
+=C-s=. Note that while typing text moves the _point_ (or cursor)
+forward, it does not move the mark. Instead, this happens with
+commands that "jump," or with =C-SPC C-SPC= to manually set and then
+deactivate the mark. Think of the mark as a bookmark of the point, but
+not the point itself.
+
+Use =C-x C-SPC= (=pop-global-mark=) to go back after jumping into
 another buffer, such as when finding a definition with =M-.=, although
 there is also a mark ring for =xref= which you can pop with =M-,=.
-
-Use =C-u C-SPC= to pop the local mark after jumping around in a
-buffer, such as when using =C-s=. Note that while typing text moves
-the _point_ (or cursor) forward, it does not move the mark. Instead,
-this happens with commands that "jump," or with =C-SPC C-SPC= to
-manually set and then deactivate the mark. Think of the mark as a
-bookmark of the point, but not the point itself.
 
 When =set-mark-command-repeat-pop= is enabled, the mark can be
 repeatedly popped by hitting =C-SPC= after first popping the global or
@@ -270,11 +275,8 @@ prefix argument, so =C-u C-x C-x=. This command is super useful when
 using the =rectangle= commands (on =C-x r=) as the exact region
 matters.
 
-My configuration turns on =transient-mark-mode=, enables
-=set-mark-command-repeat-pop=, and increases the size of the mark
-rings such that you probably won't exhaust them. The large mark rings
-makes it possible to pop way back to an earlier context, but means it
-is practically impossible to cycle through the ring.
+My configuration turns on =transient-mark-mode= and enables
+=set-mark-command-repeat-pop=.
 
 ** Deleting whitespace
 
