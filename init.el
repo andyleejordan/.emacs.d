@@ -188,9 +188,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (defalias 'wsc  #'whitespace-cleanup)
 (defalias 'wsm  #'whitespace-mode)
 
-(use-package amx
-  :custom (amx-history-length history-length))
-
 (use-package counsel
   :delight
   :demand
@@ -212,7 +209,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature eldoc
   :delight)
 
-(use-package hydra)
 (use-package selectrum
   :straight (selectrum :host github :repo "raxod502/selectrum")
   :config (selectrum-mode)
@@ -230,29 +226,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config
   (selectrum-prescient-mode)
   (prescient-persist-mode))
-
-(use-package ivy
-  :delight
-  :demand
-  :config (ivy-mode)
-  :bind (("C-c M-x" . ivy-resume)
-         :map ivy-minibuffer-map
-         ("C-r" . ivy-previous-line-or-history)
-         ("C-w" . ivy-yank-word))
-  :custom
-  (ivy-height 8)
-  (ivy-use-virtual-buffers t "Add recentf to buffers.")
-  (ivy-use-selectable-prompt t "Easier creation of new files.")
-  (ivy-virtual-abbreviate 'abbreviate "And show with path.")
-  (ivy-initial-inputs-alist nil "Don't start with '^'.")
-  (ivy-display-style 'fancy)
-  :custom-face
-  ;; Remove underline.
-  (ivy-current-match ((t (:underline nil))))
-  ;; Italicize variables declared with `defcustom'.
-  (ivy-highlight-face ((t (:inherit nil :slant italic)))))
-
-(use-package ivy-hydra)
 
 (use-feature mb-depth
   :custom (enable-recursive-minibuffers t)
