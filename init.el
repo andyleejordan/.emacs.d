@@ -132,11 +132,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (global-subword-mode))
 
 ;;; Windows / Frames and the buffers in them
-(use-package buffer-move
-  :bind (("C-S-<up>"    . buf-move-up)
-         ("C-S-<down>"  . buf-move-down)
-         ("C-S-<left>"  . buf-move-left)
-         ("C-S-<right>" . buf-move-right)))
+(use-package buffer-move)
 
 (use-package popwin
   :defines popwin:special-display-config
