@@ -168,23 +168,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;;; Minibuffer Interface:
 (bind-key "L" #'find-library help-map)
 
-(defalias 'al   #'align)
-(defalias 'alr  #'align-regexp)
-(defalias 'cg   #'customize-group)
-(defalias 'dc   #'desktop-clear)
-(defalias 'dml  #'delete-matching-lines)
-(defalias 'dnml #'delete-non-matching-lines)
-(defalias 'eb   #'eval-buffer)
-(defalias 'er   #'eval-region)
-(defalias 'rb   #'revert-buffer)
-(defalias 'sl   #'sort-lines)
-(defalias 'spa  #'straight-pull-all)
-(defalias 'tdoe #'toggle-debug-on-error)
-(defalias 'tt   #'toggle-theme)
-(defalias 'vlm  #'visual-line-mode)
-(defalias 'wsc  #'whitespace-cleanup)
-(defalias 'wsm  #'whitespace-mode)
-
 (use-feature eldoc
   :delight)
 
