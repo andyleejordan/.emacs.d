@@ -62,7 +62,8 @@
   (straight-use-package 'use-package)
   (require 'use-package))
 
-(use-package delight)
+(use-package blackout
+  :straight (:host github :repo "raxod502/blackout"))
 (use-package bind-key)
 (use-package dash)
 (use-package f)
@@ -147,7 +148,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (bind-key "L" #'find-library help-map)
 
 (use-feature eldoc
-  :delight)
+  :blackout)
 
 (use-package selectrum
   :straight (selectrum :host github :repo "raxod502/selectrum")
@@ -179,7 +180,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (savehist-mode))
 
 (use-package which-key
-  :delight
+  :blackout
   :config (which-key-mode))
 
 ;;; Version Control:
@@ -302,7 +303,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :bind (:map c-mode-base-map ([remap indent-region] . clang-format-region)))
 
 (use-package dtrt-indent
-  :delight
+  :blackout
   :defines dtrt-indent-hook-mapping-list
   :custom
   (dtrt-indent-verbosity 0)
@@ -314,7 +315,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (dtrt-indent-global-mode))
 
 (use-package editorconfig
-  :delight
+  :blackout
   :config (editorconfig-mode))
 
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Comment-Commands.html
@@ -325,7 +326,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :commands (whitespace-mode))
 
 (use-package ws-butler
-  :delight
+  :blackout
   :custom (ws-butler-keep-whitespace-before-point nil)
   :config (ws-butler-global-mode))
 
@@ -333,7 +334,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (customize-set-variable 'truncate-lines t)
 
 (use-feature autorevert
-  :delight auto-revert-mode
+  :blackout
   :custom
   (auto-revert-remote-files t)
   (global-auto-revert-non-file-buffers t)
@@ -351,7 +352,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
       (call-if-fbound #'save-place)))
 
 (use-package undo-tree
-  :delight
+  :blackout
   :demand
   :defines undo-tree-map
   :bind (:map undo-tree-map
@@ -450,7 +451,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package smart-tab
   ;; TODO: Maybe remove this.
-  :delight
+  :blackout
   :custom (smart-tab-using-hippie-expand t)
   :config (global-smart-tab-mode))
 
@@ -462,7 +463,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package flyspell
   ;; Disable on Windows because `aspell' 0.6+ isn't available.
   :if (not (eq system-type 'windows-nt))
-  :delight
+  :blackout
   :hook
   (text-mode . flyspell-mode)
   (prog-mode . flyspell-prog-mode)
@@ -477,7 +478,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (use-package flyspell-correct-ivy))
 
 (use-package auto-correct
-  :delight
+  :blackout
   :custom (flyspell-use-global-abbrev-table-p t)
   :hook (flyspell-mode . auto-correct-mode))
 
@@ -506,7 +507,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (ediff-window-setup-function 'ediff-setup-windows-plain))
 
 (use-package elmacro ; show macros as Emacs Lisp
-  :delight
+  :blackout
   :config (elmacro-mode))
 
 (use-package eshell
@@ -699,7 +700,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
     (add-hook mode 'turn-on-visual-line-mode)))
 
 (use-package super-save
-  :delight
+  :blackout
   :defines super-save-triggers
   :config
   (add-args-to-list 'super-save-triggers
