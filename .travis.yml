@@ -8,14 +8,14 @@ addons:
       - fortune
       - cowsay
 before_install:
-  - wget https://ftp.gnu.org/gnu/emacs/emacs-25.3.tar.xz
-  - tar xf emacs-25.3.tar.xz
+  - wget https://ftp.gnu.org/gnu/emacs/emacs-26.3.tar.xz
+  - tar xf emacs-26.3.tar.xz
 install:
-  - cd emacs-25.3 && ./configure --without-all && make -j
+  - cd emacs-26.3 && ./configure --without-all && make -j
   - ./src/emacs --version
   - cd ..
 before_script:
   - rm -rf ~/.emacs.d ~/.emacs
   - ln -s $(pwd) ~/.emacs.d
 script:
-  - ./emacs-25.3/src/emacs --batch --load ~/.emacs.d/init.el --kill
+  - ./emacs-26.3/src/emacs --batch --load ~/.emacs.d/init.el --kill
