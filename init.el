@@ -266,12 +266,16 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (bind-key "C-x C-r" #'selectrum-recentf)
 
-;; TODO: Find replacement for `counsel-rg'.
 (use-package rg ; `ripgrep'
+  :defines rg-define-search
   :bind (:map search-map ; `M-s'
-              ("s" . rg-dwim)
-              ("r" . rg-project))
-  :commands (rg-literal))
+              ("M-s" . rg-ask-dwim)
+              ("s" . rg-menu))
+  :config (rg-define-search rg-ask-dwim
+            :query ask
+            :format regexp
+            :files "everything"
+            :dir project))
 
 ;; Use the same binding as `occur-edit-mode' for other writable modes.
 ;; Can always initiate with `e' and exit with `C-c C-c' or `C-x C-s'.
@@ -689,6 +693,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
          ([remap capitalize-word] . capitalize-dwim)
          ([remap zap-to-char] . zap-up-to-char))
   :custom
+  ;; TODO: Maybe set `suggest-key-bindings' to `nil'.
   (save-interprogram-paste-before-kill t)
   (kill-do-not-save-duplicates t)
   (kill-whole-line t)
