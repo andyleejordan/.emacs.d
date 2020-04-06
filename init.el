@@ -141,14 +141,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (popwin-mode))
 
 (use-package transpose-frame
-  :commands (transpose-frame-get-arrangement
-             transpose-frame-set-arrangement
-             transpose-frame
-             flip-frame
-             flop-frame
-             rotate-frame
-             rotate-frame-clockwise
-             rotate-frame-anticlockwise)
   :bind (:map ctl-x-4-map ("t" . transpose-frame)))
 
 (use-package windmove ; `S-<left,right,up,down>' to move windows
