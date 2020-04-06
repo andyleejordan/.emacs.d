@@ -11,7 +11,7 @@ before_install:
   - wget https://ftp.gnu.org/gnu/emacs/emacs-26.3.tar.xz
   - tar xf emacs-26.3.tar.xz
 install:
-  - cd emacs-26.3 && ./configure --without-all && make -j
+  - cd emacs-26.3 && ./configure --with-x-toolkit=no --without-all && make -j
   - ./src/emacs --version
   - cd ..
 before_script:
