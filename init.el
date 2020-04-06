@@ -134,12 +134,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;;; Windows / Frames and the buffers in them
 (use-package buffer-move)
 
-(use-package popwin
-  :defines popwin:special-display-config
-  :config
-  (add-to-list 'popwin:special-display-config #'(rg-mode :noselect t) t)
-  (popwin-mode))
-
 (use-package transpose-frame
   :bind (:map ctl-x-4-map ("t" . transpose-frame)))
 
