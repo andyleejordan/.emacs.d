@@ -67,11 +67,7 @@
 (use-package dash)
 (use-package f)
 
-;; Save data files consistently:
-;; - `save-place-file'
-;; - `undo-tree-history-directory-alist'
-;; - `backup-directory-alist'
-;; - etc.
+;; Save data files consistently.
 (use-package no-littering)
 
 (customize-set-variable
@@ -368,6 +364,15 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (or (call-if-fbound #'save-place-mode)
       (call-if-fbound #'save-place)))
 
+(use-package undo-tree
+  :delight
+  :demand
+  :defines undo-tree-map
+  :bind (:map undo-tree-map
+              ("M-/" . undo-tree-redo))
+  :config (global-undo-tree-mode)
+  :custom (undo-tree-enable-undo-in-region nil "This is buggy."))
+
 (use-package unfill
   :bind (([remap fill-paragraph] . unfill-toggle)))
 
@@ -420,7 +425,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package flycheck-tip) ; also for flymake
 
 (use-feature hippie-exp
-  :bind (([remap dabbrev-expand] . hippie-expand))
   :custom (hippie-expand-try-functions-list
            '(try-expand-all-abbrevs
              try-expand-dabbrev-visible
