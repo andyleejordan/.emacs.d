@@ -1,21 +1,10 @@
-addons:
-  apt:
-    packages:
-      - build-essential
-      - libncurses-dev
-      - aspell
-      - aspell-en
-      - fortune
-      - cowsay
 before_install:
-  - wget https://ftp.gnu.org/gnu/emacs/emacs-26.3.tar.xz
-  - tar xf emacs-26.3.tar.xz
-install:
-  - cd emacs-26.3 && ./configure --with-x-toolkit=no --without-all --with-gnutls && make -j
-  - ./src/emacs --version
-  - cd ..
+  - sudo add-apt-repository -y ppa:kelleyk/emacs
+  - sudo apt-get -q update
+  - sudo apt-get -y install emacs26-nox
 before_script:
   - rm -rf ~/.emacs.d ~/.emacs
   - ln -s $(pwd) ~/.emacs.d
 script:
-  - ./emacs-26.3/src/emacs --batch --load ~/.emacs.d/init.el --kill
+  - emacs26 --version
+  - emacs26 --batch --load ~/.emacs.d/init.el --kill
