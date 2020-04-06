@@ -445,7 +445,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (lsp-face-highlight-write ((t (:background "#2aa198")))))
 
 (use-package lsp-ui
-  :commands lsp-ui-mode)
+  :commands (lsp-ui-mode))
 
 ;; Use `omnisharp-install-server' to setup.
 (use-package omnisharp
@@ -712,18 +712,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :defines super-save-triggers
   :config
   (add-args-to-list 'super-save-triggers
-                    '(counsel-dired
-                      counsel-git
-                      counsel-ibuffer
-                      counsel-recentf
-                      counsel-switch-buffer
-                      dired-jump
-                      ivy-switch-buffer
+                    '(dired-jump
                       magit-dispatch
                       magit-file-dispatch
                       magit-refresh
-                      magit-status
-                      counsel-find-file))
+                      magit-status))
   (super-save-mode))
 
 (use-feature tramp
@@ -847,9 +840,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (pyvenv-tracking-mode))
 
 (use-package anaconda-mode
-  :hook
-  (python-mode
-   (python-mode . anaconda-eldoc-mode)))
+  :hook (python-mode (python-mode . anaconda-eldoc-mode)))
 
 (use-package blacken
   :hook (python-mode . blacken-mode)
