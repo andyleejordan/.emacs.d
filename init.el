@@ -194,7 +194,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :bind ("C-x g" . magit-status)
   :custom
   ;; TODO: Maybe `(magit-dwim-selection '((magit-branch-and-checkout nil t)))'
-  (magit-completing-read-function #'ivy-completing-read)
   (magit-save-repository-buffers 'dontask)
   (magit-published-branches nil "Disable confirmation.")
   (magit-diff-refine-hunk 'all "Word diffs."))
@@ -401,8 +400,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   ("C-c M-." . dumb-jump-go)
   ("C-c M-," . dumb-jump-back)
   :custom
-  (dumb-jump-max-find-time 8 "Wait longer for remote systems.")
-  (dumb-jump-selector 'ivy))
+  (dumb-jump-max-find-time 8 "Wait longer for remote systems."))
 
 (use-feature flymake
   :hook ((emacs-lisp-mode sh-mode python-mode) . flymake-mode)
