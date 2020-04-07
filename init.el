@@ -136,6 +136,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package buffer-move)
 
 (use-package transpose-frame
+  :demand
   :bind (:map ctl-x-4-map ("t" . transpose-frame)))
 
 (use-package windmove ; `S-<left,right,up,down>' to move windows
@@ -185,9 +186,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;;; Version Control:
 (use-package magit
-  :defines magit-file-mode-map
-  :straight (magit :host github :repo "magit/magit" :branch "master")
   :demand
+  :straight (magit :host github :repo "magit/magit" :branch "master")
+  :defines magit-file-mode-map
   ;; C-x M-g . `magit-dispatch'
   ;; C-c M-g . `magit-file-dispatch'
   :bind (("C-x g" . magit-status))
@@ -201,6 +202,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package forge)
 
 (use-package git-commit
+  :demand
   :hook (git-commit-mode . (lambda () (set-fill-column 72)))
   :custom (git-commit-major-mode 'markdown-mode)
   :config (global-git-commit-mode))
@@ -230,9 +232,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
            tramp-file-name-regexp)))
 
 ;;; File Navigation:
-(use-feature dired-loaddefs)
-
 (use-feature dired
+  :demand
   :hook (dired-mode . dired-hide-details-mode)
   :bind ([remap list-directory] . dired)
   :custom
@@ -242,6 +243,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (dired-listing-switches "-alhv" "Must not contain `-p'."))
 
 (use-feature dired-x
+  :demand
   :bind (("C-x C-j"   . dired-jump)
          ("C-x 4 C-j" . dired-jump-other-window)))
 
@@ -262,6 +264,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (bind-key "C-x C-r" #'selectrum-recentf)
 
 (use-package rg ; `ripgrep'
+  :demand
   :defines rg-define-search
   :bind (:map search-map ; `M-s'
               ("M-s" . rg-ask-dwim)
@@ -279,13 +282,16 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;; C-q', and `C-c C-p'.
 
 (use-feature replace
+  :demand
   :bind (:map occur-edit-mode-map ("C-x C-s" . occur-cease-edit)))
 
 (use-feature wdired
+  :demand
   :bind (:map dired-mode-map ("e" . dired-toggle-read-only))
   :custom (wdired-allow-to-change-permissions t))
 
 (use-package wgrep ; makes `rg' buffers writable too
+  :demand
   :defines grep-mode-map
   :bind (:map grep-mode-map ("e" . wgrep-change-to-wgrep-mode))
   :custom (wgrep-auto-save-buffer t))
@@ -298,6 +304,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :hook (emacs-lisp-mode . aggressive-indent-mode))
 
 (use-package clang-format
+  :demand
   :defines c-mode-base-map
   :after cc-mode
   :bind (:map c-mode-base-map ([remap indent-region] . clang-format-region)))
@@ -352,8 +359,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
       (call-if-fbound #'save-place)))
 
 (use-package undo-tree
-  :blackout
   :demand
+  :blackout
   :defines undo-tree-map
   :bind (:map undo-tree-map
               ("M-/" . undo-tree-redo))
@@ -473,6 +480,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (ispell-extra-args '("--sug-mode=ultra")))
 
 (use-package flyspell-correct
+  :demand
+  :after flyspell
   :bind (:map flyspell-mode-map
               ([remap ispell-word] . flyspell-correct-wrapper))
   :config (use-package flyspell-correct-ivy))
@@ -547,6 +556,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom (ielm-prompt "> "))
 
 (use-package org
+  :demand
   :straight org-plus-contrib
   :hook (org-mode . turn-on-auto-fill)
   :custom
@@ -687,6 +697,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
          ([remap downcase-word] . downcase-dwim)
          ([remap capitalize-word] . capitalize-dwim)
          ([remap zap-to-char] . zap-up-to-char))
+  :demand
   :custom
   ;; TODO: Maybe set `suggest-key-bindings' to `nil'.
   (save-interprogram-paste-before-kill t)
