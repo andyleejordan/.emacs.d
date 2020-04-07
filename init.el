@@ -191,7 +191,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :defines magit-file-mode-map
   ;; C-x M-g . `magit-dispatch'
   ;; C-c M-g . `magit-file-dispatch'
-  :bind (("C-x g" . magit-status))
+  :bind ("C-x g" . magit-status)
   :custom
   ;; TODO: Maybe `(magit-dwim-selection '((magit-branch-and-checkout nil t)))'
   (magit-completing-read-function #'ivy-completing-read)
@@ -209,7 +209,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;;; Buffers:
 (use-package ibuffer
-  :bind (([remap list-buffers] . ibuffer)))
+  :bind ([remap list-buffers] . ibuffer))
 
 (use-feature uniquify
   :custom (uniquify-buffer-name-style 'forward))
@@ -244,8 +244,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-feature dired-x
   :demand
-  :bind (("C-x C-j"   . dired-jump)
-         ("C-x 4 C-j" . dired-jump-other-window)))
+  :bind
+  ("C-x C-j"   . dired-jump)
+  ("C-x 4 C-j" . dired-jump-other-window))
 
 (use-feature recentf
   :custom
@@ -265,15 +266,13 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package rg ; `ripgrep'
   :demand
-  :defines rg-define-search
   :bind (:map search-map ; `M-s'
               ("M-s" . rg-ask-dwim)
               ("s" . rg-menu))
-  :config (rg-define-search rg-ask-dwim
-            :query ask
-            :format regexp
-            :files "everything"
-            :dir project))
+  :config
+  (rg-define-search rg-ask-dwim
+    :query ask :format regexp
+    :files "everything" :dir project))
 
 ;; Use the same binding as `occur-edit-mode' for other writable modes.
 ;; Can always initiate with `e' and exit with `C-c C-c' or `C-x C-s'.
@@ -305,8 +304,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package clang-format
   :demand
-  :defines c-mode-base-map
   :after cc-mode
+  :defines c-mode-base-map
   :bind (:map c-mode-base-map ([remap indent-region] . clang-format-region)))
 
 (use-package dtrt-indent
@@ -362,13 +361,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :demand
   :blackout
   :defines undo-tree-map
-  :bind (:map undo-tree-map
-              ("M-/" . undo-tree-redo))
+  :bind (:map undo-tree-map ("M-/" . undo-tree-redo))
   :config (global-undo-tree-mode)
   :custom (undo-tree-enable-undo-in-region nil "This is buggy."))
 
 (use-package unfill
-  :bind (([remap fill-paragraph] . unfill-toggle)))
+  :bind ([remap fill-paragraph] . unfill-toggle))
 
 ;;; Skeletons:
 ;; https://www.gnu.org/software/emacs/manual/html_mono/autotype.html#Skeleton-Language
@@ -401,8 +399,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package dumb-jump
   ;; TODO: Maybe remove this.
-  :bind (("C-c M-." . dumb-jump-go)
-         ("C-c M-," . dumb-jump-back))
+  :bind
+  ("C-c M-." . dumb-jump-go)
+  ("C-c M-," . dumb-jump-back)
   :custom
   (dumb-jump-max-find-time 8 "Wait longer for remote systems.")
   (dumb-jump-selector 'ivy))
@@ -449,12 +448,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package omnisharp
   :defines omnisharp-mode-map
   :hook (csharp-mode . omnisharp-mode)
-  :custom (omnisharp-imenu-support t)
   :bind (:map omnisharp-mode-map
               ([remap xref-find-definitions] . omnisharp-go-to-definition)
               ([remap xref-find-references] . omnisharp-find-usages)
               ;; `xref-pop-marker-stack' works as expected.
-              ([remap indent-region] . omnisharp-code-format-region)))
+              ([remap indent-region] . omnisharp-code-format-region))
+  :custom (omnisharp-imenu-support t))
 
 (use-package smart-tab
   ;; TODO: Maybe remove this.
@@ -483,8 +482,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package auto-correct
   :blackout
-  :custom (flyspell-use-global-abbrev-table-p t)
-  :hook (flyspell-mode . auto-correct-mode))
+  :hook (flyspell-mode . auto-correct-mode)
+  :custom (flyspell-use-global-abbrev-table-p t))
 
 ;;; Tools:
 (use-package auto-sudoedit
@@ -516,7 +515,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package eshell
   :commands (eshell)
-  :bind (("C-c e" . eshell))
+  :bind ("C-c e" . eshell)
   :custom
   (eshell-visual-commands '("bash" "htop" "fish"))
   (eshell-prompt-regexp "^> ")
@@ -581,10 +580,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom (reb-re-syntax 'string))
 
 (use-package restart-emacs
-  :bind (("C-c Q" . restart-emacs)))
+  :bind ("C-c Q" . restart-emacs))
 
 (use-feature woman
-  :bind (("C-c m" . woman)))
+  :bind ("C-c m" . woman))
 
 ;;; Appearance:
 ;; TODO: Add `helpful' package
@@ -607,7 +606,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom (blink-cursor-blinks 0))
 
 (use-package emojify
-  :bind (("C-c E" . emojify-insert-emoji))
+  :bind ("C-c E" . emojify-insert-emoji)
   :custom (global-emojify-mode))
 
 (use-package fortune-cookie
@@ -684,12 +683,13 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;; Simple is Emacs's built-in miscellaneous package.
 (use-feature simple
-  :bind (([remap just-one-space] . cycle-spacing)
-         ([remap upcase-word] . upcase-dwim)
-         ([remap downcase-word] . downcase-dwim)
-         ([remap capitalize-word] . capitalize-dwim)
-         ([remap zap-to-char] . zap-up-to-char))
   :demand
+  :bind
+  ([remap just-one-space] . cycle-spacing)
+  ([remap upcase-word] . upcase-dwim)
+  ([remap downcase-word] . downcase-dwim)
+  ([remap capitalize-word] . capitalize-dwim)
+  ([remap zap-to-char] . zap-up-to-char)
   :custom
   ;; TODO: Maybe set `suggest-key-bindings' to `nil'.
   (save-interprogram-paste-before-kill t)
@@ -762,10 +762,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package ocamlformat
   :straight (:host github :repo "ocaml-ppx/ocamlformat" :files ("emacs/ocamlformat.el"))
-  :custom (ocamlformat-show-errors nil)
   ;; TODO: May want to limit this to certain files.
-  :hook ((tuareg-mode) . (lambda ()
-                           (add-hook 'before-save-hook 'ocamlformat-before-save nil 't))))
+  :hook (tuareg-mode . (lambda ()
+                         (add-hook 'before-save-hook 'ocamlformat-before-save nil 't)))
+  :custom (ocamlformat-show-errors nil))
 
 (use-package tuareg
   :defines tuareg-mode-map
@@ -777,11 +777,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package merlin
   :defines merlin-mode-map
+  :hook ((tuareg-mode caml-mode) . merlin-mode)
   :bind (:map merlin-mode-map
               ;; TODO: Maybe map phrases to paragraphs.
               ([remap xref-find-definitions] . merlin-locate)
-              ([remap xref-pop-marker-stack] . merlin-pop-stack))
-  :hook ((tuareg-mode caml-mode) . merlin-mode))
+              ([remap xref-pop-marker-stack] . merlin-pop-stack)))
 
 (use-package merlin-eldoc
   :hook ((tuareg-mode caml-mode) . merlin-eldoc-setup))
