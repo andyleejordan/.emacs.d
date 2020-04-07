@@ -462,10 +462,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom (smart-tab-using-hippie-expand t)
   :config (global-smart-tab-mode))
 
-(use-feature xref
-  :custom (xref-show-xrefs-function #'ivy-xref-show-xrefs)
-  :config (use-package ivy-xref))
-
 ;;; Spelling:
 (use-package flyspell
   ;; Disable on Windows because `aspell' 0.6+ isn't available.
@@ -483,8 +479,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :demand
   :after flyspell
   :bind (:map flyspell-mode-map
-              ([remap ispell-word] . flyspell-correct-wrapper))
-  :config (use-package flyspell-correct-ivy))
+              ([remap ispell-word] . flyspell-correct-wrapper)))
 
 (use-package auto-correct
   :blackout
@@ -587,9 +582,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package restart-emacs
   :bind (("C-c Q" . restart-emacs)))
-
-(use-feature shell
-  :bind (:map shell-mode-map ("C-r" . counsel-shell-history)))
 
 (use-feature woman
   :bind (("C-c m" . woman)))
