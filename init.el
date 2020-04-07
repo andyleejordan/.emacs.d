@@ -199,8 +199,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (magit-published-branches nil "Disable confirmation.")
   (magit-diff-refine-hunk 'all "Word diffs."))
 
-(use-package forge)
-
 (use-package git-commit
   :demand
   :hook (git-commit-mode . (lambda () (set-fill-column 72)))
@@ -456,7 +454,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom (omnisharp-imenu-support t))
 
 (use-package smart-tab
-  ;; TODO: Maybe remove this.
   :blackout
   :custom (smart-tab-using-hippie-expand t)
   :config (global-smart-tab-mode))
@@ -569,9 +566,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (org-babel-load-languages '((emacs-lisp . t)
                               (shell . t))))
 
-(use-package org-download
-  :commands (org-download-yank))
-
 (use-package rainbow-mode ; highlight color codes like "#aabbcc"
   :commands (rainbow-mode))
 
@@ -604,10 +598,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-feature frame
   :custom (blink-cursor-blinks 0))
-
-(use-package emojify
-  :bind ("C-c E" . emojify-insert-emoji)
-  :custom (global-emojify-mode))
 
 (use-package fortune-cookie
   :custom
@@ -674,12 +664,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (customize-set-variable 'visible-bell t)
 (customize-set-variable 'inhibit-startup-screen t)
 (set-variable 'disabled-command-function nil)
-
-;; Save Emacs sessions
-(use-feature desktop
-  :disabled
-  :custom (desktop-restore-frames nil)
-  :config (desktop-save-mode))
 
 ;; Simple is Emacs's built-in miscellaneous package.
 (use-feature simple
@@ -785,8 +769,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package merlin-eldoc
   :hook ((tuareg-mode caml-mode) . merlin-eldoc-setup))
-
-(use-package ocp-indent :disabled)
 
 (use-package cmake-mode
   :defines cmake-mode-map
