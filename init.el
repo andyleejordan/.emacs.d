@@ -497,8 +497,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package default-text-scale)
 
-(use-package demangle-mode
-  :commands (demangle-mode))
+(use-package demangle-mode)
 
 (use-feature ediff
   :custom
@@ -510,8 +509,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :blackout
   :config (elmacro-mode))
 
-(use-package eshell
-  :commands (eshell)
+(use-feature eshell
   :bind ("C-c e" . eshell)
   :custom
   (eshell-visual-commands '("bash" "htop" "fish"))
@@ -543,7 +541,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom (gdb-many-windows t))
 
 (use-package ielm
-  :commands (ielm)
   :custom (ielm-prompt "> "))
 
 (use-package org
@@ -566,11 +563,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (org-babel-load-languages '((emacs-lisp . t)
                               (shell . t))))
 
-(use-package rainbow-mode ; highlight color codes like "#aabbcc"
-  :commands (rainbow-mode))
+(use-package rainbow-mode) ; highlight color codes like "#aabbcc"
 
 (use-feature re-builder
-  :commands (re-builder regexp-builder)
   :custom (reb-re-syntax 'string))
 
 (use-package restart-emacs
