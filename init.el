@@ -128,6 +128,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (bind-key [remap delete-char] #'delete-forward-char)
 
 (use-feature isearch
+  ;; TODO: Set `search-whitespace-regexp' for fuzzier searching.
   :custom (isearch-allow-scroll t))
 
 (use-feature subword
