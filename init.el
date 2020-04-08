@@ -229,6 +229,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
            tramp-file-name-regexp)))
 
 ;;; File Navigation:
+(defun find-dot-emacs ()
+  "Open `~/.emacs.d/init.el'."
+  (interactive)
+  (find-file (expand-file-name "init.el" user-emacs-directory)))
+(bind-key "C-c i" #'find-dot-emacs)
+
 (use-feature dired
   :demand
   :hook (dired-mode . dired-hide-details-mode)
