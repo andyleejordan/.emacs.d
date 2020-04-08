@@ -473,6 +473,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;;; Tools:
 (use-package auto-sudoedit
+  :blackout
   :config (defalias 'sudoedit #'auto-sudoedit-sudoedit))
 
 (use-feature compile
