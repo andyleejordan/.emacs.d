@@ -125,6 +125,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (bind-key "C-M-<backspace>" #'delete-pair)
 (bind-key "C-M-`" #'raise-sexp)
 (bind-key "M-o" #'other-window)
+(bind-key [remap delete-char] #'delete-forward-char)
 
 (use-feature isearch
   :custom (isearch-allow-scroll t))
