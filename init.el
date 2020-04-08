@@ -180,6 +180,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature savehist
   :config (savehist-mode))
 
+(use-feature which-func
+  :custom (which-func-unknown "")
+  :config (which-function-mode))
+
 (use-package which-key
   :blackout
   :config (which-key-mode))
