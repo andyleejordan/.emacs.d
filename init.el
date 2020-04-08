@@ -816,9 +816,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (pyvenv-tracking-mode))
 
 (use-package anaconda-mode
+  :blackout
   :hook (python-mode (python-mode . anaconda-eldoc-mode)))
 
 (use-package blacken
+  :blackout
   :hook (python-mode . blacken-mode)
   :custom (blacken-only-if-project-is-blackened t))
 
