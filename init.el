@@ -331,8 +331,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature newcomment
   :custom (comment-fill-column 0))
 
-(use-package whitespace
-  :commands (whitespace-mode))
+(use-package whitespace)
 
 (use-package ws-butler
   :blackout
@@ -430,10 +429,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
              try-complete-file-name-partially
              try-complete-file-name)))
 
-;; options include irony, cquery, rtags, ggtags, and ycmd
+;; Alternatives include: irony, cquery, rtags, ggtags, and ycmd.
 (use-package lsp-mode
-  ;; automatically sets up flymake
-  :commands (lsp)
+  ;; Automatically sets up flymake.
   :hook (c-mode-common . lsp-deferred)
   :custom (lsp-enable-snippet nil)
   :custom-face
@@ -442,9 +440,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (lsp-face-highlight-read ((t (:background "#dc322f"))))
   ;; Solarized Cyan
   (lsp-face-highlight-write ((t (:background "#2aa198")))))
-
-(use-package lsp-ui
-  :commands (lsp-ui-mode))
 
 ;; Use `omnisharp-install-server' to setup.
 (use-package omnisharp
@@ -461,6 +456,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :blackout
   :custom (smart-tab-using-hippie-expand t)
   :config (global-smart-tab-mode))
+(use-package lsp-ui)
 
 ;;; Spelling:
 (use-package flyspell
@@ -488,7 +484,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;;; Tools:
 (use-package auto-sudoedit
-  :commands (auto-sudoedit-sudoedit)
   :config (defalias 'sudoedit #'auto-sudoedit-sudoedit))
 
 (use-feature compile
