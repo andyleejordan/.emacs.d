@@ -393,19 +393,28 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
        "set -o errexit" \n
        "set -o pipefail" "\n\n")]))
 
-;;; Completion / Syntax / Tags:
+;;; Tab Completion:
 (customize-set-variable 'tab-always-indent 'complete)
 
+(use-feature hippie-exp
+  :custom (hippie-expand-try-functions-list
+           '(try-expand-all-abbrevs
+             try-expand-dabbrev-visible
+             try-expand-dabbrev ; this buffer
+             try-expand-dabbrev-all-buffers
+             try-expand-dabbrev-from-kill
+             try-expand-whole-kill
+             try-complete-file-name-partially
+             try-complete-file-name)))
+
+(use-package smart-tab
+  :blackout
+  :custom (smart-tab-using-hippie-expand t)
+  :config (global-smart-tab-mode))
+
+;;; Syntax Checking:
 ;; Treat backquotes as pairs in text mode.
 (modify-syntax-entry ?\` "$`" text-mode-syntax-table)
-
-(use-package dumb-jump
-  ;; TODO: Maybe remove this.
-  :bind
-  ("C-c M-." . dumb-jump-go)
-  ("C-c M-," . dumb-jump-back)
-  :custom
-  (dumb-jump-max-find-time 8 "Wait longer for remote systems."))
 
 (use-feature flymake
   :hook ((emacs-lisp-mode sh-mode python-mode) . flymake-mode)
@@ -418,16 +427,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package flycheck-tip) ; also for flymake
 
-(use-feature hippie-exp
-  :custom (hippie-expand-try-functions-list
-           '(try-expand-all-abbrevs
-             try-expand-dabbrev-visible
-             try-expand-dabbrev ; this buffer
-             try-expand-dabbrev-all-buffers
-             try-expand-dabbrev-from-kill
-             try-expand-whole-kill
-             try-complete-file-name-partially
-             try-complete-file-name)))
+;;; Tags:
+(use-package dumb-jump
+  :bind
+  ("C-c M-." . dumb-jump-go)
+  ("C-c M-," . dumb-jump-back))
 
 ;; Alternatives include: irony, cquery, rtags, ggtags, and ycmd.
 (use-package lsp-mode
@@ -441,21 +445,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   ;; Solarized Cyan
   (lsp-face-highlight-write ((t (:background "#2aa198")))))
 
-;; Use `omnisharp-install-server' to setup.
-(use-package omnisharp
-  :defines omnisharp-mode-map
-  :hook (csharp-mode . omnisharp-mode)
-  :bind (:map omnisharp-mode-map
-              ([remap xref-find-definitions] . omnisharp-go-to-definition)
-              ([remap xref-find-references] . omnisharp-find-usages)
-              ;; `xref-pop-marker-stack' works as expected.
-              ([remap indent-region] . omnisharp-code-format-region))
-  :custom (omnisharp-imenu-support t))
-
-(use-package smart-tab
-  :blackout
-  :custom (smart-tab-using-hippie-expand t)
-  :config (global-smart-tab-mode))
 (use-package lsp-ui)
 
 ;;; Spelling:
@@ -771,6 +760,17 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package csharp-mode
   :custom (csharp-want-imenu nil))
+
+;; Use `omnisharp-install-server' to setup.
+(use-package omnisharp
+  :defines omnisharp-mode-map
+  :hook (csharp-mode . omnisharp-mode)
+  :bind (:map omnisharp-mode-map
+              ([remap xref-find-definitions] . omnisharp-go-to-definition)
+              ([remap xref-find-references] . omnisharp-find-usages)
+              ;; `xref-pop-marker-stack' works as expected.
+              ([remap indent-region] . omnisharp-code-format-region))
+  :custom (omnisharp-imenu-support t))
 
 (use-package dockerfile-mode)
 
