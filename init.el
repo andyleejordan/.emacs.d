@@ -158,8 +158,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (winner-mode))
 
 ;;; Minibuffer Interface:
-(bind-key "L" #'find-library help-map)
-
 (use-feature eldoc
   :blackout)
 
@@ -684,6 +682,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (customize-set-variable 'visible-bell t)
 (customize-set-variable 'inhibit-startup-screen t)
 (set-variable 'disabled-command-function nil)
+
+(use-feature help
+  :demand
+  :hook (help-mode . turn-on-visual-line-mode)
+  :bind (:map help-map ("L" . find-library))
+  :custom (help-window-select t))
 
 ;; Simple is Emacs's built-in miscellaneous package.
 (use-feature simple
