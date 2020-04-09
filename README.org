@@ -587,6 +587,7 @@ See [[https://masteringemacs.org/article/evaluating-elisp-emacs][Mastering Emacs
 - =save-excursion= to restore point
 - =replace-regexp-in-string=
 - =shell-command-to-string=
+- =thing-at-point= to get things at point
 - [[https://github.com/magnars/dash.el][dash.el]] modern list library
 
 ** Custom faces

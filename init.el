@@ -400,23 +400,41 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
        "set -o pipefail" "\n\n")]))
 
 ;;; Tab Completion:
-(customize-set-variable 'tab-always-indent 'complete)
-
-(use-feature hippie-exp
-  :custom (hippie-expand-try-functions-list
-           '(try-expand-all-abbrevs
-             try-expand-dabbrev-visible
-             try-expand-dabbrev ; this buffer
-             try-expand-dabbrev-all-buffers
-             try-expand-dabbrev-from-kill
-             try-expand-whole-kill
-             try-complete-file-name-partially
-             try-complete-file-name)))
-
-(use-package smart-tab
+(use-package company
+  :demand
   :blackout
-  :custom (smart-tab-using-hippie-expand t)
-  :config (global-smart-tab-mode))
+  :bind
+  ([remap completion-at-point] . #'company-manual-begin)
+  ([remap complete-symbol] . #'company-manual-begin)
+  (:map company-active-map
+        ;; Complete selection with `<tab>' instead of `<return>'.
+        ("<tab>" . #'company-complete-selection)
+        ;; Don't override `isearch'.
+        ("C-s" . nil)
+        ("C-M-s" . nil)
+        :filter (company-explicit-action-p)
+        ;; Complete with `<return>' only if we scrolled. We need to do
+        ;; both of these because of mappings in `company'.
+        ("<return>" . #'company-complete-selection)
+        ("RET" . #'company-complete-selection))
+  :custom
+  ;; Complete sooner.
+  (company-idle-delay 0.25)
+  (company-minimum-prefix-length 1)
+  ;; Smaller list.
+  (company-tooltip-limit 5)
+  ;; Align signatures to the right.
+  (company-tooltip-align-annotations t)
+  ;; Never display inline (since we use `eldoc').
+  (company-frontends '(company-pseudo-tooltip-frontend))
+  ;; Disallow non-matching input if we scrolled.
+  (company-require-match #'company-explicit-action-p)
+  ;; Search buffers with the same major mode.
+  (company-dabbrev-other-buffers t)
+  :config (global-company-mode))
+
+(use-package company-prescient
+  :config (company-prescient-mode))
 
 ;;; Syntax Checking:
 ;; Treat backquotes as pairs in text mode.
@@ -450,6 +468,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (lsp-face-highlight-read ((t (:background "#dc322f"))))
   ;; Solarized Cyan
   (lsp-face-highlight-write ((t (:background "#2aa198")))))
+
+(use-package company-lsp
+  :after company
+  :config (add-to-list 'company-backends 'company-lsp))
 
 (use-package lsp-ui)
 
