@@ -144,6 +144,16 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package windmove ; `S-<left,right,up,down>' to move windows
   :config (windmove-default-keybindings))
 
+(use-feature window
+  :disabled
+  :no-require
+  :custom
+  (display-buffer-alist
+   '((".*"
+      (display-buffer-reuse-window display-buffer-same-window)
+      (reusable-frames . t))))
+  (even-window-sizes t))
+
 (use-feature winner ; `C-c <left,right>' to undo/redo windows
   :config (winner-mode))
 
