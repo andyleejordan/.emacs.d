@@ -843,6 +843,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :blackout
   :hook (python-mode (python-mode . anaconda-eldoc-mode)))
 
+(use-package company-anaconda
+  :after company
+  :config (add-to-list 'company-backends 'company-anaconda))
+
 (use-package blacken
   :blackout
   :hook (python-mode . blacken-mode)
