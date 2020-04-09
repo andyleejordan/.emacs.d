@@ -444,7 +444,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;;; Syntax Checking:
 ;; Treat backquotes as pairs in text mode.
-(modify-syntax-entry ?\` "$`" text-mode-syntax-table)
+(use-feature text-mode
+  :demand
+  :hook (text-mode . turn-on-visual-line-mode)
+  :config (modify-syntax-entry ?\` "$`" text-mode-syntax-table))
+
 
 (use-feature flymake
   :hook ((emacs-lisp-mode sh-mode python-mode) . flymake-mode)
