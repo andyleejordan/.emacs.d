@@ -404,6 +404,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :demand
   :blackout
   :bind
+  ([remap indent-for-tab-command] . #'company-indent-or-complete-common)
   ([remap completion-at-point] . #'company-manual-begin)
   ([remap complete-symbol] . #'company-manual-begin)
   (:map company-active-map
@@ -418,9 +419,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
         ("<return>" . #'company-complete-selection)
         ("RET" . #'company-complete-selection))
   :custom
-  ;; Complete sooner.
-  (company-idle-delay 0.25)
-  (company-minimum-prefix-length 1)
   ;; Smaller list.
   (company-tooltip-limit 5)
   ;; Align signatures to the right.
