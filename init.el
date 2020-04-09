@@ -515,6 +515,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (defalias 'sudoedit #'auto-sudoedit-sudoedit))
 
 (use-feature compile
+  :demand
+  :hook (compilation-mode . turn-on-visual-line-mode)
+  :bind ("C-c c" . compile)
   :custom
   (compilation-ask-about-save nil)
   (compilation-scroll-output t)
@@ -710,9 +713,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (shift-select-mode nil)
   (visual-line-fringe-indicators '(nil right-curly-arrow))
   :config
-  (column-number-mode)
-  (dolist (mode '(compilation-mode-hook text-mode-hook help-mode))
-    (add-hook mode 'turn-on-visual-line-mode)))
+  (column-number-mode))
 
 (use-package super-save
   :blackout
@@ -776,7 +777,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :straight (:host github :repo "ocaml-ppx/ocamlformat" :files ("emacs/ocamlformat.el"))
   ;; TODO: May want to limit this to certain files.
   :hook (tuareg-mode . (lambda ()
-                         (add-hook 'before-save-hook 'ocamlformat-before-save nil 't)))
+                         (add-hook 'before-save-hook #'ocamlformat-before-save nil 't)))
   :custom (ocamlformat-show-errors nil))
 
 (use-package tuareg
