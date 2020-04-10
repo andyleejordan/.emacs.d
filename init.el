@@ -225,9 +225,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature uniquify
   :custom (uniquify-buffer-name-style 'forward))
 
-;; TODO: Find replacement for `counsel-git', maybe `project-find-file'?
 (use-feature project
+  :demand
   :defines project-find-functions
+  :bind ("C-c f" . project-find-file)
   :config
   ;; Similar to project-try-vc but works when VC is disabled.
   (defun project-try-magit (dir)
@@ -378,8 +379,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :blackout
   :defines undo-tree-map
   :bind (:map undo-tree-map ("M-/" . undo-tree-redo))
-  :config (global-undo-tree-mode)
-  :custom (undo-tree-enable-undo-in-region nil "This is buggy."))
+  :custom (undo-tree-enable-undo-in-region nil "This is buggy.")
+  :config (global-undo-tree-mode))
 
 (use-package unfill
   :bind ([remap fill-paragraph] . unfill-toggle))
