@@ -504,8 +504,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :after lsp company
   :config (add-to-list 'company-backends 'company-lsp))
 
-(use-package lsp-ui)
-
 ;;; Spelling:
 (use-package flyspell
   ;; Disable on Windows because `aspell' 0.6+ isn't available.
