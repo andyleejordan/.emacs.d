@@ -486,16 +486,19 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   ("C-c M-," . dumb-jump-back))
 
 ;; Alternatives include: irony, cquery, rtags, ggtags, and ycmd.
+(use-package eglot ; an alternative LSP client in ELPA
+  :disabled
+  :hook
+  (c-mode-common . eglot-ensure)
+  (python-mode . eglot-ensure))
+
 (use-package lsp-mode
-  ;; Automatically sets up flymake.
-  :hook (c-mode-common . lsp-deferred)
-  :custom (lsp-enable-snippet nil)
-  :custom-face
-  (lsp-face-highlight-textual ((t (:background unspecified))))
-  ;; Solarized Red
-  (lsp-face-highlight-read ((t (:background "#dc322f"))))
-  ;; Solarized Cyan
-  (lsp-face-highlight-write ((t (:background "#2aa198")))))
+  :hook
+  (c-mode-common . lsp-deferred) ; apt-get install clangd-9
+  (python-mode . lsp-deferred) ; pip3 install python-language-server
+  (sh-mode . lsp-deferred) ; npm i -g bash-language-server
+  :commands lsp
+  :custom (lsp-enable-snippet nil))
 
 (use-package company-lsp
   :after lsp company
@@ -876,6 +879,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (pyvenv-tracking-mode))
 
 (use-package anaconda-mode
+  :disabled
   :blackout
   :hook
   (python-mode)
@@ -887,6 +891,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (add-to-list 'company-backends 'company-anaconda))
 
 (use-package company-jedi
+  :disabled
   ;; Install with `jedi:install-server' (requires `virtualenv' in `PATH').
   ;; Use type hints: https://jedi.readthedocs.io/en/stable/docs/features.html#type-hinting
   :after company
