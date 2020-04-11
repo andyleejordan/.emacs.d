@@ -343,6 +343,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :blackout
   :config (editorconfig-mode))
 
+(use-feature indent
+  :no-require
+  :custom (tab-always-indent 'complete))
+
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Comment-Commands.html
 (use-feature newcomment
   :custom (comment-fill-column 0))
