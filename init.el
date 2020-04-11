@@ -501,8 +501,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom (lsp-enable-snippet nil))
 
 (use-package company-lsp
-  :after lsp company
-  :config (add-to-list 'company-backends 'company-lsp))
+  :custom (company-lsp-cache-candidates 'auto))
 
 ;;; Spelling:
 (use-package flyspell
