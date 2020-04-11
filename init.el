@@ -479,8 +479,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package flymake-shellcheck
   :hook (sh-mode . flymake-shellcheck-load))
 
-(use-package flycheck-tip) ; also for flymake
-
 ;;; Tags:
 (use-package dumb-jump
   :bind
@@ -829,6 +827,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;; Use `omnisharp-install-server' to setup.
 (use-package omnisharp
+  :disabled
   :defines omnisharp-mode-map
   :hook (csharp-mode . omnisharp-mode)
   :bind (:map omnisharp-mode-map
