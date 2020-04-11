@@ -437,23 +437,15 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :demand
   :blackout
   :bind
-  ([remap indent-for-tab-command] . #'company-indent-or-complete-common)
-  ([remap completion-at-point] . #'company-manual-begin)
-  ([remap complete-symbol] . #'company-manual-begin)
   (:map company-active-map
-        ;; Complete selection with `<tab>' instead of `<return>'.
-        ("<tab>" . #'company-complete-selection)
         ;; Don't override `isearch'.
-        ("C-s" . nil)
-        ("C-M-s" . nil)
-        :filter (company-explicit-action-p)
-        ;; Complete with `<return>' only if we scrolled. We need to do
-        ;; both of these because of mappings in `company'.
-        ("<return>" . #'company-complete-selection)
-        ("RET" . #'company-complete-selection))
+        ("C-s" . nil) ("C-M-s" . nil))
   :custom
+  ;; Complete quickly.
+  (company-minimum-prefix-length 1)
+  (company-idle-delay 0)
   ;; Smaller list.
-  (company-tooltip-limit 5)
+  (company-tooltip-limit 7)
   ;; Align signatures to the right.
   (company-tooltip-align-annotations t)
   ;; Never display inline (since we use `eldoc').
@@ -463,11 +455,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   ;; Search buffers with the same major mode.
   (company-dabbrev-other-buffers t)
   ;; Give backends more time.
-  (company-async-timeout 10)
+  (company-async-timeout 5)
   :config (global-company-mode))
 
 (use-package company-prescient
-  :after company
+  :after prescient company
   :config (company-prescient-mode))
 
 ;;; Syntax Checking:
