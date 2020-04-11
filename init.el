@@ -410,6 +410,25 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
        "set -o pipefail" "\n\n")]))
 
 ;;; Tab Completion:
+(use-package smart-tab
+  :disabled
+  :demand
+  :blackout
+  :custom (smart-tab-using-hippie-expand t)
+  :config (global-smart-tab-mode))
+
+(use-feature hippie-exp
+  :disabled
+  :custom (hippie-expand-try-functions-list
+           '(try-expand-all-abbrevs
+             try-expand-dabbrev-visible
+             try-expand-dabbrev ; this buffer
+             try-expand-dabbrev-all-buffers
+             try-expand-dabbrev-from-kill
+             try-expand-whole-kill
+             try-complete-file-name-partially
+             try-complete-file-name)))
+
 (use-package company
   :demand
   :blackout
@@ -440,7 +459,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   ;; Search buffers with the same major mode.
   (company-dabbrev-other-buffers t)
   ;; Give backends more time.
-  (company-async-timeout 6)
+  (company-async-timeout 10)
   :config (global-company-mode))
 
 (use-package company-prescient
@@ -485,7 +504,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (lsp-face-highlight-write ((t (:background "#2aa198")))))
 
 (use-package company-lsp
-  :after company
+  :after lsp company
   :config (add-to-list 'company-backends 'company-lsp))
 
 (use-package lsp-ui)
@@ -863,11 +882,22 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package anaconda-mode
   :blackout
-  :hook (python-mode (python-mode . anaconda-eldoc-mode)))
+  :hook
+  (python-mode)
+  (python-mode . anaconda-eldoc-mode))
 
 (use-package company-anaconda
-  :after company
+  :disabled
+  :after anaconda-mode company
   :config (add-to-list 'company-backends 'company-anaconda))
+
+(use-package company-jedi
+  ;; Install with `jedi:install-server' (requires `virtualenv' in `PATH').
+  ;; Use type hints: https://jedi.readthedocs.io/en/stable/docs/features.html#type-hinting
+  :after company
+  :hook (python-mode . jedi-mode)
+  :custom (jedi:use-shortcuts t)
+  :config (add-to-list 'company-backends 'company-jedi))
 
 (use-package blacken
   :blackout
