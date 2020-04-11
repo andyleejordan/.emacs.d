@@ -438,9 +438,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (company-require-match #'company-explicit-action-p)
   ;; Search buffers with the same major mode.
   (company-dabbrev-other-buffers t)
+  ;; Give backends more time.
+  (company-async-timeout 6)
   :config (global-company-mode))
 
 (use-package company-prescient
+  :after company
   :config (company-prescient-mode))
 
 ;;; Syntax Checking:
