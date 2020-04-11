@@ -300,6 +300,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-feature replace
   :demand
+  :hook (occur-mode . next-error-follow-minor-mode)
   :bind (:map occur-edit-mode-map ("C-x C-s" . occur-cease-edit)))
 
 (use-feature wdired
