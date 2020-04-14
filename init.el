@@ -161,8 +161,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature eldoc
   :blackout)
 
+(use-package prescient
+  :config (prescient-persist-mode))
+
 (use-package selectrum
-  :straight (selectrum :host github :repo "raxod502/selectrum")
   :config (selectrum-mode)
   :custom-face
   (selectrum-current-candidate ; Solarized Green
@@ -173,11 +175,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
    ((t (:weight bold :foreground "#d33682")))))
 
 (use-package selectrum-prescient
-  :straight (selectrum-prescient :host github :repo "raxod502/prescient.el"
-                                 :files ("selectrum-prescient.el"))
-  :config
-  (selectrum-prescient-mode)
-  (prescient-persist-mode))
+  :config (selectrum-prescient-mode))
 
 (use-feature mb-depth
   :custom (enable-recursive-minibuffers t)
@@ -459,7 +457,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (global-company-mode))
 
 (use-package company-prescient
-  :after prescient company
   :config (company-prescient-mode))
 
 ;;; Syntax Checking:
