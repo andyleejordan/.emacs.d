@@ -691,8 +691,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (load-theme 'tango-dark t))
 
 ;;; Internal Emacs Configuration:
-(customize-set-variable 'gc-cons-threshold 20000000)
-(customize-set-variable 'garbage-collection-messages t)
+(customize-set-variable 'gc-cons-threshold (* 100 1024 1024))
+(customize-set-variable 'read-process-output-max (* 1024 1024))
 
 ;; Fix annoyances.
 (defalias 'yes-or-no-p 'y-or-n-p)
