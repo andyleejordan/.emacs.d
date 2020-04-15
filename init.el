@@ -381,7 +381,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :demand
   :blackout
   :defines undo-tree-map
-  :bind (:map undo-tree-map ("M-/" . undo-tree-redo))
   :custom (undo-tree-enable-undo-in-region nil "This is buggy.")
   :config (global-undo-tree-mode))
 
@@ -420,7 +419,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (global-smart-tab-mode))
 
 (use-feature hippie-exp
-  :disabled
+  :bind ([remap dabbrev-expand] . hippie-expand)
   :custom (hippie-expand-try-functions-list
            '(try-expand-all-abbrevs
              try-expand-dabbrev-visible
