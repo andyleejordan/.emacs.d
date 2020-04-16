@@ -115,11 +115,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :if (eq system-type 'windows-nt))
 
 ;; Experimental:
-(use-feature compile-commands
-  :load-path "etc")
+(use-feature compile-commands :load-path "etc")
 
-(use-feature edl-mode
-  :load-path "etc")
+(use-feature edl-mode :load-path "etc")
 
 ;;; Cursor and Mark Movement:
 (bind-key "C-M-<backspace>" #'delete-pair)
@@ -856,7 +854,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package edit-indirect)
 
-(use-package mediawiki)
+(use-package mediawiki
+  :disabled)
 
 (use-package nginx-mode)
 
