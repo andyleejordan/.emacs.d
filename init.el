@@ -550,6 +550,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (ediff-window-setup-function 'ediff-setup-windows-plain))
 
 (use-package elmacro ; show macros as Emacs Lisp
+  :disabled ; Seems to slow things like `company' down.
   :blackout
   :config (elmacro-mode))
 
