@@ -435,8 +435,15 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :blackout
   :bind
   (:map company-active-map
+        ;; Tab to complete selection.
+        ([tab] . #'company-complete-selection)
+        ("TAB" . #'company-complete-selection)
         ;; Don't override `isearch'.
-        ("C-s" . nil) ("C-M-s" . nil))
+        ("C-s" . nil) ("C-M-s" . nil)
+        ;; Return only if scrolled.
+        :filter (company-explicit-action-p)
+        ([return] . #'company-complete-selection)
+        ("RET" . #'company-complete-selection))
   :custom
   ;; Complete quickly.
   (company-minimum-prefix-length 1)
