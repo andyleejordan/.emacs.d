@@ -163,7 +163,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (prescient-persist-mode))
 
 (use-package selectrum
+  :demand
   :config (selectrum-mode)
+  :bind ("C-c M-x" . selectrum-repeat)
   :custom-face
   (selectrum-current-candidate ; Solarized Green
    ((t (:inherit highlight :weight bold :foreground "#859900" ))))
