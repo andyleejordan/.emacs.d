@@ -268,8 +268,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom
   (recentf-max-saved-items 200)
   (recentf-auto-cleanup 'never "Disabled for performance with Tramp.")
-  :config (add-to-list 'recentf-exclude
-                       (lambda (f) (not (string= (file-truename f) f))))
+  :config
+  (add-to-list 'recentf-exclude
+               (lambda (f) (not (string= (file-truename f) f))))
+  ;; Save every five minutes, because Emacs crashes.
+  (run-at-time t (* 5 60) #'recentf-save-list)
   (recentf-mode))
 
 (defun selectrum-recentf ()
