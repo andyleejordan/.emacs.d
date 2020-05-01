@@ -506,6 +506,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package lsp-mode
   :hook
   (c-mode-common . lsp-deferred) ; apt-get install clangd-9
+  ;; https://jedi.readthedocs.io/en/stable/docs/usage.html#type-hinting
   (python-mode . lsp-deferred) ; pip3 install python-language-server
   :commands lsp
   :custom (lsp-enable-snippet nil))
@@ -883,30 +884,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package puppet-mode)
 
 (use-package pyvenv
-  :config
-  (pyvenv-mode)
-  (pyvenv-tracking-mode))
-
-(use-package anaconda-mode
-  :disabled
-  :blackout
   :hook
-  (python-mode)
-  (python-mode . anaconda-eldoc-mode))
-
-(use-package company-anaconda
-  :disabled
-  :after anaconda-mode company
-  :config (add-to-list 'company-backends 'company-anaconda))
-
-(use-package company-jedi
-  :disabled
-  ;; Install with `jedi:install-server' (requires `virtualenv' in `PATH').
-  ;; Use type hints: https://jedi.readthedocs.io/en/stable/docs/features.html#type-hinting
-  :after company
-  :hook (python-mode . jedi-mode)
-  :custom (jedi:use-shortcuts t)
-  :config (add-to-list 'company-backends 'company-jedi))
+  (python-mode . pyvenv-mode)
+  (python-mode . pyvenv-tracking-mode))
 
 (use-package blacken
   :blackout
