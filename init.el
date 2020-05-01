@@ -340,6 +340,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (dtrt-indent-global-mode))
 
 (use-package editorconfig
+  :disabled
   :blackout
   :config (editorconfig-mode))
 
