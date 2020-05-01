@@ -199,7 +199,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;;; Version Control:
 (use-package magit
   :demand
-  :straight (magit :host github :repo "magit/magit" :branch "master")
   :defines magit-file-mode-map
   ;; C-x M-g . `magit-dispatch'
   ;; C-c M-g . `magit-file-dispatch'
