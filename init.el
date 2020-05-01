@@ -507,7 +507,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :hook
   (c-mode-common . lsp-deferred) ; apt-get install clangd-9
   (python-mode . lsp-deferred) ; pip3 install python-language-server
-  (sh-mode . lsp-deferred) ; npm i -g bash-language-server
   :commands lsp
   :custom (lsp-enable-snippet nil))
 
