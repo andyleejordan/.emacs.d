@@ -355,6 +355,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package whitespace)
 
 (use-package whitespace-cleanup-mode
+  :blackout
   :config (global-whitespace-cleanup-mode))
 
 (use-package ws-butler
