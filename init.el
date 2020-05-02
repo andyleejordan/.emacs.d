@@ -1,4 +1,4 @@
-;;; init.el --- Andrew Schwartzmeyer's Emacs customizations
+;;; init.el --- Andrew Schwartzmeyer's Emacs customizations  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2013-2019 Andrew Schwartzmeyer
 
@@ -41,6 +41,7 @@
 
 ;;; Package System:
 (eval-when-compile
+  (defvar bootstrap-version)
   (let ((bootstrap-file
          (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
         (bootstrap-version 5))
