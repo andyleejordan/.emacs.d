@@ -516,7 +516,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;;; Tools:
 (use-package auto-sudoedit
   :blackout
-  :config (defalias 'sudoedit #'auto-sudoedit-sudoedit))
+  :commands auto-sudoedit-sudoedit
+  :init (defalias 'sudoedit #'auto-sudoedit-sudoedit))
 
 (use-feature compile
   :demand
@@ -567,16 +568,16 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
         (with-face "$" :foreground cyan) " ")))))
 
 (use-feature gud
+  :no-require
   :custom (gdb-many-windows t))
 
 (use-package ielm
   :custom (ielm-prompt "> "))
 
 (use-package org
-  :demand
   :straight org-plus-contrib
-  :hook (org-mode . turn-on-auto-fill)
   :custom
+  (add-hook 'org-mode-hook #'turn-on-auto-fill)
   (org-startup-indented nil)
   (org-src-tab-acts-natively t)
   (org-adapt-indentation nil)
