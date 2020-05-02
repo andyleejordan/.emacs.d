@@ -409,13 +409,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
        "set -o pipefail" "\n\n")]))
 
 ;;; Tab Completion:
-(use-package smart-tab
-  :disabled
-  :demand
-  :blackout
-  :custom (smart-tab-using-hippie-expand t)
-  :config (global-smart-tab-mode))
-
 (use-feature hippie-exp
   :bind ([remap dabbrev-expand] . hippie-expand)
   :custom (hippie-expand-try-functions-list
@@ -470,7 +463,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :hook (text-mode . turn-on-visual-line-mode)
   :config (modify-syntax-entry ?\` "$`" text-mode-syntax-table))
 
-
 (use-feature flymake
   :hook ((emacs-lisp-mode sh-mode python-mode) . flymake-mode)
   :bind (:map flymake-mode-map
@@ -486,13 +478,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   ("C-c M-." . dumb-jump-go)
   ("C-c M-," . dumb-jump-back))
 
-;; Alternatives include: irony, cquery, rtags, ggtags, and ycmd.
-(use-package eglot ; an alternative LSP client in ELPA
-  :disabled
-  :hook
-  (c-mode-common . eglot-ensure)
-  (python-mode . eglot-ensure))
-
+;; Alternatives include: eglot, irony, cquery, rtags, ggtags, and ycmd.
 (use-package lsp-mode
   :hook
   (c-mode-common . lsp-deferred) ; apt-get install clangd-9
@@ -553,11 +539,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (ediff-diff-options "-w")
   (ediff-split-window-function 'split-window-horizontally)
   (ediff-window-setup-function 'ediff-setup-windows-plain))
-
-(use-package elmacro ; show macros as Emacs Lisp
-  :disabled ; Seems to slow things like `company' down.
-  :blackout
-  :config (elmacro-mode))
 
 (use-feature eshell
   :bind ("C-c e" . eshell)
