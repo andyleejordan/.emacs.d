@@ -463,7 +463,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (modify-syntax-entry ?\` "$`" text-mode-syntax-table))
 
 (use-feature flymake
-  :hook ((emacs-lisp-mode sh-mode python-mode) . flymake-mode)
+  :hook (prog-mode . flymake-mode)
   :bind (:map flymake-mode-map
               ("M-n" . flymake-goto-next-error)
               ("M-p" . flymake-goto-prev-error)))
