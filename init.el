@@ -467,7 +467,14 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :hook (prog-mode . flymake-mode)
   :bind (:map flymake-mode-map
               ("M-n" . flymake-goto-next-error)
-              ("M-p" . flymake-goto-prev-error)))
+              ("M-p" . flymake-goto-prev-error))
+  :config
+  ;; Magic from https://stackoverflow.com/a/53858408/1028665
+  (defun flymake--transform-mode-line-format (ret)
+    "Change the output of `flymake--mode-line-format'."
+    (setf (seq-elt (car ret) 1) " Fly") ret)
+  (advice-add #'flymake--mode-line-format
+              :filter-return #'flymake--transform-mode-line-format))
 
 (use-package flymake-shellcheck
   :hook (sh-mode . flymake-shellcheck-load))
