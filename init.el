@@ -166,6 +166,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package selectrum
   :demand
+  :straight (selectrum :flavor melpa :host github :repo "raxod502/selectrum"
+                       :fork (:host github :repo "andschwa/selectrum" :branch "fix-faces"))
   :config (selectrum-mode)
   :bind ("C-c M-x" . selectrum-repeat)
   :custom-face
@@ -174,9 +176,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (selectrum-primary-highlight ; Solarized Yellow
    ((t (:weight bold :foreground "#b58900"))))
   (selectrum-secondary-highlight ; Solarized Magenta
-   ((t (:weight bold :foreground "#d33682"))))
-  (selectrum-completion-annotation
-   ((t (:inherit font-lock-doc-face)))))
+   ((t (:weight bold :foreground "#d33682")))))
+
 
 (use-package selectrum-prescient
   :config (selectrum-prescient-mode))
@@ -656,6 +657,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package solarized-theme
   :if (display-graphic-p)
+  :straight (solarized-theme :flavor melpa :host github :repo "bbatsov/solarized-emacs"
+                             :fork (:host github :repo "andschwa/solarized-emacs" :branch "completions-faces"))
   :custom
   (solarized-use-variable-pitch nil)
   (x-underline-at-descent-line t)
