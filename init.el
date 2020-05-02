@@ -667,15 +667,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
-(use-package smart-mode-line
-  :custom
-  (sml/no-confirm-load-theme t)
-  (sml/theme 'respectful)
-  (sml/name-width 32)
-  (sml/shorten-modes nil)
-  (sml/replacer-regexp-list nil)
-  :config (sml/setup))
-
 (use-package solarized-theme
   :if (display-graphic-p)
   :custom
@@ -696,6 +687,17 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (unless (display-graphic-p)
   (load-theme 'tango-dark t))
+
+;; This must be loaded after themes.
+(use-package smart-mode-line
+  :custom
+  ;; Better than `automatic' which is very plain.
+  (sml/theme 'respectful)
+  (sml/no-confirm-load-theme t)
+  (sml/name-width 32)
+  (sml/shorten-modes nil)
+  (sml/replacer-regexp-list nil)
+  :config (sml/setup))
 
 ;;; Internal Emacs Configuration:
 (customize-set-variable 'gc-cons-threshold (* 100 1024 1024))
