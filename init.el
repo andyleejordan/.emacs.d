@@ -720,6 +720,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package super-save
   :blackout
   :defines super-save-triggers
+  :custom (super-save-remote-files nil)
   :config
   (add-args-to-list 'super-save-triggers
                     '(dired-jump
