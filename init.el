@@ -438,9 +438,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
         ([return] . #'company-complete-selection)
         ("RET" . #'company-complete-selection))
   :custom
-  ;; Complete quickly.
-  (company-minimum-prefix-length 1)
-  (company-idle-delay 0)
   ;; Smaller list.
   (company-tooltip-limit 7)
   ;; Align signatures to the right.
