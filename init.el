@@ -177,11 +177,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package selectrum-prescient
   :config (selectrum-prescient-mode))
 
-(use-feature mb-depth
+(use-feature mb-depth :disabled
   :custom (enable-recursive-minibuffers t)
   :config (minibuffer-depth-indicate-mode))
 
-(use-package minibuf-eldef
+(use-feature minibuf-eldef :disabled
   :custom (minibuffer-eldef-shorten-default t)
   :config (minibuffer-electric-default-mode))
 
