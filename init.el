@@ -790,10 +790,12 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package apt-sources-list)
 
-(use-package bazel-mode)
+(use-package bazel-mode :disabled)
 
-(use-package caml
-  :straight (:host github :repo "ocaml/caml-mode"))
+;; OCaml
+(use-package tuareg
+  :defines tuareg-mode-map
+  :bind (:map tuareg-mode-map ([remap indent-region] . ocamlformat)))
 
 (use-package ocamlformat
   :straight (:host github :repo "ocaml-ppx/ocamlformat" :files ("emacs/ocamlformat.el"))
@@ -802,48 +804,32 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
                          (add-hook 'before-save-hook #'ocamlformat-before-save nil 't)))
   :custom (ocamlformat-show-errors nil))
 
-(use-package tuareg
-  :defines tuareg-mode-map
-  :bind (:map tuareg-mode-map ([remap indent-region] . ocamlformat)))
+(use-package dune :disabled)
 
-(use-package dune)
-
-(use-package utop) ; OCaml shell
+(use-package utop :disabled) ; OCaml shell
 
 (use-package merlin
   :defines merlin-mode-map
-  :hook ((tuareg-mode caml-mode) . merlin-mode)
+  :hook (tuareg-mode . merlin-mode)
   :bind (:map merlin-mode-map
               ;; TODO: Maybe map phrases to paragraphs.
               ([remap xref-find-definitions] . merlin-locate)
               ([remap xref-pop-marker-stack] . merlin-pop-stack)))
 
 (use-package merlin-eldoc
-  :hook ((tuareg-mode caml-mode) . merlin-eldoc-setup))
+  :hook (tuareg-mode . merlin-eldoc-setup))
+;; OCaml setup ends here
 
 (use-package cmake-mode
   :defines cmake-mode-map
   :bind (:map cmake-mode-map
               ([remap xref-find-definitions] . cmake-help-command)))
 
-(use-package csharp-mode
-  :custom (csharp-want-imenu nil))
-
-;; Use `omnisharp-install-server' to setup.
-(use-package omnisharp
-  :disabled
-  :defines omnisharp-mode-map
-  :hook (csharp-mode . omnisharp-mode)
-  :bind (:map omnisharp-mode-map
-              ([remap xref-find-definitions] . omnisharp-go-to-definition)
-              ([remap xref-find-references] . omnisharp-find-usages)
-              ;; `xref-pop-marker-stack' works as expected.
-              ([remap indent-region] . omnisharp-code-format-region))
-  :custom (omnisharp-imenu-support t))
+(use-package csharp-mode :disabled)
 
 (use-package dockerfile-mode)
 
-(use-package fish-mode)
+(use-package fish-mode :disabled)
 
 (use-package gitattributes-mode)
 
@@ -851,29 +837,24 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package gitignore-mode)
 
-(use-package groovy-mode)
-
-(use-package json-mode)
+(use-package groovy-mode :disabled)
 
 (use-package markdown-mode
-  :defines markdown-mode-syntax-table
   :hook
   (markdown-mode . turn-on-auto-fill)
   (markdown-mode . (lambda () (set-fill-column 80)))
   :custom (markdown-command "multimarkdown"))
 
+;; Enables `markdown-edit-code-block'.
 (use-package edit-indirect)
-
-(use-package mediawiki
-  :disabled)
 
 (use-package nginx-mode)
 
 (use-package powershell)
 
-(use-package protobuf-mode)
+(use-package protobuf-mode :disabled)
 
-(use-package puppet-mode)
+(use-package puppet-mode :disabled)
 
 (use-package pyvenv
   :hook
@@ -895,8 +876,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package ssh-config-mode)
 
 (use-package toml-mode)
-
-(use-package web-mode)
 
 (use-package yaml-mode)
 
