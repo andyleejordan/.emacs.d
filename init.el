@@ -57,6 +57,7 @@
 (customize-set-variable 'straight-cache-autoloads t)
 (customize-set-variable 'straight-use-package-by-default t)
 (customize-set-variable 'use-package-enable-imenu-support t)
+(customize-set-variable 'straight-check-for-modifications '(check-on-save find-when-checking))
 (add-to-list 'straight-check-for-modifications 'check-on-save)
 
 (eval-when-compile
