@@ -172,7 +172,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (selectrum-primary-highlight ; Solarized Yellow
    ((t (:weight bold :foreground "#b58900"))))
   (selectrum-secondary-highlight ; Solarized Magenta
-   ((t (:weight bold :foreground "#d33682")))))
+   ((t (:weight bold :foreground "#d33682"))))
+  (selectrum-completion-annotation
+   ((t (:inherit font-lock-doc-face)))))
 
 (use-package selectrum-prescient
   :config (selectrum-prescient-mode))
