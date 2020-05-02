@@ -199,7 +199,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;;; Version Control:
 (use-package magit
   :demand
-  :defines magit-file-mode-map
   ;; C-x M-g . `magit-dispatch'
   ;; C-c M-g . `magit-file-dispatch'
   :bind ("C-x g" . magit-status)
@@ -245,6 +244,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   "Open `~/.emacs.d/init.el'."
   (interactive)
   (find-file (expand-file-name "init.el" user-emacs-directory)))
+
 (bind-key "C-c i" #'find-dot-emacs)
 
 (use-feature dired
@@ -339,8 +339,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
                       (groovy-mode default groovy-indent-offset)))
   (dtrt-indent-global-mode))
 
-(use-package editorconfig
-  :disabled
+(use-package editorconfig :disabled
   :blackout
   :config (editorconfig-mode))
 
@@ -378,7 +377,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
       (call-if-fbound #'save-place)))
 
 (use-package undo-tree
-  :demand
   :blackout
   :defines undo-tree-map
   :custom (undo-tree-enable-undo-in-region nil "This is buggy.")
@@ -509,7 +507,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;;; Spelling:
 (use-package flyspell
   ;; Disable on Windows because `aspell' 0.6+ isn't available.
-  :if (not (eq system-type 'windows-nt))
+  :unless (eq system-type 'windows-nt)
   :blackout
   :hook
   (text-mode . flyspell-mode)
