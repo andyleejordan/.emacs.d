@@ -544,7 +544,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :bind ("C-c e" . eshell)
   :custom
   (eshell-visual-commands '("bash" "htop" "fish"))
-  (eshell-prompt-regexp "^> ")
   (eshell-highlight-prompt nil)
   (eshell-prompt-function
    (lambda ()
@@ -565,8 +564,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
           (unless (string-match "fatal:" head)
             (concat "(" (with-face (replace-regexp-in-string "\n\\'" "" head) :foreground green) ") ")))
         (with-face (replace-regexp-in-string (concat "\\`" (getenv "HOME")) "~" (eshell/pwd))
-                   :foreground blue) "\n"
-        (with-face ">" :foreground cyan) " ")))))
+                   :foreground blue) " "
+        (with-face "$" :foreground cyan) " ")))))
 
 (use-feature gud
   :custom (gdb-many-windows t))
