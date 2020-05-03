@@ -138,8 +138,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package buffer-move)
 
 (use-package transpose-frame
-  :demand
-  :bind (:map ctl-x-4-map ("t" . transpose-frame)))
+  :config (bind-key "t" #'transpose-frame ctl-x-4-map))
 
 (use-package windmove ; `S-<left,right,up,down>' to move windows
   :config (windmove-default-keybindings))
@@ -165,11 +164,11 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (prescient-persist-mode))
 
 (use-package selectrum
-  :demand
   :straight (selectrum :flavor melpa :host github :repo "raxod502/selectrum"
                        :fork (:host github :repo "andschwa/selectrum" :branch "fix-faces"))
-  :config (selectrum-mode)
-  :bind ("C-c M-x" . selectrum-repeat)
+  :config
+  (bind-key "C-c M-x" #'selectrum-repeat)
+  (selectrum-mode)
   :custom-face
   (selectrum-current-candidate ; Solarized Green
    ((t (:inherit highlight :weight bold :foreground "#859900" ))))
@@ -203,10 +202,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;;; Version Control:
 (use-package magit
-  :demand
   ;; C-x M-g . `magit-dispatch'
   ;; C-c M-g . `magit-file-dispatch'
-  :bind ("C-x g" . magit-status)
+  :config (bind-key "g" #'magit-status ctl-x-map)
   :custom
   ;; TODO: Maybe `(magit-dwim-selection '((magit-branch-and-checkout nil t)))'
   (magit-save-repository-buffers 'dontask)
@@ -227,10 +225,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :custom (uniquify-buffer-name-style 'forward))
 
 (use-feature project
-  :demand
   :defines project-find-functions
-  :bind ("C-c f" . project-find-file)
   :config
+  (bind-key "C-c f" #'project-find-file)
   ;; Similar to project-try-vc but works when VC is disabled.
   (defun project-try-magit (dir)
     (let* ((root (magit-toplevel dir)))
@@ -253,8 +250,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (bind-key "C-c i" #'find-dot-emacs)
 
 (use-feature dired
-  :demand
-  :bind ([remap list-directory] . dired)
+  :config (bind-key [remap list-directory] #'dired)
   :custom
   (dired-dwim-target t "Enable side-by-side `dired' buffer targets.")
   (dired-recursive-copies 'always "Better recursion in `dired'.")
@@ -267,10 +263,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (add-hook 'dired-after-readin-hook 'dired-git-info-auto-enable))
 
 (use-feature dired-x
-  :demand
-  :bind
-  ("C-x C-j"   . dired-jump)
-  ("C-x 4 C-j" . dired-jump-other-window))
+  :config
+  (bind-key "C-j" #'dired-jump ctl-x-map)
+  (bind-key "C-j" #'dired-jump-other-window ctl-x-4-map))
 
 (use-feature recentf
   :custom
@@ -292,11 +287,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (bind-key "C-x C-r" #'selectrum-recentf)
 
 (use-package rg ; `ripgrep'
-  :demand
-  :bind (:map search-map ; `M-s'
-              ("M-s" . rg-ask-dwim)
-              ("s" . rg-menu))
   :config
+  (bind-keys :map search-map ; `M-s'
+             ("M-s" . rg-ask-dwim)
+             ("s" . rg-menu))
   (rg-define-search rg-ask-dwim
     :query ask :format regexp
     :files "everything" :dir project))
@@ -308,19 +302,17 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;; C-q', and `C-c C-p'.
 
 (use-feature replace
-  :demand
-  :hook (occur-mode . next-error-follow-minor-mode)
-  :bind (:map occur-edit-mode-map ("C-x C-s" . occur-cease-edit)))
+  :config
+  (bind-key "C-x C-s" #'occur-cease-edit occur-edit-mode-map)
+  (add-hook 'occur-mode-hook #'next-error-follow-minor-mode))
 
 (use-feature wdired
-  :demand
-  :bind (:map dired-mode-map ("e" . dired-toggle-read-only))
+  :config (bind-key "e" #'dired-toggle-read-only dired-mode-map)
   :custom (wdired-allow-to-change-permissions t))
 
 (use-package wgrep ; makes `rg' buffers writable too
-  :demand
-  :defines grep-mode-map
-  :bind (:map grep-mode-map ("e" . wgrep-change-to-wgrep-mode))
+  :defines grep-mode-map ; kinda
+  :config (bind-key "e" #'wgrep-change-to-wgrep-mode grep-mode-map)
   :custom (wgrep-auto-save-buffer t))
 
 ;;; Formatting / Indentation / Whitespace:
@@ -331,10 +323,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :hook (emacs-lisp-mode . aggressive-indent-mode))
 
 (use-package clang-format
-  :demand
   :after cc-mode
   :defines c-mode-base-map
-  :bind (:map c-mode-base-map ([remap indent-region] . clang-format-region)))
+  :config (bind-key [remap indent-region] #'clang-format-region c-mode-base-map))
 
 (use-package dtrt-indent
   :blackout
@@ -431,19 +422,20 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
              try-complete-file-name)))
 
 (use-package company
-  :demand
   :blackout
-  :bind
-  (:map company-active-map
-        ;; Tab to complete selection.
-        ([tab] . #'company-complete-selection)
-        ("TAB" . #'company-complete-selection)
-        ;; Don't override `isearch'.
-        ("C-s" . nil) ("C-M-s" . nil)
-        ;; Return only if scrolled.
-        :filter (company-explicit-action-p)
-        ([return] . #'company-complete-selection)
-        ("RET" . #'company-complete-selection))
+  :config
+  (bind-keys
+   :map company-active-map
+   ;; Tab to complete selection.
+   ([tab] . company-complete-selection)
+   ("TAB" . company-complete-selection)
+   ;; Don't override `isearch'.
+   ("C-s" . nil) ("C-M-s" . nil)
+   ;; Return only if scrolled.
+   :filter (company-explicit-action-p)
+   ([return] . company-complete-selection)
+   ("RET" . company-complete-selection))
+  (global-company-mode)
   :custom
   ;; Smaller list.
   (company-tooltip-limit 7)
@@ -456,8 +448,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   ;; Search buffers with the same major mode.
   (company-dabbrev-other-buffers t)
   ;; Give backends more time.
-  (company-async-timeout 5)
-  :config (global-company-mode))
+  (company-async-timeout 5))
 
 (use-package company-prescient
   :config (company-prescient-mode))
@@ -465,9 +456,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 ;;; Syntax Checking:
 ;; Treat backquotes as pairs in text mode.
 (use-feature text-mode
-  :demand
-  :hook (text-mode . turn-on-visual-line-mode)
-  :config (modify-syntax-entry ?\` "$`" text-mode-syntax-table))
+  :config
+  (add-hook 'text-mode-hook #'turn-on-visual-line-mode)
+  (modify-syntax-entry ?\` "$`" text-mode-syntax-table))
 
 (use-feature flymake
   :hook (prog-mode . flymake-mode)
@@ -517,10 +508,8 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   (ispell-extra-args '("--sug-mode=ultra")))
 
 (use-package flyspell-correct
-  :demand
   :after flyspell
-  :bind (:map flyspell-mode-map
-              ([remap ispell-word] . flyspell-correct-wrapper)))
+  :config (bind-key [remap ispell-word] #'flyspell-correct-wrapper flyspell-mode-map))
 
 (use-package auto-correct
   :blackout
@@ -534,9 +523,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :init (defalias 'sudoedit #'auto-sudoedit-sudoedit))
 
 (use-feature compile
-  :demand
-  :hook (compilation-mode . turn-on-visual-line-mode)
-  :bind ("C-c c" . compile)
+  :config
+  (bind-key "C-c c" #'compile)
+  (add-hook 'compilation-mode-hook #'turn-on-visual-line-mode)
   :custom
   (compilation-ask-about-save nil)
   (compilation-scroll-output t)
@@ -590,8 +579,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package org
   :straight org-plus-contrib
-  :custom
+  :config
   (add-hook 'org-mode-hook #'turn-on-auto-fill)
+  :custom
   (org-startup-indented nil)
   (org-src-tab-acts-natively t)
   (org-adapt-indentation nil)
@@ -709,29 +699,28 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (set-variable 'disabled-command-function nil)
 
 (use-feature help
-  :demand
-  :hook (help-mode . turn-on-visual-line-mode)
-  :bind (:map help-map ("L" . find-library))
+  :config
+  (bind-key "L" #'find-library help-map)
+  (add-hook 'help-mode-hook #'turn-on-visual-line-mode)
   :custom (help-window-select t))
 
 ;; Simple is Emacs's built-in miscellaneous package.
 (use-feature simple
-  :demand
-  :bind
-  ([remap just-one-space] . cycle-spacing)
-  ([remap upcase-word] . upcase-dwim)
-  ([remap downcase-word] . downcase-dwim)
-  ([remap capitalize-word] . capitalize-dwim)
-  ([remap zap-to-char] . zap-up-to-char)
+  :config
+  (bind-keys
+   ([remap just-one-space] . cycle-spacing)
+   ([remap upcase-word] . upcase-dwim)
+   ([remap downcase-word] . downcase-dwim)
+   ([remap capitalize-word] . capitalize-dwim)
+   ([remap zap-to-char] . zap-up-to-char))
+  (column-number-mode)
   :custom
   ;; TODO: Maybe set `suggest-key-bindings' to `nil'.
   (save-interprogram-paste-before-kill t)
   (kill-do-not-save-duplicates t)
   (kill-whole-line t)
   (shift-select-mode nil)
-  (visual-line-fringe-indicators '(nil right-curly-arrow))
-  :config
-  (column-number-mode))
+  (visual-line-fringe-indicators '(nil right-curly-arrow)))
 
 (use-package super-save
   :blackout
