@@ -254,13 +254,17 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-feature dired
   :demand
-  :hook (dired-mode . dired-hide-details-mode)
   :bind ([remap list-directory] . dired)
   :custom
   (dired-dwim-target t "Enable side-by-side `dired' buffer targets.")
   (dired-recursive-copies 'always "Better recursion in `dired'.")
   (dired-recursive-deletes 'top)
   (dired-listing-switches "-alhv" "Must not contain `-p'."))
+
+(use-package dired-git-info
+  :config
+  (bind-key ")" #'dired-git-info-mode dired-mode-map)
+  (add-hook 'dired-after-readin-hook 'dired-git-info-auto-enable))
 
 (use-feature dired-x
   :demand
