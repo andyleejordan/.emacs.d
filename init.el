@@ -581,6 +581,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :straight org-plus-contrib
   :config
   (add-hook 'org-mode-hook #'turn-on-auto-fill)
+  (require 'org-tempo) ; Bring back `<s [TAB]'.
+  (add-args-to-list 'org-structure-template-alist
+                    '(("el" . "src emacs-lisp")
+                      ("sh" . "src sh")))
   :custom
   (org-startup-indented nil)
   (org-src-tab-acts-natively t)

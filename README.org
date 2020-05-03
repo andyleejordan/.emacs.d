@@ -671,6 +671,11 @@ https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html
 [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Fill-Prefix.html][Fill-Prefix]] with point after prefix
 ** Set fill column: =C-x f=
 ** Toggle read-only =C-x C-q=
+** =file-name-shadow-mode=
+#+begin_src emacs-lisp
+(setq file-name-shadow-properties
+      '(invisible t))
+#+end_src
 ** Writable modes
 *** occur with =e= exit
 *** wgrep with =C-c C-p=
@@ -691,6 +696,12 @@ https://masteringemacs.org/article/removing-blank-lines-buffer
 *** Quickly insert =#+begin_src= with =<s <tab>= and =C-c C-, s=
 - http://orgmode.org/org.html#Easy-Templates
 - =org-insert-structure-template=
+#+begin_src emacs-lisp
+(require 'org-tempo)
+(add-args-to-list 'org-structure-template-alist
+                    '(("el" . "src emacs-lisp")
+                      ("sh" . "src sh")))
+#+end_src
 *** Sudo mode using Tramp =C-x C-f /ssh:you@host|sudo:host:/file=
 - http://www.emacswiki.org/emacs/TrampMode
 *** Replace in files
