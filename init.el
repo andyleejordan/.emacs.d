@@ -259,6 +259,8 @@ behavior added."
   :defines project-find-functions
   :config
   (bind-key "C-c f" #'project-find-file)
+  ;; Also see `vc-git-grep'.
+  (bind-key "r" #'project-find-regexp search-map)
   ;; Similar to project-try-vc but works when VC is disabled.
   (defun project-try-magit (dir)
     (let* ((root (magit-toplevel dir)))
@@ -319,6 +321,7 @@ behavior added."
 
 (use-package rg ; `ripgrep'
   :config
+  ;; Maybe replace this with `vc-git-grep'.
   (bind-keys :map search-map ; `M-s'
              ("M-s" . rg-ask-dwim)
              ("s" . rg-menu))
