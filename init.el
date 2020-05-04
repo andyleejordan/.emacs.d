@@ -248,31 +248,19 @@ behavior added."
   :custom (git-commit-major-mode 'markdown-mode)
   :config (global-git-commit-mode))
 
-;;; Buffers:
-(use-package ibuffer
-  :bind ([remap list-buffers] . ibuffer))
-
-(use-feature uniquify
-  :custom (uniquify-buffer-name-style 'forward))
-
-(use-feature project
-  :defines project-find-functions
-  :config
-  (bind-key "C-c f" #'project-find-file)
-  ;; Also see `vc-git-grep'.
-  (bind-key "r" #'project-find-regexp search-map)
-  ;; Similar to project-try-vc but works when VC is disabled.
-  (defun project-try-magit (dir)
-    (let* ((root (magit-toplevel dir)))
-      (and root (cons 'vc root))))
-  (add-to-list 'project-find-functions #'project-try-magit t))
-
 (use-feature vc-hooks
   :custom
   (vc-ignore-dir-regexp
    (format "\\(%s\\)\\|\\(%s\\)"
            vc-ignore-dir-regexp
            tramp-file-name-regexp)))
+
+;;; Buffers:
+(use-package ibuffer
+  :bind ([remap list-buffers] . ibuffer))
+
+(use-feature uniquify
+  :custom (uniquify-buffer-name-style 'forward))
 
 ;;; File Navigation:
 (defun find-dot-emacs ()
@@ -299,6 +287,18 @@ behavior added."
   :config
   (bind-key "C-j" #'dired-jump ctl-x-map)
   (bind-key "C-j" #'dired-jump-other-window ctl-x-4-map))
+
+(use-feature project
+  :defines project-find-functions
+  :config
+  (bind-key "C-c f" #'project-find-file)
+  ;; Also see `vc-git-grep'.
+  (bind-key "r" #'project-find-regexp search-map)
+  ;; Similar to project-try-vc but works when VC is disabled.
+  (defun project-try-magit (dir)
+    (let* ((root (magit-toplevel dir)))
+      (and root (cons 'vc root))))
+  (add-to-list 'project-find-functions #'project-try-magit t))
 
 (use-feature recentf
   :custom
