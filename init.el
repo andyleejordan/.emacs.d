@@ -164,8 +164,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :config (prescient-persist-mode))
 
 (use-package selectrum
-  :straight (selectrum :flavor melpa :host github :repo "raxod502/selectrum"
-                       :fork (:host github :repo "andschwa/selectrum" :branch "fix-faces"))
   :config
   (bind-key "C-c M-x" #'selectrum-repeat)
   (selectrum-mode)
