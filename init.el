@@ -131,10 +131,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (bind-key "M-O" #'undo-other-window)
 (bind-key [remap delete-char] #'delete-forward-char)
 
-(use-feature isearch
-  ;; TODO: Set `search-whitespace-regexp' for fuzzier searching.
-  :custom (isearch-allow-scroll t))
-
 (use-feature subword
   :config (global-subword-mode))
 
@@ -254,8 +250,6 @@ behavior added."
   :custom (git-commit-major-mode 'markdown-mode)
   :config (global-git-commit-mode))
 
-(bind-key "g" #'vc-git-grep search-map)
-
 (use-feature vc-hooks
   :custom
   (vc-ignore-dir-regexp
@@ -327,6 +321,12 @@ behavior added."
 (bind-key "C-r" #'selectrum-recentf ctl-x-map)
 
 ;;; Searching:
+(bind-key "g" #'vc-git-grep search-map)
+
+(use-feature isearch
+  ;; TODO: Set `search-whitespace-regexp' for fuzzier searching.
+  :custom (isearch-allow-scroll t))
+
 (use-package grep
   :config (bind-key "R" #'rgrep search-map)) ; or `rg'
 
