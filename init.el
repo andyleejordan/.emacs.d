@@ -681,7 +681,10 @@ behavior added."
   (global-hl-todo-mode))
 
 (use-feature paren
-  :custom (show-paren-delay 0)
+  :custom
+  (show-paren-delay 0)
+  (show-paren-when-point-inside-paren t)
+  (show-paren-when-point-in-periphery t)
   :config (show-paren-mode))
 
 (use-package rainbow-delimiters
