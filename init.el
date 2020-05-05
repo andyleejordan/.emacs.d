@@ -326,6 +326,7 @@ behavior added."
 
 (bind-key "C-r" #'selectrum-recentf ctl-x-map)
 
+;;; Searching:
 (use-package grep
   :config (bind-key "R" #'rgrep search-map)) ; or `rg'
 
@@ -362,6 +363,8 @@ behavior added."
 ;;; Formatting / Indentation / Whitespace:
 (customize-set-variable 'indent-tabs-mode nil)
 (customize-set-variable 'sentence-end-double-space nil)
+
+(bind-key "\\" #'align-regexp ctl-x-map)
 
 (use-package aggressive-indent
   :hook (emacs-lisp-mode . aggressive-indent-mode))
