@@ -250,6 +250,8 @@ behavior added."
   :custom (git-commit-major-mode 'markdown-mode)
   :config (global-git-commit-mode))
 
+(bind-key "g" #'vc-git-grep search-map)
+
 (use-feature vc-hooks
   :custom
   (vc-ignore-dir-regexp
@@ -294,8 +296,7 @@ behavior added."
   :defines project-find-functions
   :config
   (bind-key "C-c f" #'project-find-file)
-  ;; Also see `vc-git-grep'.
-  (bind-key "r" #'project-find-regexp search-map)
+  (bind-key "P" #'project-find-regexp search-map) ; or `rg-project'
   ;; Similar to project-try-vc but works when VC is disabled.
   (defun project-try-magit (dir)
     (let* ((root (magit-toplevel dir)))
@@ -321,12 +322,15 @@ behavior added."
 
 (bind-key "C-x C-r" #'selectrum-recentf)
 
+(use-package grep
+  :config (bind-key "R" #'rgrep search-map)) ; or `rg'
+
 (use-package rg ; `ripgrep'
   :config
-  ;; Maybe replace this with `vc-git-grep'.
-  (bind-keys :map search-map ; `M-s'
-             ("M-s" . rg-ask-dwim)
-             ("s" . rg-menu))
+  ;; Also see `vc-git-grep' and `project-find-regexp'.
+  (bind-key "r" #'rg search-map) ; or `rgrep'
+  (bind-key "p" #'rg-project search-map) ; or `project-find-regexp'
+  (bind-key "s" #'rg-ask-dwim search-map)
   (rg-define-search rg-ask-dwim
     :query ask :format regexp
     :files "everything" :dir project))
