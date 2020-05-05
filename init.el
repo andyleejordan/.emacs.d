@@ -125,6 +125,10 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (bind-key "C-M-<backspace>" #'delete-pair)
 (bind-key "C-M-`" #'raise-sexp)
 (bind-key "M-o" #'other-window)
+(defun undo-other-window ()
+  "The opposite of `other-window'."
+  (interactive) (other-window -1))
+(bind-key "M-O" #'undo-other-window)
 (bind-key [remap delete-char] #'delete-forward-char)
 
 (use-feature isearch
