@@ -563,9 +563,7 @@ behavior added."
   :init (defalias 'sudoedit #'auto-sudoedit-sudoedit))
 
 (use-feature compile
-  :config
-  (bind-key "C-c c" #'compile)
-  (add-hook 'compilation-mode-hook #'turn-on-visual-line-mode)
+  :config (bind-key "C-c c" #'compile)
   :custom
   (compilation-ask-about-save nil)
   (compilation-scroll-output t)
