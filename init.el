@@ -320,7 +320,7 @@ behavior added."
   (let ((files (mapcar 'abbreviate-file-name recentf-list)))
     (find-file (selectrum-completing-read "Find recent file: " files nil t))))
 
-(bind-key "C-x C-r" #'selectrum-recentf)
+(bind-key "C-r" #'selectrum-recentf ctl-x-map)
 
 (use-package grep
   :config (bind-key "R" #'rgrep search-map)) ; or `rg'
@@ -397,6 +397,7 @@ behavior added."
 
 ;;; Editing:
 (customize-set-variable 'truncate-lines t)
+(bind-key "w" #'toggle-truncate-lines ctl-x-map)
 
 (use-feature autorevert
   :blackout
