@@ -233,11 +233,13 @@ behavior added."
 
 ;;; Version Control:
 (use-package magit
+  :defines magit-dwim-selection
+  :config
   ;; C-x M-g . `magit-dispatch'
   ;; C-c M-g . `magit-file-dispatch'
-  :config (bind-key "g" #'magit-status ctl-x-map)
+  (bind-key "g" #'magit-status ctl-x-map)
+  (add-to-list 'magit-dwim-selection '(magit-branch-and-checkout nil t))
   :custom
-  ;; TODO: Maybe `(magit-dwim-selection '((magit-branch-and-checkout nil t)))'
   (magit-save-repository-buffers 'dontask)
   (magit-published-branches nil "Disable confirmation.")
   (magit-diff-refine-hunk 'all "Word diffs."))
