@@ -138,7 +138,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-package buffer-move)
 
 (use-package transpose-frame
-  :config (bind-key "t" #'transpose-frame ctl-x-4-map))
+  :config (bind-key "C-x 4 t" #'transpose-frame))
 
 (use-package windmove ; `S-<left,right,up,down>' to move windows
   :config (windmove-default-keybindings))
@@ -237,7 +237,7 @@ behavior added."
   :config
   ;; C-x M-g . `magit-dispatch'
   ;; C-c M-g . `magit-file-dispatch'
-  (bind-key "g" #'magit-status ctl-x-map)
+  (bind-key "C-x g" #'magit-status)
   (add-to-list 'magit-dwim-selection '(magit-branch-and-checkout nil t))
   :custom
   (magit-save-repository-buffers 'dontask)
@@ -287,14 +287,14 @@ behavior added."
 
 (use-feature dired-x
   :config
-  (bind-key "C-j" #'dired-jump ctl-x-map)
-  (bind-key "C-j" #'dired-jump-other-window ctl-x-4-map))
+  (bind-key "C-x C-j" #'dired-jump)
+  (bind-key "C-x 4 C-j" #'dired-jump-other-window))
 
 (use-feature project
   :defines project-find-functions
   :config
   (bind-key "C-c f" #'project-find-file)
-  (bind-key "P" #'project-find-regexp search-map) ; or `rg-project'
+  (bind-key "M-s P" #'project-find-regexp) ; or `rg-project'
   ;; Similar to project-try-vc but works when VC is disabled.
   (defun project-try-magit (dir)
     (let* ((root (magit-toplevel dir)))
@@ -318,24 +318,24 @@ behavior added."
   (let ((files (mapcar 'abbreviate-file-name recentf-list)))
     (find-file (selectrum-completing-read "Find recent file: " files nil t))))
 
-(bind-key "C-r" #'selectrum-recentf ctl-x-map)
+(bind-key "C-x C-r" #'selectrum-recentf)
 
 ;;; Searching:
-(bind-key "g" #'vc-git-grep search-map)
+(bind-key "M-s g" #'vc-git-grep)
 
 (use-feature isearch
   ;; TODO: Set `search-whitespace-regexp' for fuzzier searching.
   :custom (isearch-allow-scroll t))
 
 (use-package grep
-  :config (bind-key "R" #'rgrep search-map)) ; or `rg'
+  :config (bind-key "M-s R" #'rgrep)) ; or `rg'
 
 (use-package rg ; `ripgrep'
   :config
   ;; Also see `vc-git-grep' and `project-find-regexp'.
-  (bind-key "r" #'rg search-map) ; or `rgrep'
-  (bind-key "p" #'rg-project search-map) ; or `project-find-regexp'
-  (bind-key "s" #'rg-ask-dwim search-map)
+  (bind-key "M-s r" #'rg) ; or `rgrep'
+  (bind-key "M-s p" #'rg-project) ; or `project-find-regexp'
+  (bind-key "M-s s" #'rg-ask-dwim)
   (rg-define-search rg-ask-dwim
     :query ask :format regexp
     :files "everything" :dir project))
@@ -364,7 +364,7 @@ behavior added."
 (customize-set-variable 'indent-tabs-mode nil)
 (customize-set-variable 'sentence-end-double-space nil)
 
-(bind-key "\\" #'align-regexp ctl-x-map)
+(bind-key "C-x \\" #'align-regexp)
 
 (use-package aggressive-indent
   :hook (emacs-lisp-mode . aggressive-indent-mode))
@@ -404,7 +404,7 @@ behavior added."
 
 ;;; Editing:
 (customize-set-variable 'truncate-lines t)
-(bind-key "w" #'toggle-truncate-lines ctl-x-map)
+(bind-key "C-x w" #'toggle-truncate-lines)
 
 (use-feature autorevert
   :blackout
@@ -753,7 +753,7 @@ behavior added."
 
 (use-feature help
   :config
-  (bind-key "L" #'find-library help-map)
+  (bind-key "C-h L" #'find-library)
   (add-hook 'help-mode-hook #'turn-on-visual-line-mode)
   :custom (help-window-select t))
 
