@@ -233,11 +233,11 @@ behavior added."
 
 ;;; Version Control:
 (use-package magit
-  :defines magit-dwim-selection
+  :defines magit-file-mode-map magit-dwim-selection
   :config
   ;; C-x M-g . `magit-dispatch'
-  ;; C-c M-g . `magit-file-dispatch'
   (bind-key "C-x g" #'magit-status)
+  (bind-key "C-c g" #'magit-file-dispatch magit-file-mode-map)
   (add-to-list 'magit-dwim-selection '(magit-branch-and-checkout nil t))
   :custom
   (magit-save-repository-buffers 'dontask)
