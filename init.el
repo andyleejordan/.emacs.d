@@ -639,6 +639,7 @@ behavior added."
   (org-startup-indented nil)
   (org-src-tab-acts-natively t)
   (org-adapt-indentation nil)
+  (org-catch-invisible-edits 'smart)
   (org-latex-listings t)
   (org-pretty-entities t)
   (org-latex-custom-lang-environments '((C "lstlisting")))
