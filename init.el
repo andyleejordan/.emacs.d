@@ -245,10 +245,10 @@ behavior added."
   (magit-diff-refine-hunk 'all "Word diffs."))
 
 (use-package git-commit
-  :demand
-  :hook (git-commit-mode . (lambda () (set-fill-column 72)))
   :custom (git-commit-major-mode 'markdown-mode)
-  :config (global-git-commit-mode))
+  :config
+  (add-hook 'git-commit-mode-hook (lambda () (set-fill-column 72)))
+  (global-git-commit-mode))
 
 (use-feature vc-hooks
   :custom
@@ -868,10 +868,9 @@ behavior added."
 (use-package groovy-mode :disabled)
 
 (use-package markdown-mode
-  :hook
-  (markdown-mode . turn-on-auto-fill)
-  (markdown-mode . (lambda () (set-fill-column 80)))
-  :custom (markdown-command "multimarkdown"))
+  :config
+  (add-hook 'markdown-mode-hook #'turn-on-auto-fill)
+  (add-hook 'markdown-mode (lambda () (set-fill-column 80))))
 
 ;; Enables `markdown-edit-code-block'.
 (use-package edit-indirect)
