@@ -616,12 +616,16 @@ behavior added."
                    :foreground blue) " "
         (with-face "$" :foreground cyan) " ")))))
 
+(use-package git-link)
+
 (use-feature gud
   :no-require
   :custom (gdb-many-windows t))
 
 (use-package ielm
   :custom (ielm-prompt "> "))
+
+(use-package copy-as-format)
 
 (use-package org
   :straight org-plus-contrib
