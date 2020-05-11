@@ -242,7 +242,9 @@ behavior added."
 
 (use-package which-key
   :blackout
-  :config (which-key-mode))
+  :config
+  (bind-key "C-c w" #'which-key-show-major-mode)
+  (which-key-mode))
 
 ;;; Version Control:
 (use-package magit
