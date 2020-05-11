@@ -143,6 +143,9 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 (use-package bicycle
   :after outline
+  :straight (bicycle :flavor melpa :host github :repo "tarsius/bicycle"
+                     :fork (:host github :repo "andschwa/bicycle" :branch "andschwa/hide-whole-block"))
+  :custom (bicycle-hide-whole-block nil)
   :bind (:map outline-minor-mode-map
               ([C-tab] . bicycle-cycle)
               ([S-tab] . bicycle-cycle-global)))
