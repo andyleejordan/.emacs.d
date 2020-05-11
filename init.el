@@ -247,6 +247,12 @@ behavior added."
   (which-key-mode))
 
 ;;; Version Control:
+(use-package diff-hl
+  :config
+  (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
+  (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
+  (global-diff-hl-mode))
+
 (use-package magit
   :defines magit-file-mode-map magit-dwim-selection
   :config
