@@ -512,6 +512,7 @@ behavior added."
   (company-async-timeout 5))
 
 (use-package company-prescient
+  :after company
   :config (company-prescient-mode))
 
 ;;; Syntax Checking:
@@ -544,7 +545,16 @@ behavior added."
   ("C-c M-," . dumb-jump-back))
 
 ;; Alternatives include: eglot, irony, cquery, rtags, ggtags, and ycmd.
+(use-package eglot ; an alternative LSP client in ELPA
+  :hook
+  (c-mode-common . eglot-ensure)
+  (python-mode . eglot-ensure)
+  :custom
+  (eglot-auto-display-help-buffer t)
+  (eglot-confirm-server-initiated-edits nil))
+
 (use-package lsp-mode
+  :disabled
   :hook
   (c-mode-common . lsp-deferred) ; apt-get install clangd-9
   ;; https://jedi.readthedocs.io/en/stable/docs/usage.html#type-hinting
@@ -569,6 +579,7 @@ behavior added."
   (ispell-extra-args '("--sug-mode=ultra")))
 
 (use-package flyspell-correct
+  :defines flyspell-mode-map
   :after flyspell
   :config (bind-key [remap ispell-word] #'flyspell-correct-wrapper flyspell-mode-map))
 
