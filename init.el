@@ -283,7 +283,7 @@ behavior added."
   (interactive)
   (find-file (expand-file-name "init.el" user-emacs-directory)))
 
-(bind-key "C-c i" #'find-dot-emacs)
+(bind-key "C-c d" #'find-dot-emacs)
 
 (use-feature dired
   :config (bind-key [remap list-directory] #'dired)
@@ -334,6 +334,9 @@ behavior added."
 (bind-key "C-x C-r" #'selectrum-recentf)
 
 ;;; Searching:
+(use-feature imenu
+  :config (bind-key "C-c i" #'imenu))
+
 (bind-key "M-s g" #'vc-git-grep)
 
 (use-feature isearch
