@@ -915,9 +915,7 @@ behavior added."
 (use-package puppet-mode :disabled)
 
 (use-package pyvenv
-  :hook
-  (python-mode . pyvenv-mode)
-  (python-mode . pyvenv-tracking-mode))
+  :hook (python-mode . pyvenv-tracking-mode))
 
 (use-package blacken
   :blackout
