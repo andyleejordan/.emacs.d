@@ -788,22 +788,6 @@ behavior added."
                       magit-status))
   (super-save-mode))
 
-(use-feature tramp
-  :defer
-  :custom
-  (tramp-verbose 2) ; Only warnings
-  (tramp-default-method "ssh")
-  (tramp-ssh-controlmaster-options
-   (concat
-    ;; Force a shared connection.
-    "-o ControlMaster=yes "
-    "-o ControlPath='tramp.%%C' "
-    ;; Keep it open but not indefinitely.
-    "-o ControlPersist=4h"))
-  ;; Cache file attributes and directories for a minute
-  (remote-file-name-inhibit-cache 60)
-  (tramp-completion-reread-directory-timeout 60))
-
 (use-feature files
   :custom
   (find-file-visit-truename t)
