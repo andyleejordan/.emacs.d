@@ -486,6 +486,7 @@ behavior added."
              try-complete-file-name)))
 
 (use-package company
+  :disabled ; such a love-hate relationship here
   :blackout
   :config
   (bind-keys
@@ -566,6 +567,7 @@ behavior added."
   :custom (lsp-enable-snippet nil))
 
 (use-package company-lsp
+  :after company
   :custom (company-lsp-cache-candidates 'auto))
 
 ;;; Spelling:
