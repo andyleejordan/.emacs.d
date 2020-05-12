@@ -134,21 +134,18 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature subword
   :config (global-subword-mode))
 
-;; Also see https://github.com/alphapapa/outshine
+;;; Outlines:
 (use-feature outline
+  :blackout outline-minor-mode
   :hook (prog-mode . outline-minor-mode))
 
 (use-feature hideshow
+  :blackout hs-minor-mode
   :hook (prog-mode . hs-minor-mode))
 
 (use-package bicycle
   :after outline
-  :straight (bicycle :flavor melpa :host github :repo "tarsius/bicycle"
-                     :fork (:host github :repo "andschwa/bicycle" :branch "andschwa/hide-whole-block"))
-  :custom (bicycle-hide-whole-block nil)
-  :bind (:map outline-minor-mode-map
-              ([C-tab] . bicycle-cycle)
-              ([S-tab] . bicycle-cycle-global)))
+  :bind (:map outline-minor-mode-map :filter (outline-on-heading-p) ([tab] . bicycle-cycle)))
 
 ;;; Windows / Frames and the buffers in them
 (use-package buffer-move)
