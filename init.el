@@ -122,8 +122,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature edl-mode :load-path "etc")
 
 ;;; Cursor and Mark Movement:
-(bind-key "C-M-<backspace>" #'delete-pair)
-(bind-key "C-M-`" #'raise-sexp)
 (bind-key "M-o" #'other-window)
 (defun undo-other-window ()
   "The opposite of `other-window'."
@@ -440,6 +438,8 @@ behavior added."
 ;;; Editing:
 (customize-set-variable 'truncate-lines t)
 (bind-key "C-x w" #'toggle-truncate-lines)
+(bind-key "C-M-y" #'raise-sexp)
+(bind-key "C-M-<backspace>" #'delete-pair)
 
 (use-feature autorevert
   :blackout
