@@ -695,6 +695,8 @@ behavior added."
 (use-package restart-emacs
   :bind ("C-c Q" . restart-emacs))
 
+(use-package system-packages)
+
 (use-feature woman
   :bind ("C-c m" . woman))
 
