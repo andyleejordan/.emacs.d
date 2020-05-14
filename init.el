@@ -132,29 +132,16 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 (use-feature subword
   :config (global-subword-mode))
 
-;;; Outlines:
-(use-feature outline
-  :blackout outline-minor-mode
-  :hook (prog-mode . outline-minor-mode))
-
-(use-package outline-magic
-  :after outline
-  :bind (:map outline-minor-mode-map
-              :filter (outline-on-heading-p)
-              ([C-tab] . outline-cycle)))
-
+;; Also see `set-selective-display'.
 (use-feature hideshow
   :blackout hs-minor-mode
   :hook (prog-mode . hs-minor-mode)
   :bind (:map hs-minor-mode-map
+              ("C-c s" . hs-show-all)
+              ("C-c h" . hs-hide-all)
+              ("C-c l" . hs-hide-level)
               :filter (hs-looking-at-block-start-p)
               ([tab] . hs-toggle-hiding)))
-
-(use-package bicycle
-  :disabled
-  :after outline
-  :bind (:map outline-minor-mode-map :filter (outline-on-heading-p) ([tab] . bicycle-cycle-global)
-              :map hs-minor-mode-map :filter (hs-looking-at-block-start-p) ([tab] . bicycle-cycle)))
 
 ;;; Windows / Frames and the buffers in them
 (use-package buffer-move)
