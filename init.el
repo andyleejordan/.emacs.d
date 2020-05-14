@@ -832,7 +832,8 @@ behavior added."
   (save-interprogram-paste-before-kill t)
   (kill-do-not-save-duplicates t)
   (kill-whole-line t)
-  (shift-select-mode nil)
+  (shift-select-mode nil "Don't activate mark with shift.")
+  (select-active-regions nil "Don't set primary selection.")
   (visual-line-fringe-indicators '(nil right-curly-arrow)))
 
 (use-package super-save
