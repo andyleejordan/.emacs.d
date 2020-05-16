@@ -660,7 +660,8 @@ behavior added."
 (use-package ielm
   :custom (ielm-prompt "> "))
 
-(use-package copy-as-format)
+(use-package copy-as-format
+  :custom (copy-as-format-default "github"))
 
 (use-package org
   :straight org-plus-contrib
