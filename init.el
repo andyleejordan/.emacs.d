@@ -642,13 +642,13 @@ behavior added."
           (when (not (= status 0))
             (with-face (concat (number-to-string status) " ") :foreground magenta)))
         (with-face "@" :foreground (if (= (user-uid) 0) red blue))
-        (with-face (system-name) :foreground base) " "
-        ;; TODO: Display more Git info.
-        (let ((head (shell-command-to-string "git describe --contains --all HEAD")))
-          (unless (string-match "fatal:" head)
-            (concat "(" (with-face (replace-regexp-in-string "\n\\'" "" head) :foreground green) ") ")))
-        (with-face (replace-regexp-in-string (concat "\\`" (getenv "HOME")) "~" (eshell/pwd))
+        (with-face (car (s-split "\\." (system-name))) :foreground base) " "
+        (with-face (let ((path (replace-regexp-in-string (concat "\\`" (getenv "HOME")) "~" (eshell/pwd))))
+                     (s-reverse (s-truncate 15 (s-reverse path) "…")))
                    :foreground blue) " "
+        (let ((head (shell-command-to-string "git rev-parse --abbrev-ref HEAD")))
+          (unless (string-match "fatal:" head)
+            (concat (with-face (replace-regexp-in-string "\n\\'" "" head) :foreground green)))) " "
         (with-face "$" :foreground cyan) " ")))))
 
 (use-package git-link)
