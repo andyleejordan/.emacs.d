@@ -338,6 +338,11 @@ behavior added."
 (bind-key "C-x C-r" #'selectrum-recentf)
 
 ;;; Searching:
+(use-package ctrlf
+  :straight (ctrlf :type git :flavor melpa :host github :repo "raxod502/ctrlf"
+                   :fork (:host github :repo "andschwa/ctrlf" :branch "more-like-isearch"))
+  :config (ctrlf-mode))
+
 (use-feature imenu
   :config (bind-key "M-i" #'imenu))
 
