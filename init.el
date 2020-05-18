@@ -339,7 +339,7 @@ behavior added."
 
 ;;; Searching:
 (use-feature imenu
-  :config (bind-key "C-c i" #'imenu))
+  :config (bind-key "M-i" #'imenu))
 
 (bind-key "M-s g" #'vc-git-grep)
 
