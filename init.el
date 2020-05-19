@@ -137,11 +137,26 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
   :blackout hs-minor-mode
   :hook (prog-mode . hs-minor-mode)
   :bind (:map hs-minor-mode-map
-              ("C-c s" . hs-show-all)
-              ("C-c h" . hs-hide-all)
+              ("C-c h" . hs-toggle-hiding+)
               ("C-c l" . hs-hide-level)
-              :filter (hs-looking-at-block-start-p)
-              ([tab] . hs-toggle-hiding)))
+              :filter (or (hs-looking-at-block-start-p) (bobp))
+              ([tab] . hs-toggle-hiding+))
+  :custom (hs-allow-nesting t)
+  :config
+  (defvar-local hs-hid-all-p nil
+    "Local variable tracking the usage of `hs-hide-all' and `hs-show-all'.")
+  (advice-add #'hs-hide-all :before (lambda () (setq hs-hid-all-p t)))
+  (advice-add #'hs-show-all :before (lambda () (setq hs-hid-all-p nil)))
+  (defun hs-toggle-hiding+ (&optional global)
+    "Like `hs-toggle-hiding' but can also toggle all blocks.
+When at the beginning of the buffer or called with the universal
+argument, calls `hs-hide-all' or `hs-show-all' as determined by
+the value of `hs-hid-all-p', a buffer local variable set by
+advising these functions."
+    (interactive "P")
+    (if (or global (bobp))
+        (if hs-hid-all-p (hs-show-all) (hs-hide-all))
+      (hs-toggle-hiding))))
 
 ;;; Windows / Frames and the buffers in them
 (use-package buffer-move)
