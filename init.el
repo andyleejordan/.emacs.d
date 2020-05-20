@@ -290,6 +290,8 @@ behavior added."
            tramp-file-name-regexp)))
 
 ;;; Buffers:
+(bind-key [remap kill-buffer] #'kill-this-buffer)
+
 (use-package ibuffer
   :bind ([remap list-buffers] . ibuffer))
 
