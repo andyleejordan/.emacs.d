@@ -292,8 +292,8 @@ behavior added."
 ;;; Buffers:
 (bind-key [remap kill-buffer] #'kill-this-buffer)
 
-(use-package ibuffer
-  :bind ([remap list-buffers] . ibuffer))
+(use-package bufler
+  :bind ([remap list-buffers] . bufler))
 
 (use-feature uniquify
   :custom (uniquify-buffer-name-style 'forward))
