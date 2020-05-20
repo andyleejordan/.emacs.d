@@ -346,13 +346,13 @@ behavior added."
   (run-at-time t (* 5 60) #'recentf-save-list)
   (recentf-mode))
 
-(defun selectrum-recentf ()
-  "Use `selectrum' to open a recent file."
+(defun recentf-open-files+ ()
+  "Use `completing-read' to open a recent file."
   (interactive)
   (let ((files (mapcar 'abbreviate-file-name recentf-list)))
-    (find-file (selectrum-completing-read "Find recent file: " files nil t))))
+    (find-file (completing-read "Find recent file: " files nil t))))
 
-(bind-key "C-x C-r" #'selectrum-recentf)
+(bind-key "C-x C-r" #'recentf-open-files+)
 
 ;;; Searching:
 (use-package ctrlf
