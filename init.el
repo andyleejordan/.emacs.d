@@ -772,6 +772,8 @@ behavior added."
   :straight (solarized-theme :flavor melpa :host github :repo "bbatsov/solarized-emacs"
                              :fork (:host github :repo "andschwa/solarized-emacs" :branch "completions-faces"))
   :custom
+  (solarized-scale-org-headlines nil)
+  (solarized-scale-outline-headlines nil)
   (solarized-use-variable-pitch nil)
   (x-underline-at-descent-line t)
   :config
