@@ -450,6 +450,29 @@ behavior added."
 (bind-key "C-M-y" #'raise-sexp)
 (bind-key "C-M-<backspace>" #'delete-pair)
 
+(defun yank-pop+ (&optional arg)
+  "Browse the `kill-ring' interactively.
+Kind of like `browse-kill-ring' but simpler. Replacement for
+`yank-pop', and uses `completing-read'."
+  (interactive "P")
+  (let* ((selectrum-should-sort-p nil)
+         (text (completing-read
+                "Yank: " (cl-remove-duplicates
+                          kill-ring :test #'equal :from-end t)
+                nil 'require-match)))
+    (unless (eq last-command 'yank)
+      (push-mark))
+    (setq last-command 'yank)
+    (setq yank-window-start (window-start))
+    (when (and delete-selection-mode (use-region-p))
+      (delete-region (region-beginning) (region-end)))
+    (insert-for-yank text)
+    (if (consp arg)
+        (goto-char (prog1 (mark t)
+                     (set-marker (mark-marker) (point) (current-buffer)))))))
+
+(bind-key [remap yank-pop] #'yank-pop+)
+
 (use-feature autorevert
   :blackout
   :custom
