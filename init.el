@@ -502,6 +502,9 @@ Kind of like `browse-kill-ring' but simpler. Replacement for
          ("C-?" . undo-fu-only-redo))
   :custom (undo-fu-allow-undo-in-region t))
 
+(use-package undo-fu-session
+  :config (global-undo-fu-session-mode))
+
 (use-package unfill
   :bind ([remap fill-paragraph] . unfill-toggle))
 
