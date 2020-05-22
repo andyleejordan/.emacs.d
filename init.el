@@ -491,11 +491,12 @@ Kind of like `browse-kill-ring' but simpler. Replacement for
   (or (call-if-fbound #'save-place-mode)
       (call-if-fbound #'save-place)))
 
-(use-package undo-tree
+(use-package undo-fu
   :blackout
-  :defines undo-tree-map
-  :custom (undo-tree-enable-undo-in-region nil "This is buggy.")
-  :config (global-undo-tree-mode))
+  ;; Backports Emacs 28's `undo-redo'.
+  :bind (("C-/" . undo-fu-only-undo)
+         ("C-?" . undo-fu-only-redo))
+  :custom (undo-fu-allow-undo-in-region t))
 
 (use-package unfill
   :bind ([remap fill-paragraph] . unfill-toggle))
