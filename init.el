@@ -203,17 +203,21 @@ behavior added."
         (defining-kbd-macro
           (message
            (substitute-command-keys
-            "Quit is ignored during macro defintion, use \\[kmacro-end-macro] if you want to stop macro definition."))
+            "Quit is ignored during macro defintion, use
+            \\[kmacro-end-macro] if you want to stop macro
+            definition."))
           (cancel-kbd-macro-events))
         ((active-minibuffer-window)
          (when (get-buffer-window "*Completions*")
            ;; Hide completions first so point stays in active window when
            ;; outside the minibuffer.
            (minibuffer-hide-completions))
+         (setq this-command 'abort-recursive-edit)
          (abort-recursive-edit))
         (t
          ;; If we got this far just use the default so we don't miss
          ;; any upstream changes.
+         (setq this-command 'keyboard-quit)
          (keyboard-quit))))
 
 (bind-key* [remap keyboard-quit] #'keyboard-quit-context+)
