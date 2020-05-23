@@ -269,12 +269,14 @@ behavior added."
   (global-diff-hl-mode))
 
 (use-package magit
-  :defines magit-file-mode-map magit-dwim-selection
+  :defines magit-file-mode-map magit-dwim-selection magit-section-initial-visibility-alist
   :config
   ;; C-x M-g . `magit-dispatch'
   (bind-key "C-x g" #'magit-status)
   (bind-key "C-c g" #'magit-file-dispatch magit-file-mode-map)
   (add-to-list 'magit-dwim-selection '(magit-branch-and-checkout nil t))
+  (add-args-to-list 'magit-section-initial-visibility-alist
+                    '((untracked . hide) (unpushed . hide) (branch . hide)))
   :custom
   (magit-save-repository-buffers 'dontask)
   (magit-published-branches nil "Disable confirmation.")
