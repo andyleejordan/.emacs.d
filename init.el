@@ -456,26 +456,32 @@ behavior added."
 (bind-key "C-M-y" #'raise-sexp)
 (bind-key "C-M-<backspace>" #'delete-pair)
 
+(defun equal-no-properties (O1 O2)
+  (equal (substring-no-properties O1) (substring-no-properties O2)))
+
 (defun yank-pop+ (&optional arg)
-  "Browse the `kill-ring' interactively.
-Kind of like `browse-kill-ring' but simpler. Replacement for
-`yank-pop', and uses `completing-read'."
-  (interactive "P")
-  (let* ((selectrum-should-sort-p nil)
-         (text (completing-read
-                "Yank: " (cl-remove-duplicates
-                          kill-ring :test #'equal :from-end t)
-                nil 'require-match)))
-    (unless (eq last-command 'yank)
-      (push-mark))
-    (setq last-command 'yank)
-    (setq yank-window-start (window-start))
-    (when (and delete-selection-mode (use-region-p))
-      (delete-region (region-beginning) (region-end)))
-    (insert-for-yank text)
-    (if (consp arg)
-        (goto-char (prog1 (mark t)
-                     (set-marker (mark-marker) (point) (current-buffer)))))))
+  "Call `yank-pop' with ARG when appropriate, or offer completion."
+  (interactive "*P")
+  (if arg (yank-pop arg)
+    (let* ((old-last-command last-command)
+           (selectrum-should-sort-p nil)
+           (enable-recursive-minibuffers t)
+           (text (completing-read
+                  "Yank: "
+                  (cl-remove-duplicates
+                   kill-ring :test #'string= :from-end t)
+                  nil t nil nil))
+           ;; Find `text' in `kill-ring'.
+           (pos (cl-position text kill-ring :test #'string=))
+           ;; Translate relative to `kill-ring-yank-pointer'.
+           (n (+ pos (length kill-ring-yank-pointer))))
+      (unless (string= text (current-kill n t))
+        (error "Could not setup for `current-kill'"))
+      ;; Restore `last-command' over Selectrum commands.
+      (setq last-command old-last-command)
+      ;; Delegate to `yank-pop' if appropriate or just insert.
+      (if (eq last-command 'yank)
+          (yank-pop n) (insert-for-yank text)))))
 
 (bind-key [remap yank-pop] #'yank-pop+)
 
