@@ -456,9 +456,6 @@ behavior added."
 (bind-key "C-M-y" #'raise-sexp)
 (bind-key "C-M-<backspace>" #'delete-pair)
 
-(defun equal-no-properties (O1 O2)
-  (equal (substring-no-properties O1) (substring-no-properties O2)))
-
 (defun yank-pop+ (&optional arg)
   "Call `yank-pop' with ARG when appropriate, or offer completion."
   (interactive "*P")
