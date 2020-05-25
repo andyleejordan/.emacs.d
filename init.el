@@ -1,6 +1,6 @@
-;;; init.el --- Andrew Schwartzmeyer's Emacs customizations  -*- lexical-binding: t; -*-
+;;; init.el --- Andrew Schwartzmeyer's Emacs customizations. -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2013-2019 Andrew Schwartzmeyer
+;; Copyright (C) 2013-2020 Andrew Schwartzmeyer
 
 ;; Author: Andrew Schwartzmeyer <andrew@schwartzmeyer.com>
 ;; Created: 30 Aug 2013
@@ -64,11 +64,20 @@
   (straight-use-package 'use-package)
   (require 'use-package))
 
-(use-package blackout
-  :straight (:host github :repo "raxod502/blackout"))
-(use-package bind-key)
+(defmacro use-feature (name &rest args)
+  "Like `use-package' for NAME and ARGS, but with `:straight' nil."
+  (declare (indent defun))
+  `(use-package ,name
+     :straight nil
+     ,@args))
+
+;; Lisp list, string, and file extensions.
 (use-package dash)
+(use-package s)
 (use-package f)
+
+;; My own "package" of extensions.
+(use-feature andy :load-path "etc")
 
 ;; Save data files consistently.
 (use-package no-littering)
@@ -76,28 +85,12 @@
 (customize-set-variable
  'custom-file (no-littering-expand-etc-file-name "custom.el"))
 
-;;; Helper Functions:
-(defmacro add-args-to-list (list-var elements &optional append compare-fn)
-  "Adapts `add-to-list' to add multiple ELEMENTS to LIST-VAR.
-Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
-  `(dolist (element ,elements) (add-to-list ,list-var element ,append ,compare-fn)))
+;; Way easier key binding.
+(use-package bind-key)
 
-(defun call-if-fbound (function &rest args)
-  "Call FUNCTION with optional ARGS, only if it is `fbound'."
-  "Return t if it is fbound and called without error, and nil otherwise."
-  (when (fboundp function) (apply function args) t))
-
-;; Colorize strings:
-(defmacro with-face (str &rest properties)
-  "Return STR with the given face PROPERTIES, suitable for `concat'."
-  `(propertize ,str 'face (list ,@properties)))
-
-(defmacro use-feature (name &rest args)
-  "Like `use-package' for NAME and ARGS, but with `:straight' nil."
-  (declare (indent defun))
-  `(use-package ,name
-     :straight nil
-     ,@args))
+;; Intelligently hides minor modes.
+(use-package blackout
+  :straight (:host github :repo "raxod502/blackout"))
 
 ;;; Platform:
 (use-feature local
@@ -123,10 +116,6 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
 
 ;;; Cursor and Mark Movement:
 (bind-key "M-o" #'other-window)
-(defun undo-other-window ()
-  "The opposite of `other-window'."
-  (interactive) (other-window -1))
-(bind-key "M-O" #'undo-other-window)
 (bind-key [remap delete-char] #'delete-forward-char)
 
 (use-feature subword
@@ -141,22 +130,7 @@ Pass APPEND and COMPARE-FN to each invocation of `add-to-list'."
               ("C-c l" . hs-hide-level)
               :filter (or (hs-looking-at-block-start-p) (bobp))
               ([tab] . hs-toggle-hiding+))
-  :custom (hs-allow-nesting t)
-  :config
-  (defvar-local hs-hid-all-p nil
-    "Local variable tracking the usage of `hs-hide-all' and `hs-show-all'.")
-  (advice-add #'hs-hide-all :before (lambda () (setq hs-hid-all-p t)))
-  (advice-add #'hs-show-all :before (lambda () (setq hs-hid-all-p nil)))
-  (defun hs-toggle-hiding+ (&optional global)
-    "Like `hs-toggle-hiding' but can also toggle all blocks.
-When at the beginning of the buffer or called with the universal
-argument, calls `hs-hide-all' or `hs-show-all' as determined by
-the value of `hs-hid-all-p', a buffer local variable set by
-advising these functions."
-    (interactive "P")
-    (if (or global (bobp))
-        (if hs-hid-all-p (hs-show-all) (hs-hide-all))
-      (hs-toggle-hiding))))
+  :custom (hs-allow-nesting t))
 
 ;;; Windows / Frames and the buffers in them
 (use-package buffer-move)
@@ -183,42 +157,6 @@ advising these functions."
 ;;; Minibuffer Interface:
 (use-feature eldoc
   :blackout)
-
-;; From https://with-emacs.com/posts/tips/quit-current-context/
-(defun keyboard-quit-context+ ()
-  "Quit current context.
-
-This function is a combination of `keyboard-quit' and
-`keyboard-escape-quit' with some parts omitted and some custom
-behavior added."
-  (interactive)
-  (cond ((region-active-p)
-         ;; Avoid adding the region to the window selection.
-         (setq saved-region-selection nil)
-         (let (select-active-regions)
-           (deactivate-mark)))
-        ((eq last-command 'mode-exited) nil)
-        (current-prefix-arg
-         nil)
-        (defining-kbd-macro
-          (message
-           (substitute-command-keys
-            "Quit is ignored during macro defintion, use
-            \\[kmacro-end-macro] if you want to stop macro
-            definition."))
-          (cancel-kbd-macro-events))
-        ((active-minibuffer-window)
-         (when (get-buffer-window "*Completions*")
-           ;; Hide completions first so point stays in active window when
-           ;; outside the minibuffer.
-           (minibuffer-hide-completions))
-         (setq this-command 'abort-recursive-edit)
-         (abort-recursive-edit))
-        (t
-         ;; If we got this far just use the default so we don't miss
-         ;; any upstream changes.
-         (setq this-command 'keyboard-quit)
-         (keyboard-quit))))
 
 (bind-key* [remap keyboard-quit] #'keyboard-quit-context+)
 
@@ -305,11 +243,6 @@ behavior added."
   :custom (uniquify-buffer-name-style 'forward))
 
 ;;; File Navigation:
-(defun find-dot-emacs ()
-  "Open `~/.emacs.d/init.el'."
-  (interactive)
-  (find-file (expand-file-name "init.el" user-emacs-directory)))
-
 (bind-key "C-c d" #'find-dot-emacs)
 
 (use-feature dired
@@ -351,12 +284,6 @@ behavior added."
   ;; Save every five minutes, because Emacs crashes.
   (run-at-time t (* 5 60) #'recentf-save-list)
   (recentf-mode))
-
-(defun recentf-open-files+ ()
-  "Use `completing-read' to open a recent file."
-  (interactive)
-  (let ((files (mapcar 'abbreviate-file-name recentf-list)))
-    (find-file (completing-read "Find recent file: " files nil t))))
 
 (bind-key "C-x C-r" #'recentf-open-files+)
 
@@ -455,31 +382,6 @@ behavior added."
 (bind-key "C-x w" #'toggle-truncate-lines)
 (bind-key "C-M-y" #'raise-sexp)
 (bind-key "C-M-<backspace>" #'delete-pair)
-
-(defun yank-pop+ (&optional arg)
-  "Call `yank-pop' with ARG when appropriate, or offer completion."
-  (interactive "*P")
-  (if arg (yank-pop arg)
-    (let* ((old-last-command last-command)
-           (selectrum-should-sort-p nil)
-           (enable-recursive-minibuffers t)
-           (text (completing-read
-                  "Yank: "
-                  (cl-remove-duplicates
-                   kill-ring :test #'string= :from-end t)
-                  nil t nil nil))
-           ;; Find `text' in `kill-ring'.
-           (pos (cl-position text kill-ring :test #'string=))
-           ;; Translate relative to `kill-ring-yank-pointer'.
-           (n (+ pos (length kill-ring-yank-pointer))))
-      (unless (string= text (current-kill n t))
-        (error "Could not setup for `current-kill'"))
-      ;; Restore `last-command' over Selectrum commands.
-      (setq last-command old-last-command)
-      ;; Delegate to `yank-pop' if appropriate or just insert.
-      (if (eq last-command 'yank)
-          (yank-pop n) (insert-for-yank text)))))
-
 (bind-key [remap yank-pop] #'yank-pop+)
 
 (use-feature autorevert
@@ -512,17 +414,6 @@ behavior added."
 
 (use-package unfill
   :bind ([remap fill-paragraph] . unfill-toggle))
-
-;;; Skeletons:
-;; https://www.gnu.org/software/emacs/manual/html_mono/autotype.html#Skeleton-Language
-(define-skeleton c-ifdef-skeleton
-  "Wraps code with a C pre-processor conditional block."
-  (completing-read "#if defined(IDENTIFIER): " '("__WINDOWS__"))
-  "#if defined(" str ")\n"
-  > - "\n"
-  "#else" \n
-  > _ "\n"
-  "#endif // defined(" str ")" \n)
 
 (use-feature autoinsert
   :config
@@ -811,26 +702,7 @@ behavior added."
   (solarized-scale-org-headlines nil)
   (solarized-scale-outline-headlines nil)
   (solarized-use-variable-pitch nil)
-  (x-underline-at-descent-line t)
-  :config
-  (defun load-solarized-light ()
-    (interactive)
-    (disable-theme 'solarized-dark)
-    (load-theme 'solarized-light t))
-  (defun load-solarized-dark ()
-    (interactive)
-    (disable-theme 'solarized-light)
-    (load-theme 'solarized-dark t))
-  (defun toggle-theme ()
-    "Switch between Solarized variants."
-    (interactive)
-    (cond
-     ((member 'solarized-dark custom-enabled-themes)
-      (load-solarized-light))
-     ((member 'solarized-light custom-enabled-themes)
-      (load-solarized-dark))))
-  (run-at-time "05:00am" (* 60 60 24) #'load-solarized-light)
-  (run-at-time "05:00pm" (* 60 60 24) #'load-solarized-dark))
+  (x-underline-at-descent-line t))
 
 (unless (display-graphic-p)
   (load-theme 'tango-dark t))
