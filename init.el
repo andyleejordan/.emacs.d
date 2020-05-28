@@ -166,6 +166,7 @@
   :config (prescient-persist-mode))
 
 (use-package selectrum
+  :custom (enable-recursive-minibuffers t)
   :config
   (bind-key "C-c M-x" #'selectrum-repeat)
   (selectrum-mode)
