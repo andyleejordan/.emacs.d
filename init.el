@@ -294,6 +294,7 @@
   :config (ctrlf-mode))
 
 (use-feature imenu
+  :custom (imenu-auto-rescan t)
   :config (bind-key "M-i" #'imenu))
 
 (bind-key "M-s g" #'vc-git-grep)
