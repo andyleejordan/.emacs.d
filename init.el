@@ -128,7 +128,9 @@
   :bind (:map hs-minor-mode-map
               ("C-c h" . hs-toggle-hiding+)
               ("C-c l" . hs-hide-level)
-              :filter (or (hs-looking-at-block-start-p) (bobp))
+              :filter (or (hs-looking-at-block-start-p)
+                          (hs-already-hidden-p)
+                          (bobp))
               ([tab] . hs-toggle-hiding+))
   :custom (hs-allow-nesting t))
 
