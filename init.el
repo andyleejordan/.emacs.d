@@ -664,7 +664,8 @@
 
 (when (display-graphic-p)
   (tool-bar-mode 0)
-  (scroll-bar-mode 0))
+  (scroll-bar-mode 0)
+  (add-args-to-list 'default-frame-alist '((width . 100) (height . 50))))
 
 ;; Fix invisible buffer content when X is tunneled
 ;; https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25474
