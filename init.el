@@ -213,6 +213,7 @@
   :config (minibuffer-electric-default-mode))
 
 (use-feature savehist
+  :custom (history-delete-duplicates)
   :config (savehist-mode))
 
 (use-feature which-func
