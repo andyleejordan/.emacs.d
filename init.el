@@ -291,7 +291,7 @@
 (bind-key "C-x C-r" #'recentf-open-files+)
 
 ;;; Searching:
-(use-package ctrlf
+(use-package ctrlf :disabled
   :straight (ctrlf :type git :flavor melpa :host github :repo "raxod502/ctrlf"
                    :fork (:host github :repo "andschwa/ctrlf" :branch "more-like-isearch"))
   :config (ctrlf-mode))
