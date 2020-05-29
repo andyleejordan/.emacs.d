@@ -482,7 +482,6 @@
 ;; Treat backquotes as pairs in text mode.
 (use-feature text-mode
   :config
-  (add-hook 'text-mode-hook #'turn-on-visual-line-mode)
   (modify-syntax-entry ?\` "$`" text-mode-syntax-table))
 
 (use-package flymake
@@ -743,7 +742,6 @@
 (use-feature help
   :config
   (bind-key "C-h L" #'find-library)
-  (add-hook 'help-mode-hook #'turn-on-visual-line-mode)
   :custom (help-window-select t))
 
 ;; Simple is Emacs's built-in miscellaneous package.
@@ -756,6 +754,7 @@
    ([remap capitalize-word] . capitalize-dwim)
    ([remap zap-to-char] . zap-up-to-char))
   (column-number-mode)
+  (global-visual-line-mode)
   :custom
   ;; TODO: Maybe set `suggest-key-bindings' to `nil'.
   (save-interprogram-paste-before-kill t)
