@@ -158,15 +158,34 @@
 
 ;;; Minibuffer Interface:
 (customize-set-variable 'enable-recursive-minibuffers t)
+(customize-set-variable 'read-buffer-completion-ignore-case t)
+
+(use-feature icomplete
+  :if (fboundp 'fido-mode)
+  :custom
+  (icomplete-compute-delay 0)
+  (icomplete-prospects-height 1)
+  :custom-face
+  (icomplete-first-match ; Solarized Green
+   ((t (:weight bold :foreground "#859900"))))
+  (completions-common-part ; Solarized Magenta
+   ((t (:weight bold :foreground "#d33682"))))
+  (completions-first-difference ; Solarized Yellow
+   ((t (:weight bold :foreground "#b58900"))))
+  :config (fido-mode))
+
 (use-package eldoc
   :blackout)
 
 (bind-key* [remap keyboard-quit] #'keyboard-quit-context+)
 
-(use-package prescient
-  :config (prescient-persist-mode))
+(use-feature minibuffer
+  :custom
+  (minibuffer-beginning-of-buffer-movement t)
+  (minibuffer-message-clear-timeout 2))
 
 (use-package selectrum
+  :unless (bound-and-true-p fido-mode)
   :config
   (bind-key "C-c M-x" #'selectrum-repeat)
   (selectrum-mode)
@@ -178,7 +197,12 @@
   (selectrum-secondary-highlight ; Solarized Magenta
    ((t (:weight bold :foreground "#d33682")))))
 
+(use-package prescient
+  :requires selectrum
+  :config (prescient-persist-mode))
+
 (use-package selectrum-prescient
+  :requires prescient
   :config (selectrum-prescient-mode))
 
 (use-feature mb-depth :disabled
