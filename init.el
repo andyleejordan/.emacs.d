@@ -157,7 +157,7 @@
   :config (winner-mode))
 
 ;;; Minibuffer Interface:
-(use-feature eldoc
+(use-package eldoc
   :blackout)
 
 (bind-key* [remap keyboard-quit] #'keyboard-quit-context+)
@@ -266,7 +266,7 @@
   (bind-key "C-x C-j" #'dired-jump)
   (bind-key "C-x 4 C-j" #'dired-jump-other-window))
 
-(use-feature project
+(use-package project
   :defines project-find-functions
   :config
   (bind-key "C-c f" #'project-find-file)
@@ -485,7 +485,7 @@
   (add-hook 'text-mode-hook #'turn-on-visual-line-mode)
   (modify-syntax-entry ?\` "$`" text-mode-syntax-table))
 
-(use-feature flymake
+(use-package flymake
   :hook (prog-mode . flymake-mode)
   :bind (:map flymake-mode-map
               ("M-n" . flymake-goto-next-error)
@@ -528,6 +528,8 @@
 (use-package company-lsp
   :after company
   :custom (company-lsp-cache-candidates 'auto))
+
+(use-package xref)
 
 ;;; Spelling:
 (use-package flyspell
@@ -792,6 +794,8 @@
   (add-to-list
    'backup-directory-alist
    `(,tramp-file-name-regexp . ,(no-littering-expand-var-file-name "tramp/backup/"))))
+
+(use-package tramp)
 
 ;;; Language Modes:
 (add-args-to-list
