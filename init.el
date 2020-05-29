@@ -157,6 +157,7 @@
   :config (winner-mode))
 
 ;;; Minibuffer Interface:
+(customize-set-variable 'enable-recursive-minibuffers t)
 (use-package eldoc
   :blackout)
 
@@ -166,7 +167,6 @@
   :config (prescient-persist-mode))
 
 (use-package selectrum
-  :custom (enable-recursive-minibuffers t)
   :config
   (bind-key "C-c M-x" #'selectrum-repeat)
   (selectrum-mode)
@@ -182,7 +182,6 @@
   :config (selectrum-prescient-mode))
 
 (use-feature mb-depth :disabled
-  :custom (enable-recursive-minibuffers t)
   :config (minibuffer-depth-indicate-mode))
 
 (use-feature minibuf-eldef :disabled
