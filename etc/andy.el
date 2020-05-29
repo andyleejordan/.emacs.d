@@ -180,9 +180,9 @@ behavior added."
   (interactive)
   (cond
    ((member dark-theme custom-enabled-themes)
-    (load-solarized-light))
+    (load-light-theme))
    ((member light-theme custom-enabled-themes)
-    (load-solarized-dark))))
+    (load-dark-theme))))
 
 ;; Schedule:
 (run-at-time "05:00am" (* 60 60 24) #'load-light-theme)
