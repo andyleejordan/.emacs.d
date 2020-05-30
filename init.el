@@ -157,6 +157,8 @@
   :config (winner-mode))
 
 ;;; Minibuffer Interface:
+(bind-key* [remap keyboard-quit] #'keyboard-quit-context+)
+
 (customize-set-variable 'enable-recursive-minibuffers t)
 (customize-set-variable 'read-buffer-completion-ignore-case t)
 
@@ -178,7 +180,6 @@
 (use-package eldoc
   :blackout)
 
-(bind-key* [remap keyboard-quit] #'keyboard-quit-context+)
 
 (use-feature minibuffer
   :custom
