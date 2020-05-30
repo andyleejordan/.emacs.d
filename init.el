@@ -160,6 +160,7 @@
 (bind-key* [remap keyboard-quit] #'keyboard-quit-context+)
 
 (customize-set-variable 'enable-recursive-minibuffers t)
+(customize-set-variable 'completion-ignore-case t)
 (customize-set-variable 'read-buffer-completion-ignore-case t)
 
 (use-feature icomplete
@@ -181,6 +182,8 @@
 
 (use-feature minibuffer
   :custom
+  (completions-format 'vertical)
+  (completion-cycle-threshold 3)
   (minibuffer-beginning-of-buffer-movement t)
   (minibuffer-message-clear-timeout 2))
 
