@@ -177,8 +177,6 @@
    ((t (:weight bold :foreground "#b58900"))))
   :config (fido-mode))
 
-(use-package eldoc
-  :blackout)
 
 
 (use-feature minibuffer
@@ -207,10 +205,14 @@
   :requires prescient
   :config (selectrum-prescient-mode))
 
-(use-feature mb-depth :disabled
+
+(use-package eldoc
+  :blackout)
+
+(use-feature mb-depth
   :config (minibuffer-depth-indicate-mode))
 
-(use-feature minibuf-eldef :disabled
+(use-feature minibuf-eldef
   :custom (minibuffer-eldef-shorten-default t)
   :config (minibuffer-electric-default-mode))
 
