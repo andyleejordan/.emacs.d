@@ -165,6 +165,7 @@
   :custom
   (icomplete-compute-delay 0)
   (icomplete-prospects-height 1)
+  (icomplete-separator (with-face " | " :inherit 'shadow))
   :custom-face
   (icomplete-first-match ; Solarized Green
    ((t (:weight bold :foreground "#859900"))))
