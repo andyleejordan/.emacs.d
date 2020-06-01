@@ -177,6 +177,11 @@
   (completions-first-difference ; Solarized Yellow
    ((t (:weight bold :foreground "#b58900"))))
   :config (fido-mode))
+  :config
+  ;; Use `isearch' instead of regexp, especially since `C-s' and `C-r'
+  ;; are bound like in `ido' to move through candidates.
+  (bind-key "M-s" #'isearch-forward icomplete-fido-mode-map)
+  (bind-key "M-r" #'isearch-backward icomplete-fido-mode-map)
 
 (use-feature minibuffer
   :custom
