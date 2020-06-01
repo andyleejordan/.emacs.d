@@ -163,6 +163,19 @@
 (customize-set-variable 'completion-ignore-case t)
 (customize-set-variable 'read-buffer-completion-ignore-case t)
 
+(use-package orderless
+  :custom (orderless-matching-styles
+           '(orderless-initialism orderless-flex))
+  :custom-face
+  (orderless-match-face-0 ; Solarized Magenta
+   ((t (:weight bold :foreground "#d33682"))))
+  (orderless-match-face-1 ; Solarized Yellow
+   ((t (:weight bold :foreground "#b58900"))))
+  (orderless-match-face-2 ; Solarized Blue
+   ((t (:weight bold :foreground "#268bd2"))))
+  (orderless-match-face-3 ; Solarized Cyan
+   ((t (:weight bold :foreground "#2aa198")))))
+
 (use-feature icomplete
   :if (fboundp 'fido-mode)
   :custom
@@ -172,16 +185,14 @@
   :custom-face
   (icomplete-first-match ; Solarized Green
    ((t (:weight bold :foreground "#859900"))))
-  (completions-common-part ; Solarized Magenta
-   ((t (:weight bold :foreground "#d33682"))))
-  (completions-first-difference ; Solarized Yellow
-   ((t (:weight bold :foreground "#b58900"))))
-  :config (fido-mode))
   :config
   ;; Use `isearch' instead of regexp, especially since `C-s' and `C-r'
   ;; are bound like in `ido' to move through candidates.
   (bind-key "M-s" #'isearch-forward icomplete-fido-mode-map)
   (bind-key "M-r" #'isearch-backward icomplete-fido-mode-map)
+  (add-hook 'icomplete-minibuffer-setup-hook
+            (lambda () (setq-local completion-styles '(orderless))))
+  (fido-mode))
 
 (use-feature minibuffer
   :custom
