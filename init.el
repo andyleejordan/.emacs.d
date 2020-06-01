@@ -178,8 +178,6 @@
    ((t (:weight bold :foreground "#b58900"))))
   :config (fido-mode))
 
-
-
 (use-feature minibuffer
   :custom
   (completions-format 'vertical)
@@ -334,8 +332,16 @@
 (bind-key "M-s g" #'vc-git-grep)
 
 (use-feature isearch
-  ;; TODO: Set `search-whitespace-regexp' for fuzzier searching.
-  :custom (isearch-allow-scroll t))
+  :bind (("M-s M-o" . multi-occur)
+         :map minibuffer-local-isearch-map
+         ("M-/" . isearch-complete-edit)
+         :map isearch-mode-map
+         ("M-/" . isearch-complete)
+         ([remap isearch-abort] . isearch-cancel))
+  :custom
+  (search-whitespace-regexp ".*?")
+  (isearch-allow-scroll t)
+  (isearch-lazy-count t))
 
 (use-package grep
   :config (bind-key "M-s R" #'rgrep)) ; or `rg'
