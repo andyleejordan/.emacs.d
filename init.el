@@ -93,9 +93,6 @@
   :straight (:host github :repo "raxod502/blackout"))
 
 ;;; Platform:
-(use-feature local
-  :load-path "etc"
-  :if (file-readable-p (no-littering-expand-etc-file-name "local.el")))
 
 (use-feature linux
   :load-path "etc"
@@ -942,6 +939,10 @@
 (use-package yaml-mode)
 
 ;;; Finish Loading:
+(use-feature local
+  :load-path "etc"
+  :if (file-readable-p (no-littering-expand-etc-file-name "local.el")))
+
 (server-start)
 (provide 'init)
 
