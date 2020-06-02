@@ -901,7 +901,7 @@
 (use-package markdown-mode
   :config
   (add-hook 'markdown-mode-hook #'turn-on-auto-fill)
-  (add-hook 'markdown-mode (lambda () (set-fill-column 80))))
+  (add-hook 'markdown-mode-hook (lambda () (set-fill-column 80))))
 
 ;; Enables `markdown-edit-code-block'.
 (use-package edit-indirect)
