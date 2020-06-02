@@ -397,7 +397,7 @@
   :hook (emacs-lisp-mode . aggressive-indent-mode))
 
 (use-package clang-format
-  :after cc-mode
+  :requires cc-mode
   :defines c-mode-base-map
   :config (bind-key [remap indent-region] #'clang-format-region c-mode-base-map))
 
@@ -523,7 +523,7 @@
   (company-async-timeout 5))
 
 (use-package company-prescient
-  :after company
+  :requires company
   :config (company-prescient-mode))
 
 ;;; Syntax Checking:
@@ -573,7 +573,7 @@
   :custom (lsp-enable-snippet nil))
 
 (use-package company-lsp
-  :after company
+  :requires company
   :custom (company-lsp-cache-candidates 'auto))
 
 (use-package xref)
@@ -593,7 +593,7 @@
 
 (use-package flyspell-correct
   :defines flyspell-mode-map
-  :after flyspell
+  :requires flyspell
   :config (bind-key [remap ispell-word] #'flyspell-correct-wrapper flyspell-mode-map))
 
 (use-package auto-correct
