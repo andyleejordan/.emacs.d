@@ -159,10 +159,6 @@
 ;;; Minibuffer Interface:
 (bind-key* [remap keyboard-quit] #'keyboard-quit-context+)
 
-(customize-set-variable 'enable-recursive-minibuffers t)
-(customize-set-variable 'completion-ignore-case t)
-(customize-set-variable 'read-buffer-completion-ignore-case t)
-
 (use-package orderless
   :custom (orderless-matching-styles
            '(orderless-initialism orderless-flex))
@@ -191,11 +187,14 @@
   (bind-key "M-s" #'isearch-forward icomplete-fido-mode-map)
   (bind-key "M-r" #'isearch-backward icomplete-fido-mode-map)
   (add-hook 'icomplete-minibuffer-setup-hook
-            (lambda () (setq-local completion-styles '(orderless))))
+            (lambda ()
+              (setq-local completion-styles '(orderless partial-completion))))
   (fido-mode))
 
 (use-feature minibuffer
   :custom
+  (enable-recursive-minibuffers t)
+  (read-buffer-completion-ignore-case t)
   (completions-format 'vertical)
   (completion-cycle-threshold 3)
   (minibuffer-beginning-of-buffer-movement t)
@@ -221,7 +220,6 @@
 (use-package selectrum-prescient
   :requires prescient
   :config (selectrum-prescient-mode))
-
 
 (use-package eldoc
   :blackout)
