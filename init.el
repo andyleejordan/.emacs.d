@@ -140,8 +140,7 @@
 (use-package windmove ; `S-<left,right,up,down>' to move windows
   :config (windmove-default-keybindings))
 
-(use-feature window
-  :disabled
+(use-feature window :disabled
   :no-require
   :custom
   (display-buffer-alist
@@ -492,8 +491,7 @@
              try-complete-file-name-partially
              try-complete-file-name)))
 
-(use-package company
-  :disabled ; such a love-hate relationship here
+(use-package company :disabled ; such a love-hate relationship here
   :blackout
   :config
   (bind-keys
@@ -549,7 +547,7 @@
   :hook (sh-mode . flymake-shellcheck-load))
 
 ;;; Tags:
-(use-package dumb-jump
+(use-package dumb-jump :disabled
   :bind
   ("C-c M-." . dumb-jump-go)
   ("C-c M-," . dumb-jump-back))
@@ -563,8 +561,7 @@
   (eglot-auto-display-help-buffer t)
   (eglot-confirm-server-initiated-edits nil))
 
-(use-package lsp-mode
-  :disabled
+(use-package lsp-mode :disabled
   :hook
   (c-mode-common . lsp-deferred) ; apt-get install clangd-9
   ;; https://jedi.readthedocs.io/en/stable/docs/usage.html#type-hinting
