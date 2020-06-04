@@ -128,20 +128,21 @@ behavior added."
   "Use `completing-read' to open a recent file."
   (interactive)
   (let ((files (mapcar 'abbreviate-file-name recentf-list)))
-    (find-file (completing-read "Find recent file: " files nil t))))
+    (find-file (icomplete-vertical-do nil
+                 (completing-read "Find recent file: " files nil t)))))
 
 (defun yank-pop+ (&optional arg)
   "Call `yank-pop' with ARG when appropriate, or offer completion."
   (interactive "*P")
   (if arg (yank-pop arg)
     (let* ((old-last-command last-command)
-           (selectrum-should-sort-p nil)
            (enable-recursive-minibuffers t)
-           (text (completing-read
-                  "Yank: "
-                  (cl-remove-duplicates
-                   kill-ring :test #'string= :from-end t)
-                  nil t nil nil))
+           (text (icomplete-vertical-do (:separator 'dotted-line)
+                   (completing-read
+                    "Yank: "
+                    (cl-remove-duplicates
+                     kill-ring :test #'string= :from-end t)
+                    nil t nil nil)))
            ;; Find `text' in `kill-ring'.
            (pos (cl-position text kill-ring :test #'string=))
            ;; Translate relative to `kill-ring-yank-pointer'.

@@ -187,6 +187,8 @@
               (setq-local completion-styles '(orderless partial-completion))))
   (fido-mode))
 
+(use-package icomplete-vertical)
+
 (use-feature minibuffer
   :custom
   (enable-recursive-minibuffers t)
