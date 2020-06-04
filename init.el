@@ -389,13 +389,11 @@
   :custom (wgrep-auto-save-buffer t))
 
 ;;; Formatting / Indentation / Whitespace:
-(customize-set-variable 'indent-tabs-mode nil)
-(customize-set-variable 'sentence-end-double-space nil)
-
-(bind-key "C-x \\" #'align-regexp)
-
 (use-package aggressive-indent
   :hook (emacs-lisp-mode . aggressive-indent-mode))
+
+(use-feature align
+  :config (bind-key "C-x \\" #'align-regexp))
 
 (use-package clang-format
   :requires cc-mode
@@ -420,11 +418,17 @@
 
 (use-feature indent
   :no-require
-  :custom (tab-always-indent 'complete))
+  :custom
+  (indent-tabs-mode nil)
+  (tab-always-indent 'complete))
 
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Comment-Commands.html
 (use-feature newcomment
   :custom (comment-fill-column 0))
+
+(use-feature paragraphs
+  :no-require
+  :custom (sentence-end-double-space nil))
 
 (use-package whitespace-cleanup-mode
   :blackout
