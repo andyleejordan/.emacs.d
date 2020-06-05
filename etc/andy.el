@@ -58,6 +58,10 @@ Return t if it is fbound and called without error, and nil
 otherwise."
   (when (fboundp function) (apply function args) t))
 
+(defun first-commandp (commands)
+  "Return first of COMMANDS that is `commandp'."
+  (-first #'commandp commands))
+
 ;;; My `hideshow' extension:
 
 (defvar-local hs-hid-all-p nil
