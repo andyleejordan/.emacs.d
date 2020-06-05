@@ -121,7 +121,7 @@ behavior added."
 
 ;;; Shortcuts:
 
-(defun find-dot-emacs ()
+(defun find-init-el ()
   "Open `~/.emacs.d/init.el'."
   (interactive)
   (find-file (expand-file-name "init.el" user-emacs-directory)))

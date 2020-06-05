@@ -287,7 +287,7 @@
   :custom (uniquify-buffer-name-style 'forward))
 
 ;;; File Navigation:
-(bind-key "C-c d" #'find-dot-emacs)
+(bind-key "C-c i" #'find-init-el)
 
 (use-feature dired
   :config (bind-key [remap list-directory] #'dired)
