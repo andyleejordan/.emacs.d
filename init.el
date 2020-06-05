@@ -313,13 +313,19 @@
 (use-feature project
   :defines project-find-functions
   :config
-  (bind-key "C-c f" #'project-find-file)
+  (bind-key "C-c c" (first-commandp '(project-compile compile)))
+  (bind-key "C-c d" (first-commandp '(project-dired dired)))
+  (bind-key "C-c e" (first-commandp '(project-eshell eshell)))
+  (bind-key "C-c f" (first-commandp '(project-find-file find-file)))
   (bind-key "M-s P" #'project-find-regexp) ; or `rg-project'
   ;; Similar to project-try-vc but works when VC is disabled.
   (defun project-try-magit (dir)
     (let* ((root (magit-toplevel dir)))
       (and root (cons 'vc root))))
-  (add-to-list 'project-find-functions #'project-try-magit t))
+  (add-to-list 'project-find-functions #'project-try-magit t)
+  ;; TODO: Remove `project-vc-dir' from this list.
+  (when (boundp 'project-switch-commands)
+    (add-to-list 'project-switch-commands '(?v "Magit" magit-status))))
 
 (use-feature recentf
   :custom
@@ -616,7 +622,6 @@
   :init (defalias 'sudoedit #'auto-sudoedit-sudoedit))
 
 (use-feature compile
-  :config (bind-key "C-c c" #'compile)
   :custom
   (compilation-ask-about-save nil)
   (compilation-scroll-output t)
@@ -635,7 +640,6 @@
   (ediff-window-setup-function 'ediff-setup-windows-plain))
 
 (use-feature eshell
-  :bind ("C-c e" . eshell)
   :custom
   (eshell-visual-commands '("bash" "htop" "fish"))
   (eshell-highlight-prompt nil)
