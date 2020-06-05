@@ -341,7 +341,9 @@
   :config (ctrlf-mode))
 
 (use-feature imenu
-  :custom (imenu-auto-rescan t)
+  :custom
+  (imenu-auto-rescan t)
+  (imenu-max-item-length nil)
   :config (bind-key "M-i" #'imenu))
 
 (bind-key "M-s g" #'vc-git-grep)
