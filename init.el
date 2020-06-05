@@ -307,6 +307,9 @@
   (bind-key "C-x C-j" #'dired-jump)
   (bind-key "C-x 4 C-j" #'dired-jump-other-window))
 
+(use-feature ffap
+  :config (ffap-bindings))
+
 (use-feature project
   :defines project-find-functions
   :config
