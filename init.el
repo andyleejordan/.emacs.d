@@ -307,7 +307,7 @@
   (bind-key "C-x C-j" #'dired-jump)
   (bind-key "C-x 4 C-j" #'dired-jump-other-window))
 
-(use-package project
+(use-feature project
   :defines project-find-functions
   :config
   (bind-key "C-c f" #'project-find-file)
