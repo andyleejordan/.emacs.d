@@ -716,8 +716,6 @@
   :bind ("C-c m" . woman))
 
 ;;; Appearance:
-;; TODO: Add `helpful' package
-
 ;; Try preferred fonts
 (--map-first (member it (font-family-list))
              (set-face-attribute 'default nil :family it :height 120)
@@ -743,6 +741,12 @@
   (fortune-cookie-cowsay-enable (executable-find "cowsay"))
   (fortune-cookie-cowsay-args '("-f" "tux"))
   :config (fortune-cookie-mode))
+
+(use-package helpful
+  :bind (([remap describe-function] . helpful-callable)
+         ([remap describe-variable] . helpful-variable)
+         ([remap describe-key] . helpful-key)
+         ("C-c C-d" . helpful-at-point)))
 
 (use-package hl-todo
   :defines hl-todo-keyword-faces
