@@ -854,7 +854,6 @@
    ([remap capitalize-word] . capitalize-dwim)
    ([remap zap-to-char] . zap-up-to-char))
   (column-number-mode)
-  (global-visual-line-mode)
   :custom
   ;; TODO: Maybe set `suggest-key-bindings' to `nil'.
   (save-interprogram-paste-before-kill t)
