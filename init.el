@@ -157,7 +157,7 @@
 
 (use-package orderless
   :custom (orderless-matching-styles
-           '(orderless-initialism orderless-flex))
+           '(orderless-initialism orderless-prefixes orderless-flex))
   :custom-face
   (orderless-match-face-0 ; Solarized Magenta
    ((t (:weight bold :foreground "#d33682"))))
