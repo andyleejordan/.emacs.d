@@ -281,7 +281,43 @@
 (bind-key [remap kill-buffer] #'kill-this-buffer)
 
 (use-package ibuffer
-  :bind ([remap list-buffers] . ibuffer))
+  ;; TODO: Make the groups reasonable.
+  :bind ([remap list-buffers] . ibuffer)
+  :custom
+  (ibuffer-saved-filter-groups
+   '(("default"
+      ("Code" (or (derived-mode . prog-mode)
+                  (mode . compilation-mode)))
+      ("Dotfiles" (filename . "dotfiles"))
+      ("Help" (or (mode . help-mode)
+                  (mode . helpful-mode)
+                  (mode . man-mode)
+                  (mode . woman-mode)))
+      ("Logs" (or (mode . special-mode)
+                  (mode . messages-buffer-mode)
+                  (mode . fundamental-mode))))))
+  (ibuffer-formats
+   '((mark modified read-only locked " "
+           ;; (mode 12 12 :left :elide) " "
+           (name 0 -1 :left) " "
+           filename-and-process)
+     (mark " " (name 16 -1) " " filename)))
+  (ibuffer-expert t)
+  (ibuffer-use-other-window t)
+  (ibuffer-default-shrink-to-minimum-size t)
+  (ibuffer-default-sorting-mode 'filename/process)
+  (ibuffer-show-empty-filter-groups nil)
+  (ibuffer-filter-group-name-face 'font-lock-doc-face)
+  :config
+  (add-args-to-list 'ibuffer-help-buffer-modes
+                    '(helpful-mode man-mode woman-mode))
+  (add-to-list 'ibuffer-fontification-alist
+               '(50 (ibuffer-buffer-file-name) font-lock-builtin-face))
+  (defun ibuffer-mode+ ()
+    (ibuffer-auto-mode)
+    (ibuffer-switch-to-saved-filter-groups "default")
+    (hl-line-mode))
+  (add-hook 'ibuffer-mode-hook #'ibuffer-mode+))
 
 (use-feature uniquify
   :custom (uniquify-buffer-name-style 'forward))
@@ -300,7 +336,7 @@
 (use-package dired-git-info
   :config
   (bind-key ")" #'dired-git-info-mode dired-mode-map)
-  (add-hook 'dired-after-readin-hook 'dired-git-info-auto-enable))
+  (add-hook 'dired-after-readin-hook #'dired-git-info-auto-enable))
 
 (use-feature dired-x
   :config
