@@ -381,11 +381,6 @@
 (bind-key "C-x C-r" #'recentf-open-files+)
 
 ;;; Searching:
-(use-package ctrlf :disabled
-  :straight (ctrlf :type git :flavor melpa :host github :repo "raxod502/ctrlf"
-                   :fork (:host github :repo "andschwa/ctrlf" :branch "more-like-isearch"))
-  :config (ctrlf-mode))
-
 (use-feature imenu
   :custom
   (imenu-auto-rescan t)
@@ -548,39 +543,6 @@
              try-complete-file-name-partially
              try-complete-file-name)))
 
-(use-package company :disabled ; such a love-hate relationship here
-  :blackout
-  :config
-  (bind-keys
-   :map company-active-map
-   ;; Tab to complete selection.
-   ([tab] . company-complete-selection)
-   ("TAB" . company-complete-selection)
-   ;; Don't override `isearch'.
-   ("C-s" . nil) ("C-M-s" . nil)
-   ;; Return only if scrolled.
-   :filter (company-explicit-action-p)
-   ([return] . company-complete-selection)
-   ("RET" . company-complete-selection))
-  (global-company-mode)
-  :custom
-  ;; Smaller list.
-  (company-tooltip-limit 7)
-  ;; Align signatures to the right.
-  (company-tooltip-align-annotations t)
-  ;; Never display inline (since we use `eldoc').
-  (company-frontends '(company-pseudo-tooltip-frontend))
-  ;; Disallow non-matching input if we scrolled.
-  (company-require-match #'company-explicit-action-p)
-  ;; Search buffers with the same major mode.
-  (company-dabbrev-other-buffers t)
-  ;; Give backends more time.
-  (company-async-timeout 5))
-
-(use-package company-prescient
-  :requires company
-  :config (company-prescient-mode))
-
 ;;; Syntax Checking:
 ;; Treat backquotes as pairs in text mode.
 (use-feature text-mode
@@ -617,18 +579,6 @@
   :custom
   (eglot-auto-display-help-buffer t)
   (eglot-confirm-server-initiated-edits nil))
-
-(use-package lsp-mode :disabled
-  :hook
-  (c-mode-common . lsp-deferred) ; apt-get install clangd-9
-  ;; https://jedi.readthedocs.io/en/stable/docs/usage.html#type-hinting
-  (python-mode . lsp-deferred) ; pip3 install python-language-server
-  :commands lsp
-  :custom (lsp-enable-snippet nil))
-
-(use-package company-lsp
-  :requires company
-  :custom (company-lsp-cache-candidates 'auto))
 
 (use-package xref)
 
