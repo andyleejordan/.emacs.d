@@ -89,8 +89,7 @@
 (use-package bind-key)
 
 ;; Intelligently hides minor modes.
-(use-package blackout
-  :straight (:host github :repo "raxod502/blackout"))
+(use-package delight)
 
 ;;; Platform:
 
@@ -120,7 +119,7 @@
 
 ;; Also see `set-selective-display'.
 (use-feature hideshow
-  :blackout hs-minor-mode
+  :delight hs-minor-mode
   :hook (prog-mode . hs-minor-mode)
   :bind (:map hs-minor-mode-map
               ("C-c h" . hs-toggle-hiding+)
@@ -219,8 +218,7 @@
   :requires prescient
   :config (selectrum-prescient-mode))
 
-(use-package eldoc
-  :blackout)
+(use-package eldoc :delight)
 
 (use-feature mb-depth
   :config (minibuffer-depth-indicate-mode))
@@ -238,7 +236,7 @@
   :config (which-function-mode))
 
 (use-package which-key
-  :blackout
+  :delight
   :config
   (bind-key "C-c w" #'which-key-show-major-mode)
   (which-key-mode))
@@ -447,7 +445,7 @@
   :config (bind-key [remap indent-region] #'clang-format-region c-mode-base-map))
 
 (use-package dtrt-indent
-  :blackout
+  :delight
   :defines dtrt-indent-hook-mapping-list
   :custom
   (dtrt-indent-verbosity 0)
@@ -459,7 +457,7 @@
   (dtrt-indent-global-mode))
 
 (use-package editorconfig :disabled
-  :blackout
+  :delight
   :config (editorconfig-mode))
 
 (use-feature indent
@@ -477,7 +475,7 @@
   :custom (sentence-end-double-space nil))
 
 (use-package whitespace-cleanup-mode
-  :blackout
+  :delight
   :config (global-whitespace-cleanup-mode))
 
 ;;; Editing:
@@ -488,7 +486,7 @@
 (bind-key [remap yank-pop] #'yank-pop+)
 
 (use-feature autorevert
-  :blackout
+  :delight auto-revert-mode
   :custom
   (auto-revert-remote-files t)
   (global-auto-revert-non-file-buffers t)
@@ -506,7 +504,7 @@
       (call-if-fbound #'save-place)))
 
 (use-package undo-fu
-  :blackout
+  :delight
   ;; Backports Emacs 28's `undo-redo'.
   :bind (("C-/" . undo-fu-only-undo)
          ("C-?" . undo-fu-only-redo))
@@ -586,7 +584,7 @@
 (use-package flyspell
   ;; Disable on Windows because `aspell' 0.6+ isn't available.
   :unless (eq system-type 'windows-nt)
-  :blackout
+  :delight
   :hook
   (text-mode . flyspell-mode)
   (prog-mode . flyspell-prog-mode)
@@ -601,13 +599,13 @@
   :config (bind-key [remap ispell-word] #'flyspell-correct-wrapper flyspell-mode-map))
 
 (use-package auto-correct
-  :blackout
+  :delight
   :hook (flyspell-mode . auto-correct-mode)
   :custom (flyspell-use-global-abbrev-table-p t))
 
 ;;; Tools:
 (use-package auto-sudoedit
-  :blackout
+  :delight
   :commands auto-sudoedit-sudoedit
   :init (defalias 'sudoedit #'auto-sudoedit-sudoedit))
 
@@ -818,7 +816,7 @@
   (visual-line-fringe-indicators '(nil right-curly-arrow)))
 
 (use-package super-save
-  :blackout
+  :delight
   :defines super-save-triggers
   :custom (super-save-remote-files nil)
   :config
@@ -926,7 +924,7 @@
   :hook (python-mode . pyvenv-tracking-mode))
 
 (use-package blacken
-  :blackout
+  :delight
   :hook (python-mode . blacken-mode)
   :custom (blacken-only-if-project-is-blackened t))
 
