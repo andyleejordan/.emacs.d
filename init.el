@@ -31,44 +31,25 @@
 
 ;;; Code:
 
-;; These should be set as early as possible.
-(customize-set-variable 'load-prefer-newer t)
-
-(with-eval-after-load 'gnutls
-  (custom-set-variables
-   '(gnutls-verify-error t)
-   '(gnutls-min-prime-bits 3072)))
-
 ;;; Package System:
-(eval-when-compile
-  (defvar bootstrap-version)
-  (let ((bootstrap-file
-         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-        (bootstrap-version 5))
-    (unless (file-exists-p bootstrap-file)
-      (with-current-buffer
-          (url-retrieve-synchronously
-           "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-           'silent 'inhibit-cookies)
-        (goto-char (point-max))
-        (eval-print-last-sexp)))
-    (load bootstrap-file nil 'nomessage)))
-
-(customize-set-variable 'straight-cache-autoloads t)
-(customize-set-variable 'straight-use-package-by-default t)
-(customize-set-variable 'use-package-enable-imenu-support t)
-(customize-set-variable 'straight-check-for-modifications '(check-on-save find-when-checking))
-(add-to-list 'straight-check-for-modifications 'check-on-save)
+(when (< emacs-major-version 27)
+  (load-file (expand-file-name "early-init.el" user-emacs-directory))
+  (package-initialize))
 
 (eval-when-compile
-  (straight-use-package 'use-package)
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
   (require 'use-package))
+
+(customize-set-variable 'use-package-enable-imenu-support t)
+(customize-set-variable 'use-package-always-ensure t)
 
 (defmacro use-feature (name &rest args)
   "Like `use-package' for NAME and ARGS, but with `:straight' nil."
   (declare (indent defun))
   `(use-package ,name
-     :straight nil
+     :ensure nil
      ,@args))
 
 ;; Lisp list, string, and file extensions.
@@ -136,7 +117,7 @@
 (use-package transpose-frame
   :config (bind-key "C-x 4 t" #'transpose-frame))
 
-(use-package windmove ; `S-<left,right,up,down>' to move windows
+(use-feature windmove ; `S-<left,right,up,down>' to move windows
   :config (windmove-default-keybindings))
 
 (use-feature window :disabled
@@ -218,7 +199,7 @@
   :requires prescient
   :config (selectrum-prescient-mode))
 
-(use-package eldoc :delight)
+(use-feature eldoc :delight)
 
 (use-feature mb-depth
   :config (minibuffer-depth-indicate-mode))
@@ -282,7 +263,7 @@
 ;;; Buffers:
 (bind-key [remap kill-buffer] #'kill-this-buffer)
 
-(use-package ibuffer
+(use-feature ibuffer
   ;; TODO: Make the groups reasonable.
   :bind ([remap list-buffers] . ibuffer)
   :custom
@@ -399,7 +380,7 @@
   (isearch-allow-scroll t)
   (isearch-lazy-count t))
 
-(use-package grep
+(use-feature grep
   :config (bind-key "M-s R" #'rgrep)) ; or `rg'
 
 (use-package rg ; `ripgrep'
@@ -498,7 +479,7 @@
 (use-feature elec-pair
   :config (electric-pair-mode))
 
-(use-package saveplace
+(use-feature saveplace
   :config
   (or (call-if-fbound #'save-place-mode)
       (call-if-fbound #'save-place)))
@@ -547,7 +528,7 @@
   :config
   (modify-syntax-entry ?\` "$`" text-mode-syntax-table))
 
-(use-package flymake
+(use-feature flymake
   :hook (prog-mode . flymake-mode)
   :bind (:map flymake-mode-map
               ("M-n" . flymake-goto-next-error)
@@ -578,10 +559,10 @@
   (eglot-auto-display-help-buffer t)
   (eglot-confirm-server-initiated-edits nil))
 
-(use-package xref)
+(use-feature xref)
 
 ;;; Spelling:
-(use-package flyspell
+(use-feature flyspell
   ;; Disable on Windows because `aspell' 0.6+ isn't available.
   :unless (eq system-type 'windows-nt)
   :delight
@@ -659,14 +640,14 @@
   :no-require
   :custom (gdb-many-windows t))
 
-(use-package ielm
+(use-feature ielm
   :custom (ielm-prompt "> "))
 
 (use-package copy-as-format
   :custom (copy-as-format-default "github"))
 
 (use-package org
-  :straight org-plus-contrib
+  :ensure org-plus-contrib
   :config
   (add-hook 'org-mode-hook #'turn-on-auto-fill)
   (require 'org-tempo) ; Bring back `<s [TAB]'.
@@ -754,8 +735,6 @@
 
 (use-package solarized-theme
   :if (display-graphic-p)
-  :straight (solarized-theme :flavor melpa :host github :repo "bbatsov/solarized-emacs"
-                             :fork (:host github :repo "andschwa/solarized-emacs" :branch "completions-faces"))
   :custom
   (solarized-scale-org-headlines nil)
   (solarized-scale-outline-headlines nil)
@@ -845,8 +824,6 @@
    'backup-directory-alist
    `(,tramp-file-name-regexp . ,(no-littering-expand-var-file-name "tramp/backup/"))))
 
-(use-package tramp)
-
 ;;; Language Modes:
 (add-args-to-list
  'auto-mode-alist '(("\\.ino\\'"  . c-mode)
@@ -862,8 +839,7 @@
   :defines tuareg-mode-map
   :bind (:map tuareg-mode-map ([remap indent-region] . ocamlformat)))
 
-(use-package ocamlformat
-  :straight (:host github :repo "ocaml-ppx/ocamlformat" :files ("emacs/ocamlformat.el"))
+(use-package ocamlformat :disabled
   ;; TODO: May want to limit this to certain files.
   :hook (tuareg-mode . (lambda ()
                          (add-hook 'before-save-hook #'ocamlformat-before-save nil 't)))
@@ -927,8 +903,6 @@
   :delight
   :hook (python-mode . blacken-mode)
   :custom (blacken-only-if-project-is-blackened t))
-
-(use-package ruby-mode)
 
 (use-package rust-mode
   :custom (rust-format-on-save t))
