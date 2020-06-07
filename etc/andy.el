@@ -189,7 +189,8 @@ behavior added."
    ((member light-theme custom-enabled-themes)
     (load-dark-theme))))
 
-;; Schedule:
+;; Schedule (has to start at midnight, then switch):
+(run-at-time "12:00am" (* 60 60 24) #'load-dark-theme)
 (run-at-time "05:00am" (* 60 60 24) #'load-light-theme)
 (run-at-time "05:00pm" (* 60 60 24) #'load-dark-theme)
 
