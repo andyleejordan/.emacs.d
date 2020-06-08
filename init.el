@@ -245,7 +245,8 @@
   (magit-prefer-remote-upstream t)
   ;; TODO: Set `magit-display-buffer-function'.
   (magit-bury-buffer-function #'magit-mode-quit-window
-                              "Stop restoring windows."))
+                              "Stop restoring windows.")
+  (magit-no-message '("Turning on magit-auto-revert-mode...")))
 
 (use-package git-commit
   :custom (git-commit-major-mode 'markdown-mode)
