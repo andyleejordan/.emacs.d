@@ -513,15 +513,18 @@
 ;;; Tab Completion:
 (use-feature hippie-exp
   :bind ([remap dabbrev-expand] . hippie-expand)
-  :custom (hippie-expand-try-functions-list
-           '(try-expand-all-abbrevs
-             try-expand-dabbrev-visible
-             try-expand-dabbrev ; this buffer
-             try-expand-dabbrev-all-buffers
-             try-expand-dabbrev-from-kill
-             try-expand-whole-kill
-             try-complete-file-name-partially
-             try-complete-file-name)))
+  :config
+  ;; This doesn't use `custom' because it is autoloaded for
+  ;; "historical reasons" and we want to defer loading.
+  (setq hippie-expand-try-functions-list
+        '(try-expand-all-abbrevs
+          try-expand-dabbrev-visible
+          try-expand-dabbrev ; this buffer
+          try-expand-dabbrev-all-buffers
+          try-expand-dabbrev-from-kill
+          try-expand-whole-kill
+          try-complete-file-name-partially
+          try-complete-file-name)))
 
 ;;; Syntax Checking:
 ;; Treat backquotes as pairs in text mode.
@@ -747,14 +750,15 @@
 
 ;; This must be loaded after themes.
 (use-package smart-mode-line
-  :custom
-  ;; Better than `automatic' which is very plain.
-  (sml/theme 'respectful)
-  (sml/no-confirm-load-theme t)
-  (sml/name-width 32)
-  (sml/shorten-modes nil)
-  (sml/replacer-regexp-list nil)
-  :config (sml/setup))
+  :config
+  ;; These aren't set with `custom' because their `:set' functions
+  ;; cause the theme to be applied multiple times.
+  (setq sml/theme 'respectful ; Better than `automatic' which is very plain.
+        sml/no-confirm-load-theme t
+        sml/name-width 32
+        sml/shorten-modes nil
+        sml/replacer-regexp-list nil)
+  (sml/setup))
 
 ;;; Internal Emacs Configuration:
 (customize-set-variable 'gc-cons-threshold (* 100 1024 1024))
