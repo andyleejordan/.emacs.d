@@ -814,7 +814,6 @@
 
 (use-feature files
   :custom
-  (find-file-visit-truename t)
   (confirm-kill-emacs 'y-or-n-p)
   (confirm-nonexistent-file-or-buffer t)
   (save-abbrevs 'silently)
