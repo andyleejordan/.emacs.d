@@ -66,6 +66,11 @@
 (customize-set-variable
  'custom-file (no-littering-expand-etc-file-name "custom.el"))
 
+(use-feature package
+  :custom
+  (package-quickstart t)
+  (package-quickstart-file (no-littering-expand-var-file-name "package-quickstart.el")))
+
 ;; Way easier key binding.
 (use-package bind-key)
 
