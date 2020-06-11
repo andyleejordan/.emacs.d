@@ -839,6 +839,7 @@
 ;;; Language Modes:
 (add-args-to-list
  'auto-mode-alist '(("\\.ino\\'"  . c-mode)
+                    ("\\.cfg\\'"  . conf-mode)
                     ("\\.vcsh\\'" . conf-mode)
                     ("\\.zsh\\'"  . sh-mode)))
 
