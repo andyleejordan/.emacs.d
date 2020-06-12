@@ -157,7 +157,6 @@
   :if (fboundp 'fido-mode)
   :custom
   (icomplete-compute-delay 0)
-  (icomplete-prospects-height 1)
   (icomplete-separator (with-face " | " :inherit 'shadow))
   :custom-face
   (icomplete-first-match ; Solarized Green
@@ -169,7 +168,8 @@
   (bind-key "M-r" #'isearch-backward icomplete-fido-mode-map)
   (add-hook 'icomplete-minibuffer-setup-hook
             (lambda ()
-              (setq-local completion-styles '(orderless partial-completion))))
+              (setq-local completion-styles '(orderless partial-completion)
+                          truncate-lines t)))
   (fido-mode))
 
 (use-package icomplete-vertical)
