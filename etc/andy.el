@@ -159,6 +159,17 @@ behavior added."
       (if (eq last-command 'yank)
           (yank-pop n) (insert-for-yank text)))))
 
+(defun icomplete-fido-slash (force)
+  "Enter directory or slash, like `ido-mode'.
+If FORCE is non-nil just insert slash."
+  (interactive "P")
+  (if (and (not force)
+           (completion-all-sorted-completions)
+           (eq (icomplete--category) 'file)
+           (not (eq (char-before) ?/)))
+      (icomplete-force-complete)
+    (self-insert-command 1 ?/)))
+
 ;;; Light and dark theming:
 (defcustom light-theme 'solarized-light
   "Light theme to load."

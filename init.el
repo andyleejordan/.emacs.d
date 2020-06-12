@@ -183,6 +183,7 @@
   (minibuffer-beginning-of-buffer-movement t)
   (minibuffer-message-clear-timeout 2)
   :config
+  (bind-key "/" #'icomplete-fido-slash icomplete-fido-mode-map)
   (bind-key "SPC" #'icomplete-fido-ret minibuffer-local-filename-completion-map)
   (bind-key "SPC" #'icomplete-fido-ret minibuffer-local-filename-must-match-map))
 
