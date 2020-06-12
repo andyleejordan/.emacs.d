@@ -181,7 +181,10 @@
   (completions-format 'vertical)
   (completion-cycle-threshold 3)
   (minibuffer-beginning-of-buffer-movement t)
-  (minibuffer-message-clear-timeout 2))
+  (minibuffer-message-clear-timeout 2)
+  :config
+  (bind-key "SPC" #'icomplete-fido-ret minibuffer-local-filename-completion-map)
+  (bind-key "SPC" #'icomplete-fido-ret minibuffer-local-filename-must-match-map))
 
 (use-package selectrum
   :unless (bound-and-true-p fido-mode)
