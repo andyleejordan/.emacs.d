@@ -293,7 +293,6 @@
      (mark " " (name 16 -1) " " filename)))
   (ibuffer-expert t)
   (ibuffer-use-other-window t)
-  (ibuffer-default-shrink-to-minimum-size t)
   (ibuffer-default-sorting-mode 'filename/process)
   (ibuffer-show-empty-filter-groups nil)
   (ibuffer-filter-group-name-face 'font-lock-doc-face)
