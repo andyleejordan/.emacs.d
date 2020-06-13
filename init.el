@@ -144,14 +144,14 @@
   :custom (orderless-matching-styles
            '(orderless-initialism orderless-prefixes orderless-flex))
   :custom-face
-  (orderless-match-face-0 ; Solarized Magenta
-   ((t (:weight bold :foreground "#d33682"))))
-  (orderless-match-face-1 ; Solarized Yellow
-   ((t (:weight bold :foreground "#b58900"))))
-  (orderless-match-face-2 ; Solarized Blue
-   ((t (:weight bold :foreground "#268bd2"))))
-  (orderless-match-face-3 ; Solarized Cyan
-   ((t (:weight bold :foreground "#2aa198")))))
+  (orderless-match-face-0
+   ((t (:weight bold :foreground ,(plist-get solarized-plist 'magenta)))))
+  (orderless-match-face-1
+   ((t (:weight bold :foreground ,(plist-get solarized-plist 'yellow)))))
+  (orderless-match-face-2
+   ((t (:weight bold :foreground ,(plist-get solarized-plist 'blue)))))
+  (orderless-match-face-3
+   ((t (:weight bold :foreground ,(plist-get solarized-plist 'cyan))))))
 
 (use-feature icomplete
   :if (fboundp 'fido-mode)
@@ -159,8 +159,8 @@
   (icomplete-compute-delay 0)
   (icomplete-separator (with-face " | " :inherit 'shadow))
   :custom-face
-  (icomplete-first-match ; Solarized Green
-   ((t (:weight bold :foreground "#859900"))))
+  (icomplete-first-match
+   ((t :foreground ,(plist-get solarized-plist 'green))))
   :config
   ;; Use `isearch' instead of regexp, especially since `C-s' and `C-r'
   ;; are bound like in `ido' to move through candidates.
@@ -193,12 +193,12 @@
   (bind-key "C-c M-x" #'selectrum-repeat)
   (selectrum-mode)
   :custom-face
-  (selectrum-current-candidate ; Solarized Green
-   ((t (:inherit highlight :weight bold :foreground "#859900" ))))
-  (selectrum-primary-highlight ; Solarized Yellow
-   ((t (:weight bold :foreground "#b58900"))))
-  (selectrum-secondary-highlight ; Solarized Magenta
-   ((t (:weight bold :foreground "#d33682")))))
+  (selectrum-current-candidate
+   ((t (:inherit highlight :weight bold :foreground ,(plist-get solarized-plist 'green) ))))
+  (selectrum-primary-highlight
+   ((t (:weight bold :foreground ,(plist-get solarized-plist 'yellow)))))
+  (selectrum-secondary-highlight
+   ((t (:weight bold :foreground ,(plist-get solarized-plist 'magenta))))))
 
 (use-package prescient
   :requires selectrum
@@ -626,12 +626,12 @@
   (eshell-highlight-prompt nil)
   (eshell-prompt-function
    (lambda ()
-     (let ((red       "#dc322f")
-           (magenta   "#d33682")
-           (blue      "#268bd2")
-           (cyan      "#2aa198")
-           (green     "#859900")
-           (base      "#839496"))
+     (let ((red     (plist-get solarized-plist 'red))
+           (magenta (plist-get solarized-plist 'magenta))
+           (blue    (plist-get solarized-plist 'blue))
+           (cyan    (plist-get solarized-plist 'cyan))
+           (green   (plist-get solarized-plist 'green))
+           (base    (plist-get solarized-plist 'base0)))
        (concat
         (let ((status eshell-last-command-status))
           (when (not (= status 0))
@@ -732,7 +732,8 @@
 (use-package hl-todo
   :defines hl-todo-keyword-faces
   :config
-  (add-to-list 'hl-todo-keyword-faces '("ANDY" . "#d0bf8f"))
+  (add-to-list 'hl-todo-keyword-faces
+               `("ANDY" . ,(cdr (assoc "HACK" hl-todo-keyword-faces))))
   (global-hl-todo-mode))
 
 (use-feature paren

@@ -74,9 +74,9 @@ otherwise."
 (defun hs-toggle-hiding+ (&optional global)
   "Like `hs-toggle-hiding' but can also toggle all blocks.
 When at the beginning of the buffer or called with the universal
-argument, calls `hs-hide-all' or `hs-show-all' as determined by
-the value of `hs-hid-all-p', a buffer local variable set by
-advising these functions."
+argument GLOBAL, calls `hs-hide-all' or `hs-show-all' as
+determined by the value of `hs-hid-all-p', a buffer local
+variable set by advising these functions."
   (interactive "P")
   (if (or global (bobp))
       (if hs-hid-all-p (hs-show-all) (hs-hide-all))
@@ -171,6 +171,27 @@ If FORCE is non-nil just insert slash."
     (self-insert-command 1 ?/)))
 
 ;;; Light and dark theming:
+
+(defconst solarized-plist
+  '(; Indentation is weird.
+    base03    "#002b36"
+    base02    "#073642"
+    base01    "#586e75"
+    base00    "#657b83"
+    base0     "#839496"
+    base1     "#93a1a1"
+    base2     "#eee8d5"
+    base3     "#fdf6e3"
+    yellow    "#b58900"
+    orange    "#cb4b16"
+    red       "#dc322f"
+    magenta   "#d33682"
+    violet    "#6c71c4"
+    blue      "#268bd2"
+    cyan      "#2aa198"
+    green     "#859900")
+  "Solarized color hex strings.")
+
 (defcustom light-theme 'solarized-light
   "Light theme to load."
   :group 'andy
@@ -182,11 +203,13 @@ If FORCE is non-nil just insert slash."
   :type 'symbol)
 
 (defun load-light-theme ()
+  "Load light theme and disable dark theme."
   (interactive)
   (disable-theme dark-theme)
   (load-theme light-theme t))
 
 (defun load-dark-theme ()
+  "Load dark theme and disable light theme."
   (interactive)
   (disable-theme light-theme)
   (load-theme dark-theme t))
