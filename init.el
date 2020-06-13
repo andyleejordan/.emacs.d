@@ -140,7 +140,7 @@
 ;;; Minibuffer Interface:
 (bind-key* [remap keyboard-quit] #'keyboard-quit-context+)
 
-(use-package orderless
+(use-package orderless :disabled
   :custom (orderless-matching-styles
            '(orderless-initialism orderless-prefixes orderless-flex))
   :custom-face
@@ -168,7 +168,7 @@
   (bind-key "M-r" #'isearch-backward icomplete-fido-mode-map)
   (add-hook 'icomplete-minibuffer-setup-hook
             (lambda ()
-              (setq-local completion-styles '(orderless partial-completion)
+              (setq-local completion-styles '(basic partial-completion initials flex)
                           truncate-lines t)))
   (fido-mode))
 
@@ -177,13 +177,20 @@
 (use-feature minibuffer
   :custom
   (enable-recursive-minibuffers t)
+  (completion-ignore-case t)
   (read-buffer-completion-ignore-case t)
   (completions-format 'vertical)
   (completion-cycle-threshold 3)
   (minibuffer-beginning-of-buffer-movement t)
   (minibuffer-message-clear-timeout 2)
+  :custom-face
+  (completions-first-difference
+   ((t (:foreground ,(plist-get solarized-plist 'magenta)))))
+  (completions-common-part
+   ((t (:foreground ,(plist-get solarized-plist 'yellow)))))
+  (completions-annotations
+   ((t (:foreground ,(plist-get solarized-plist 'cyan)))))
   :config
-  (bind-key "/" #'icomplete-fido-slash icomplete-fido-mode-map)
   (bind-key "SPC" #'icomplete-fido-ret minibuffer-local-filename-completion-map)
   (bind-key "SPC" #'icomplete-fido-ret minibuffer-local-filename-must-match-map))
 
