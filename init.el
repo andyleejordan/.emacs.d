@@ -709,18 +709,8 @@
              (set-face-attribute 'default nil :family it :height 120)
              '("Cascadia Code" "Source Code Pro" "Menlo" "Ubuntu Mono"))
 
-(when (display-graphic-p)
-  (tool-bar-mode 0)
-  (scroll-bar-mode 0)
-  (add-args-to-list 'default-frame-alist '((width . 100) (height . 50))))
-
-;; Fix invisible buffer content when X is tunneled
-;; https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25474
-(when (getenv "DISPLAY")
-  (add-to-list 'default-frame-alist '(inhibit-double-buffering . t)))
-
 (use-feature frame
-  :custom (blink-cursor-blinks 0))
+  :custom (blink-cursor-blinks 0 "Blink forever."))
 
 (use-package fortune-cookie
   :custom
