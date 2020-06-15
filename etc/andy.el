@@ -131,38 +131,38 @@ behavior added."
 (defun completion-in-region+ (start end collection &optional predicate)
   "Completion in region using `completing-read'.
 See `completion-in-region' for START END COLLECTION PREDICATE."
-  (cl-assert (<= start (point)) (<= (point) end))
   (let* ((input (buffer-substring-no-properties start end))
          (meta (completion-metadata input collection predicate))
-         (category (cdr (assq 'category meta))) ; TODO
-         (bound (pcase category ; TODO
+         (category (cdr (assq 'category meta)))
+         (display-sort-func (cdr (assq 'display-sort-function meta)))
+         (bound (pcase category
                   ('file start)
                   (_ (+ start (car (completion-boundaries
                                     input collection predicate ""))))))
          (exit-func (plist-get completion-extra-properties :exit-function))
+         ;; TODO: Why does this need `(nconc ... nil)'?
          (cands (nconc (completion-all-completions input collection predicate
                                                    (- end start) meta)
                        nil))
-         (exit-status nil)
          (result nil))
-    (pcase (length cands)
-      (0 (unless completion-fail-discreetly
-           (ding) (completion--message "No match")))
-      (1 (setq result (car cands)))
-      (_ (setq result
-               (pcase category
+    (when display-sort-func
+      (setq cands (funcall display-sort-func cands)))
+    (setq result
+          (pcase (length cands)
+            (0 (unless completion-fail-discreetly
+                 (ding) (completion--message "No match")))
+            (1 (car cands))
+            (_ (pcase category
                  ;; TODO: Make this better.
-                 ('file (read-file-name "File: " nil nil nil input))
-                 (_ (completing-read "Complete: " cands nil input))))))
-    (setq exit-status
-          (cond ((eq category 'file) 'finished)
-                ((not (member result cands)) 'sole)
-                (t 'finished)))
+                 ('file (read-file-name-default "File: " nil nil nil input))
+                 (_ (completing-read "Complete: " cands nil nil input))))))
     (when result
       (delete-region bound end)
       (insert (substring-no-properties result))
       (when exit-func
-        (funcall exit-func result exit-status)))))
+        (funcall exit-func result (cond ((eq category 'file) 'finished)
+                                        ((not (member result cands)) 'sole)
+                                        (t 'finished)))))))
 
 (defun recentf-open-files+ ()
   "Use `completing-read' to open a recent file."
