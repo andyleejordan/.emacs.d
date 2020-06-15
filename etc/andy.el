@@ -128,6 +128,42 @@ behavior added."
 
 ;;; Completing functions:
 
+(defun completion-in-region+ (start end collection &optional predicate)
+  "Completion in region using `completing-read'.
+See `completion-in-region' for START END COLLECTION PREDICATE."
+  (cl-assert (<= start (point)) (<= (point) end))
+  (let* ((input (buffer-substring-no-properties start end))
+         (meta (completion-metadata input collection predicate))
+         (category (cdr (assq 'category meta))) ; TODO
+         (bound (pcase category ; TODO
+                  ('file start)
+                  (_ (+ start (car (completion-boundaries
+                                    input collection predicate ""))))))
+         (exit-func (plist-get completion-extra-properties :exit-function))
+         (cands (nconc (completion-all-completions input collection predicate
+                                                   (- end start) meta)
+                       nil))
+         (exit-status nil)
+         (result nil))
+    (pcase (length cands)
+      (0 (unless completion-fail-discreetly
+           (ding) (completion--message "No match")))
+      (1 (setq result (car cands)))
+      (_ (setq result
+               (pcase category
+                 ;; TODO: Make this better.
+                 ('file (read-file-name "File: " nil nil nil input))
+                 (_ (completing-read "Complete: " cands nil input))))))
+    (setq exit-status
+          (cond ((eq category 'file) 'finished)
+                ((not (member result cands)) 'sole)
+                (t 'finished)))
+    (when result
+      (delete-region bound end)
+      (insert (substring-no-properties result))
+      (when exit-func
+        (funcall exit-func result exit-status)))))
+
 (defun recentf-open-files+ ()
   "Use `completing-read' to open a recent file."
   (interactive)
