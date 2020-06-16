@@ -177,7 +177,7 @@ See `completion-in-region' for START END COLLECTION PREDICATE."
   (if arg (yank-pop arg)
     (let* ((old-last-command last-command)
            (enable-recursive-minibuffers t)
-           (text (icomplete-vertical-do (:separator 'dotted-line)
+           (text (icomplete-vertical-do nil
                    (completing-read
                     "Yank: "
                     (cl-remove-duplicates
