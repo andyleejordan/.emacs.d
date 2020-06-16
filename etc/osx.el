@@ -26,6 +26,8 @@
  'woman-manpath
  (split-string (shell-command-to-string "man --path") ":" t "\n"))
 
+(cd "~/")
+
 (provide 'osx)
 
 ;;; osx.el ends here
