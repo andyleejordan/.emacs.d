@@ -743,7 +743,7 @@ From [[https://stackoverflow.com/a/271136][StackOverflow]]:
 See =INSTALL.REPO=
 *** update
 #+BEGIN_SRC sh
-  git clone -b emacs-26 https://github.com/emacs-mirror/emacs.git
+  git clone -b emacs-27 https://github.com/emacs-mirror/emacs.git
 #+END_SRC
 *** prepare
 Can use =build-dep emacs= to get dependencies.
@@ -838,3 +838,26 @@ Copy =nextstep/Emacs.app= to desired location
 #+BEGIN_SRC sh
   rm -rf ~/.emacs.d/elpa
 #+END_SRC
+*** check features
+See the variables =system-configuration-features= and
+=system-configuration-options=.
+*** macOS script
+#+begin_src bash
+  #!/bin/bash
+
+  set -o errexit
+  set -o pipefail
+
+  brew install autoconf gnu-sed texinfo pkg-config gnutls libxml2 jansson
+
+  export PATH="/usr/local/opt/texinfo/bin:$PATH"
+  export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+  export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
+
+  ./autogen.sh
+  ./configure --with-ns --disable-silent-rules --without-x --with-gnutls --with-xml2 --with-json --with-modules --without-dbus --without-imagemagick
+  make -j4
+
+  ./src/emacs -Q
+  make install
+#+end_src
