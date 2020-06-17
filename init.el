@@ -455,7 +455,7 @@
                       (groovy-mode default groovy-indent-offset)))
   (dtrt-indent-global-mode))
 
-(use-package editorconfig :disabled
+(use-package editorconfig
   :delight
   :config (editorconfig-mode))
 
