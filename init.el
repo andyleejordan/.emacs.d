@@ -349,12 +349,16 @@
 
 (use-package project
   :defines project-find-functions
-  :config
-  (bind-key "C-c c" (first-commandp '(project-compile compile)))
-  (bind-key "C-c d" (first-commandp '(project-dired dired)))
-  (bind-key "C-c e" (first-commandp '(project-eshell eshell)))
-  (bind-key "C-c f" (first-commandp '(project-find-file find-file)))
-  (bind-key "M-s P" #'project-find-regexp) ; or `rg-project'
+  :config ; bindings from `master' branch
+  (bind-key "C-x p f" #'project-find-file)
+  (bind-key "C-x p s" #'project-shell)
+  (bind-key "C-x p d" #'project-dired)
+  (bind-key "C-x p v" #'project-vc-dir)
+  (bind-key "C-x p c" #'project-compile)
+  (bind-key "C-x p e" #'project-eshell)
+  (bind-key "C-x p p" #'project-switch-project)
+  (bind-key "C-x p g" #'project-find-regexp)
+  (bind-key "C-x p r" #'project-query-replace-regexp)
   ;; Similar to project-try-vc but works when VC is disabled.
   (defun project-try-magit (dir)
     (let* ((root (magit-toplevel dir)))
@@ -630,6 +634,7 @@
   (ediff-window-setup-function 'ediff-setup-windows-plain))
 
 (use-feature eshell
+  :bind ("C-c e" . eshell)
   :custom
   (eshell-visual-commands '("bash" "htop" "fish"))
   (eshell-highlight-prompt nil)
