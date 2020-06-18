@@ -347,7 +347,7 @@
 (use-feature ffap
   :config (ffap-bindings))
 
-(use-feature project
+(use-package project
   :defines project-find-functions
   :config
   (bind-key "C-c c" (first-commandp '(project-compile compile)))
