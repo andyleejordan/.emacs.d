@@ -559,6 +559,7 @@
   :hook
   (c-mode-common . eglot-ensure)
   (python-mode . eglot-ensure)
+  (rust-mode . eglot-ensure)
   :custom
   (eglot-auto-display-help-buffer t)
   (eglot-confirm-server-initiated-edits nil))
@@ -903,6 +904,8 @@
 
 (use-package rust-mode
   :custom (rust-format-on-save t))
+
+(use-package cargo)
 
 (use-package systemd)
 
