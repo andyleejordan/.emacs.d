@@ -196,27 +196,6 @@
   (bind-key "SPC" #'icomplete-fido-ret minibuffer-local-filename-completion-map)
   (bind-key "SPC" #'icomplete-fido-ret minibuffer-local-filename-must-match-map))
 
-(use-package selectrum
-  :unless (bound-and-true-p fido-mode)
-  :config
-  (bind-key "C-c M-x" #'selectrum-repeat)
-  (selectrum-mode)
-  :custom-face
-  (selectrum-current-candidate
-   ((t (:inherit highlight :weight bold :foreground ,(plist-get solarized-plist 'green) ))))
-  (selectrum-primary-highlight
-   ((t (:weight bold :foreground ,(plist-get solarized-plist 'yellow)))))
-  (selectrum-secondary-highlight
-   ((t (:weight bold :foreground ,(plist-get solarized-plist 'magenta))))))
-
-(use-package prescient
-  :requires selectrum
-  :config (prescient-persist-mode))
-
-(use-package selectrum-prescient
-  :requires prescient
-  :config (selectrum-prescient-mode))
-
 (use-feature eldoc :delight)
 
 (use-feature mb-depth
