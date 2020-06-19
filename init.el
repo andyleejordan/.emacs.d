@@ -249,6 +249,7 @@
   :custom (git-commit-major-mode 'markdown-mode)
   :config
   (add-hook 'git-commit-mode-hook (lambda () (set-fill-column 72)))
+  (add-to-list 'git-commit-style-convention-checks 'overlong-summary-line)
   (global-git-commit-mode))
 
 (use-feature vc-hooks
@@ -609,6 +610,8 @@
 
 (use-feature ediff
   :custom
+  (ediff-keep-variants nil)
+  (ediff-show-clashes-only t)
   (ediff-diff-options "-w")
   (ediff-split-window-function 'split-window-horizontally)
   (ediff-window-setup-function 'ediff-setup-windows-plain))
@@ -684,6 +687,9 @@
 
 (use-package restart-emacs
   :bind ("C-c Q" . restart-emacs))
+
+(use-feature shell
+  :custom (shell-command-prompt-show-cwd t))
 
 (use-package system-packages)
 
@@ -879,6 +885,7 @@
 (use-package groovy-mode :disabled)
 
 (use-package markdown-mode
+  :custom (markdown-fontify-code-blocks-natively t)
   :config
   (add-hook 'markdown-mode-hook #'turn-on-auto-fill)
   (add-hook 'markdown-mode-hook (lambda () (set-fill-column 80))))
