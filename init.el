@@ -265,8 +265,13 @@
   ;; TODO: Make the groups reasonable.
   :bind ([remap list-buffers] . ibuffer)
   :custom
+  ;; See `ibuffer-filtering-alist’ for filters
   (ibuffer-saved-filter-groups
    '(("default"
+      ("Search" (or (mode . occur-mode)))
+      ("Emacs" (or (filename . ".emacs.d")
+                   (derived-mode . emacs-lisp-mode)
+                   (mode . Custom-mode)))
       ("Code" (or (derived-mode . prog-mode)
                   (mode . compilation-mode)))
       ("Dotfiles" (filename . "dotfiles"))
