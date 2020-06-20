@@ -180,7 +180,6 @@
   (completion-ignore-case t)
   (read-buffer-completion-ignore-case t)
   (read-buffer-completion-ignore-case t)
-  (completion-in-region-function #'completion-in-region+)
   (completions-format 'vertical)
   (completion-cycle-threshold 3)
   (minibuffer-beginning-of-buffer-movement t)
