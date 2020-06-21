@@ -127,49 +127,35 @@ behavior added."
   (find-file (expand-file-name "init.el" user-emacs-directory)))
 
 ;;; Completing functions:
+(setq completion-in-region-function #'completion-in-region+)
 
-;; Use via `(completion-in-region-function #'completion-in-region+)’.
-;;
-;; Inspirations:
-;;
-;; https://github.com/oantolin/emacs-config/blob/3689fe4db95a43b997f06fb7c94467ca154c59fa/my-lisp/minibuffer-extras.el#L45
-;; https://github.com/raxod502/selectrum/blob/ed9d5915c822e1d0ee64d236abfdbfc665242a8c/selectrum.el#L1223
+;; Inspirations: oantolin’s `completing-read-in-region’, selectrum’s
+;; `selectrum-completion-in-region’, minibuffer’s
+;; `completion--do-completion’, and `minibuffer-completion-help’.
 (defun completion-in-region+ (start end collection &optional predicate)
   "Completion in region using `completing-read’.
-See `completion-in-region’ for START END COLLECTION PREDICATE."
+See `completion-in-region’ for START END COLLECTION PREDICATE.
+Set `completion-in-region-function’ to use, remember to press ?
+to open `*completions*’ buffer (perhaps with annotations)."
   (if (and (minibufferp) (not (string= (minibuffer-prompt) "Eval: ")))
-      ;; Use built-in completion when `minibufferp’.
-      (completion--in-region start end collection predicate)
-    (let* ((initial (buffer-substring-no-properties start end))
-           (pos (length initial))
-           (meta (completion-metadata initial collection predicate))
-           (all (completion-all-completions initial collection predicate pos meta))
-           (cands (nconc all nil)) ; ensures it’s a list
-           (limit (car (completion-boundaries initial collection predicate "")))
-           (result
-            (pcase (length cands)
-              (0 nil)
-              (1 (concat (substring initial 0 limit) (car all)))
-              (_ (completing-read "Complete: " collection predicate t initial))))
-           (status
-            (cond
-             ;; ((not (member result cands)) 'sole)
-             (t 'unknown)))
-           ;; (category (cdr (assq 'category meta)))
-           ;; (exit-func (plist-get completion-extra-properties :exit-function))
-           )
-      ;; (when display-sort-func (setq cands (funcall display-sort-func cands)))
-      (if (null result)
+      (unless completion-fail-discreetly
+        (ding) (completion--message "Press `?’ for `*completions*’ buffer") nil)
+    (let* ((input (buffer-substring-no-properties start end))
+           (limit (car (completion-boundaries input collection predicate "")))
+           (md (completion--field-metadata start))
+           (all (completion-all-completions input collection predicate
+                                            (- end start) md))
+           (comp (cond
+                  ((atom all) nil)
+                  ((and (consp all) (atom (cdr all)))
+                   (concat (substring input 0 limit) (car all)))
+                  (t (completing-read
+                      "Completion: " collection predicate t input)))))
+      (if (null comp)
           (unless completion-fail-discreetly
-            (ding) (completion--message "No match") nil)
+            (ding) (completion--message "No completions") nil)
         (delete-region start end)
-        (insert (substring-no-properties result))
-        ;; (when exit-func ; make completion in `eshell’ work well
-        ;;   (funcall exit-func result (cond ((eq category 'file)
-        ;;                                    (if ))
-        ;;                                   ((not (member result cands)) 'sole)
-        ;;                                   (t 'finished))))
-        (completion--done result status)
+        (insert (substring-no-properties comp))
         t))))
 
 (defun recentf-open-files+ ()
