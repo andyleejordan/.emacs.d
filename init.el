@@ -501,7 +501,8 @@
   :delight
   ;; Backports Emacs 28's `undo-redo'.
   :bind (("C-/" . undo-fu-only-undo)
-         ("C-?" . undo-fu-only-redo))
+         ("C-?" . undo-fu-only-redo)
+         ("C-c C-?" . undo-fu-only-redo-all))
   :custom (undo-fu-allow-undo-in-region t))
 
 (use-package undo-fu-session
