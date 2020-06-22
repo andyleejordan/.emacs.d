@@ -232,13 +232,14 @@
   (bind-key "C-x g" #'magit-status)
   (bind-key "C-c g" #'magit-file-dispatch magit-file-mode-map)
   (add-to-list 'magit-dwim-selection '(magit-branch-and-checkout nil t))
-  (add-args-to-list 'magit-section-initial-visibility-alist
-                    '((untracked . hide) (unpushed . hide) (branch . hide)))
   :custom
   (magit-save-repository-buffers 'dontask)
   (magit-published-branches nil "Disable confirmation.")
   (magit-diff-refine-hunk 'all "Word diffs.")
   (magit-prefer-remote-upstream t)
+  (magit-status-initial-section '(((unstaged) (status)) ((staged) (status)) 1))
+  (magit-section-initial-visibility-alist
+   '((untracked . hide) (unpushed . hide) (branch . hide) (stashes . hide)))
   ;; TODO: Set `magit-display-buffer-function'.
   (magit-bury-buffer-function #'magit-mode-quit-window
                               "Stop restoring windows.")
