@@ -563,10 +563,8 @@
   :hook (sh-mode . flymake-shellcheck-load))
 
 ;;; Tags:
-(use-package dumb-jump :disabled
-  :bind
-  ("C-c M-." . dumb-jump-go)
-  ("C-c M-," . dumb-jump-back))
+(use-package dumb-jump
+  :config (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
 ;; Alternatives include: eglot, irony, cquery, rtags, ggtags, and ycmd.
 (use-package eglot ; an alternative LSP client in ELPA
