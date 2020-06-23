@@ -602,6 +602,9 @@
   :custom (flyspell-use-global-abbrev-table-p t))
 
 ;;; Tools:
+(use-feature apropos
+  :custom (apropos-do-all t))
+
 (use-package auto-sudoedit
   :delight
   :commands auto-sudoedit-sudoedit
