@@ -92,6 +92,10 @@
   :load-path "etc"
   :if (eq system-type 'windows-nt))
 
+(use-feature local
+  :load-path "etc"
+  :if (file-readable-p (no-littering-expand-etc-file-name "local.el")))
+
 ;; Experimental:
 (use-feature compile-commands :load-path "etc")
 
@@ -733,7 +737,7 @@
 
 ;; Try preferred fonts
 (--map-first (member it (font-family-list))
-             (set-face-attribute 'default nil :family it :height 120)
+             (set-face-attribute 'default nil :family it :height font-size)
              '("Cascadia Code" "Source Code Pro" "Menlo" "Ubuntu Mono"))
 
 (use-feature frame
@@ -964,9 +968,6 @@
 (use-package yaml-mode)
 
 ;;; Finish Loading:
-(use-feature local
-  :load-path "etc"
-  :if (file-readable-p (no-littering-expand-etc-file-name "local.el")))
 
 (server-start)
 (provide 'init)

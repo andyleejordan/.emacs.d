@@ -222,6 +222,11 @@ If FORCE is non-nil just insert slash."
     green     "#859900")
   "Solarized color hex strings.")
 
+(defcustom font-size 120
+  "Default font size to apply."
+  :group 'andy
+  :type 'integer)
+
 (defcustom light-theme 'solarized-light
   "Light theme to load."
   :group 'andy
