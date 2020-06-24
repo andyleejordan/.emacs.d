@@ -32,6 +32,7 @@
 ;;; Code:
 
 ;;; Package System:
+
 (when (< emacs-major-version 27)
   (load-file (expand-file-name "early-init.el" user-emacs-directory))
   (package-initialize))
@@ -97,6 +98,7 @@
 (use-feature edl-mode :load-path "etc")
 
 ;;; Cursor and Mark Movement:
+
 (bind-key "M-o" #'other-window)
 (bind-key [remap delete-char] #'delete-forward-char)
 
@@ -116,7 +118,8 @@
               ([tab] . hs-toggle-hiding+))
   :custom (hs-allow-nesting t))
 
-;;; Windows / Frames and the buffers in them
+;;; Windows / Frames and the buffers in them:
+
 (use-package buffer-move)
 
 (use-package transpose-frame
@@ -138,6 +141,7 @@
   :config (winner-mode))
 
 ;;; Minibuffer Interface:
+
 (bind-key* [remap keyboard-quit] #'keyboard-quit-context+)
 
 (use-package orderless :disabled
@@ -219,6 +223,7 @@
   (which-key-mode))
 
 ;;; Version Control:
+
 (use-package diff-hl
   :config
   (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
@@ -260,6 +265,7 @@
            tramp-file-name-regexp)))
 
 ;;; Buffers:
+
 (bind-key [remap kill-buffer] #'kill-this-buffer)
 
 (use-feature ibuffer
@@ -309,6 +315,7 @@
   :custom (uniquify-buffer-name-style 'forward))
 
 ;;; File Navigation:
+
 (bind-key "C-c i" #'find-init-el)
 
 (use-feature dired
@@ -367,6 +374,7 @@
 (bind-key "C-x C-r" #'recentf-open-files+)
 
 ;;; Searching:
+
 (use-feature imenu
   :custom
   (imenu-auto-rescan t)
@@ -421,6 +429,7 @@
   :custom (wgrep-auto-save-buffer t))
 
 ;;; Formatting / Indentation / Whitespace:
+
 (use-package aggressive-indent
   :hook (emacs-lisp-mode . aggressive-indent-mode)
   :config
@@ -471,6 +480,7 @@
   :config (global-whitespace-cleanup-mode))
 
 ;;; Editing:
+
 (customize-set-variable 'truncate-lines t)
 (bind-key "C-x w" #'toggle-truncate-lines)
 (bind-key "C-M-y" #'raise-sexp)
@@ -529,6 +539,7 @@
        "set -o pipefail" "\n\n")]))
 
 ;;; Tab Completion:
+
 (use-feature hippie-exp
   :bind ([remap dabbrev-expand] . hippie-expand)
   :config
@@ -545,6 +556,7 @@
           try-complete-file-name)))
 
 ;;; Syntax Checking:
+
 ;; Treat backquotes as pairs in text mode.
 (use-feature text-mode
   :config
@@ -567,6 +579,7 @@
   :hook (sh-mode . flymake-shellcheck-load))
 
 ;;; Tags:
+
 (use-package dumb-jump
   :config (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
@@ -583,6 +596,7 @@
 (use-feature xref)
 
 ;;; Spelling:
+
 (use-feature flyspell
   ;; Disable on Windows because `aspell' 0.6+ isn't available.
   :unless (eq system-type 'windows-nt)
@@ -606,6 +620,7 @@
   :custom (flyspell-use-global-abbrev-table-p t))
 
 ;;; Tools:
+
 (use-feature apropos
   :custom (apropos-do-all t))
 
@@ -715,6 +730,7 @@
   :bind ("C-c m" . woman))
 
 ;;; Appearance:
+
 ;; Try preferred fonts
 (--map-first (member it (font-family-list))
              (set-face-attribute 'default nil :family it :height 120)
@@ -778,6 +794,7 @@
   (sml/setup))
 
 ;;; Internal Emacs Configuration:
+
 (customize-set-variable 'gc-cons-threshold (* 100 1024 1024))
 (customize-set-variable 'read-process-output-max (* 1024 1024))
 
@@ -846,6 +863,7 @@
    `(,tramp-file-name-regexp . ,(no-littering-expand-var-file-name "tramp/backup/"))))
 
 ;;; Language Modes:
+
 (add-args-to-list
  'auto-mode-alist '(("\\.ino\\'"  . c-mode)
                     ("\\.cfg\\'"  . conf-mode)
