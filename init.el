@@ -776,7 +776,12 @@
   (solarized-scale-org-headlines nil)
   (solarized-scale-outline-headlines nil)
   (solarized-use-variable-pitch nil)
-  (x-underline-at-descent-line t))
+  (x-underline-at-descent-line t)
+  :config
+  ;; Schedule (has to start at midnight, then switch):
+  (run-at-time "12:00am" (* 60 60 24) #'load-dark-theme)
+  (run-at-time "05:00am" (* 60 60 24) #'load-light-theme)
+  (run-at-time "05:00pm" (* 60 60 24) #'load-dark-theme))
 
 (unless (display-graphic-p)
   (load-theme 'tango-dark t))
