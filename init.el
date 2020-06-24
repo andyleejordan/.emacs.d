@@ -824,6 +824,10 @@
   (bind-key "C-h L" #'find-library)
   :custom (help-window-select t))
 
+;; Save Emacs sessions
+(use-feature desktop
+  :config (desktop-save-mode))
+
 ;; Simple is Emacs's built-in miscellaneous package.
 (use-feature simple
   :config
