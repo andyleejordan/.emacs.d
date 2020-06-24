@@ -185,6 +185,7 @@
 (use-feature minibuffer
   :custom
   (enable-recursive-minibuffers t)
+  (completion-in-region-function #'completion-in-region+)
   (completion-ignore-case t)
   (read-buffer-completion-ignore-case t)
   (read-buffer-completion-ignore-case t)

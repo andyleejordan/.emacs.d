@@ -127,7 +127,6 @@ behavior added."
   (find-file (expand-file-name "init.el" user-emacs-directory)))
 
 ;;; Completing functions:
-(setq completion-in-region-function #'completion-in-region+)
 
 ;; Inspirations: oantolin’s `completing-read-in-region’, selectrum’s
 ;; `selectrum-completion-in-region’, minibuffer’s
