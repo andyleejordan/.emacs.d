@@ -278,9 +278,12 @@
   :bind ([remap list-buffers] . ibuffer)
   :custom
   ;; See `ibuffer-filtering-alist’ for filters
-  (ibuffer-saved-filter-groups
+  (ibuffer-saved-filter-groups ; Not currently in use.
    '(("default"
-      ("Search" (or (mode . occur-mode)))
+      ("Search" (or (mode . occur-mode)
+                    (mode . rg-mode)
+                    (mode . grep-mode)
+                    (mode . xref--xref-buffer-mode)))
       ("Emacs" (or (filename . ".emacs.d")
                    (derived-mode . emacs-lisp-mode)
                    (mode . Custom-mode)))
@@ -296,8 +299,8 @@
                   (mode . fundamental-mode))))))
   (ibuffer-formats
    '((mark modified read-only locked " "
-           ;; (mode 12 12 :left :elide) " "
-           (name 0 -1 :left) " "
+           (mode 15 15 :right :elide) " "
+           (name 35 -1 :left) " "
            filename-and-process)
      (mark " " (name 16 -1) " " filename)))
   (ibuffer-expert t)
@@ -311,10 +314,11 @@
   (add-to-list 'ibuffer-fontification-alist
                '(50 (ibuffer-buffer-file-name) font-lock-builtin-face))
   (defun ibuffer-mode+ ()
-    (ibuffer-auto-mode)
-    (ibuffer-switch-to-saved-filter-groups "default")
+    (ibuffer-vc-set-filter-groups-by-vc-root)
     (hl-line-mode))
   (add-hook 'ibuffer-mode-hook #'ibuffer-mode+))
+
+(use-package ibuffer-vc)
 
 (use-feature uniquify
   :custom (uniquify-buffer-name-style 'forward))
