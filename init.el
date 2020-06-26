@@ -337,8 +337,7 @@
 
 (use-package dired-git-info
   :config
-  (bind-key ")" #'dired-git-info-mode dired-mode-map)
-  (add-hook 'dired-after-readin-hook #'dired-git-info-auto-enable))
+  (bind-key ")" #'dired-git-info-mode dired-mode-map))
 
 (use-feature dired-x
   :config
