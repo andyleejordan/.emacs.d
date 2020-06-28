@@ -174,10 +174,10 @@
   ;; are bound like in `ido' to move through candidates.
   (bind-key "M-s" #'isearch-forward icomplete-fido-mode-map)
   (bind-key "M-r" #'isearch-backward icomplete-fido-mode-map)
-  (add-hook 'icomplete-minibuffer-setup-hook
-            (lambda ()
-              (setq-local completion-styles '(basic partial-completion initials flex)
-                          truncate-lines t)))
+  (defun fido-mode+ ()
+    (setq-local completion-styles '(basic partial-completion initials flex)
+                truncate-lines t))
+  (add-hook 'icomplete-minibuffer-setup-hook #'fido-mode+)
   (fido-mode))
 
 (use-package icomplete-vertical)
