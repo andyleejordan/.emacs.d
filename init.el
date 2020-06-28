@@ -344,9 +344,6 @@
   (bind-key "C-x C-j" #'dired-jump)
   (bind-key "C-x 4 C-j" #'dired-jump-other-window))
 
-(use-feature ffap
-  :config (ffap-bindings))
-
 (use-package project
   :defines project-find-functions
   :config ; bindings from `master' branch
