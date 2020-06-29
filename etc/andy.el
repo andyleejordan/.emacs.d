@@ -240,13 +240,15 @@ If FORCE is non-nil just insert slash."
   "Load light theme and disable dark theme."
   (interactive)
   (disable-theme dark-theme)
-  (load-theme light-theme t))
+  (load-theme light-theme t)
+  (set-mouse-color "black"))
 
 (defun load-dark-theme ()
   "Load dark theme and disable light theme."
   (interactive)
   (disable-theme light-theme)
-  (load-theme dark-theme t))
+  (load-theme dark-theme t)
+  (set-mouse-color "white"))
 
 (defun toggle-theme ()
   "Switch between theme variants."
