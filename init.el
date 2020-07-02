@@ -436,11 +436,7 @@
 ;;; Formatting / Indentation / Whitespace:
 
 (use-package aggressive-indent
-  :hook (emacs-lisp-mode . aggressive-indent-mode)
-  :config
-  (add-args-to-list
-   'aggressive-indent-protected-commands
-   '(undo-fu-only-undo undo-fu-only-redo undo-fu-only-redo-all)))
+  :hook (emacs-lisp-mode . aggressive-indent-mode))
 
 (use-feature align
   :config (bind-key "C-x \\" #'align-regexp))
