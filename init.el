@@ -490,9 +490,7 @@
 
 (use-feature autorevert
   :delight auto-revert-mode
-  :custom
-  (auto-revert-remote-files t)
-  (global-auto-revert-non-file-buffers t)
+  :custom (auto-revert-avoid-polling t)
   :config (global-auto-revert-mode))
 
 (use-feature delsel
