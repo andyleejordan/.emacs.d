@@ -590,6 +590,7 @@
   (rust-mode . eglot-ensure)
   :custom
   (eglot-auto-display-help-buffer t)
+  (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits nil))
 
 (use-feature xref)
