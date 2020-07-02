@@ -726,8 +726,8 @@
 
 (use-package system-packages)
 
-(use-feature woman
-  :bind ("C-c m" . woman))
+(use-feature man
+  :bind ("C-c m" . man))
 
 ;;; Appearance:
 
