@@ -822,7 +822,9 @@
 
 ;; Save Emacs sessions
 (use-feature desktop
-  :config (desktop-save-mode))
+  :config
+  (add-to-list 'desktop-globals-to-save 'kill-ring)
+  (desktop-save-mode))
 
 ;; Simple is Emacs's built-in miscellaneous package.
 (use-feature simple
