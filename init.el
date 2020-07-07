@@ -401,6 +401,10 @@
   (isearch-allow-scroll t)
   (isearch-lazy-count t))
 
+;; https://www.emacswiki.org/emacs/IsearchPlus
+(use-feature isearch+
+  :init (install-wiki-package "isearch+.el"))
+
 (use-feature grep
   :config (bind-key "M-s R" #'rgrep)) ; or `rg'
 
