@@ -758,6 +758,10 @@
          ([remap describe-key] . helpful-key)
          ("C-c C-d" . helpful-at-point)))
 
+;; https://www.emacswiki.org/emacs/InfoPlus
+(use-feature info+
+  :init (install-wiki-package "info+.el"))
+
 (use-package hl-todo
   :defines hl-todo-keyword-faces
   :config
