@@ -58,11 +58,11 @@
 (use-package s)
 (use-package f)
 
-;; My own "package" of extensions.
-(use-feature andy :load-path "etc")
-
 ;; Save data files consistently.
 (use-package no-littering)
+
+;; My own "package" of extensions.
+(use-feature andy :load-path "etc")
 
 (customize-set-variable
  'custom-file (no-littering-expand-etc-file-name "custom.el"))
