@@ -765,11 +765,18 @@
   (fortune-cookie-cowsay-args '("-f" "tux"))
   :config (fortune-cookie-mode))
 
-(use-package helpful
-  :bind (([remap describe-function] . helpful-callable)
-         ([remap describe-variable] . helpful-variable)
-         ([remap describe-key] . helpful-key)
-         ("C-c C-d" . helpful-at-point)))
+;; https://www.emacswiki.org/emacs/HelpPlus
+(use-feature help+
+  :init (install-wiki-package "help+.el"))
+
+(use-feature help-fns+
+  :init (install-wiki-package "help-fns+.el"))
+
+(use-feature help-macro+
+  :init (install-wiki-package "help-macro+.el"))
+
+(use-feature help-mode+
+  :init (install-wiki-package "help-mode+.el"))
 
 ;; https://www.emacswiki.org/emacs/InfoPlus
 (use-feature info+
