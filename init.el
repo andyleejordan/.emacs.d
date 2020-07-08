@@ -433,6 +433,10 @@
   (bind-key "C-x C-s" #'occur-cease-edit occur-edit-mode-map)
   (add-hook 'occur-mode-hook #'next-error-follow-minor-mode))
 
+;; https://www.emacswiki.org/emacs/ReplacePlus
+(use-feature replace+
+  :init (install-wiki-package "replace+.el"))
+
 (use-feature wdired
   :config (bind-key "e" #'dired-toggle-read-only dired-mode-map)
   :custom (wdired-allow-to-change-permissions t))
