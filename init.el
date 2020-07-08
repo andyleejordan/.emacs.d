@@ -336,6 +336,10 @@
   (dired-recursive-deletes 'top)
   (dired-listing-switches "-alhv" "Must not contain `-p'."))
 
+;; https://www.emacswiki.org/emacs/DiredPlus
+(use-feature dired+
+  :init (install-wiki-package "dired+.el"))
+
 (use-package dired-git-info
   :config
   (bind-key ")" #'dired-git-info-mode dired-mode-map))
