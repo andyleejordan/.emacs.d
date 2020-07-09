@@ -150,25 +150,13 @@
 
 (use-package orderless :disabled
   :custom (orderless-matching-styles
-           '(orderless-initialism orderless-prefixes orderless-flex))
-  :custom-face
-  (orderless-match-face-0
-   ((t (:weight bold :foreground ,(plist-get solarized-plist 'magenta)))))
-  (orderless-match-face-1
-   ((t (:weight bold :foreground ,(plist-get solarized-plist 'yellow)))))
-  (orderless-match-face-2
-   ((t (:weight bold :foreground ,(plist-get solarized-plist 'blue)))))
-  (orderless-match-face-3
-   ((t (:weight bold :foreground ,(plist-get solarized-plist 'cyan))))))
+           '(orderless-initialism orderless-prefixes orderless-flex)))
 
 (use-feature icomplete
   :if (fboundp 'fido-mode)
   :custom
   (icomplete-compute-delay 0)
   (icomplete-separator (with-face " | " :inherit 'shadow))
-  :custom-face
-  (icomplete-first-match
-   ((t :foreground ,(plist-get solarized-plist 'green))))
   :config
   ;; Use `isearch' instead of regexp, especially since `C-s' and `C-r'
   ;; are bound like in `ido' to move through candidates.
@@ -193,13 +181,6 @@
   (completion-cycle-threshold 3)
   (minibuffer-beginning-of-buffer-movement t)
   (minibuffer-message-clear-timeout 2)
-  :custom-face
-  (completions-first-difference
-   ((t (:foreground ,(plist-get solarized-plist 'magenta)))))
-  (completions-common-part
-   ((t (:foreground ,(plist-get solarized-plist 'yellow)))))
-  (completions-annotations
-   ((t (:foreground ,(plist-get solarized-plist 'cyan)))))
   :config
   (bind-key "SPC" #'icomplete-fido-ret minibuffer-local-filename-completion-map)
   (bind-key "SPC" #'icomplete-fido-ret minibuffer-local-filename-must-match-map))
@@ -334,7 +315,7 @@
   (dired-dwim-target t "Enable side-by-side `dired' buffer targets.")
   (dired-recursive-copies 'always "Better recursion in `dired'.")
   (dired-recursive-deletes 'top)
-  (dired-listing-switches "-alhv" "Must not contain `-p'."))
+  (dired-listing-switches "-alFhv" "Must not contain `-p'."))
 
 ;; https://www.emacswiki.org/emacs/DiredPlus
 (use-feature dired+
@@ -678,12 +659,12 @@
   (eshell-highlight-prompt nil)
   (eshell-prompt-function
    (lambda ()
-     (let ((red     (plist-get solarized-plist 'red))
-           (magenta (plist-get solarized-plist 'magenta))
-           (blue    (plist-get solarized-plist 'blue))
-           (cyan    (plist-get solarized-plist 'cyan))
-           (green   (plist-get solarized-plist 'green))
-           (base    (plist-get solarized-plist 'base0)))
+     (let ((red     "#dc322f")
+           (magenta "#d33682")
+           (blue    "#268bd2")
+           (cyan    "#2aa198")
+           (green   "#859900")
+           (base    "#839496"))
        (concat
         (let ((status eshell-last-command-status))
           (when (not (= status 0))
@@ -806,15 +787,19 @@
 (use-package solarized-theme
   :if (display-graphic-p)
   :custom
+  (solarized-theme-dir (no-littering-expand-var-file-name "themes/"))
   (solarized-scale-org-headlines nil)
   (solarized-scale-outline-headlines nil)
   (solarized-use-variable-pitch nil)
-  (x-underline-at-descent-line t)
+  (x-underline-at-descent-line t))
+
+(use-feature solarized-andy
+  :load-path "etc"
   :config
   ;; Schedule (has to start at midnight, then switch):
   (run-at-time "12:00am" (* 60 60 24) #'load-dark-theme)
   (run-at-time "05:00am" (* 60 60 24) #'load-light-theme)
-  (run-at-time "05:00pm" (* 60 60 24) #'load-dark-theme))
+  (run-at-time "05:00pm" (* 60 60 24) #'load-dark-theme)    )
 
 (unless (display-graphic-p)
   (load-theme 'tango-dark t))

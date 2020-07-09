@@ -218,39 +218,19 @@ If FORCE is non-nil just insert slash."
       (icomplete-force-complete)
     (self-insert-command 1 ?/)))
 
-;;; Light and dark theming:
-
-(defconst solarized-plist
-  '(; Indentation is weird.
-    base03    "#002b36"
-    base02    "#073642"
-    base01    "#586e75"
-    base00    "#657b83"
-    base0     "#839496"
-    base1     "#93a1a1"
-    base2     "#eee8d5"
-    base3     "#fdf6e3"
-    yellow    "#b58900"
-    orange    "#cb4b16"
-    red       "#dc322f"
-    magenta   "#d33682"
-    violet    "#6c71c4"
-    blue      "#268bd2"
-    cyan      "#2aa198"
-    green     "#859900")
-  "Solarized color hex strings.")
+;;; Light and dark themes:
 
 (defcustom font-size 120
   "Default font size to apply."
   :group 'andy
   :type 'integer)
 
-(defcustom light-theme 'solarized-light
+(defcustom light-theme 'solarized-andy-light
   "Light theme to load."
   :group 'andy
   :type 'symbol)
 
-(defcustom dark-theme 'solarized-dark
+(defcustom dark-theme 'solarized-andy-dark
   "Dark theme to load."
   :group 'andy
   :type 'symbol)
