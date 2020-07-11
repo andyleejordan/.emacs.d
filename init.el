@@ -647,6 +647,9 @@
   (compilation-error-regexp-alist
    (delete 'maven compilation-error-regexp-alist)))
 
+(use-package copy-as-format
+  :custom (copy-as-format-default "github"))
+
 (use-package default-text-scale)
 
 (use-package demangle-mode)
@@ -695,8 +698,8 @@
 (use-feature ielm
   :custom (ielm-prompt "> "))
 
-(use-package copy-as-format
-  :custom (copy-as-format-default "github"))
+(use-feature man
+  :bind ("C-c m" . man))
 
 (use-package org
   :ensure org-plus-contrib
@@ -735,9 +738,6 @@
   :custom (shell-command-prompt-show-cwd t))
 
 (use-package system-packages)
-
-(use-feature man
-  :bind ("C-c m" . man))
 
 ;;; Appearance:
 
