@@ -626,6 +626,11 @@
   :init (defalias 'sudoedit #'auto-sudoedit-sudoedit))
 
 ;; https://www.emacswiki.org/emacs/BookmarkPlus
+(use-feature bookmark
+  :custom
+  (bookmark-version-control t)
+  (bookmark-save-flag 1))
+
 (use-feature bookmark+
   :init (install-wiki-package '("bookmark+.el"
                                 "bookmark+-mac.el"
