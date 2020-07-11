@@ -2,5 +2,6 @@
 /.cask/
 /.python-environments/
 /elpa/
+/quelpa/
 /straight/
 /var/

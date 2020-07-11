@@ -661,6 +661,10 @@ cosmetic.
 
 Everything in this section is yet to be rewritten and refiled.
 
+** Install package fork with Quelpa
+#+begin_src elisp
+  (quelpa '(eglot :repo "andschwa/eglot" :fetcher github :branch "fix-capf-use-from-minibuffer"))
+#+end_src
 ** Markdown dwim header =C-c C-t h=
 ** Narrowing: =C-x n= region =n= defun =d= widen =w=
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Narrowing.html

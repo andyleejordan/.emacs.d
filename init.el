@@ -726,6 +726,8 @@
   (org-babel-load-languages '((emacs-lisp . t)
                               (shell . t))))
 
+(use-package quelpa)
+
 (use-package rainbow-mode) ; highlight color codes like "#aabbcc"
 
 (use-feature re-builder
