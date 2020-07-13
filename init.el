@@ -743,13 +743,21 @@
 
 ;;; Appearance:
 
-;; Try preferred fonts
-(--map-first (member it (font-family-list))
-             (set-face-attribute 'default nil :family it :height font-size)
-             '("Cascadia Code" "Source Code Pro" "Menlo" "Ubuntu Mono"))
-
 (use-feature frame
-  :custom (blink-cursor-blinks 0 "Blink forever."))
+  :custom (blink-cursor-blinks 0 "Blink forever.")
+  :config
+  ;; Set this for every made frame, and for the initial frame. This
+  ;; handles running both `emacs’ directly and `emacsclient’. We don’t
+  ;; set this as part of `default-frame-alist’ in `early-init.el’
+  ;; because we need: the fonts to be available as part of the display
+  ;; system, `font-size’ to be set to its final value (which can
+  ;; happen in `local.el’), and we use `--map-first’ from `dash.el’.
+  (defun set-preferred-font (&optional frame)
+    (--map-first (member it (font-family-list frame))
+                 (set-face-attribute 'default frame :family it :height font-size)
+                 '("Cascadia Code" "Source Code Pro" "Menlo" "Ubuntu Mono")))
+  (add-hook 'after-make-frame-functions #'set-preferred-font)
+  (add-hook 'after-init-hook #'set-preferred-font))
 
 (use-package fortune-cookie
   :custom
