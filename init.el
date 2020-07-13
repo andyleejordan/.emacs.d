@@ -321,7 +321,8 @@
 
 ;; https://www.emacswiki.org/emacs/DiredPlus
 (use-feature dired+
-  :init (install-wiki-package "dired+.el"))
+  :init (install-wiki-package "dired+.el")
+  :config (diredp-toggle-find-file-reuse-dir t))
 
 (use-package dired-git-info
   :config
