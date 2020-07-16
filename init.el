@@ -649,6 +649,7 @@
    (delete 'maven compilation-error-regexp-alist)))
 
 (use-package copy-as-format
+  :bind ("C-c M-w" . copy-as-format)
   :custom (copy-as-format-default "github"))
 
 (use-package default-text-scale)
