@@ -624,19 +624,60 @@ Captures all non-terminals in Bison grammar.
       (princ (format "%s " (match-string 1)) (get-buffer-create "matches"))))
 #+end_src
 
-* Bugs
+* Building from source
+- Clone =git clone -b emacs-27 https://github.com/emacs-mirror/emacs.git=
+- See =system-configuration-features= for available features
+- See =system-configuration-options= for configure times
+- [[http://www.x.org/releases/X11R7.7/doc/xorg-docs/fonts/fonts.html][XFT]] is the X11 font system, and is required.
+- [[http://jmason.org/howto/subpixel.html][Sub-pixel rendering]]
+** macOS script
+#+begin_src bash
+  #!/bin/bash
 
+  set -o errexit
+  set -o pipefail
+
+  brew install autoconf gnu-sed texinfo pkg-config gnutls libxml2 jansson
+
+  export PATH="/usr/local/opt/texinfo/bin:$PATH"
+  export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+  export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
+
+  ./autogen.sh
+  ./configure --with-ns --without-x --with-gnutls --with-json --with-xml2 --without-dbus
+  make -j $(nproc) all info doc
+
+  ./src/emacs -Q
+  make install
+  # Copy ‘nextstep/Emacs.app’ to /Applications
+#+end_src
+** Ubuntu 19.10 script
+#+begin_src bash
+  #!/bin/bash
+
+  set -o errexit
+  set -o pipefail
+
+  sudo apt install pkg-config texinfo libgtk-3-dev libncurses-dev libgnutls28-dev libjansson-dev libxpm-dev libxml2-dev
+
+  ./autogen.sh
+  ./configure --with-x-toolkit=gtk3 --with-gnutls --with-json --with-xml2
+  make -j $(nproc) all info doc
+
+  ./src/emacs -Q
+  sudo make install install-info install-doc
+#+end_src
+
+* Bugs
 ** Buffer content invisible when tunneling X
-[[https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25474][
-GNU Bug Report #25474]]
+[[https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25474][GNU Bug Report #25474]]
 #+begin_src lisp
   (setq default-frame-alist
         (append default-frame-alist '((inhibit-double-buffering . t))))
 #+end_src
 
 ** =derived-mode-p= broken for aliased parents
-[[https://debbugs.gnu.org/cgi/bugreport.cgi?bug=32795][
-GNU Bug Report #32795]]
+[[https://debbugs.gnu.org/cgi/bugreport.cgi?bug=32795][GNU Bug Report #32795]]
 #+begin_src lisp
   (defun provided-mode-derived-p (mode &rest modes)
     "Non-nil if MODE is derived from one of MODES or their aliases.
@@ -742,126 +783,3 @@ From [[https://stackoverflow.com/a/271136][StackOverflow]]:
 - Use =C-c C-q= to close regexp-builder
 *** Set directory local variable =eval= to execute arbitrary code
 *** See current faces =list-faces-display=
-
-** Compiling Emacs from source
-See =INSTALL.REPO=
-*** update
-#+BEGIN_SRC sh
-  git clone -b emacs-27 https://github.com/emacs-mirror/emacs.git
-#+END_SRC
-*** prepare
-Can use =build-dep emacs= to get dependencies.
-#+BEGIN_SRC sh
-  make distclean
-#+END_SRC
-**** Arch
-#+BEGIN_SRC sh
-  sudo pacman -S texinfo libxft
-  # with GTK
-  sudo pacman -S gtk2 xorg-fonts-100dpi
-#+END_SRC
-**** CentOS 7
-GTK+ and FreeType are needed to for the X11 build with proper font
-rendering. See other notes for X11 and Xft setup.
-#+BEGIN_SRC sh
-  yum install gtk2-devel freetype gnutls-devel
-#+END_SRC
-**** Ubuntu 14.04
-Still needs GTK and FreeType.
-#+BEGIN_SRC sh
-  sudo apt-get install texi2html texinfo
-#+END_SRC
-**** Ubuntu 18.04
-#+BEGIN_SRC sh
-  sudo apt build-dep emacs24
-  ./autogen.sh
-  ./configure --with-x-toolkit=gtk3
-  export GDK_SCALE=2
-#+END_SRC
-**** Windows
-***** Follow nt/INSTALL
-- Install MinGW and MSYS (see [[http://mingw.org/wiki/Getting_Started][Getting Started]])
-- Run =C:\MinGW\msys\1.0\postinstall\pi.bat= to setup =fstab=
-- Add shortcut to =C:\MinGW\msys\1.0\msys.bat=
-***** Fix line endings
-Otherwise =autoreconf= will fail cryptically.
-#+BEGIN_SRC sh
-  dos2unix.exe configure.ac
-#+END_SRC
-*** autoreconf
-#+BEGIN_SRC sh
-  ./autogen.sh
-#+END_SRC
-This runs the usual =autoreconf -i -I m4=
-*** configure
-**** Arch
-#+BEGIN_SRC sh
-  ./configure --without-all --with-x-toolkit=no --with-xft --with-makeinfo
-#+END_SRC
-**** OS X
-#+BEGIN_SRC sh
-  ./configure --without-all --with-x-toolkit=no --with-ns --with-toolkit-scroll-bars --with-makeinfo
-#+END_SRC
-**** CentOS 7
-#+BEGIN_SRC sh
-  ./configure --without-all --with-xft --with-makeinfo
-#+END_SRC
-- [[http://www.x.org/releases/X11R7.7/doc/xorg-docs/fonts/fonts.html][XFT]] is the X11 font system, and is required.
-- [[http://jmason.org/howto/subpixel.html][Sub-pixel rendering]]
-**** Ubuntu 14.04
-#+BEGIN_SRC sh
-  ./configure --without-all --with-xft --with-makeinfo
-#+END_SRC
-**** Windows
-Toolkit scroll-bars are required on Windows but excluded by
-=--without-all=, so explicitly include them.
-#+BEGIN_SRC sh
-  ./configure --without-all --with-w32 --with-toolkit-scroll-bars
-#+END_SRC
-**** Optional
-#+BEGIN_SRC sh
-  --with-sound --with-gnutls --with-zlib --without-compress-install --with-libotf
-#+END_SRC
-*** make
-**** bootstrap
-#+BEGIN_SRC sh
-  make bootstrap
-#+END_SRC
-**** build docs
-#+BEGIN_SRC sh
-  make info doc
-#+END_SRC
-*** install
-#+BEGIN_SRC sh
-  sudo make install install-info install-doc
-#+END_SRC
-**** OS X
-Copy =nextstep/Emacs.app= to desired location
-*** post-install
-**** Remove old packages
-#+BEGIN_SRC sh
-  rm -rf ~/.emacs.d/elpa
-#+END_SRC
-*** check features
-See the variables =system-configuration-features= and
-=system-configuration-options=.
-*** macOS script
-#+begin_src bash
-  #!/bin/bash
-
-  set -o errexit
-  set -o pipefail
-
-  brew install autoconf gnu-sed texinfo pkg-config gnutls libxml2 jansson
-
-  export PATH="/usr/local/opt/texinfo/bin:$PATH"
-  export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-  export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
-
-  ./autogen.sh
-  ./configure --with-ns --disable-silent-rules --without-x --with-gnutls --with-xml2 --with-json --with-modules --without-dbus --without-imagemagick
-  make -j4
-
-  ./src/emacs -Q
-  make install
-#+end_src
