@@ -985,6 +985,7 @@
 
 (use-package puppet-mode :disabled)
 
+;; Python
 (use-package pyvenv
   :hook (python-mode . pyvenv-tracking-mode))
 
@@ -992,6 +993,11 @@
   :delight
   :hook (python-mode . blacken-mode)
   :custom (blacken-only-if-project-is-blackened t))
+
+(use-package isortify
+  :delight
+  :hook (python-mode . isortify-mode))
+;; Python setup ends here
 
 (use-package rust-mode
   :custom (rust-format-on-save t))
