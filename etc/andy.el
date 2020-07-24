@@ -180,8 +180,7 @@ to open `*completions*’ buffer (perhaps with annotations)."
   "Use `completing-read' to open a recent file."
   (interactive)
   (let ((files (mapcar 'abbreviate-file-name recentf-list)))
-    (find-file (icomplete-vertical-do nil
-                 (completing-read "Find recent file: " files nil t)))))
+    (find-file (completing-read "Find recent file: " files nil t))))
 
 (defun yank-pop+ (&optional arg)
   "Call `yank-pop' with ARG when appropriate, or offer completion."
@@ -189,12 +188,11 @@ to open `*completions*’ buffer (perhaps with annotations)."
   (if arg (yank-pop arg)
     (let* ((old-last-command last-command)
            (enable-recursive-minibuffers t)
-           (text (icomplete-vertical-do nil
-                   (completing-read
-                    "Yank: "
-                    (cl-remove-duplicates
-                     kill-ring :test #'string= :from-end t)
-                    nil t nil nil)))
+           (text (completing-read
+                  "Yank: "
+                  (cl-remove-duplicates
+                   kill-ring :test #'string= :from-end t)
+                  nil t nil nil))
            ;; Find `text' in `kill-ring'.
            (pos (cl-position text kill-ring :test #'string=))
            ;; Translate relative to `kill-ring-yank-pointer'.

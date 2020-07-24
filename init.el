@@ -183,8 +183,6 @@
   (add-hook 'icomplete-minibuffer-setup-hook #'fido-mode+)
   (fido-mode))
 
-(use-package icomplete-vertical)
-
 (use-feature minibuffer
   :custom
   (enable-recursive-minibuffers t)
