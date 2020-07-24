@@ -32,6 +32,10 @@
 (defconst solarized-subtheme
   '((custom-theme-set-faces
      theme-name
+     ;; TODO: For some unknown reason this face is getting a bad
+     ;; foreground color set instead of remaining ‘unspecified’, so we
+     ;; have to override it here.
+     `(highlight ((,class (:foreground ,violet :background ,base02 :weight bold))))
      ;; Icomplete
      `(icomplete-first-match
        ((,class :weight bold :foreground ,green)))
