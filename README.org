@@ -526,7 +526,8 @@ also start a query replace with =Q=, and setup a =multi-isearch= with
 - eshell
 - rectangle
 - raise and surround
-
+*** dired
+=C-0 w= runs =dired-copy-filename-as-kill= with full path
 * Notable packages
 :PROPERTIES:
 :CUSTOM_ID: packages
