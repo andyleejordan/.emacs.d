@@ -161,10 +161,6 @@
 
 (bind-key* [remap keyboard-quit] #'keyboard-quit-context+)
 
-(use-package orderless :disabled
-  :custom (orderless-matching-styles
-           '(orderless-initialism orderless-prefixes orderless-flex)))
-
 (use-feature icomplete
   :if (fboundp 'fido-mode)
   :custom
