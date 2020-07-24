@@ -809,6 +809,7 @@
   (solarized-scale-org-headlines nil)
   (solarized-scale-outline-headlines nil)
   (solarized-use-variable-pitch nil)
+  (solarized-use-more-italic t)
   (x-underline-at-descent-line t))
 
 (use-feature solarized-andy
