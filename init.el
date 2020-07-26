@@ -109,6 +109,9 @@
   :bind ("C-c M-w" . copy-as-format)
   :custom (copy-as-format-default "github"))
 
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
+
 (use-package git-link)
 
 (use-feature saveplace
