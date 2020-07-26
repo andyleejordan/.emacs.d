@@ -604,7 +604,14 @@
   :custom
   (eglot-auto-display-help-buffer t)
   (eglot-autoshutdown t)
-  (eglot-confirm-server-initiated-edits nil))
+  (eglot-confirm-server-initiated-edits nil)
+  :config
+  (bind-key "C-c r" #'eglot-rename eglot-mode-map)
+  (defun eglot-format-buffer-on-save ()
+    (if (eglot-managed-p)
+        (add-hook 'before-save-hook #'eglot-format-buffer nil 'local)
+      (remove-hook 'before-save-hook #'eglot-format-buffer 'local)))
+  (add-hook 'eglot-managed-mode-hook #'eglot-format-buffer-on-save))
 
 (use-package xref) ; built-in but in GNU ELPA
 
@@ -970,19 +977,8 @@
 
 (use-package puppet-mode :disabled)
 
-;; Python
 (use-package pyvenv
   :hook (python-mode . pyvenv-tracking-mode))
-
-(use-package blacken
-  :delight
-  :hook (python-mode . blacken-mode)
-  :custom (blacken-only-if-project-is-blackened t))
-
-(use-package isortify
-  :delight
-  :hook (python-mode . isortify-mode))
-;; Python setup ends here
 
 (use-package rust-mode
   :custom (rust-format-on-save t))
