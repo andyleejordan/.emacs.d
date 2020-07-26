@@ -324,6 +324,9 @@
   :init (install-wiki-package "dired+.el")
   :config (diredp-toggle-find-file-reuse-dir t))
 
+(use-package dired-du ; On `C-x M-r’
+  :custom (dired-du-size-format t))
+
 (use-package dired-git-info
   :config
   (bind-key ")" #'dired-git-info-mode dired-mode-map))
