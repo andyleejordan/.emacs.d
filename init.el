@@ -104,7 +104,17 @@
 ;;; Cursor and Mark Movement:
 
 (bind-key "M-o" #'other-window)
-(bind-key [remap delete-char] #'delete-forward-char)
+
+(use-package copy-as-format
+  :bind ("C-c M-w" . copy-as-format)
+  :custom (copy-as-format-default "github"))
+
+(use-package git-link)
+
+(use-feature saveplace
+  :config
+  (or (call-if-fbound #'save-place-mode)
+      (call-if-fbound #'save-place)))
 
 (use-feature subword
   :config (global-subword-mode))
@@ -474,18 +484,44 @@
 ;;; Editing:
 
 (customize-set-variable 'truncate-lines t)
+(bind-key [remap delete-char] #'delete-forward-char)
+(bind-key [remap yank-pop] #'yank-pop+)
 (bind-key "C-x w" #'toggle-truncate-lines)
 (bind-key "C-M-y" #'raise-sexp)
 (bind-key "C-M-<backspace>" #'delete-pair)
-(bind-key [remap yank-pop] #'yank-pop+)
+
+(use-feature autoinsert
+  :config
+  (auto-insert-mode)
+  (define-auto-insert
+    '(sh-mode . "Bash skeleton")
+    [(lambda () (sh-set-shell "bash" t nil))
+     '(()
+       "#!/bin/bash" \n
+       \n
+       "set -o errexit" \n
+       "set -o pipefail" "\n\n")]))
 
 (use-feature autorevert
   :delight auto-revert-mode
   :custom (auto-revert-avoid-polling t)
   :config (global-auto-revert-mode))
 
+(use-package auto-sudoedit
+  :delight
+  :commands auto-sudoedit-sudoedit
+  :init (defalias 'sudoedit #'auto-sudoedit-sudoedit))
+
 (use-feature delsel
   :config (delete-selection-mode))
+
+(use-feature ediff
+  :custom
+  (ediff-keep-variants nil)
+  (ediff-show-clashes-only t)
+  (ediff-diff-options "-w")
+  (ediff-split-window-function 'split-window-horizontally)
+  (ediff-window-setup-function 'ediff-setup-windows-plain))
 
 (use-feature electric
   :custom ; “Prettier ‘quotes’”
@@ -496,11 +532,6 @@
 (use-feature elec-pair
   :custom (electric-pair-skip-whitespace 'chomp)
   :config (electric-pair-mode))
-
-(use-feature saveplace
-  :config
-  (or (call-if-fbound #'save-place-mode)
-      (call-if-fbound #'save-place)))
 
 (use-package undo-fu
   :delight
@@ -515,18 +546,6 @@
 
 (use-package unfill
   :bind ([remap fill-paragraph] . unfill-toggle))
-
-(use-feature autoinsert
-  :config
-  (auto-insert-mode)
-  (define-auto-insert
-    '(sh-mode . "Bash skeleton")
-    [(lambda () (sh-set-shell "bash" t nil))
-     '(()
-       "#!/bin/bash" \n
-       \n
-       "set -o errexit" \n
-       "set -o pipefail" "\n\n")]))
 
 ;;; Tab Completion:
 
@@ -615,11 +634,6 @@
 (use-feature apropos
   :custom (apropos-do-all t))
 
-(use-package auto-sudoedit
-  :delight
-  :commands auto-sudoedit-sudoedit
-  :init (defalias 'sudoedit #'auto-sudoedit-sudoedit))
-
 ;; https://www.emacswiki.org/emacs/BookmarkPlus
 (use-feature bookmark
   :custom
@@ -634,6 +648,7 @@
                                 "bookmark+-key.el"
                                 "bookmark+-doc.el"
                                 "bookmark+-chg.el")))
+
 (use-feature compile
   :custom
   (compilation-ask-about-save nil)
@@ -642,21 +657,9 @@
   (compilation-error-regexp-alist
    (delete 'maven compilation-error-regexp-alist)))
 
-(use-package copy-as-format
-  :bind ("C-c M-w" . copy-as-format)
-  :custom (copy-as-format-default "github"))
-
 (use-package default-text-scale)
 
 (use-package demangle-mode)
-
-(use-feature ediff
-  :custom
-  (ediff-keep-variants nil)
-  (ediff-show-clashes-only t)
-  (ediff-diff-options "-w")
-  (ediff-split-window-function 'split-window-horizontally)
-  (ediff-window-setup-function 'ediff-setup-windows-plain))
 
 (use-feature eshell
   :bind ("C-c e" . eshell)
@@ -684,8 +687,6 @@
           (unless (string-match "fatal:" head)
             (concat (with-face (replace-regexp-in-string "\n\\'" "" head) :foreground green)))) " "
         (with-face "$" :foreground cyan) " ")))))
-
-(use-package git-link)
 
 (use-feature gud
   :no-require
@@ -723,8 +724,6 @@
                               (shell . t))))
 
 (use-package quelpa)
-
-(use-package rainbow-mode) ; highlight color codes like "#aabbcc"
 
 (use-feature re-builder
   :custom (reb-re-syntax 'string))
@@ -796,6 +795,8 @@
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
+
+(use-package rainbow-mode) ; highlight color codes like "#aabbcc"
 
 (use-package solarized-theme
   :if (display-graphic-p)
