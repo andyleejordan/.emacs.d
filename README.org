@@ -669,6 +669,13 @@ Captures all non-terminals in Bison grammar.
 #+end_src
 
 * Bugs
+** icomplete uses wrong default value
+[[https://debbugs.gnu.org/cgi/bugreport.cgi?bug=42101][GNU Bug Report #42101]]
+Disable this expression from =icomplete--sorted-completions=:
+#+begin_src elisp
+  ,(lambda (comp)
+     (string-prefix-p minibuffer-default comp))
+#+end_src
 ** Buffer content invisible when tunneling X
 [[https://debbugs.gnu.org/cgi/bugreport.cgi?bug=25474][GNU Bug Report #25474]]
 #+begin_src lisp
