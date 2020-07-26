@@ -881,7 +881,6 @@
   (backup-by-copying t)
   (delete-old-versions t)
   (version-control t)
-  (auto-save-default nil)
   (large-file-warning-threshold (* 20 1000 1000) "20 megabytes.")
   :config
   (auto-save-visited-mode) ; Also save files directly when idle.
