@@ -335,24 +335,15 @@
 
 (use-package project
   :defines project-find-functions
-  :config ; bindings from `master' branch
-  (bind-key "C-x p f" #'project-find-file)
-  (bind-key "C-x p s" #'project-shell)
-  (bind-key "C-x p d" #'project-dired)
-  (bind-key "C-x p v" #'project-vc-dir)
-  (bind-key "C-x p c" #'project-compile)
-  (bind-key "C-x p e" #'project-eshell)
-  (bind-key "C-x p p" #'project-switch-project)
-  (bind-key "C-x p g" #'project-find-regexp)
-  (bind-key "C-x p r" #'project-query-replace-regexp)
+  :config
   ;; Similar to project-try-vc but works when VC is disabled.
   (defun project-try-magit (dir)
     (let* ((root (magit-toplevel dir)))
       (and root (cons 'vc root))))
   (add-to-list 'project-find-functions #'project-try-magit t)
-  ;; TODO: Remove `project-vc-dir' from this list.
+  ;; Use Magit instead of built-in VC.
   (when (boundp 'project-switch-commands)
-    (add-to-list 'project-switch-commands '(?v "Magit" magit-status))))
+    (setf (alist-get ?v project-switch-commands) '("Magit" magit-status))))
 
 (use-feature recentf
   :custom
