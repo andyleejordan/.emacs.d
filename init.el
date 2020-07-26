@@ -200,7 +200,7 @@
   (bind-key "SPC" #'icomplete-fido-ret minibuffer-local-filename-completion-map)
   (bind-key "SPC" #'icomplete-fido-ret minibuffer-local-filename-must-match-map))
 
-(use-feature eldoc :delight)
+(use-package eldoc :delight) ; built-in but in GNU ELPA
 
 (use-feature mb-depth
   :config (minibuffer-depth-indicate-mode))
@@ -349,7 +349,7 @@
   (bind-key "C-x C-j" #'dired-jump)
   (bind-key "C-x 4 C-j" #'dired-jump-other-window))
 
-(use-package project
+(use-package project ; built-in but in GNU ELPA
   :defines project-find-functions
   :config
   ;; Similar to project-try-vc but works when VC is disabled.
@@ -574,7 +574,7 @@
   :config
   (modify-syntax-entry ?\` "$`" text-mode-syntax-table))
 
-(use-feature flymake
+(use-package flymake ; built-in but in GNU ELPA
   :hook (prog-mode . flymake-mode)
   :bind (:map flymake-mode-map
               ("M-n" . flymake-goto-next-error)
@@ -596,7 +596,7 @@
   :config (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
 ;; Alternatives include: eglot, irony, cquery, rtags, ggtags, and ycmd.
-(use-package eglot ; an alternative LSP client in ELPA
+(use-package eglot ; an alternative LSP client in GNU ELPA
   :hook
   (c-mode-common . eglot-ensure)
   (python-mode . eglot-ensure)
@@ -606,7 +606,7 @@
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits nil))
 
-(use-feature xref)
+(use-package xref) ; built-in but in GNU ELPA
 
 ;;; Spelling:
 
