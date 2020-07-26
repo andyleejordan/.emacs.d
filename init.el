@@ -872,19 +872,6 @@
   (select-active-regions nil "Don't set primary selection.")
   (visual-line-fringe-indicators '(nil right-curly-arrow)))
 
-(use-package super-save
-  :delight
-  :defines super-save-triggers
-  :custom (super-save-remote-files nil)
-  :config
-  (add-args-to-list 'super-save-triggers
-                    '(dired-jump
-                      magit-dispatch
-                      magit-file-dispatch
-                      magit-refresh
-                      magit-status))
-  (super-save-mode))
-
 (use-feature files
   :custom
   (confirm-kill-emacs 'y-or-n-p)
@@ -897,6 +884,7 @@
   (auto-save-default nil)
   (large-file-warning-threshold (* 20 1000 1000) "20 megabytes.")
   :config
+  (auto-save-visited-mode) ; Also save files directly when idle.
   (add-to-list
    'backup-directory-alist
    `(,tramp-file-name-regexp . ,(no-littering-expand-var-file-name "tramp/backup/"))))
