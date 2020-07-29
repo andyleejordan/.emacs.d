@@ -625,6 +625,11 @@ Captures all non-terminals in Bison grammar.
       (princ (format "%s " (match-string 1)) (get-buffer-create "matches"))))
 #+end_src
 
+** Build regexps etc. with elisp
+- =rx= for building regexp from sexps
+- =re-builder= for interactively writing regexp
+- =find-cmd= for building find command from sexps
+
 * Building from source
 - Clone =git clone -b emacs-27 https://github.com/emacs-mirror/emacs.git=
 - See =system-configuration-features= for available features
