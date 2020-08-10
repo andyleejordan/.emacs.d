@@ -53,6 +53,11 @@
      :ensure nil
      ,@args))
 
+(use-package quelpa)
+(use-package quelpa-use-package)
+
+(customize-set-variable 'quelpa-use-package-inhibit-loading-quelpa t)
+
 ;; Lisp list, string, and file extensions.
 (use-package dash)
 (use-package s)
@@ -328,7 +333,7 @@
 
 ;; https://www.emacswiki.org/emacs/DiredPlus
 (use-feature dired+
-  :init (install-wiki-package "dired+.el")
+  :quelpa (dired+ :fetcher url :url "https://www.emacswiki.org/emacs/download/dired+.el")
   :config (diredp-toggle-find-file-reuse-dir t))
 
 (use-package dired-du ; On `C-x M-r’
@@ -392,7 +397,7 @@
 
 ;; https://www.emacswiki.org/emacs/IsearchPlus
 (use-feature isearch+
-  :init (install-wiki-package "isearch+.el"))
+  :quelpa (isearch+ :fetcher url :url "https://www.emacswiki.org/emacs/download/isearch+.el"))
 
 (use-feature grep
   :config (bind-key "M-s R" #'rgrep)) ; or `rg'
@@ -420,7 +425,7 @@
 
 ;; https://www.emacswiki.org/emacs/ReplacePlus
 (use-feature replace+
-  :init (install-wiki-package "replace+.el"))
+  :quelpa (replace+ :fetcher url :url "https://www.emacswiki.org/emacs/download/replace+.el"))
 
 (use-feature wdired
   :config (bind-key "e" #'dired-toggle-read-only dired-mode-map)
@@ -645,6 +650,7 @@
   (bookmark-save-flag 1))
 
 (use-feature bookmark+
+  :disabled
   :init (install-wiki-package '("bookmark+.el"
                                 "bookmark+-mac.el"
                                 "bookmark+-bmu.el"
@@ -727,8 +733,6 @@
   (org-babel-load-languages '((emacs-lisp . t)
                               (shell . t))))
 
-(use-package quelpa)
-
 (use-feature re-builder
   :custom (reb-re-syntax 'string))
 
@@ -768,20 +772,20 @@
 
 ;; https://www.emacswiki.org/emacs/HelpPlus
 (use-feature help+
-  :init (install-wiki-package "help+.el"))
+  :quelpa (help+ :fetcher url :url "https://www.emacswiki.org/emacs/download/help+.el"))
 
 (use-feature help-fns+
-  :init (install-wiki-package "help-fns+.el"))
+  :quelpa (help-fns+ :fetcher url :url "https://www.emacswiki.org/emacs/download/help-fns+.el"))
 
 (use-feature help-macro+
-  :init (install-wiki-package "help-macro+.el"))
+  :quelpa (help-macro+ :fetcher url :url "https://www.emacswiki.org/emacs/download/help-macro+.el"))
 
 (use-feature help-mode+
-  :init (install-wiki-package "help-mode+.el"))
+  :quelpa (help-mode+ :fetcher url :url "https://www.emacswiki.org/emacs/download/help-mode+.el"))
 
 ;; https://www.emacswiki.org/emacs/InfoPlus
 (use-feature info+
-  :init (install-wiki-package "info+.el"))
+  :quelpa (info+ :fetcher url :url "https://www.emacswiki.org/emacs/download/info+.el"))
 
 (use-package hl-todo
   :defines hl-todo-keyword-faces

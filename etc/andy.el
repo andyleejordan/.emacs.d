@@ -65,22 +65,6 @@ otherwise."
   "Return first of COMMANDS that is `commandp'."
   (-first #'commandp commands))
 
-(defconst wiki-package-load-path
-  (expand-file-name "wiki/" no-littering-var-directory))
-
-(defun install-wiki-package (files)
-  "Download package of FILES from Emacs Wiki."
-  (interactive)
-  (make-directory wiki-package-load-path t)
-  (dolist (file (-list files))
-    (let ((url (concat "https://www.emacswiki.org/emacs/download/" file))
-          (path (expand-file-name file wiki-package-load-path)))
-      (unless (file-exists-p path)
-        (require 'url)
-        (url-copy-file url path))))
-  (add-to-list 'load-path wiki-package-load-path)
-  (byte-recompile-directory wiki-package-load-path 0))
-
 ;;; My `hideshow' extension:
 
 (defvar-local hs-hid-all-p nil
