@@ -529,7 +529,10 @@
   :custom ; “Prettier ‘quotes’”
   (electric-quote-replace-double t)
   (electric-quote-context-sensitive t)
-  :config (electric-quote-mode))
+  :config
+  (electric-quote-mode)
+  (add-to-list 'electric-quote-inhibit-functions
+               (lambda () (eq major-mode 'yaml-mode))))
 
 (use-feature elec-pair
   :custom (electric-pair-skip-whitespace 'chomp)
