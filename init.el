@@ -332,9 +332,9 @@
   (dired-listing-switches "-alFhv" "Must not contain `-p'."))
 
 ;; https://www.emacswiki.org/emacs/DiredPlus
+;; Use `C-M-R’ to toggle reuse of buffers.
 (use-feature dired+
-  :quelpa (dired+ :fetcher url :url "https://www.emacswiki.org/emacs/download/dired+.el")
-  :config (diredp-toggle-find-file-reuse-dir t))
+  :quelpa (dired+ :fetcher url :url "https://www.emacswiki.org/emacs/download/dired+.el"))
 
 (use-package dired-du ; On `C-x M-r’
   :custom (dired-du-size-format t))
