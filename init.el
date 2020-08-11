@@ -810,25 +810,24 @@
 (use-package rainbow-mode) ; highlight color codes like "#aabbcc"
 
 (use-package solarized-theme
-  :if (display-graphic-p)
   :custom
   (solarized-theme-dir (no-littering-expand-var-file-name "themes/"))
   (solarized-scale-org-headlines nil)
   (solarized-scale-outline-headlines nil)
   (solarized-use-variable-pitch nil)
   (solarized-use-more-italic t)
-  (x-underline-at-descent-line t))
+  (x-underline-at-descent-line t)
+  :config
+  (add-to-list 'custom-theme-load-path solarized-theme-dir))
 
 (use-feature solarized-andy
   :load-path "etc"
+  :after solarized-theme
   :config
   ;; Schedule (has to start at midnight, then switch):
   (run-at-time "12:00am" (* 60 60 24) #'load-dark-theme)
   (run-at-time "05:00am" (* 60 60 24) #'load-light-theme)
-  (run-at-time "05:00pm" (* 60 60 24) #'load-dark-theme)    )
-
-(unless (display-graphic-p)
-  (load-theme 'tango-dark t))
+  (run-at-time "05:00pm" (* 60 60 24) #'load-dark-theme))
 
 ;; This must be loaded after themes.
 (use-package smart-mode-line
