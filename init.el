@@ -892,6 +892,7 @@
   (confirm-kill-emacs 'y-or-n-p)
   (confirm-nonexistent-file-or-buffer t)
   (save-abbrevs 'silently)
+  (auto-save-no-message t)
   (require-final-newline t)
   (backup-by-copying t)
   (delete-old-versions t)
