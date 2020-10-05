@@ -367,8 +367,8 @@
   :config
   (add-to-list 'recentf-exclude
                (lambda (f) (not (string= (file-truename f) f))))
-  ;; Save every five minutes, because Emacs crashes.
-  (run-at-time t (* 5 60) #'recentf-save-list)
+  ;; Save when idle, because Emacs crashes (or I kill it).
+  (run-with-idle-timer (* 5 60) :repeat #'recentf-save-list)
   (recentf-mode))
 
 (bind-key "C-x C-r" #'recentf-open-files+)

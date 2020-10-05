@@ -590,6 +590,8 @@ See [[https://masteringemacs.org/article/evaluating-elisp-emacs][Mastering Emacs
 - =shell-command-to-string=
 - =thing-at-point= to get things at point
 - [[https://github.com/magnars/dash.el][dash.el]] modern list library
+- =run-with-idle-timer= to schedule functions to run when idle
+- =list-timers= to view (and use ‘c’ to cancel) existing timers
 
 ** Custom faces
 
