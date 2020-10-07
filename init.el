@@ -610,7 +610,7 @@
   :config
   (bind-key "C-c r" #'eglot-rename eglot-mode-map)
   (defun eglot-format-buffer-on-save ()
-    (if (eglot-managed-p)
+    (if (and (project-current) (eglot-managed-p))
         (add-hook 'before-save-hook #'eglot-format-buffer nil 'local)
       (remove-hook 'before-save-hook #'eglot-format-buffer 'local)))
   (add-hook 'eglot-managed-mode-hook #'eglot-format-buffer-on-save))
