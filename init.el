@@ -668,7 +668,13 @@
   (compilation-scroll-output t)
   (compilation-always-kill t)
   (compilation-error-regexp-alist
-   (delete 'maven compilation-error-regexp-alist)))
+   (delete 'maven compilation-error-regexp-alist))
+  :config
+  (defun colorize-compilation ()
+    (require 'ansi-color)
+    (let ((inhibit-read-only t))
+      (ansi-color-apply-on-region compilation-filter-start (point-max))))
+  (add-hook 'compilation-filter-hook #'colorize-compilation))
 
 (use-package default-text-scale)
 
