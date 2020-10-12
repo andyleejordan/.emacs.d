@@ -201,12 +201,6 @@ If FORCE is non-nil just insert slash."
     (self-insert-command 1 ?/)))
 
 ;;; Light and dark themes:
-
-(defcustom font-size 120
-  "Default font size to apply."
-  :group 'andy
-  :type 'integer)
-
 (defcustom light-theme 'solarized-andy-light
   "Light theme to load."
   :group 'andy
