@@ -200,6 +200,19 @@ If FORCE is non-nil just insert slash."
       (icomplete-force-complete)
     (self-insert-command 1 ?/)))
 
+;;; Font size adjustments:
+(defcustom font-size 120 "Default font size to apply." :type 'integer)
+
+(defun set-preferred-font (&optional frame size)
+  "Called by hooks which provide FRAME as the first argument.
+SIZE is an optional argument read interactively, otherwise it
+defaults to `font-size’."
+  (interactive (list (selected-frame)
+                     (read-number "Font size: " font-size)))
+  (--map-first (member it (font-family-list frame))
+               (set-face-attribute 'default frame :family it :height (or size font-size))
+               '("Cascadia Code" "Source Code Pro" "Menlo" "Ubuntu Mono")))
+
 ;;; Light and dark themes:
 (defcustom light-theme 'solarized-andy-light
   "Light theme to load."

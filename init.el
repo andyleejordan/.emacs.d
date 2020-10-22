@@ -763,13 +763,8 @@
   ;; set this as part of `default-frame-alist’ in `early-init.el’
   ;; because we need: the fonts to be available as part of the display
   ;; system, `font-size’ to be set to its final value (which can
-  ;; happen in `local.el’), and we use `--map-first’ from `dash.el’.
-  (defcustom font-size 120 "Default font size to apply." :type 'integer)
-  (defun set-preferred-font (&optional size frame)
-    (interactive (list (read-number "Font size: " font-size)))
-    (--map-first (member it (font-family-list frame))
-                 (set-face-attribute 'default frame :family it :height (or size font-size))
-                 '("Cascadia Code" "Source Code Pro" "Menlo" "Ubuntu Mono")))
+  ;; happen in `local.el’), `set-preferred-font’ to be loaded from
+  ;; `andy.el’, and it uses `--map-first’ from `dash.el’.
   (add-hook 'after-make-frame-functions #'set-preferred-font)
   (add-hook 'after-init-hook #'set-preferred-font))
 
