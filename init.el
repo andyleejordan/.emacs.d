@@ -150,7 +150,7 @@
 (use-feature windmove ; `S-<left,right,up,down>' to move windows
   :config (windmove-default-keybindings))
 
-(use-feature window :disabled
+(use-feature window
   :no-require
   :custom
   (display-buffer-alist
