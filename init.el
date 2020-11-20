@@ -798,6 +798,8 @@
   :config
   (add-to-list 'hl-todo-keyword-faces
                `("ANDY" . ,(cdr (assoc "HACK" hl-todo-keyword-faces))))
+  (add-to-list 'hl-todo-keyword-faces
+               `("DEMO" . ,(cdr (assoc "PROG" hl-todo-keyword-faces))))
   (global-hl-todo-mode))
 
 (use-feature paren
