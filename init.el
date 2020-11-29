@@ -237,12 +237,10 @@
   (global-diff-hl-mode))
 
 (use-package magit
-  :defines magit-file-mode-map magit-dwim-selection magit-section-initial-visibility-alist
-  :config
-  ;; C-x M-g . `magit-dispatch'
-  (bind-key "C-x g" #'magit-status)
-  (bind-key "C-c g" #'magit-file-dispatch magit-file-mode-map)
-  (add-to-list 'magit-dwim-selection '(magit-branch-and-checkout nil t))
+  :defines magit-dwim-selection magit-section-initial-visibility-alist
+  ;; Now defines global bindings automatically. See #4237.
+  :bind ("C-c g" . magit-file-dispatch) ; But this one is recommended.
+  :config (add-to-list 'magit-dwim-selection '(magit-branch-and-checkout nil t))
   :custom
   (magit-save-repository-buffers 'dontask)
   (magit-published-branches nil "Disable confirmation.")
