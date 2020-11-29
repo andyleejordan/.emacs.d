@@ -141,6 +141,10 @@
   :custom (hs-allow-nesting t))
 
 ;;; Windows / Frames and the buffers in them:
+(use-feature tab-bar
+  :bind (("M-[" . tab-bar-history-back)
+         ("M-]" . tab-bar-history-forward))
+  :config (tab-bar-history-mode) (tab-bar-mode))
 
 (use-package buffer-move)
 
@@ -160,6 +164,7 @@
   (even-window-sizes t))
 
 (use-feature winner ; `C-c <left,right>' to undo/redo windows
+  :disabled ; `tab-bar-history-mode’ replaces this.
   :config (winner-mode))
 
 ;;; Minibuffer Interface:
