@@ -166,17 +166,21 @@ to open `*completions*’ buffer (perhaps with annotations)."
   (let ((files (mapcar 'abbreviate-file-name recentf-list)))
     (find-file (completing-read "Find recent file: " files nil t))))
 
+(use-package icomplete-vertical)
+
 (defun yank-pop+ (&optional arg)
   "Call `yank-pop' with ARG when appropriate, or offer completion."
   (interactive "*P")
+  (require 'icomplete-vertical)
   (if arg (yank-pop arg)
     (let* ((old-last-command last-command)
            (enable-recursive-minibuffers t)
-           (text (completing-read
-                  "Yank: "
-                  (cl-remove-duplicates
-                   kill-ring :test #'string= :from-end t)
-                  nil t nil nil))
+           (text (icomplete-vertical-do nil
+                   (completing-read
+                    "Yank: "
+                    (cl-remove-duplicates
+                     kill-ring :test #'string= :from-end t)
+                    nil t nil nil)))
            ;; Find `text' in `kill-ring'.
            (pos (cl-position text kill-ring :test #'string=))
            ;; Translate relative to `kill-ring-yank-pointer'.
@@ -191,7 +195,9 @@ to open `*completions*’ buffer (perhaps with annotations)."
 
 (defun icomplete-fido-slash (force)
   "Enter directory or slash, like command `ido-mode'.
-If FORCE is non-nil just insert slash."
+If FORCE is non-nil just insert slash. Bind it to ‘/’ in
+`minibuffer-local-filename-completion-map’ and maybe
+`minibuffer-local-filename-must-match-map’."
   (interactive "P")
   (if (and (not force)
            (completion-all-sorted-completions)
