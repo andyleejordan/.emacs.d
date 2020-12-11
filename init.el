@@ -655,8 +655,7 @@
   (bookmark-version-control t)
   (bookmark-save-flag 1))
 
-(use-feature bookmark+
-  :disabled
+(use-feature bookmark+ :disabled
   :init (install-wiki-package '("bookmark+.el"
                                 "bookmark+-mac.el"
                                 "bookmark+-bmu.el"
@@ -891,10 +890,16 @@
   :custom (help-window-select t))
 
 ;; Save Emacs sessions
-(use-feature desktop
+(use-feature desktop :disabled
   :config
   (add-to-list 'desktop-globals-to-save 'kill-ring)
-  (desktop-save-mode))
+  (desktop-save-mode)
+  ;; TODO: This is a bug in `desktop.el’. Since `desktop-kill’ can be
+  ;; interactive (asks if the desktop should be saved), it should not
+  ;; be in `kill-emacs-hook’ and having it there prevents Emacs from
+  ;; being killed externally by the kill signal, since Emacs is
+  ;; sitting elsewhere waiting for input.
+  (remove-hook 'kill-emacs-hook 'desktop-kill))
 
 ;; Simple is Emacs's built-in miscellaneous package.
 (use-feature simple
