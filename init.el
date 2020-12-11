@@ -354,6 +354,8 @@
   :config
   ;; Similar to project-try-vc but works when VC is disabled.
   (defun project-try-magit (dir)
+    ;; TODO: Send this upstream so it doesn’t break again.
+    (require 'magit-process)
     (let* ((root (magit-toplevel dir)))
       (and root (cons 'vc root))))
   (add-to-list 'project-find-functions #'project-try-magit t)
