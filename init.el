@@ -726,6 +726,9 @@
 (use-feature ielm
   :custom (ielm-prompt "> "))
 
+(use-package lorem-ipsum
+  :custom (lorem-ipsum-sentence-separator " "))
+
 (use-feature man
   :bind ("C-c m" . man))
 
