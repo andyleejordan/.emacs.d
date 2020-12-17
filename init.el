@@ -613,12 +613,15 @@
   (c-mode-common . eglot-ensure)
   (python-mode . eglot-ensure)
   (rust-mode . eglot-ensure)
+  (yaml-mode . eglot-ensure)
   :custom
   (eglot-auto-display-help-buffer t)
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits nil)
   :config
   (bind-key "C-c r" #'eglot-rename eglot-mode-map)
+  ;; Install with ‘npm install -g yaml-language-server’
+  (add-to-list 'eglot-server-programs '(yaml-mode . ("yaml-language-server" "--stdio")))
   (defun eglot-format-buffer-on-save ()
     (if (and (project-current) (eglot-managed-p))
         ;; TODO: Consider calling `revert-buffer’ too.

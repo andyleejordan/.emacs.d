@@ -797,4 +797,5 @@ From [[https://stackoverflow.com/a/271136][StackOverflow]]:
 - Copy the regexp without the surrounding quotes
 - Use =C-c C-q= to close regexp-builder
 *** Set directory local variable =eval= to execute arbitrary code
+*** Use =(hack-dir-local-variables-non-file-buffer)= to re-evaluate dir local
 *** See current faces =list-faces-display=
