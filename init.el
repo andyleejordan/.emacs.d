@@ -624,9 +624,8 @@
   (add-to-list 'eglot-server-programs '(yaml-mode . ("yaml-language-server" "--stdio")))
   (defun eglot-format-buffer-on-save ()
     (if (and (project-current) (eglot-managed-p))
-        ;; TODO: Consider calling `revert-buffer’ too.
-        (add-hook 'after-save-hook #'eglot-format-buffer nil 'local)
-      (remove-hook 'after-save-hook #'eglot-format-buffer 'local)))
+        (add-hook 'before-save-hook #'eglot-format-buffer nil 'local)
+      (remove-hook 'before-save-hook #'eglot-format-buffer 'local)))
   (add-hook 'eglot-managed-mode-hook #'eglot-format-buffer-on-save))
 
 (use-package xref) ; built-in but in GNU ELPA
