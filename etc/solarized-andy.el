@@ -32,9 +32,20 @@
 (defconst solarized-subtheme
   '((custom-theme-set-faces
      theme-name
+     ;; Tabs
+     `(tab-bar
+       ((,class (:foreground ,base0 :background ,base02))))
+     `(tab-bar-tab
+       ((,class ( ; Matches the buffer background
+                 :inherit tab-bar
+                 :weight bold
+                 :background ,base03
+                 :underline ,s-line))))
+     `(tab-bar-tab-inactive
+       ((,class (:inherit tab-bar))))
      ;; Icomplete
      `(icomplete-first-match
-       ((,class :weight bold :foreground ,green)))
+       ((,class (:weight bold :foreground ,green))))
      ;; Completions
      `(completions-first-difference
        ((,class (:foreground ,magenta))))
