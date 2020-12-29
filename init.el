@@ -143,7 +143,12 @@
 ;;; Windows / Frames and the buffers in them:
 (use-feature tab-bar
   :bind (("C-x t [" . tab-bar-history-back)
-         ("C-x t ]" . tab-bar-history-forward))
+         ("C-x t ]" . tab-bar-history-forward)
+         ("C-x t n" . tab-new) ; `C-x t 2’
+         ("C-x t w" . tab-close) ; `C-x t 0’
+         ("C-x t u" . tab-undo) ; `C-x t 0’
+         ("M-<right>" . tab-next) ; `tab-bar-switch-to-prev-tab’
+         ("M-<left>" . tab-previous)) ; `tab-bar-switch-to-next-tab’
   :config (tab-bar-history-mode) (tab-bar-mode))
 
 (use-package buffer-move)
