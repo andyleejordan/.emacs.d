@@ -774,6 +774,8 @@
 
 (use-package system-packages)
 
+(use-package xr)
+
 ;;; Appearance:
 
 (use-feature frame
