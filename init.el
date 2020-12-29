@@ -876,7 +876,10 @@
   (run-at-time "05:00pm" (* 60 60 24) #'load-dark-theme))
 
 ;; This must be loaded after themes.
-(use-package smart-mode-line
+(use-package mood-line
+  :config (mood-line-mode))
+
+(use-package smart-mode-line :disabled
   :config
   ;; These aren't set with `custom' because their `:set' functions
   ;; cause the theme to be applied multiple times.
