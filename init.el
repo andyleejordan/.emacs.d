@@ -142,8 +142,8 @@
 
 ;;; Windows / Frames and the buffers in them:
 (use-feature tab-bar
-  :bind (("M-[" . tab-bar-history-back)
-         ("M-]" . tab-bar-history-forward))
+  :bind (("C-x t [" . tab-bar-history-back)
+         ("C-x t ]" . tab-bar-history-forward))
   :config (tab-bar-history-mode) (tab-bar-mode))
 
 (use-package buffer-move)
