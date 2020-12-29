@@ -246,6 +246,7 @@ defaults to `font-size’."
 
 (defun toggle-theme ()
   "Switch between theme variants."
+  ;; TODO: The load functions need to report errors and switch to *backtrace*
   (interactive)
   (cond
    ((member dark-theme custom-enabled-themes)

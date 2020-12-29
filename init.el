@@ -157,6 +157,7 @@
 (use-feature window
   :no-require
   :custom
+  ;; I want rg and magit buffers to open in the other window, if it’s to the right
   (display-buffer-alist
    '((".*"
       (display-buffer-reuse-window display-buffer-same-window)
@@ -926,6 +927,7 @@
   (column-number-mode)
   :custom
   ;; TODO: Maybe set `suggest-key-bindings' to `nil'.
+  ;; TODO: Make yank not use xterm paste, only cmd-v on xterm-paste
   (save-interprogram-paste-before-kill t)
   (kill-do-not-save-duplicates t)
   (kill-whole-line t)
