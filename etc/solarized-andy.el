@@ -43,6 +43,17 @@
                  :underline ,s-line))))
      `(tab-bar-tab-inactive
        ((,class (:inherit tab-bar))))
+     ;; Mode-line
+     `(mode-line
+       ((,class ( ; No underline
+                 :foreground ,s-mode-line-fg
+                 :background ,s-mode-line-bg))))
+     `(mode-line-inactive
+       ((,class ( ; Keep underline
+                 :inherit mode-line
+                 :foreground ,s-mode-line-inactive-fg
+                 :background ,s-mode-line-inactive-bg
+                 :underline ,s-mode-line-underline))))
      ;; Icomplete
      `(icomplete-first-match
        ((,class (:weight bold :foreground ,green))))
