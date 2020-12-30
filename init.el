@@ -788,6 +788,7 @@
   ;; system, `font-size’ to be set to its final value (which can
   ;; happen in `local.el’), `set-preferred-font’ to be loaded from
   ;; `andy.el’, and it uses `--map-first’ from `dash.el’.
+  (blink-cursor-mode)
   (add-hook 'after-make-frame-functions #'set-preferred-font)
   (add-hook 'after-init-hook #'set-preferred-font))
 
