@@ -665,7 +665,7 @@ Captures all non-terminals in Bison grammar.
   make install
   # Copy ‘nextstep/Emacs.app’ to /Applications
 #+end_src
-** Ubuntu 19.10 script
+** Ubuntu 19.10 script with X
 #+begin_src bash
   #!/bin/bash
 
@@ -681,7 +681,23 @@ Captures all non-terminals in Bison grammar.
   ./src/emacs -Q
   sudo make install install-info install-doc
 #+end_src
+** Ubuntu 20.04 script without X
+#+begin_src bash
+  #!/bin/bash
 
+  set -o errexit
+  set -o pipefail
+
+  sudo apt install pkg-config texinfo libncurses-dev libgnutls28-dev libjansson-dev libxpm-dev libxml2-dev libsystemd-dev libz-dev build-essential aspell
+  # Consider: git, ripgrep, sshguard, and htop
+
+  ./autogen.sh
+  ./configure --with-gnutls --with-json --with-xml2 --with-libsystemd --with-x-toolkit=no --with-jpeg=ifavailable --with-png=ifavailable --with-gif=ifavailable --with-tiff=ifavailable | less
+  make -j $(nproc) all info doc
+
+  ./src/emacs -Q
+  sudo make install install-info install-doc
+#+end_src
 * Bugs
 ** icomplete uses wrong default value
 [[https://debbugs.gnu.org/cgi/bugreport.cgi?bug=42101][GNU Bug Report #42101]]
