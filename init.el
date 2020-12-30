@@ -938,12 +938,16 @@
   (column-number-mode)
   :custom
   ;; TODO: Maybe set `suggest-key-bindings' to `nil'.
-  ;; TODO: Make yank not use xterm paste, only cmd-v on xterm-paste
   (save-interprogram-paste-before-kill t)
   (kill-do-not-save-duplicates t)
   (kill-whole-line t)
-  (shift-select-mode nil "Don't activate mark with shift.")
-  (select-active-regions nil "Don't set primary selection.")
+  (shift-select-mode nil "Don’t activate mark with shift.")
+  (select-active-regions nil "Don’t set primary selection.")
+  ;; TODO: Maybe make this only for MacOS which has CMD-V.
+  ;;
+  ;; Use `clipboard-kill-region’, `clipboard-kill-ring-save’, and
+  ;; `clipboard-yank’ to access clipboard.
+  (select-enable-clipboard nil "Don’t share clipboard with yank")
   (visual-line-fringe-indicators '(nil right-curly-arrow)))
 
 (use-feature files
