@@ -936,11 +936,8 @@
   (kill-whole-line t)
   (shift-select-mode nil "Don’t activate mark with shift.")
   (select-active-regions nil "Don’t set primary selection.")
-  ;; TODO: Maybe make this only for MacOS which has CMD-V.
-  ;;
-  ;; Use `clipboard-kill-region’, `clipboard-kill-ring-save’, and
-  ;; `clipboard-yank’ to access clipboard.
-  (select-enable-clipboard nil "Don’t share clipboard with yank")
+  ;; Share clipboard when `DISPLAY’ is set.
+  (select-enable-clipboard (getenv "DISPLAY") "Don’t share clipboard with yank")
   (visual-line-fringe-indicators '(nil right-curly-arrow)))
 
 (use-feature files
