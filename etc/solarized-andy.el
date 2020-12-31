@@ -39,8 +39,7 @@
        ((,class ( ; Matches the buffer background
                  :inherit tab-bar
                  :weight bold
-                 :background ,base03
-                 :underline ,s-line))))
+                 :background ,base03))))
      `(tab-bar-tab-inactive
        ((,class (:inherit tab-bar))))
      ;; Mode-line
