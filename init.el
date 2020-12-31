@@ -607,14 +607,7 @@
   :config (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
 ;; Alternatives include: eglot, irony, cquery, rtags, ggtags, and ycmd.
-;;
-;; See https://github.com/joaotavora/eglot/issues/367 for bug with
-;; `fill-paragraph’. The `unfill’ package just wraps that anyway, so
-;; it’s not the problem.
-;;
-;; TODO: Tracking down a bug where Python docstrings get mangled,
-;; seemingly by `eglot-format-buffer’.
-(use-package eglot ; an alternative LSP client in GNU ELPA
+(use-package eglot ; an LSP client in GNU ELPA
   :hook
   (c-mode-common . eglot-ensure)
   (python-mode . eglot-ensure)
