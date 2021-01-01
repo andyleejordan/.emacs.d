@@ -7,14 +7,6 @@
 
 ;;; Code:
 
-;; pull in path
-(use-package exec-path-from-shell
-  :if (display-graphic-p)
-  :config
-  (add-args-to-list 'exec-path-from-shell-variables
-                    '("SSH_AUTH_SOCK" "CAML_LD_LIBRARY_PATH"))
-  (exec-path-from-shell-initialize))
-
 ;; set for `shell-command-to-string' on remote systems
 (setenv "TTY" "/dev/ttys001")
 

@@ -692,6 +692,13 @@
 
 (use-package demangle-mode)
 
+(use-package exec-path-from-shell
+  :if (or (daemonp) (display-graphic-p))
+  :config
+  ;; Must be exported before my ~/.bashrc’s TERM==dumb short-circuit
+  (add-args-to-list 'exec-path-from-shell-variables '("SSH_AUTH_SOCK"))
+  (exec-path-from-shell-initialize))
+
 (use-feature eshell
   :bind ("C-c e" . eshell)
   :custom
