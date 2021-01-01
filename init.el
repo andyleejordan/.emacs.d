@@ -149,6 +149,7 @@
          ("C-x t u" . tab-undo) ; `C-x t 0’
          ("M-<right>" . tab-next) ; `tab-bar-switch-to-prev-tab’
          ("M-<left>" . tab-previous)) ; `tab-bar-switch-to-next-tab’
+  :custom (tab-bar-close-button-show nil)
   :config (tab-bar-history-mode) (tab-bar-mode))
 
 (use-package buffer-move)
