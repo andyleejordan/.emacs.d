@@ -188,8 +188,11 @@
   ;; are bound like in `ido' to move through candidates.
   (bind-key "M-s" #'isearch-forward icomplete-fido-mode-map)
   (bind-key "M-r" #'isearch-backward icomplete-fido-mode-map)
+  (use-package orderless
+    :custom (orderless-matching-styles
+             '(orderless-regexp orderless-prefixes orderless-initialism)))
   (defun fido-mode+ ()
-    (setq-local completion-styles '(basic partial-completion initials flex)
+    (setq-local completion-styles '(orderless)
                 truncate-lines t))
   (add-hook 'icomplete-minibuffer-setup-hook #'fido-mode+)
   (fido-mode))
