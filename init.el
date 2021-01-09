@@ -697,8 +697,8 @@
 
 (use-package exec-path-from-shell
   :if (or (daemonp) (display-graphic-p))
+  :custom (exec-path-from-shell-arguments '("-l"))
   :config
-  ;; Must be exported before my ~/.bashrc’s TERM==dumb short-circuit
   (add-args-to-list 'exec-path-from-shell-variables '("SSH_AUTH_SOCK"))
   (exec-path-from-shell-initialize))
 
