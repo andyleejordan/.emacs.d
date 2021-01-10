@@ -161,7 +161,9 @@
      `(isearchp-regexp-level-8
        ((,class (:foreground ,base03 :background ,yellow))))
      `(isearchp-lazy-odd-regexp-groups
-       ((,class (:background ,cyan)))))))
+       ((,class (:background ,cyan))))
+     ;; Easy Hugo
+     `(easy-hugo-help-face ((,class (:weight bold :foreground ,green)))))))
 
 (deftheme solarized-andy-light "Custom light variant of Solarized.")
 (solarized-create-theme-file 'light 'solarized-andy-light

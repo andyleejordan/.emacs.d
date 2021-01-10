@@ -695,6 +695,12 @@
 
 (use-package demangle-mode)
 
+(use-package easy-hugo
+  :custom
+  (easy-hugo-basedir "~/blog")
+  (easy-hugo-url "https://andschwa.com")
+  (easy-hugo-postdir "content/posts"))
+
 (use-package exec-path-from-shell
   :if (or (daemonp) (display-graphic-p))
   :custom (exec-path-from-shell-arguments '("-l"))
