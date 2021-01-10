@@ -432,9 +432,7 @@
 ;; C-q', and `C-c C-p'.
 
 (use-feature replace
-  :config
-  (bind-key "C-x C-s" #'occur-cease-edit occur-edit-mode-map)
-  (add-hook 'occur-mode-hook #'next-error-follow-minor-mode))
+  :config (bind-key "C-x C-s" #'occur-cease-edit occur-edit-mode-map))
 
 ;; https://www.emacswiki.org/emacs/ReplacePlus
 (use-feature replace+
