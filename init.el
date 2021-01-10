@@ -701,9 +701,11 @@
 
 (use-package exec-path-from-shell
   :if (or (daemonp) (display-graphic-p))
-  :custom (exec-path-from-shell-arguments '("-l"))
+  :custom
+  (exec-path-from-shell-shell-name "bash")
+  (exec-path-from-shell-arguments '("-l"))
   :config
-  (add-args-to-list 'exec-path-from-shell-variables '("SSH_AUTH_SOCK"))
+  (add-to-list 'exec-path-from-shell-variables "SSH_AUTH_SOCK")
   (exec-path-from-shell-initialize))
 
 (use-feature eshell
