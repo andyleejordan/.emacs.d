@@ -790,8 +790,8 @@ https://masteringemacs.org/article/removing-blank-lines-buffer
 *** Replace in files
 From [[https://stackoverflow.com/a/271136][StackOverflow]]:
 
-1. M-x find-name-dired: you will be prompted for a root directory and
-   a filename pattern.
+1. =M-x find-name-dired=: you will be prompted for a root directory and
+   a filename pattern: =-name "*.py" -not -path "./.archive/*"=
 
 2. Press t to "toggle mark" for all files found.
 
@@ -806,14 +806,17 @@ From [[https://stackoverflow.com/a/271136][StackOverflow]]:
 6. C-x C-s ! to save all buffers.
 
 *** Replace with capture regexp
-- use regex groups like "ab\(c\)" where the parentheses are escaped
+- use regex groups like =ab\(c\)= where the parentheses are escaped
   because Emacs
-- refer to prior capture groups by \N where N is 1-indexed on the
+- refer to prior capture groups by =\N= where N is 1-indexed on the
   captured groups (e.g. back reference)
 *** Renumber with regexp
 - see [[http://www.emacswiki.org/emacs/RenumberList][Wiki]]; the comma indicates elisp code to evaluate
-- e.g. [0-9]+ -> \,(+ 257 \#)
-- or by 8 starting at 10 \,(+ 10 (* 8 \#))
+- e.g. =[0-9]+= -> =\,(+ 257 \#)=
+- or by 8 starting at 10 =\,(+ 10 (* 8 \#))=
+*** Replace reStructuredText headers
+- Find ~~~ etc. =^\(~+\)$=
+- Replace with ^^^ =\,(make-string (length \1) ?^)=
 *** regexp-builder for replace
 - Use =C-c C-i= and choose the "string" syntax
 - Copy the regexp without the surrounding quotes
