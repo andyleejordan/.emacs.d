@@ -53,8 +53,8 @@
      :ensure nil
      ,@args))
 
-(use-package quelpa)
-(use-package quelpa-use-package)
+(use-package quelpa :disabled)
+(use-package quelpa-use-package :disabled)
 
 (customize-set-variable 'quelpa-use-package-inhibit-loading-quelpa t)
 
@@ -343,8 +343,8 @@
   (dired-listing-switches "-alFhv" "Must not contain `-p'."))
 
 ;; https://www.emacswiki.org/emacs/DiredPlus
-;; Use `C-M-R’ to toggle reuse of buffers.
-(use-feature dired+
+(use-feature dired+ :disabled
+  ;; Use `C-M-R’ to toggle reuse of buffers.
   :quelpa (dired+ :fetcher url :url "https://www.emacswiki.org/emacs/download/dired+.el"))
 
 (use-package dired-du ; On `C-x M-r’
@@ -409,7 +409,7 @@
   (isearch-lazy-count t))
 
 ;; https://www.emacswiki.org/emacs/IsearchPlus
-(use-feature isearch+
+(use-feature isearch+ :disabled
   :quelpa (isearch+ :fetcher url :url "https://www.emacswiki.org/emacs/download/isearch+.el"))
 
 (use-feature grep
@@ -435,7 +435,7 @@
   :config (bind-key "C-x C-s" #'occur-cease-edit occur-edit-mode-map))
 
 ;; https://www.emacswiki.org/emacs/ReplacePlus
-(use-feature replace+
+(use-feature replace+ :disabled
   :quelpa (replace+ :fetcher url :url "https://www.emacswiki.org/emacs/download/replace+.el"))
 
 (use-feature wdired
@@ -660,12 +660,12 @@
 (use-feature apropos
   :custom (apropos-do-all t))
 
-;; https://www.emacswiki.org/emacs/BookmarkPlus
 (use-feature bookmark
   :custom
   (bookmark-version-control t)
   (bookmark-save-flag 1))
 
+;; https://www.emacswiki.org/emacs/BookmarkPlus
 (use-feature bookmark+ :disabled
   :init (install-wiki-package '("bookmark+.el"
                                 "bookmark+-mac.el"
@@ -811,20 +811,20 @@
   :config (fortune-cookie-mode))
 
 ;; https://www.emacswiki.org/emacs/HelpPlus
-(use-feature help+
+(use-feature help+ :disabled
   :quelpa (help+ :fetcher url :url "https://www.emacswiki.org/emacs/download/help+.el"))
 
-(use-feature help-fns+
+(use-feature help-fns+ :disabled
   :quelpa (help-fns+ :fetcher url :url "https://www.emacswiki.org/emacs/download/help-fns+.el"))
 
-(use-feature help-macro+
+(use-feature help-macro+ :disabled
   :quelpa (help-macro+ :fetcher url :url "https://www.emacswiki.org/emacs/download/help-macro+.el"))
 
-(use-feature help-mode+
+(use-feature help-mode+ :disabled
   :quelpa (help-mode+ :fetcher url :url "https://www.emacswiki.org/emacs/download/help-mode+.el"))
 
 ;; https://www.emacswiki.org/emacs/InfoPlus
-(use-feature info+
+(use-feature info+ :disabled
   :quelpa (info+ :fetcher url :url "https://www.emacswiki.org/emacs/download/info+.el"))
 
 (use-package hl-todo
