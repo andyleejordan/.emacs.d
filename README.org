@@ -379,6 +379,13 @@ hitting enter would accept the input instead of inserting a newline.
 However, =C-q RET= inserts =^M=, which is a carriage return, not a
 newline. You actually want =C-q C-j=. But why is that?
 
+Similarly, you often need to insert Unicode characters and Emacs has
+an amazing facility with the prefix =C-x 8=. For example, the
+copyright symbol © is =C-x 8 C=, and the Euro symbol € is =C-x 8 * E=.
+Smart quotes can be found on =[= / =]= for =‘= / =’=, and ={= / =}=
+for =“= / =”=, but also see see =electric-quote-mode=. Use =C-x 8 C-h=
+to find the rest.
+
 *** Emacs syntax explained
 
 The answer goes all the way back to the ASCII table and the notion of
