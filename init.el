@@ -1024,11 +1024,7 @@
 
 (use-package fish-mode :disabled)
 
-(use-package gitattributes-mode)
-
-(use-package gitconfig-mode)
-
-(use-package gitignore-mode)
+(use-package git-modes)
 
 (use-package groovy-mode :disabled)
 
