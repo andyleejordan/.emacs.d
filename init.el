@@ -201,7 +201,6 @@
 (use-feature minibuffer
   :custom
   (enable-recursive-minibuffers t)
-  (completion-in-region-function #'completion-in-region+)
   (completion-ignore-case t)
   (read-buffer-completion-ignore-case t)
   (read-buffer-completion-ignore-case t)
@@ -212,6 +211,14 @@
   :config
   (bind-key "SPC" #'icomplete-fido-ret minibuffer-local-filename-completion-map)
   (bind-key "SPC" #'icomplete-fido-ret minibuffer-local-filename-must-match-map))
+
+(use-package consult
+  :custom
+  (completion-in-region-function #'consult-completion-in-region)
+  :config
+  (bind-key [remap yank-pop] #'consult-yank-pop)
+  (bind-key [remap switch-to-buffer] #'consult-buffer)
+  (bind-key "C-x C-r" #'consult-recent-file))
 
 (use-package eldoc :delight) ; built-in but in GNU ELPA
 
@@ -385,8 +392,6 @@
   (run-with-idle-timer (* 5 60) :repeat #'recentf-save-list)
   (recentf-mode))
 
-(bind-key "C-x C-r" #'recentf-open-files+)
-
 ;;; Searching:
 
 (use-feature imenu
@@ -499,7 +504,6 @@
 
 (customize-set-variable 'truncate-lines t)
 (bind-key [remap delete-char] #'delete-forward-char)
-(bind-key [remap yank-pop] #'yank-pop+)
 (bind-key "C-x w" #'toggle-truncate-lines)
 (bind-key "C-M-y" #'raise-sexp)
 (bind-key "C-M-<backspace>" #'delete-pair)

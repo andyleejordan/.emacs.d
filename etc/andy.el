@@ -32,6 +32,7 @@
 ;; Customization and keybindings do not belong here.
 
 ;;; Code:
+
 (require 'dash)
 (require 'recentf)
 (require 'no-littering)
@@ -129,84 +130,8 @@ behavior added."
   (interactive)
   (find-file (expand-file-name "init.el" user-emacs-directory)))
 
-;;; Completing functions:
-
-;; Inspirations: oantolin’s `completing-read-in-region’, selectrum’s
-;; `selectrum-completion-in-region’, minibuffer’s
-;; `completion--do-completion’, and `minibuffer-completion-help’.
-(defun completion-in-region+ (start end collection &optional predicate)
-  "Completion in region using `completing-read’.
-See `completion-in-region’ for START END COLLECTION PREDICATE.
-Set `completion-in-region-function’ to use, remember to press ?
-to open `*completions*’ buffer (perhaps with annotations)."
-  (if (and (minibufferp) (not (string= (minibuffer-prompt) "Eval: ")))
-      (unless completion-fail-discreetly
-        (ding) (completion--message "Press `?’ for `*completions*’ buffer") nil)
-    (let* ((input (buffer-substring-no-properties start end))
-           (limit (car (completion-boundaries input collection predicate "")))
-           (md (completion--field-metadata start))
-           (all (completion-all-completions input collection predicate
-                                            (- end start) md))
-           (comp (cond
-                  ((atom all) nil)
-                  ((and (consp all) (atom (cdr all)))
-                   (concat (substring input 0 limit) (car all)))
-                  (t (completing-read
-                      "Completion: " collection predicate t input)))))
-      (if (null comp)
-          (unless completion-fail-discreetly
-            (ding) (completion--message "No completions") nil)
-        (delete-region start end)
-        (insert (substring-no-properties comp))
-        t))))
-
-(defun recentf-open-files+ ()
-  "Use `completing-read' to open a recent file."
-  (interactive)
-  (let ((files (mapcar 'abbreviate-file-name recentf-list)))
-    (find-file (completing-read "Find recent file: " files nil t))))
-
-(use-package icomplete-vertical)
-
-(defun yank-pop+ (&optional arg)
-  "Call `yank-pop' with ARG when appropriate, or offer completion."
-  (interactive "*P")
-  (require 'icomplete-vertical)
-  (if arg (yank-pop arg)
-    (let* ((old-last-command last-command)
-           (enable-recursive-minibuffers t)
-           (text (icomplete-vertical-do nil
-                   (completing-read
-                    "Yank: "
-                    (cl-remove-duplicates
-                     kill-ring :test #'string= :from-end t)
-                    nil t nil nil)))
-           ;; Find `text' in `kill-ring'.
-           (pos (cl-position text kill-ring :test #'string=))
-           ;; Translate relative to `kill-ring-yank-pointer'.
-           (n (+ pos (length kill-ring-yank-pointer))))
-      (unless (string= text (current-kill n t))
-        (error "Could not setup for `current-kill'"))
-      ;; Restore `last-command' over Selectrum commands.
-      (setq last-command old-last-command)
-      ;; Delegate to `yank-pop' if appropriate or just insert.
-      (if (eq last-command 'yank)
-          (yank-pop n) (insert-for-yank text)))))
-
-(defun icomplete-fido-slash (force)
-  "Enter directory or slash, like command `ido-mode'.
-If FORCE is non-nil just insert slash. Bind it to ‘/’ in
-`minibuffer-local-filename-completion-map’ and maybe
-`minibuffer-local-filename-must-match-map’."
-  (interactive "P")
-  (if (and (not force)
-           (completion-all-sorted-completions)
-           (eq (icomplete--category) 'file)
-           (not (eq (char-before) ?/)))
-      (icomplete-force-complete)
-    (self-insert-command 1 ?/)))
-
 ;;; Font size adjustments:
+
 (defcustom font-size 120 "Default font size to apply." :type 'integer)
 
 (defun set-preferred-font (&optional frame size)
@@ -220,6 +145,7 @@ defaults to `font-size’."
                '("Cascadia Code" "Source Code Pro" "Menlo" "Ubuntu Mono")))
 
 ;;; Light and dark themes:
+
 (defcustom light-theme 'solarized-andy-light
   "Light theme to load."
   :group 'andy
@@ -255,8 +181,8 @@ defaults to `font-size’."
     (load-dark-theme))))
 
 ;;; Skeletons:
-;; https://www.gnu.org/software/emacs/manual/html_mono/autotype.html#Skeleton-Language
 
+;; https://www.gnu.org/software/emacs/manual/html_mono/autotype.html#Skeleton-Language
 (define-skeleton c-ifdef-skeleton
   "Wraps code with a C pre-processor conditional block."
   (completing-read "#if defined(IDENTIFIER): " '("__WINDOWS__"))
