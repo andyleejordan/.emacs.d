@@ -636,6 +636,7 @@
 
 (use-feature flyspell
   ;; Disable on Windows because `aspell' 0.6+ isn't available.
+  :if (executable-find "aspell")
   :unless (eq system-type 'windows-nt)
   :delight
   :hook
