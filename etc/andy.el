@@ -142,7 +142,7 @@ defaults to `font-size’."
                      (read-number "Font size: " font-size)))
   (--map-first (member it (font-family-list frame))
                (set-face-attribute 'default frame :family it :height (or size font-size))
-               '("Cascadia Code" "Source Code Pro" "Menlo" "Ubuntu Mono")))
+               '("Monaco" "Source Code Pro" "Menlo" "Ubuntu Mono")))
 
 ;;; Light and dark themes:
 
