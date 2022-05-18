@@ -141,6 +141,7 @@
   :custom (hs-allow-nesting t))
 
 ;;; Windows / Frames and the buffers in them:
+
 (use-feature tab-bar
   :bind (("C-x t [" . tab-bar-history-back)
          ("C-x t ]" . tab-bar-history-forward)
@@ -1018,7 +1019,7 @@
   :bind (:map cmake-mode-map
               ([remap xref-find-definitions] . cmake-help-command)))
 
-(use-package csharp-mode :disabled)
+(use-package csharp-mode)
 
 (use-package dockerfile-mode)
 
