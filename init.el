@@ -189,6 +189,7 @@
   ;; are bound like in `ido' to move through candidates.
   (bind-key "M-s" #'isearch-forward icomplete-fido-mode-map)
   (bind-key "M-r" #'isearch-backward icomplete-fido-mode-map)
+  (bind-key "/" #'icomplete-fido-slash minibuffer-local-filename-completion-map)
   (use-package orderless
     :custom (orderless-matching-styles
              '(orderless-regexp orderless-prefixes orderless-initialism)))

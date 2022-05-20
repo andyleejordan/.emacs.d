@@ -123,6 +123,20 @@ behavior added."
          (setq this-command 'keyboard-quit)
          (keyboard-quit))))
 
+;;; Making slash work like ido in icomplete
+
+(defun icomplete-fido-slash (force)
+  "Enter directory or slash, like command `ido-mode'.
+If FORCE is non-nil just insert slash. Bind it to ‘/’ in
+`minibuffer-local-filename-completion-map’."
+  (interactive "P")
+  (if (and (not force)
+           (completion-all-sorted-completions)
+           (eq (icomplete--category) 'file)
+           (not (eq (char-before) ?/)))
+      (icomplete-force-complete)
+    (self-insert-command 1 ?/)))
+
 ;;; Shortcuts:
 
 (defun find-init-el ()
