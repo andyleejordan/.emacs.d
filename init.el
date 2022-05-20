@@ -180,7 +180,7 @@
 (bind-key* [remap keyboard-quit] #'keyboard-quit-context+)
 
 (use-feature icomplete
-  :if (fboundp 'fido-mode)
+  :if (fboundp 'fido-vertical-mode)
   :custom
   (icomplete-compute-delay 0)
   (icomplete-separator (with-face " | " :inherit 'shadow))
@@ -196,7 +196,7 @@
     (setq-local completion-styles '(orderless)
                 truncate-lines t))
   (add-hook 'icomplete-minibuffer-setup-hook #'fido-mode+)
-  (fido-mode))
+  (fido-vertical-mode))
 
 (use-feature minibuffer
   :custom
