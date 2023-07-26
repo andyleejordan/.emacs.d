@@ -1,8 +1,8 @@
-;;; init.el --- Andrew Schwartzmeyer's Emacs customizations. -*- lexical-binding: t; -*-
+;;; init.el --- Andy Jordans's Emacs customizations. -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2013-2020 Andrew Schwartzmeyer
+;; Copyright (C) 2013-2023 Andy Jordan
 
-;; Author: Andrew Schwartzmeyer <andrew@schwartzmeyer.com>
+;; Author: Andy Jordan <2226434+andyleejordan@users.noreply.github.com>
 ;; Created: 30 Aug 2013
 ;; Homepage: https://github.com/andschwa/.emacs.d
 
@@ -49,14 +49,7 @@
 (defmacro use-feature (name &rest args)
   "Like `use-package' for NAME and ARGS, but with `:straight' nil."
   (declare (indent defun))
-  `(use-package ,name
-     :ensure nil
-     ,@args))
-
-(use-package quelpa :disabled)
-(use-package quelpa-use-package :disabled)
-
-(customize-set-variable 'quelpa-use-package-inhibit-loading-quelpa t)
+  `(use-package ,name :ensure nil ,@args))
 
 ;; Lisp list, string, and file extensions.
 (use-package dash)
@@ -100,11 +93,6 @@
 (use-feature local
   :load-path "etc"
   :if (file-readable-p (no-littering-expand-etc-file-name "local.el")))
-
-;; Experimental:
-(use-feature compile-commands :load-path "etc")
-
-(use-feature edl-mode :load-path "etc")
 
 ;;; Cursor and Mark Movement:
 
@@ -305,7 +293,8 @@
                    (mode . Custom-mode)))
       ("Code" (or (derived-mode . prog-mode)
                   (mode . compilation-mode)))
-      ("Dotfiles" (filename . "dotfiles"))
+      ("Dotfiles" (or (filename . "dotfiles")
+                      (filename . ".dotfiles")))
       ("Help" (or (mode . help-mode)
                   (mode . helpful-mode)
                   (mode . man-mode)

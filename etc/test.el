@@ -1,8 +1,8 @@
 ;;; test.el --- Simple test file                     -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2020  Andy Schwartzmeyer
+;; Copyright (C) 2020  Andy Jordan
 
-;; Author: Andy Schwartzmeyer <andrew@schwartzmeyer.com>
+;; Author: Andy Jordan <2226434+andyleejordan@users.noreply.github.com>
 ;; Keywords: lisp
 
 ;; This program is free software; you can redistribute it and/or modify

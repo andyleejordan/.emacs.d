@@ -1,8 +1,8 @@
 ;;; andy.el --- Experimental and personal customization. -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2020 Andrew Schwartzmeyer
+;; Copyright (C) 2020 Andy Jordan
 
-;; Author: Andrew Schwartzmeyer <andrew@schwartzmeyer.com>
+;; Author: Andy Jordan <2226434+andyleejordan@users.noreply.github.com>
 ;; Created: 24 May 2020
 ;; Homepage: https://github.com/andschwa/.emacs.d
 ;; Keywords: convenience

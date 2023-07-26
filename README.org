@@ -1,4 +1,4 @@
-#+TITLE: Andrew Schwartzmeyer's Emacs configurations
+#+TITLE: Andy Jordan's Emacs configurations
 [[https://travis-ci.org/andschwa/.emacs.d][https://travis-ci.org/andschwa/.emacs.d.svg?branch=master]]
 
 Utilizes [[https://github.com/jwiegley/use-package][jwiegley's use-package]] macro to cleanly and quickly require,

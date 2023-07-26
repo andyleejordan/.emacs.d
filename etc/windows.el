@@ -2,7 +2,7 @@
 
 ;;; Commentary:
 
-;; This is part of Andrew Schwartzmeyer's Emacs customizations. See
+;; This is part of Andy Jordan's Emacs customizations. See
 ;; `init.el' for license etc.
 
 ;;; Code:

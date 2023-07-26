@@ -1,8 +1,8 @@
 ;;; early-init.el --- Package setup                  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2020 Andrew Schwartzmeyer
+;; Copyright (C) 2020-2023 Andy Jordan
 
-;; Author: Andrew Schwartzmeyer <andrew@schwartzmeyer.com>
+;; Author: Andy Jordan <2226434+andyleejordan@users.noreply.github.com>
 
 ;; This file is not part of GNU Emacs.
 

@@ -1,8 +1,8 @@
 ;;; solarized-andy.el --- Custom Solarized child themes  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2020  Andrew Schwartzmeyer
+;; Copyright (C) 2020  Andy Jordan
 
-;; Author: Andrew Schwartzmeyer <andrew@schwartzmeyer.com>
+;; Author: Andy Jordan <2226434+andyleejordan@users.noreply.github.com>
 ;; Keywords: faces
 
 ;; This program is free software; you can redistribute it and/or modify
