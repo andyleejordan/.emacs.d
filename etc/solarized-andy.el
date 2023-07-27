@@ -166,12 +166,14 @@
      `(easy-hugo-help-face ((,class (:weight bold :foreground ,green)))))))
 
 (deftheme solarized-andy-light "Custom light variant of Solarized.")
-(solarized-create-theme-file 'light 'solarized-andy-light
-  solarized-light-color-palette-alist solarized-subtheme t)
+(eval-when-compile
+  (solarized-create-theme-file 'light 'solarized-andy-light
+    solarized-light-color-palette-alist solarized-subtheme t))
 
 (deftheme solarized-andy-dark "Custom dark variant of Solarized.")
-(solarized-create-theme-file 'dark 'solarized-andy-dark
-  solarized-dark-color-palette-alist solarized-subtheme t)
+(eval-when-compile
+  (solarized-create-theme-file 'dark 'solarized-andy-dark
+    solarized-dark-color-palette-alist solarized-subtheme t))
 
 (provide 'solarized-andy)
 ;;; solarized-andy.el ends here
